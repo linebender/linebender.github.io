@@ -1,11 +1,5 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="home">
-    <p>Homepage for the <a href="https://github.com/linebender">Linebender organization</a>.</p>
-    <ul>
-        <li><a href="/druid/">Druid</a></li>
-    </ul>
-    <p>TODO: links to other projects etc.</p>
-</div>
+{{ section.content | safe }}
 {% endblock content %}
