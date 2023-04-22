@@ -39,7 +39,7 @@
                             </svg>
                         </span>
                     </label>
-                    <div class="trigger"></div>
+                    <div class="trigger">{% block navlinks %}{% endblock navlinks %}</div>
                 </nav>
                 {% endblock header %}
             </div>
@@ -68,7 +68,9 @@
                     </div>
 
                     <div class="footer-col footer-col-3">
-                        <p>Homepage for Linebender organization</p>
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This website's content is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
                     </div>
                 </div>
                 {% endblock footer %}
