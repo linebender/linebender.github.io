@@ -47,7 +47,7 @@ The following crates are not part of the `xilem`/`vello` stack, but are under ac
 
  - [`druid`][druid] - A GUI framework for Rust
 
-   `druid` is the original Linebender UI framework, and was the main focus of development until recently. There are many good things about `druid`, but the data model it uses (primarily `Lens`es) gets complicated in Rust, and doesn't compose as well as it would in a [GC'd][garbage collection] functional programming language. However, a lot of the things that work will will be copied straight over to `xilem`, and today `druid` is a solid choice for a new UI app projected to have low to medium complexity. The [#druid-help channel on Zulip](https://xi.zulipchat.com/#narrow/stream/255910-druid-help) is still monitored and you will likely get good answers to any quesitons you have.
+   `druid` is the original Linebender UI framework, and was the main focus of development until recently. There are many good things about `druid`, but the data model it uses (primarily `Lens`es) gets complicated in Rust, and doesn't compose as well as it would in a [GC'd][garbage collection] functional programming language. However, a lot of the things that work will will be copied straight over to `xilem`, and today `druid` is a solid choice for a new UI app projected to have low to medium complexity. The [#druid-help channel on Zulip](https://xi.zulipchat.com/#narrow/stream/255910-druid-help) is still monitored and you will likely get good answers to any questions you have.
 
  - [`piet`][piet] - An abstraction layer over platform 2D rendering facilities.
 
