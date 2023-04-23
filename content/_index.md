@@ -51,7 +51,7 @@ The following crates are not part of the `xilem`/`vello` stack, but are under ac
 
  - [`piet`][piet] - An abstraction layer over platform 2D rendering facilities.
 
-   The purpose of the `piet` library is to provide abstraction over the libraries used for 2D rendering on any particular platform ([Direct2D] on Windows, [Core Graphics] on Mac, and [cairo]/[pango] on Linux). The goal is for `piet` to be superseeded by the `vello` crate, which will provide state-of-the-art 2D rendering on any platform supported by [WebGPU].
+   The purpose of the `piet` library is to provide abstraction over the libraries used for 2D rendering on any particular platform ([Direct2D] on Windows, [Core Graphics] on Mac, and [cairo]/[pango] on Linux). The goal is for `piet` to be superseded by the `vello` crate, which will provide state-of-the-art 2D rendering on any platform supported by [WebGPU].
 
  - [`druid-shell`][druid-shell] - The old name for `glazier`.
 
