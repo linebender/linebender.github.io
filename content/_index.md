@@ -15,10 +15,7 @@ These crates are under active development.
 
  - [`xilem`][xilem] - An experimental Rust architecture for reactive UI.
 
-Xilem is a new UI toolkit with a medium-grained reactive architecture strongly inspired by SwiftUI. It is an evolution of Druid, aiming to keep what is good while improving on Druid's shortcomings.
-   improving on Druid's shortcomings. It uses a reactive architecture built on
-   top of view trees (this aproach is sometimes called 'virtual-DOM' or 'VDOM', which
-   comes from its roots in single-page web apps).
+   Xilem is a new UI toolkit with a medium-grained reactive architecture strongly inspired by SwiftUI. It is an evolution of Druid, aiming to keep what is good while improving on Druid's shortcomings.
 
  - [`vello`][vello] - An experimental GPU compute-centric 2D renderer.
 
