@@ -72,6 +72,8 @@ The following crates are not part of the `xilem`/`vello` stack, but are under ac
 
    Currently the book mostly contains annotated reference lists, although some sections have written content. Pull requests welcome! The goal is to cover topics like color, shapes/curves, 2D GPU rendering, text, etc.
 
+ - [`linebender.github.io`][linebender.github.io] - This website. If you see anything that looks incorrect, please submit a PR to [the repo][linebender.github.io].
+
 [xi.zulip]: https://xi.zulipchat.com
 [piet]: https://github.com/linebender/piet
 [kurbo]: https://github.com/linebender/kurbo
@@ -100,4 +102,4 @@ The following crates are not part of the `xilem`/`vello` stack, but are under ac
 [harfbuzz]: https://github.com/harfbuzz/harfbuzz
 [`parley`]: https://github.com/dfrg/parley
 [`cosmic-text`]: https://github.com/pop-os/cosmic-text
-
+[linebender.github.io]: https://github.com/linebender/linebender.github.io
