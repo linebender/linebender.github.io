@@ -1,6 +1,5 @@
 +++
 title = "About"
-slug = "about"
 +++
 
 This is the website for the [Linebender organization on GitHub]. The Linebender organization contains a collection of repositories, which when taken as a whole provide the tools and utilities required to create applications in Rust with a user interface.
