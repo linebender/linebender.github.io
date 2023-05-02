@@ -4,7 +4,8 @@ on:
   pull_request
 
 jobs:
-  check:
+  build:
+    name: check
     runs-on: ubuntu-latest
     steps:
       - name: checkout
