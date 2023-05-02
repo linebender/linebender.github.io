@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block navlinks %}
+    <a class="page-link" href="/about">About</a>
+{% endblock navlinks %}
+
+{% block content %}
+{{ section.content | safe }}
+{% endblock content %}
