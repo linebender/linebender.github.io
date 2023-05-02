@@ -1,5 +1,8 @@
 name: Build zola website to ensure no errors
 
+on:
+  pull_request
+
 jobs:
   check:
     runs-on: ubuntu-latest
