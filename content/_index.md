@@ -3,8 +3,6 @@ title = "Homepage"
 description = "Homepage for the Linebender organization"
 +++
 
-THIS IS A TEST TO CHECK THAT MERGING A PULL REQUEST TRIGGERS A DEPLOY. WILL DELETE AFTER
-
 Welcome to the homepage for the [Linebender organization](https://github.com/linebender). We are a friendly group of people who share an interest in 2D graphics and user interface design, with everything that entails. We hang out on [the Xi Zulip instance][xi.zulip] and always welcome new people.
 
 # Linebender projects
