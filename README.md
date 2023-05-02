@@ -9,6 +9,6 @@ The steps you need to get building the website locally are:
  2. Run `zola serve` in a terminal
  3. Go to the address logged to the terminal window (usually [localhost:1111](http://localhost:1111)).
 
- # Deployment
+# Deployment
 
- This website is automatically deployed every time a PR is merged using Github actions.
+This website is automatically deployed every time a PR is merged using Github actions.
