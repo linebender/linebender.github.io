@@ -39,7 +39,10 @@
                             </svg>
                         </span>
                     </label>
-                    <div class="trigger">{% block navlinks %}{% endblock navlinks %}</div>
+                    <div class="trigger">{% block navlinks %}
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                    {% endblock navlinks %}</div>
                 </nav>
                 {% endblock header %}
             </div>
