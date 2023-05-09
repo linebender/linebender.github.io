@@ -24,12 +24,12 @@ We use the Rust Code of Conduct and hold people to a much higher standard of con
 
 Here are our policies around code review:
 
-Every PR must be approved by someone with write access before committing.
-The [wiki] is an exception; there we optimistically merge without review
-Usually we ask the original author of the PR to commit if they have write access.
-Both merge and squash commits are fine, it’s up to the committer.
-We give write access to everyone with a good faith intent to improve the code. Usually this is shortly after the first commit.
-There are currently five owners: @raphlinus, @dfrg, @DJMcNab, @xStrom, and @cmyr. They approve new committers and can make changes to the organization.
+* Every PR must be approved by someone with write access before committing.
+* The [wiki] is an exception; there we optimistically merge without review
+* Usually we wait for the original author of the PR to commit if they have write access.
+* Both merge and squash commits are fine, it’s up to the committer.
+* We give write access to everyone with a good faith intent to improve the code. Usually this is shortly after the first commit.
+* There are currently five owners: @raphlinus, @dfrg, @DJMcNab, @xStrom, and @cmyr. They approve new committers and can make changes to the organization.
 
 We struggle with getting PRs approved and landed quickly. To try to improve that, here are some suggestions.
 
@@ -41,11 +41,11 @@ If a PR goes unreviewed too long, it’s absolutely a good idea to ping it on Zu
 
 Linebender is a collection of open source projects, with a research flavor. We make no guarantees of any of them being suitable for production. We welcome contributions from anybody. Participating should be done out of joy and should not feel like a burden.
 
-Sometimes PRs stall out, or people have an intent to work on an issue and don’t get to it. In those cases, we encourage others to take them over. We try to discourage “cookie licking” as much as possible, though it does happen (especially with Raph).
+Sometimes PRs stall out, or people have an intent to work on an issue and don’t get to it. In those cases, we encourage others to take them over. We try to discourage “cookie licking” as much as possible.
 
 Filing an issue does not come with a guarantee it will be worked on. We really value high quality issue reports, but they can be closed if there’s no clear action to be taken, and we encourage everybody in the project to feel empowered to do so, or otherwise garden such as asking for more details.
 
-Over time, we hope that some of the projects will mature so that they *are* useful in production (this is already the case for pulldown-cmark, which is not officially part of the linebender org). We very much welcome collaboration toward that goal, and use of the crates in all kinds of contexts including commercial projects. For such commercial use, we encourage a collaborative approach, where the organization dedicates sufficient staff time and energy to take responsibility for issues and feature requests, working collaboratively with the open source organization.
+Over time, we hope that some of the projects will mature so that they *are* useful in production (this is already the case for `pulldown-cmark`, which is not officially part of the Linebender org). We very much welcome collaboration toward that goal, and use of the crates in all kinds of contexts including commercial projects. For such commercial use, we encourage a collaborative approach, where the organization dedicates sufficient staff time and energy to take responsibility for issues and feature requests, working collaboratively with the open source organization.
 
 [cookie licking]: https://devblogs.microsoft.com/oldnewthing/20091201-00/?p=15843
 [office hours]: /wiki/office-hours
