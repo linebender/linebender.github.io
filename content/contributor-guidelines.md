@@ -12,7 +12,7 @@ We use a [Zulip instance](https://xi.zulipchat.com/) as the primary place for di
 
 We also hold weekly [office hours]. This is a chance to give status updates, make decisions, and discuss architectural directions. It is open to all, and there are public notes.
 
-We have recently re-started a [wiki], and eagerly encourage gardening. While the Zulip does have archives, they are not searchable, so the wiki represents the definitive place for the results of d
+We have recently re-started a [wiki], and eagerly encourage gardening. While the Zulip does have archives, they are not indexed by search engines (though search is available within Zulip), so the wiki represents the definitive place for the results of discussions and resources.
 
 To propose a nontrivial change, it is better to file an issue first rather than sending a PR. Depending on the scope and disruption of the change, it might make sense to bring it up on Zulip. Especially if a clear consensus doesn’t emerge in a reasonable time, discuss it in office hours.
 
