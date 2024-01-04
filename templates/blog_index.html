@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+{{ section.content | safe }}
+<ul class="blog-list">
+    {% for page in section.pages %}
+    <li>
+        <div><a class="list-post-title" href="{{ page.permalink | safe }}">{{ page.title }}</a></div>
+        <div class="list-post-date"> {{ page.date | date(format="%B %-d, %Y") }}</div>
+        {% if page.authors %}
+        <div class="list-post-authors"> {{page.authors | join(sep=", ")}} </div>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock content %}
