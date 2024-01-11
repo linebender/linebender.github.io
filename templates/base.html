@@ -15,8 +15,6 @@
         <meta property="og:type" content="website">
         <meta name="twitter:card" content="summary">
         <meta property="twitter:title" content="{% if page.title %}{{page.title}}{% else %}{{config.title}}{% endif %}">
-        <script type="application/ld+json">
-            {"@context":"https://schema.org","@type":"WebSite","headline":"{% if page.title %}{{page.title}}{% else %}{{config.title}}{% endif %}","name":"{% if page.title %}{{page.title}}{% else %}{{config.title}}{% endif %}"}</script>
         <!-- End Jekyll SEO tag -->
         <link rel="stylesheet" href="/main.css">
         {% if config.generate_feed %}
