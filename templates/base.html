@@ -5,20 +5,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Begin Jekyll SEO tag v2.8.0 -->
-        <title>{{config.title}} | {{config.description}}</title>
+        <title>{% if page.title %}{{page.title}} - {{config.title}}{% else %}| {{config.description}}{% endif %}</title>
         <meta name="generator" content="Zola v0.17.2">
-        <meta property="og:title" content="{{config.title}}">
+        <meta property="og:title" content="{% if page.title %}{{page.title}}{% else %}{{config.title}}{% endif %}">
         <meta property="og:locale" content="en_US">
-        <meta name="description" content="{{config.description}}">
-        <meta property="og:description" content="{{config.description}}">
-        <link rel="canonical" href="/">
-        <meta property="og:url" content="/">
-        <meta property="og:site_name" content="">
+        <meta name="description" content="{% if page.title %}{{page.title}}{% else %}{{config.description}}{% endif %}">
+        <meta property="og:description" content="{% if page.title %}{{page.title}}{% else %}{{config.description}}{% endif %}">
+        <meta property="og:site_name" content="{{config.title}}">
         <meta property="og:type" content="website">
         <meta name="twitter:card" content="summary">
-        <meta property="twitter:title" content="{{config.title}}">
+        <meta property="twitter:title" content="{% if page.title %}{{page.title}}{% else %}{{config.title}}{% endif %}">
         <script type="application/ld+json">
-            {"@context":"https://schema.org","@type":"WebSite","description":"{{config.description}}","headline":"{{config.title}}","name":"{{config.title}}","url":"/"}</script>
+            {"@context":"https://schema.org","@type":"WebSite","headline":"{% if page.title %}{{page.title}}{% else %}{{config.title}}{% endif %}","name":"{% if page.title %}{{page.title}}{% else %}{{config.title}}{% endif %}"}</script>
         <!-- End Jekyll SEO tag -->
         <link rel="stylesheet" href="/main.css">
         {% if config.generate_feed %}
