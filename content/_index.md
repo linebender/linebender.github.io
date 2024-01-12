@@ -3,7 +3,9 @@ title = "Homepage"
 description = "Homepage for the Linebender organization"
 +++
 
-Welcome to the homepage for the [Linebender organization](https://github.com/linebender). We are a friendly group of people who share an interest in 2D graphics and user interface design, with everything that entails. We hang out on [the Xi Zulip instance][xi.zulip] and always welcome new people.
+Welcome to the homepage for the [Linebender organization](https://github.com/linebender).
+
+We are a friendly group of people who share an interest in 2D graphics and user interface design, with everything that entails. Most of our projects are developed in [the Rust programming language][rust]. We hang out on [the Xi Zulip instance][xi.zulip] and always welcome new people.
 
 # Linebender projects
 
@@ -75,6 +77,7 @@ The following crates are not part of the `xilem`/`vello` stack, but are under ac
  - [`linebender.github.io`][linebender.github.io] - This website. If you see anything that looks incorrect, please submit a PR to [the repo][linebender.github.io].
 
 [xi.zulip]: https://xi.zulipchat.com
+[rust]: https://rust-lang.org
 [piet]: https://github.com/linebender/piet
 [kurbo]: https://github.com/linebender/kurbo
 [druid]: https://github.com/linebender/druid

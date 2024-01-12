@@ -2,7 +2,7 @@
 title = "About"
 +++
 
-This is the website for the [Linebender organization on GitHub]. The Linebender organization contains a collection of repositories, which when taken as a whole provide the tools and utilities required to create applications in Rust with a user interface.
+This is the website for the [Linebender organization on GitHub]. The Linebender organization contains a collection of repositories, which provide the tools and utilities to create graphical user interfaces for applications in [the Rust programming language][rust].
 
 It is also a group of volunteers and enthusiasts who hang out on [our Zulip][xi.zulip], and who collaborate on designing and coding the different parts of the stack required for UI. We are a friendly bunch, and always welcome newcomers, whether they have any experience with 2D graphics and user interfaces or not.
 
@@ -13,6 +13,7 @@ A separate page describes our [contributor guidelines].
 The organization was started by [Raph Levien], and he informally leads and drives the work forward.
 
 [Linebender organization on GitHub]: https://github.com/linebender
+[rust]: https://rust-lang.org
 [xi.zulip]: https://xi.zulipchat.com
 [Raph Levien]: https://levien.com/
 [CC-BY]: http://creativecommons.org/licenses/by/4.0/
