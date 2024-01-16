@@ -37,7 +37,9 @@ To give one specific example: my personal goal is to implement seamless hot relo
 
 In the shorter term, my plan is to focus on basic features, widgets and styling options so people can experiment with Xilem, building on Raph's work on Vello over the past year. [John Skottis's Xilem UX Notes](https://gist.github.com/giannissc/172c6c591997ee14f6120134a7990697) give a good picture of the kinds of things I'll be working on.
 
-In the medium term, I also plan to work on the performance aspect of Xilem. People from Google Fonts have expressed interest in seeing how much performance we can get from Rust UI. While my mission isn't *limited* to performance work, it will be an ongoing focus, especially since it's an area where the Rust language brings unique opportunities. I'll go into more details on Rust performance in a later article.
+The other big short-term priority is going to be documentation. We've seen a lot of people complain that the Linebender project were poorly documented and hard to get into; it was the most popular reaction to our [2024 announcement](https://linebender.org/blog/xilem-2024/), but it echoed sentiments we'd seen before. We're aware of the problem, and we intend to work on it.
+
+In the medium term, I also plan to work on the performance aspect of Xilem. People from Google Fonts have expressed interest in seeing how much performance we can get from Rust UI. While my mission isn't *limited* to performance work, it will be an ongoing focus, especially since it's an area where the Rust language brings unique opportunities. I'll go into more details on Rust performance and power efficiency in a later article.
 
 
 ## Major changes I want to implement soon
