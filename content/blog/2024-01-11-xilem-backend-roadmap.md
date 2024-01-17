@@ -85,7 +85,7 @@ There are other things Xilem added over Druid (notably virtual lists and async s
 
 I'm told by Raph this is a "molotov cocktail" which, uh, fair.
 
-We should write Xilem's backend under the assumption that end users of the library (including the Xilem frontend) won't be able to create their own widgets. Instead, they will have to compose the primitives given to them the same way they compose DOM elements in the browser. There will be escape hatches, from a fixed-size canvas surface where end-users can use arbitrary paint primitives to full-on custom widget code, but which should design the framework under the assumption people won't use those hatches.
+We should write Xilem's backend under the assumption that end users of the library (including the Xilem frontend) will very rarely create their own widgets. Instead, they will usually compose the primitives given to them the same way they compose DOM elements in the browser. There will be escape hatches, from a fixed-size canvas surface where end-users can use arbitrary paint primitives to full-on custom widget code, but we should design the framework under the assumption people will almost never *need* those hatches.
 
 Clearly, this is a radical move. **There will be a prototyping phase before we choose whether we commit to it**, and RFCs to lay out the details. I'm confident it will pay off.
 
@@ -101,15 +101,19 @@ A set of proposals called [CSS Houdini](https://developer.mozilla.org/en-US/docs
 
 The bottom line is that, while implementing custom widgets *will always be possible*, I want to encourage developers to go as far as they can composing declarative elements instead, and see how far it's possible to go using those building blocks.
 
-#### No custom layout
+#### More opinionated layout
 
-One major customization point I want to remove from Xilem is layout.
+One major customization point I want to restrict in Xilem is layout.
 
 Today all Rust GUI frameworks ship their own layout algorithm, but none of them are *competing* on their layout algorithm. Often the layout algorithm is just a means to an end; developers that do want to work on a state-of-the-art layout engine will provide it in a modular crate like [Morphorm](https://github.com/vizia/morphorm) and [Taffy](https://github.com/DioxusLabs/taffy).
 
 And here's the thing: realistically, most layout engines aren't that creative. Every Rust framework and every major GUI framework I'm aware of uses layout that boils down to "FlexBox with small variations". The number of meaningfully different ways to do GUI layout can be counted on, generously, two hands.
 
-I'd argue we only need CSS Flow, FlexBox, CSS Grid, and maybe Morphorm to cover most people's needs. Conveniently, this is what Taffy aims to provide. There's already an experimental Taffy integration in Xilem, and I want to make it deeper. More on this in a latter blog post.
+I'd argue we only need CSS Flow, FlexBox, CSS Grid, and maybe Morphorm to cover most people's needs. Conveniently, this is what Taffy aims to provide. There's already an experimental Taffy integration in Xilem, and I want to make it deeper.
+
+That being said, there won't be a hard-coded set of layout algorithms. Rather, layout will rely on a web-inspired protocol between widgets (in other words, trait methods), and that protocol will be strongly opinionated to make implementation of these layout algorithms easier.
+
+More on this in a latter blog post.
 
 #### No boxing
 
