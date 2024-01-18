@@ -1,7 +1,7 @@
 +++
 title = "Roadmap for the Xilem backend in 2024"
 authors = ["Olivier Faure"]
-date = "2024-01-11 15:00:00"
+date = "2024-01-19 13:00:00"
 +++
 
 As you may have heard by now, Google Fonts is funding me this year to work on Xilem.
@@ -147,7 +147,7 @@ I think there are two things you really want from a Rust ECS library for GUI: sl
 Implementing those is going to be a major undertaking, which we'll have to divide into small experiements, but one I expect to pay many times over.
 
 
-## Community involvment and more to come
+## Community involvement and more to come
 
 I want to really put emphasis on something: none of the above is set in stone.
 
