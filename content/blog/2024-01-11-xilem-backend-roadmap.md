@@ -31,7 +31,7 @@ In the [ECS-backed GUI framework](https://www.leafwing-studios.com/blog/ecs-gui-
 
 > Not to be too harsh, but a lot of the existing Rust GUI solutions... just aren't very good. There's a lot of passable options, but they all have non-trivial drawbacks. No one has really risen to the top as a clear winner. [...] Deep down, we all know that we can do better, and we should.
 
-My ambition is to makes this paragraph obsolete before the end of the year. I want Xilem to get back to being suggested to newbies in the same breath as Iced and SlintUI. In the next few years, I want to entire ecosystem to get to a point where people talk about Rust GUI like they talk about ripgrep or rustls.
+My ambition is to makes this paragraph obsolete before the end of the year. I want Xilem to get back to being suggested to newbies in the same breath as Iced and SlintUI. In the next few years, I want the entire ecosystem to get to a point where people talk about Rust GUI like they talk about ripgrep or rustls.
 
 To give one specific example: my personal goal is to implement seamless hot reloading for Xilem before the end of 2024. I believe it's feasible, and I believe doing it will radically change the way people think about Rust GUI, along with [other improvements I hope to unlock over time](https://poignardazur.github.io/2023/02/02/masonry-01-and-my-vision-for-rust-ui/).
 
@@ -186,7 +186,7 @@ For all my criticisms and caveats and realistic assessments of the problems we n
 
 I'm super thankful to Raph for getting us this far, to Google Fonts for sponsoring us, and to everyone else who contributed to the Linebender ecosystem. I think we can do something amazing and I'm honestly a little startled to be in this position at all.
 
-To reiterate what I said: in the next few years, I want to entire ecosystem to get to a point where people talk about Rust GUI like they talk about ripgrep or rustls.
+To reiterate what I said: in the next few years, I want the entire ecosystem to get to a point where people talk about Rust GUI like they talk about ripgrep or rustls.
 
 I legitimately think Rust has the potential to get best-in-class GUI frameworks, and now the time has come to prove it.
 
