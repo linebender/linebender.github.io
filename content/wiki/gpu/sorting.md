@@ -42,7 +42,11 @@ Several people have pointed out the Onesweep inspired sort from Lichtso, part of
 
 ### DeviceRadixSort
 
-Aras-P has been doing lots of experiments with sorting in his [UnityGaussianSplatting] implementation, all written in the Unity flavor of HLSL. [UnityGaussianSplatting#82] adds something called DeviceRadixSort which shows a modest performance improvement (the discussion thread also speaks to the difficulty of implementing such things portably). This moves to an 8 bit digit. It uses a subgroup-based implementation of WLMS, and appears to make some attempt to be agile in subgroup (wave) size. That said, on code examination it seems likely to fail on subgroup sizes of 64 or above (older AMD cards and Pixel 4, among others). The code appears to be well worth studying.
+Aras-P has been doing lots of experiments with sorting in his [UnityGaussianSplatting] implementation, all written in the Unity flavor of HLSL. [UnityGaussianSplatting#82] adds something called DeviceRadixSort which shows a modest performance improvement (the discussion thread also speaks to the difficulty of implementing such things portably). This moves to an 8 bit digit. It uses a subgroup-based implementation of WLMS, and appears to make some attempt to be agile in subgroup (wave) size. That said, on code examination it seems likely to fail on subgroup sizes of 64 or above (older AMD cards and Pixel 4, among others).
+
+Another correctness concern is the [lack of the subgroup barrier](https://github.com/aras-p/UnityGaussianSplatting/blob/81a03b6fbddbecd056edeadff124870569b07c11/package/Shaders/DeviceRadixSort.hlsl#L334-L338) between the read of the histogram and its update (by different threads in the same warp). According to the Vulkan memory model, this is a data race and thus undefined behavior. Such a barrier doesn't exist in HLSL, so for strict correctness it would need to be upgraded to a `GroupMemoryBarrierWithGroupSync`, with some performance loss. Another correctness concern in the code is the assumption that `WaveGetLaneCount` will return the same value for different compute shaders on the same GPU, which may not be true on Intel in particular.
+
+Even so, the code is well worth studying. It is quite similar to the simdgroup experiment mentioned above, the main difference being 8 bit digits instead of 4.
 
 ## Hybrid Radix Sort
 
