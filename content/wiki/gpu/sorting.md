@@ -67,6 +67,7 @@ Note that it *does* achieve 8 bits per pass; it is entirely likely that a high p
 Aras Pranckevičius has been doing lots of experiments with sorting in his [UnityGaussianSplatting] implementation, all written in the Unity flavor of HLSL.
 [UnityGaussianSplatting#82] adds something called DeviceRadixSort which shows a modest performance improvement (the discussion thread also speaks to the difficulty of implementing such things portably).
 It uses 8 bit digits, and a subgroup implementation of warp-local multi-split.
+This implementation is attempting to be portable to a range of subgroup sizes, but is untested on wave sizes other than 32 and is still under development.
 
 The author, [Thomas Smith], has done experiments comparing reduce-then-scan against a chained single-pass approach for the global histogram scan, which suggest that the latter has approximately a 10% performance gain on Nvidia hardware, but pose considerable challenges for portability.
 Single-pass approaches will not perform well on devices without a forward progress guarantee.
