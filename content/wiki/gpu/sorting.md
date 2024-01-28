@@ -3,6 +3,8 @@ title = "Sorting"
 +++
 
 Many rendering algorithms (including a proposed sparse strip technique for path rendering, and also Gaussian Splatting) rely on sorting.
+Because the GPU has a different architecture to the CPU, programs running on the GPU have different performance characteristics, and this changes which sorting algorithms are optimal for a particular context.
+In particular, sorting algorithms that exploit parallelism tend to be more suited to the GPU.
 The literature on parallel sorting algorithms is extremely well developed, and there are many excellent implementations for CUDA.
 In WebGPU, the situation is still evolving.
 This page has pointers to the potentially useful resources for understanding existing implementations and developing new ones.
