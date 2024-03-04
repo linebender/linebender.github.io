@@ -3,7 +3,7 @@ title = "Mesh shaders"
 +++
 
 Mesh shaders are a compute-centric approach to producing geometry for rasterization.
-They are significantly more powerful than the traditional vertex shader approach, and also simpler than the complex zoo of shader types (hull, domain, tesselation, geometry) that were originally proposed to overcome the limitations of simple vertex shading.
+They are significantly more powerful than the traditional vertex shader approach, and also simpler than the complex zoo of shader types (hull, domain, tessellation, geometry) that were originally proposed to overcome the limitations of simple vertex shading.
 
 They were originally [introduced][Introduction to Turing Mesh Shaders] by Nvidia in 2018 in the Turing microarchitecture.
 In Vulkan, the capability was originally an Nvidia-specific extension, but is now the cross-platform [VK_EXT_mesh_shader] extension.
@@ -37,7 +37,7 @@ The second stage is called a mesh shader.
 
 
 The first stage is dispatched like a compute shader.
-There is an output user-defined "payload" structure (anologous to the interface between vertex and fragment shaders, but can be larger; on DirectX 12 and Metal the limit is 16k), and then each workgroup dispatches a variable number of workgroups of the mesh shader.
+There is an output user-defined "payload" structure (analogous to the interface between vertex and fragment shaders, but can be larger; on DirectX 12 and Metal the limit is 16k), and then each workgroup dispatches a variable number of workgroups of the mesh shader.
 That number can be zero.
 On Metal, it is limited to 1024 workgroups.
 

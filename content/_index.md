@@ -31,7 +31,7 @@ These crates are under active development.
 
  - [`kurbo`][kurbo] - A library for creating, manipulating and interrogating 2D curve shapes.
 
-   At its core, `kurbo` is a library for constructing paths and splines out of straight lines and Bézier curves up to order 3 (known as cubic Béziers). It turns out that a series of cubic Bézier curves can be used to approximate any smooth curve with a very high degree of accuracy, compared to the number of curves required. They are also relatively easy to work with, and form the basis of the approach to curve rendering used in `vello`. The key abstraction is [`kurbo::Shape`](https://docs.rs/kurbo/latest/kurbo/trait.Shape.html), which provides the `path_elements` method. This method returns an interator over Bézier curves that approximate the type implementing the `Shape` trait, which `vello` can then draw.
+   At its core, `kurbo` is a library for constructing paths and splines out of straight lines and Bézier curves up to order 3 (known as cubic Béziers). It turns out that a series of cubic Bézier curves can be used to approximate any smooth curve with a very high degree of accuracy, compared to the number of curves required. They are also relatively easy to work with, and form the basis of the approach to curve rendering used in `vello`. The key abstraction is [`kurbo::Shape`](https://docs.rs/kurbo/latest/kurbo/trait.Shape.html), which provides the `path_elements` method. This method returns an iterator over Bézier curves that approximate the type implementing the `Shape` trait, which `vello` can then draw.
 
  - [`peniko`][peniko] - A library for non-geometric drawing primitives.
 
