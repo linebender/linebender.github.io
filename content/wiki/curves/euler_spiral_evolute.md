@@ -1,7 +1,9 @@
 +++
 title = "Evolute of the Euler spiral"
 +++
-The [evolute] of the Euler spiral has a simple representation as a [Cesàro equation]. Evolutes of curves are interesting because the [Nehab 2020][Converting stroked primitives to filled primitives] paper shows us that for strongly correct stroke expansion, the evolute of a curve is needed in addition to the parallel curve (see Figure 11 and related discussion). This page contains that derivation, as well as related results on near-optimal flattening of the evolute to line segments.
+The [evolute] of the Euler spiral has a simple representation as a [Cesàro equation].
+Evolutes of curves are interesting because the [Nehab 2020][Converting stroked primitives to filled primitives] paper shows us that for strongly correct stroke expansion, the evolute of a curve is needed in addition to the parallel curve (see Figure 11 and related discussion).
+This page contains that derivation, as well as related results on near-optimal flattening of the evolute to line segments.
 
 In this image, the Euler spiral segment is in gray, and its evolute is in blue:
 
@@ -16,13 +18,17 @@ Integrating this equation results in the Whewell form:
 
 $$\theta(s) = \frac{as^2}{2}$$
 
-And we have an equation for the derivative of the curve. In this derivation, we'll fluidly mix complex numbers and 2D vectors, writing. This choice, while a bit of an abuse of notation, will be very convenient when calculating derivatives.
+And we have an equation for the derivative of the curve.
+<!-- Note: the following would read more easily if we had inline math, but I don't see how to make that work. -->
+In this derivation, we'll fluidly mix complex numbers and 2D vectors, writing unit vector in the direction of θ as the exponential of iθ.
+This choice, while a bit of an abuse of notation, will be very convenient when calculating derivatives.
 
 $$x'(s) = e^{i\theta(s)} = e^{i\frac{as^2}{2}}$$
 
-$$x''(s) = iae^{i\frac{as^2}{2}} = iax'(s)$$
+$$x''(s) = iase^{i\frac{as^2}{2}} = iasx'(s)$$
 
-The evolute is defined as points offset from the source curve in the normal direction, by the radius of curvature. Generally:
+The evolute is defined as points offset from the source curve in the normal direction, by the radius of curvature.
+Generally:
 
 $$\bar{x}(s) = x(s) + \frac{ie^{i\theta(s)}}{\kappa(s)}$$
 
@@ -41,7 +47,8 @@ $$\bar{s}'(s) = |x'(s)| = \frac{1}{as^2}$$
 
 $$\bar{s}(s) = -\frac{1}{as}$$
 
-A note: the formula for arc length follows readily from a well-known result in differential geometry, as cited in the [Stoer][Curve Fitting with Clothoidal Splines] paper (the bottom of page 322). However, given that we already have the derivatives for the purpose of computing curvature, it's maybe easier to just derive than rely on a cited method.
+A note: the formula for arc length follows readily from a well-known result in differential geometry, as cited in the [Stoer][Curve Fitting with Clothoidal Splines] paper (the bottom of page 322).
+However, given that we already have the derivatives for the purpose of computing curvature, it's maybe easier to just derive than rely on a cited method.
 
 $$\bar{x}''(s) = \frac{x'(s)}{s} + 2i\frac{x'(s)}{as^3}$$
 
