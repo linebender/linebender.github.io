@@ -20,7 +20,7 @@ $$\theta(s) = \frac{as^2}{2}$$
 
 And we have an equation for the derivative of the curve.
 <!-- Note: the following would read more easily if we had inline math, but I don't see how to make that work. -->
-In this derivation, we'll fluidly mix complex numbers and 2D vectors, writing unit vector in the direction of θ as the exponential of iθ.
+In this derivation, we'll fluidly mix complex numbers and 2D vectors, writing unit vector in the direction of $\theta$ as $e^{i\theta}$.
 This choice, while a bit of an abuse of notation, will be very convenient when calculating derivatives.
 
 $$x'(s) = e^{i\theta(s)} = e^{i\frac{as^2}{2}}$$
