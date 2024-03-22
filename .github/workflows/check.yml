@@ -2,8 +2,8 @@ name: Build zola website to ensure no errors
 
 on:
   pull_request:
-    branch:
-      main
+    branches:
+      - main
 
 jobs:
   build:
