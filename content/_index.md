@@ -5,7 +5,9 @@ description = "Homepage for the Linebender organization"
 
 Welcome to the homepage for the [Linebender organization](https://github.com/linebender).
 
-We are a friendly group of people who share an interest in 2D graphics and user interface design, with everything that entails. Most of our projects are developed in [the Rust programming language][rust]. We hang out on [the Xi Zulip instance][xi.zulip] and always welcome new people.
+We are a friendly group of people who share an interest in 2D graphics and user interface design, with everything that entails.
+Most of our projects are developed in [the Rust programming language][rust].
+We hang out on the [Linebender Zulip][xi.zulip] and always welcome new people.
 
 # Linebender projects
 
