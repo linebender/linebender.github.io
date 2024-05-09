@@ -47,7 +47,6 @@ The following crates are not part of the `xilem`/`vello` stack, but are under ac
 
  - [`velato`][velato] - A crate that converts Lottie animations to `vello` scenes for rendering.
  - [`vello_svg`][vello_svg] - A crate that converts SVG documents to `vello` scenes for rendering.
- - [`parley`][parley] - A crate for rich text layouts.
  - [`norad`][norad] - A crate for reading, writing, and manipulating [Unified Font Object] files, a common font-design format.
 
 ## Crates (passively maintained)
