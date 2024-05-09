@@ -41,7 +41,9 @@ These crates are under active development.
 
 The following crates are not part of the `xilem`/`vello` stack, but are under active development.
 
- - [`velato`][velato] - A crate that renders Lottie animations to `vello`.
+ - [`velato`][velato] - A crate that converts Lottie animations to `vello` scenes for rendering.
+ - [`vello_svg`][vello_svg] - A crate that converts SVG documents to `vello` scenes for rendering.
+ - [`parley`][parley] - A crate for rich text layouts.
  - [`norad`][norad] - A crate for reading, writing, and manipulating [Unified Font Object] files, a common font-design format.
 
 ## Crates (passively maintained)
@@ -90,6 +92,8 @@ The following crates are not part of the `xilem`/`vello` stack, but are under ac
 [xilem]: https://github.com/linebender/xilem
 [2d.graphics]: https://github.com/linebender/2d.graphics
 [velato]: https://github.com/linebender/velato
+[vello_svg]: https://github.com/linebender/vello_svg
+[parley]: https://github.com/linebender/parley
 [norad]: https://github.com/linebender/norad
 [peniko]: https://github.com/linebender/peniko
 [druid-widget-nursery]: https://github.com/linebender/druid-widget-nursery
