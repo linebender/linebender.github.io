@@ -39,6 +39,10 @@ These crates are under active development.
 
    This crate provides a set of shared types for concepts that are important for drawing/stroking paths, but excluding the path geometry itself (which can be found in [`kurbo`][kurbo]). It includes types for brush styles (including gradient) and color.
 
+ - [`parley`][parley] - A library for rich text layouts.
+
+   This crate provides a set of shared types for concepts that are important for rendering text. It is backed by [`swash`][swash].
+
 The following crates are not part of the `xilem`/`vello` stack, but are under active development.
 
  - [`velato`][velato] - A crate that converts Lottie animations to `vello` scenes for rendering.
@@ -94,6 +98,7 @@ The following crates are not part of the `xilem`/`vello` stack, but are under ac
 [velato]: https://github.com/linebender/velato
 [vello_svg]: https://github.com/linebender/vello_svg
 [parley]: https://github.com/linebender/parley
+[swash]: https://github.com/dfrg/swash
 [norad]: https://github.com/linebender/norad
 [peniko]: https://github.com/linebender/peniko
 [druid-widget-nursery]: https://github.com/linebender/druid-widget-nursery
