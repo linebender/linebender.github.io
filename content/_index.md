@@ -39,8 +39,8 @@ These crates are under active development.
 
    This crate provides a set of shared types for concepts that are important for drawing/stroking paths, but excluding the path geometry itself (which can be found in [`kurbo`][kurbo]). It includes types for brush styles (including gradient) and color.
 
- - [`parley`][parley] - A library for rich text layouts. It is backed by [`swash`][swash].
- - [`fontique`][fontique] - A library for font enumeration and fallback library. Used by `parley`.
+ - [`parley`][parley] - A crate for rich text layouts. It is backed by [`swash`][swash].
+ - [`fontique`][fontique] - A crate for font enumeration and fallback. Used by `parley`.
  - [`velato`][velato] - A crate that converts Lottie animations to `vello` scenes for rendering.
  - [`vello_svg`][vello_svg] - A crate that converts SVG documents to `vello` scenes for rendering.
  - [`norad`][norad] - A crate for reading, writing, and manipulating [Unified Font Object] files, a common font-design format.
