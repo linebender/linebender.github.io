@@ -43,7 +43,7 @@ The main topics of interest were:
 Note that I'm skipping a lot topics on the agenda, and other side discussions.
 It feels like those topics were the most prominent during those two days.
 
-There was also a fair amount of informal chatter around LogLog Games' incendiary [Leaving Rust gamedev after 3 years](https://loglog.games/blog/leaving-rust-gamedev/) article.
+There was also a fair amount of informal chatter around LogLog Games' [Leaving Rust gamedev after 3 years](https://loglog.games/blog/leaving-rust-gamedev/) article.
 I think those discussions mostly reflected the Bevy community's consensus, that the article had some flaws but overall pointed at very clear weaknesses in the Rust GUI / game engine ecosystem.
 
 ### Build tooling
@@ -67,7 +67,7 @@ That widget would handle IME, text selection, accessibility actions, etc, in a w
 
 ### Winit
 
-By now all of the Rust ecosystem has firmly converged on Winit.
+By now all of the Rust ecosystem has firmly converged on [`winit`](https://github.com/rust-windowing/winit) as the windowing platform-abstraction solution of choice.
 
 (Well, not all! [One small project](https://github.com/makepad/makepad) with indomitable maintainers still holds out against the invaders.)
 
@@ -76,7 +76,7 @@ The consensus during this discussion seemed to be that Winit was there to stay, 
 Glazier is still shelved and we're planning to port its features to Winit until it reaches feature parity.
 
 A discussion that came up was the idea of splitting more "vocabulary types" from Winit into standalone crates.
-Vocabulary crates, eg crates that only define types and very little code, have a very low cost in memory and build types, while allowing projects to interop with eg Winit without actually adding a dependency on Winit.
+Vocabulary crates, eg crates that only define types and very little code, have a very low cost in memory and build times, while allowing projects to interop with eg Winit without actually adding a dependency on Winit.
 
 This was connected with the discussions about text edition: having a vocabulary crate that would list Winit's events and also Parley's cursor movements would allow for a very low-dependency text edition widget.
 
