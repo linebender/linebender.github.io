@@ -34,7 +34,7 @@ As a member of the Linebender project, I was mostly exposed to the GUI team's pr
 The main topics of interest were:
 
 - Build tooling (especially for Android and other non-desktop platforms).
-- Text layout and edition.
+- Text layout and editing.
 - Winit adoption.
 - Accessibility.
 - Potential for further collaboration.
@@ -43,7 +43,7 @@ The main topics of interest were:
 Note that I'm skipping a lot topics on the agenda, and other side discussions.
 It feels like those topics were the most prominent during those two days.
 
-There was also a fair amount of informal chatter around LogLog Games' [Leaving Rust gamedev after 3 years](https://loglog.games/blog/leaving-rust-gamedev/) article.
+There was also a fair amount of informal chatter around LogLog Games' strongly critical [Leaving Rust gamedev after 3 years](https://loglog.games/blog/leaving-rust-gamedev/) article.
 I think those discussions mostly reflected the Bevy community's consensus, that the article had some flaws but overall pointed at very clear weaknesses in the Rust GUI / game engine ecosystem.
 
 ### Build tooling
@@ -55,7 +55,7 @@ There was discussion about various platforms and build system, and the difficult
 Unfortunately the discussions on this subject didn't really go anywhere, as far as I could tell.
 Packaging Rust apps is still very much an open problem.
 
-### Text layout and edition
+### Text layout and editing
 
 There was some widespread interest in the Linebender ecosystem's text handling crates.
 From what I remember, Rik Arends and others had concerns about whether eg Parley and Swash added dependencies to our Vello renderer (they don't).
@@ -78,7 +78,7 @@ Glazier is still shelved and we're planning to port its features to Winit until 
 A discussion that came up was the idea of splitting more "vocabulary types" from Winit into standalone crates.
 Vocabulary crates, eg crates that only define types and very little code, have a very low cost in memory and build times, while allowing projects to interop with eg Winit without actually adding a dependency on Winit.
 
-This was connected with the discussions about text edition: having a vocabulary crate that would list Winit's events and also Parley's cursor movements would allow for a very low-dependency text edition widget.
+This was connected with the discussions about text editing: having a vocabulary crate that would list Winit's events and also Parley's cursor movements would allow for a very low-dependency text editing widget.
 
 ### Accessibility
 
