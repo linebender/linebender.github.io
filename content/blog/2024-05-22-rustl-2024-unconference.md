@@ -7,7 +7,7 @@ date = "2024-05-23 18:00:00"
 On May 7 and 8, 2024, folks from the Linebender team went to [the RustNL conference](https://2024.rustnl.org/) in Delft.
 We listened to talks, Raph gave one, Rik Arends did the "hot reloading my entire editor live" thing that makes every other Rust GUI developer jealous, it was an all-around good time.
 
-(Videos for individual talks aren't up yet, but there are livestream recordings of [Day 1](https://www.youtube.com/watch?v=XLefuzE-ABU&t=23721s) and [Day 2](https://www.youtube.com/watch?v=521NfGf7AR0&t=19109s) on Youtube.)
+(Videos for individual talks aren't up yet, but there are livestream recordings of [Day 1](https://www.youtube.com/watch?v=XLefuzE-ABU) and [Day 2](https://www.youtube.com/watch?v=521NfGf7AR0) on Youtube.)
 
 After RustNL, though, another less-documented event called [The Unconference](https://2024.rustnl.org/unconf/). It was from roughly the same organizers and took place in the same city, but the format was fairly different.
 
@@ -24,7 +24,27 @@ Attendees were split into three teams:
 - GUI and Applications.
 - Embedded development.
 
-Discussions inside of these teams was mostly self-organized (more on that later), with cross-team discussion mostly taking place during lunch and recesses.
+Discussions inside of these teams was mostly self-organized, with cross-team discussion mostly taking place during lunch and recesses.
+
+
+### On the tyranny of struturelessness
+
+*Note: This section is very much my personal opinion and doesn't represent the Linebender project as a whole.*
+
+I'm not sure the self-organized format worked well.
+
+From what I saw, the Embedded team took well to it, and the Rust team was kept productive thanks to Alice Cecile's efforts in marshalling everyone.
+
+In the case of the GUI team, people were spread in a very large room, which should have been conducive to small side-discussions and people splitting up to talk about the problems that interested them. Instead, there was an unspoken accord to progress through agenda items one by one, with a few people dominating the discussions on these items.
+
+Because those people we spread around a large room, they had to talk loudly to address each other, which left little room for side-discussions.
+Because the people talking were naturally the more confident and extraverted, more introverted people ended up taking a passive role in the discussion.
+
+To me, this feels like a strategic mistake.
+It was a setup that encouraged bikeshedding and long back-and-forths, and discouraged plurality of opinions.
+It's no coincidence that the most interesting conversations of the Unconference happened at lunch: lunch was the point of the Unconference where people were most mixed, had the most spontaneous conversations, and were least constrained by having to follow what someone else was saying.
+
+Our discussion were still productive, I just feel like the format could have been improved.
 
 
 ## The GUI team
@@ -82,11 +102,11 @@ This was connected with the discussions about text editing: having a vocabulary 
 
 ### Accessibility
 
-*Note: This section is very much my personal opinion and doesn't represent the Linebender project as a whole.*
+*Note: This section is also my personal opinion and doesn't represent the Linebender project either.*
 
-The subject of Accessibility came up informally, but was in my opinion underexplored.
+The subject of Accessibility came up informally, but I'll claim it was underexplored.
 
-While the subject was on the agenda, by the time we reached it the Unconference had reached a point where everyone was tired and ready to leave or get to the catering.
+While the subject was on the agenda, by the time we reached it the Unconference had been running long enough that everyone was tired and ready to leave or get to the catering.
 This is an unfortunate pattern that I think is worth pointing out: if projects don't make a deliberate effort to prioritize discussions of accessibility, the subject will be left out.
 
 Matt Campbell, the maintainer of AccessKit, could not attend the Unconference.
@@ -100,7 +120,7 @@ The current reference in the Rust ecosystem is [the AccessKit implementation in 
 
 ### Requests for Rust features
 
-Jon Kelley, the creator of Dioxus, had a laundry list of features he wanted from the Rust language.
+Jon Kelley, the creator of Dioxus, had [a laundry list of features](https://dioxus.notion.site/Dioxus-Labs-High-level-Rust-5fe1f1c9c8334815ad488410d948f05e) he wanted from the Rust language. That list was later [filed in the Project Goals repository]((https://github.com/rust-lang/rust-project-goals/pull/10)).
 
 The requests were well-documented, with motivating examples in existing Dioxus code that would clearly be improved by the features.
 Most of them felt both self-contained and like they would tremendously help beginners working on their first Rust project.
@@ -116,28 +136,60 @@ My favorite proposals were:
 Jon also wanted support for a remote cache of pre-built crates, so that users wouldn't suffer from having to rebuild dozens of crates every time you download your crate's dependencies.
 The consensus from Rust maintainers was that such a cache would be essentially impossible with Rust's current architecture.
 
+Nico recently released [The borrow checker within](https://smallcultfollowing.com/babysteps/blog/2024/06/02/the-borrow-checker-within/), which feels like a follow-up to some of these discussions.
+
 
 ## Collaboration in the Rust GUI ecosystem
 
-TODO
+Over the last two years I've joked a few times that everybody in the Rust GUI ecosystem wants the ecosystem to standardize on common crates, as long as it's *their* crates.
 
-Overall the Unconference went well, and felt like a symptom of improving ecosystem collaboration.
+After RustNL, I'm pleased to report this joke isn't accurate anymore.
 
-- List of backers
-- List of projects
-- Things have gotten much better since last year
+A vibe that permeated all discussions was people wanting work to be pooled.
+It felt like people didn't strongly care whose crate we adopted, as long as we all agreed the crate made sense:
+we're slowly crawling out of the xkcd 927 dilemma.
 
+The main ecosystem crates that people are enthusiastic about sharing are:
 
-## On the tyranny of struturelessness
+- [winit](https://github.com/rust-windowing/winit) for creating windows.
+- [AccessKit](https://github.com/AccessKit/accesskit/) for plugging into accessibility APIs.
+- [Parley](https://github.com/linebender/parley) for rendering text and as a basis for a text-editing widget.
 
-TODO
+Jon Kelley also said he would be interested in using Masonry as the native backend for Dioxus, though we haven't hashed out details yet.
 
-- GUI team had some trouble with discussions.
-- Rust team stayed on rails, reportedly mostly thanks to Alice Cecile.
-- Embedded team took well to it, from what I saw.
+### Corporate funding
+
+For open-source projects, "Who funds this" is a difficult question: in any healthy project, there is a large scale of contributions, with individual non-corporate contributors at one end, and companies paying cash to the project's treasury at the other.
+In-between are self-employed people like me contracted to work on an open-source project, and corporate employees who contribute to the project as part of their 9-to-5 job.
+
+Some monetary contributions can also come from individual non-corporate donors: Servo has about fifty of them, for instance.
+
+With that in mind, some notable sponsors for projects represented at the Unconference were:
+
+- **Google Fonts:** Linebender projects.
+- **Futurewei:** Dioxus, Makepad, and Servo.
+- **Embark:** Bevy, winit and rust-gpu.
+- **Foresight Spatial Labs, MeetKai, Encultured and a few others:** Bevy.
+- **Igalia:** Servo.
+- **Wyeworks:** Makepad.
+
+Not present at RustNL but relevant to the ecosystem are **System76** (funding iced and COSMIC-Text) and **Slint** who are self-funding as a startup targetting embedded UIs.
+
+Overall the number of different backers feels like a symptom of a healthy ecosystem: while some large corporate sponsors bring much more resources than others (Google and Futurewei especially), the ecosystem isn't in a state where any specific backer pulling out would completely collapse progress.
 
 
 ## Conclusion
 
-Many thanks to RustNL organizers
-We were exhausted after four days, but these folks had to run the darn thing.
+Before anything else, I'd like to address a big thnaks to the volunteers who helped organize RustNL.
+
+Most of the attendees were absolutely exhausted after two days of talks and two more days of Unconference, but these folks had to *run* the darn thing.
+I think everyone who attended was fairly impressed.
+
+Overall RustNL and the Unconference felt like getting a year of coordination done in a week.
+It was a thoroughly productive time, and I couldn't be happier I attended. Everyone I asked about it shared the same opinion.
+
+And the discussions we had during the event showed there was great appetite to push the ecosystem towards more cooperation, both between GUI projects and with Rust maintainers.
+
+I'm feeling more hopeful about the future of Rust GUI than ever.
+
+Now it's time to get back to work.
