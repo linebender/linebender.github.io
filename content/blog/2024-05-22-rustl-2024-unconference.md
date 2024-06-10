@@ -136,7 +136,7 @@ My favorite proposals were:
 Jon also wanted support for a remote cache of pre-built crates, so that users wouldn't suffer from having to rebuild dozens of crates every time you download your crate's dependencies.
 The consensus from Rust maintainers was that such a cache would be essentially impossible with Rust's current architecture.
 
-Nico recently released [The borrow checker within](https://smallcultfollowing.com/babysteps/blog/2024/06/02/the-borrow-checker-within/), which feels like a follow-up to some of these discussions.
+Niko Matsakis recently released [The borrow checker within](https://smallcultfollowing.com/babysteps/blog/2024/06/02/the-borrow-checker-within/), which feels like a follow-up to some of these discussions.
 
 
 ## Collaboration in the Rust GUI ecosystem
