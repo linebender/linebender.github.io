@@ -172,6 +172,7 @@ With that in mind, some notable sponsors for projects represented at the Unconfe
 - **Foresight Spatial Labs, MeetKai, Encultured and a few others:** Bevy.
 - **Igalia:** Servo.
 - **Wyeworks:** Makepad.
+- **Rerun.io:** Iced.
 
 Not present at RustNL but relevant to the ecosystem are **System76** (funding iced and COSMIC-Text) and **Slint** who are self-funding as a startup targetting embedded UIs.
 
