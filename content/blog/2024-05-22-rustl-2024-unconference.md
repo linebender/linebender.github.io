@@ -78,7 +78,7 @@ Packaging Rust apps is still very much an open problem.
 ### Text layout and editing
 
 There was some widespread interest in the Linebender ecosystem's text handling crates.
-From what I remember, Rik Arends and others had concerns about whether eg Parley and Swash added dependencies to our Vello renderer (they don't).
+From what I remember, Rik Arends and others had concerns about whether eg Parley and Swash depend on our Vello renderer (they don't).
 
 Some people also wanted Parley to be decoupled from Swash.
 
