@@ -181,7 +181,7 @@ Overall the number of different backers feels like a symptom of a healthy ecosys
 
 ## Conclusion
 
-Before anything else, I'd like to address a big thnaks to the volunteers who helped organize RustNL.
+Before anything else, I'd like to address a big thanks to the volunteers who helped organize RustNL.
 
 Most of the attendees were absolutely exhausted after two days of talks and two more days of Unconference, but these folks had to *run* the darn thing.
 I think everyone who attended was fairly impressed.
