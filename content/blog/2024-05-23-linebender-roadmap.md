@@ -32,22 +32,21 @@ What follows is a comprehensive summary of what exactly we're planning to do. We
 - **Priority:** High.
 - **Assigned:** Daniel McNab.
 - **Description:** Snapshot tests are essential to test regressions in graphic software. Masonry's test suite heavily depends on them. But it's flaky right now because even when the fonts and inputs are exactly the same, renderers can have subtle differences that make the snapshots slightly different. We either need to create a fully deterministic renderer or add testing infrastructure that can tolerate small differences. [`nv-flip`](https://docs.rs/nv-flip/latest/nv_flip/) might have what we want.
-- **Issue:** TODO
+- **Issue:** [vello#608](https://github.com/linebender/vello/issues/608)
 
 ### Sparse strips
 
 - **Priority:** High.
 - **Assigned:** Raph Levien.
 - **Description:** Sparse strips are a new research direction that might significantly improve our rendering pipeline and our memory footprint. We want to write a prototype implementation so we can confirm the performance benefits.
-- **Issue:** TODO
+- **Zulip thread:** [Sparse strip path rendering](https://xi.zulipchat.com/#narrow/stream/197075-gpu/topic/Sparse.20strip.20path.20rendering)
 
 ### Add tests
 
 - **Priority:** Medium.
 - **Assigned:** Olivier Faure.
 - **Description:** Adding tests is often a "we'll do it later" item, but it has short-term benefits as well. Adding tests would help Vello contributors check that their modifications don't add regressions to the crate, and help us catch hidden bugs. As a first step, we'd want to at least add some extremely basic tests, such as checking that Vello doesn't crash when we run a sample image through the CPU shaders.
-- **Issue:** 
-
+- **PR:** [vello#439]'https://github.com/linebender/vello/pull/439'
 
 ## Masonry
 
@@ -56,56 +55,56 @@ What follows is a comprehensive summary of what exactly we're planning to do. We
 - **Priority:** Highest.
 - **Assigned:** Olivier Faure, Aaron Muir Hamilton.
 - **Description:** We'd like to bring up Masonry's textbox widget to be best-in-class among Rust frameworks. We want to support native-feeling interactions out of the box, such as cursor movement (go to next word, go to beginning of line), selection (select to end of text) and edition (IME, deleting an entire word, etc). This is something other framework developers have expressed interest in, so we want to implement it in a composable way.
-- **Issue:** TODO
+- **Issue:** [xilem#388](https://github.com/linebender/xilem/issues/388)
 
 ### Better tracing for debugging
 
 - **Priority:** High.
 - **Assigned:** Olivier Faure.
 - **Description:** Masonry currently uses the `tracing` crate to produce logs usable for debugging. These logs could be improved, so that a user finding a bug can quickly narrow in on information relevant to the bug, without having to restart the app with changed log levels. The bulk of the improvement would be to implement a new subscriber with multiple layers.
-- **Issue:** TODO
+- **Issue:** [xilem#250](https://github.com/linebender/xilem/issues/250)
 
 ### Fix glaring documentation problems
 
 - **Priority:** High.
 - **Assigned:** Olivier Faure.
 - **Description:** Masonry's documentation hasn't been updated since the port to Winit. While a lot of the code is still in flux, and thus hard to document, we should at least do a quick rewrite pass to remove references to Piet, Glazier, etc.
-- **Issue:** TODO
+- **PR:** [xilem#329](https://github.com/linebender/xilem/pull/329)
 
 ### Finish repository port
 
 - **Priority:** High.
 - **Assigned:** Daniel McNab. (?)
 - **Description:** We've ported the `masonry-rs` repository to the `linebender` organization, but that repository isn't where the crate's code lives anymore. We should update the README to reflect that information, port the issues to `linebender/xilem`, and archive `linebender/masonry`.
-- **Issue:** TODO
+- **Zulip thread:** [Finishing the Masonry repository transition](https://xi.zulipchat.com/#narrow/stream/317477-masonry/topic/.E2.9C.94.20Finishing.20the.20Masonry.20repository.20transition)
 
 ### Write "Widgets in Arena" RFC
 
 - **Priority:** High.
 - **Assigned:** Olivier Faure.
 - **Description:** This was something alluded to in the January blog posts. We want to move Masonry from storing widgets in WidgetPod to storing them in a slotmap-like arena. This is a large enough change to write an RFC about it.
-- **Issue:** TODO
+- **PR:** [rfcs#6](https://github.com/linebender/rfcs/pull/6)
 
 ### Write "Pass order" RFC
 
 - **Priority:** High.
 - **Assigned:** Olivier Faure.
 - **Description:** Right now widgets can use context methods in their different passes to request that other passes be ran. What passes can run what other passes isn't clearly documented, especially around edge cases. We should write an RFC to nail down the passes, how they can communicate, and the rationale around them.
-- **Issue:** TODO
+- **PR:** TBD.
 
 ### Rewrite documentation
 
 - **Priority:** Medium.
 - **Assigned:** Olivier Faure.
 - **Description:** Masonry's documentation hasn't been updated since the port to Winit. Once other major changes are implemented, the documentation should be brought up to date. We should avoid procrastinating on documentation too much just because the architecture is still in progress.
-- **Issue:** TODO
+- **Issue:** [xilem#389](https://github.com/linebender/xilem/issues/389)
 
 ### Improve focus handling
 
 - **Priority:** Medium.
 - **Assigned:** Olivier Faure.
 - **Description:** We should improve tab focus in Masonry. Right now tab focus has some bugs, doesn't cover buttons, isn't updated by clicks, and uses architecture inherited from Druid that could be strongly simplified once other architectural changes are completed.
-- **Issue:** TODO
+- **Issue:** [xilem#390](https://github.com/linebender/xilem/issues/390)
 
 ### Improve pointer status handling
 
@@ -129,21 +128,22 @@ What follows is a comprehensive summary of what exactly we're planning to do. We
 - **Priority:** High.
 - **Assigned:** Chad Brokaw.
 - **Description:** Parley should support laying out inline content the way web browsers do, where blocks are splices into your text and should be laid out according to available inline space the same way words are.
-- **Issue:** TODO
+- **Issue:** [parley#25](https://github.com/linebender/parley/issues/25)
+- **PRs:** [parley#67](https://github.com/linebender/parley/pull/67), [parley#76](https://github.com/linebender/parley/pull/76)
 
 ### Write adequate documentation
 
 - **Priority:** High.
 - **Assigned:** Nico Burns.
 - **Description:** Parley currently has virtually no documentation. If we want it to become a fundational crate, we need to explain to people how to use it.
-- **Issue:** 
+- **PR:** [parley#26](https://github.com/linebender/parley/pull/26)
 
 ### Software renderer
 
 - **Priority:** Low.
 - **Assigned:** Chad Brokaw.
 - **Description:** Create a software renderer for the glyphs created by Parley, so that users can easily import Parley in their library without depending on a graphics API like Vello. The software renderer should be black-and-white for simplicity. We'll call for volunteers to implement COLRv1 and other advanced features.
-- **Issue:** 
+- **PRs:** [parley#54](https://github.com/linebender/parley/pull/54), [parley#55](https://github.com/linebender/parley/pull/55)
 
 
 ## Xilem
@@ -152,14 +152,14 @@ What follows is a comprehensive summary of what exactly we're planning to do. We
 
 - **Priority:** Highest.
 - **Assigned:** Daniel McNab.
-- **Description:** We want Xilem to reliably work on Android. Running your Xilem app should be as simple as doing `cargo apk run` in your project.
+- **Description:** We want Xilem to reliably work on Android. Running your Xilem app should require a small number of steps. Ideally, it should be as simple as running `cargo some-command` in your project.
 - **PR:** [xilem#309](https://github.com/linebender/xilem/pull/309)
 
 ### Update repository layout.
 
 - **Priority:** High.
 - **Assigned:** Olivier Faure.
-- **Description:** We've agreed on a layout for Linebender repository. We should move projects in the Xilem repo to match that layout.
+- **Description:** We've agreed on a layout for Linebender repositories. We should move projects in the Xilem repo to match that layout.
 - **PR:** [xilem#302](https://github.com/linebender/xilem/pull/302)
 
 ### Rework xilem_core to be compatible with Masonry backend
@@ -172,20 +172,21 @@ What follows is a comprehensive summary of what exactly we're planning to do. We
 ### Write Documentation
 
 - **Priority:** High.
-- **Assigned:** ???
+- **Assigned:** Olivier Faure.
 - **Description:** Xilem's lack of documentation is one of the problems new users complain about the most often. We need to avoid staying in that state for too long.
-- **Issue:** TODO.
+- **Issue:** [xilem#392](https://github.com/linebender/xilem/issues/392)
 
 ### Re-implement async integration
 
 - **Priority:** Medium.
-- **Assigned:** Olivier Faure.
+- **Assigned:** Daniel McNab.
 - **Description:** One of Xilem's selling point is the ability to handle virtual lists and async sources of data. That ability was temporarily removed for the Masonry port, but we'd like to add it back it. We don't want Masonry to be aware of async stuff, but the AppDriver trait should at least provide a method which lets Xilem access Masonry internals on its own initiative.
-- **Issue:** TODO
+- **Issue:** [xilem#340](https://github.com/linebender/xilem/issues/340)
 
 ### Add unit tests
 
 - **Priority:** Low.
 - **Assigned:** Olivier Faure.
 - **Description:** We need to figure out an architecture for doing unit tests in Xilem. Tests can then be added by volunteer contributors.
-- **Issue:** TODO
+- **Issue:** [xilem#393](https://github.com/linebender/xilem/issues/393)
+
