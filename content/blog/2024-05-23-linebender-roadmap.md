@@ -10,12 +10,8 @@ By that point, we all felt fairly exhausted, but Raph Levien being the cruel tas
 
 We'd initially thought of that this day would be an informal day of unstructured chatting about the ecosystem, but it fairly quickly turned into a semi-formal planning exercise, where we tried to figure out a roadmap for the next few months.
 
-What follows is a comprehensive summary of what exactly we're planning to do. We've tried to focus on blockers, where a missing feature in on project is stalling progress on other project, because those are the hardest barriers to coordination, and we wanted to take advantage of being in the same room together to knock them down.
-
-- **Priority:** 
-- **Assigned:** 
-- **Description:** 
-- **Issue:** 
+What follows is a comprehensive summary of what exactly we're planning to do.
+We've tried to focus on blockers, where a missing feature in one project is stalling progress on other projects, because those are the hardest barriers to coordination, and we wanted to take advantage of being in the same room together to knock them down.
 
 
 ## Vello
@@ -190,3 +186,62 @@ What follows is a comprehensive summary of what exactly we're planning to do. We
 - **Description:** We need to figure out an architecture for doing unit tests in Xilem. Tests can then be added by volunteer contributors.
 - **Issue:** [xilem#393](https://github.com/linebender/xilem/issues/393)
 
+### Add basic benchmarks
+
+- **Priority:** Low.
+- **Assigned:** Olivier.
+- **Description:** Right now we're mostly working off vibes to know whether or not any of our work improved performance or introduced regressions.
+We should write at least *one* benchmark that would test a basic Xilem use-case, so we get a general idea how our performance is progressing.
+- **Issue:** [xilem#362](https://github.com/linebender/xilem/issues/362)
+
+
+## AccessKit
+
+Matt Campbell's contract with Google hasn't started yet.
+When it does, top priority will likely be the Android backend.
+
+The plan is to study existing Android accessibility implementations for non-Java toolkits, including Flutter, Chromium, and Gio, to get a better understanding of what's required to implement Android accessibility from scratch.
+
+Beyond Android support, we've only had cursory discussions of what work Matt will do for the rest of the year.
+Possible themes include scrollable containers, virtualized lists, richer text support (e.g. exposing font and style attributes) across platforms, and better integration into Xilem/Masonry.
+
+
+## Android-specific work
+
+Getting the Android port right involves a lot of small changes and making things feel non-broken.
+
+Some notable sub-goals:
+
+### Subclassing View/Application/Activity
+
+- **Priority:** Highest.
+- **Assigned:** Aaron Muir Hamilton, Raph Levien.
+- **Description:** The Java classes of an Android application are where the rubber meets the road. We're investigating what we want our boilerplate to look like.
+
+### Handling IME
+
+- **Priority:** Highest.
+- **Assigned:** Aaron Muir Hamilton, Raph Levien.
+- **Description:** We need to extend Winit to be compatible with Android IME interfaces. An Android application without IME is a non-starter. Our design choices here will have influence on accessibility as well.
+
+### Gesture recognition
+
+- **Priority:** Low.
+- **Assigned:** Aaron Muir Hamilton.
+- **Description:** When the user swipes on the screen, we want to send some kind of scrolling events instead of a normal pointer event. Ideally there should be first-class support for that event to handle momentum scrolling, but a dumber solution would just emulate mouse wheel ticks.
+
+
+## Conclusion
+
+Whew! We have our work cut out for us there.
+
+Overall, I'm feeling very optimistic about the coming months.
+In the weeks since we first drafted this roadmap, we've already made a lot of progress on our respective tasks (for instance Daniel is now running on what async experts call a "work-stealing" algorithm), so it does look like we'll meet our deadlines.
+
+What comes after that is a bit hazier.
+Our three areas of focus are likely to be Android support, accessibility, and developer experience.
+
+As we fill out gaps in our feature set, Xilem is moving closer to becoming a stable, mature framework for writing GUI applications.
+We're not GUI yet, but we hope we'll be in the near future.
+
+In the meantime, stay tuned!
