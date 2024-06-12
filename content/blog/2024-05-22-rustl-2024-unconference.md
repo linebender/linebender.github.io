@@ -72,8 +72,9 @@ Everyone agreed that a better solution was needed to ship non-TUI Rust apps.
 
 There was discussion about various platforms and build system, and the difficulty of having to eg write Java code for an Android port, and whether anyone wanted to take responsibility for maintaining that glue layer for the rest of the ecosystem.
 
-Unfortunately the discussions on this subject didn't really go anywhere, as far as I could tell.
-Packaging Rust apps is still very much an open problem.
+No actionable decisions were made, but consensus seems to be that although integrated build tools are desirable, external build tooling for complex platforms (primarily Apple and Android) is likely to remain necessary.
+Nobody seems to have stepped up to work on multi-target builds in Cargo, and since external build tools are required as it is, most people are okay with building everything several times when they release a multi-target package.
+Most users are comfortable invoking platform-specific tools for bundling, signing, and manifest generation, so there is not much urgency for integrated tooling for these.
 
 ### Text layout and editing
 
@@ -91,7 +92,9 @@ By now all of the Rust ecosystem has firmly converged on [`winit`](https://githu
 
 (Well, not all! [One small project](https://github.com/makepad/makepad) with indomitable maintainers still holds out against the invaders.)
 
-The consensus during this discussion seemed to be that Winit was there to stay, and that any changes we wanted would probably come in the form of upstream contributions, not competing projects.
+The consensus during this discussion seemed to be that Winit was there to stay.
+[TAO](https://github.com/tauri-apps/tao) users present were generally interested in being able to use upstream winit in the future, if its API adopts or supersedes the improvements made in TAO.
+Most were happy to see winit becoming more trait-oriented, and to see the `dpi` crate spun off from winit. 
 
 Glazier is still shelved and we're planning to port its features to Winit until it reaches feature parity.
 
@@ -112,7 +115,8 @@ This is an unfortunate pattern that I think is worth pointing out: if projects d
 Matt Campbell, the maintainer of AccessKit, could not attend the Unconference.
 I'm concerned that, in his absence, other maintainers might have felt a dilution of responsibilty: since the accessibility guy wasn't there, nobody felt empowered to bring up accessibility.
 
-One point that did come up during the discussion is one I'd like to hammer in over the next few weeks, is that the Rust ecosystem should adopt a holistic view of accessibility. Accessibility isn't just about screen readers, and making a framework accessible doesn't stop at adding a dependency to AccessKit, though doing so is a great first step.
+One point that did come up during the discussion is one I'd like to hammer in over the next few weeks, is that the Rust ecosystem should adopt a holistic view of accessibility.
+Accessibility isn't just about screen readers, and making a framework accessible doesn't stop at adding a dependency to AccessKit, though doing so is a great first step.
 
 Rik asked if there was a minimal set of the AccessKit elements that people could be expected to port their UI to.
 The AccessKit framework is rich, and it's not obvious at first glance how much is needed versus nice-to-have.
@@ -170,7 +174,7 @@ With that in mind, some notable sponsors for projects represented at the Unconfe
 - **Google Fonts:** Linebender projects.
 - **Futurewei:** Dioxus, Makepad, and Servo.
 - **Embark:** Bevy, winit and rust-gpu.
-- **Foresight Spatial Labs, MeetKai, Encultured and a few others:** Bevy.
+- **Foresight Spatial Labs:** Bevy.
 - **Igalia:** Servo.
 - **Wyeworks:** Makepad.
 - **Rerun.io:** egui.
