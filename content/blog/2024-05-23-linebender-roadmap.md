@@ -42,7 +42,8 @@ We've tried to focus on blockers, where a missing feature in one project is stal
 - **Priority:** Medium.
 - **Assigned:** Olivier Faure.
 - **Description:** Adding tests is often a "we'll do it later" item, but it has short-term benefits as well. Adding tests would help Vello contributors check that their modifications don't add regressions to the crate, and help us catch hidden bugs. As a first step, we'd want to at least add some extremely basic tests, such as checking that Vello doesn't crash when we run a sample image through the CPU shaders.
-- **PR:** [vello#439]'https://github.com/linebender/vello/pull/439'
+- **PR:** [vello#439](https://github.com/linebender/vello/pull/439)
+
 
 ## Masonry
 
@@ -156,7 +157,7 @@ We've tried to focus on blockers, where a missing feature in one project is stal
 - **Priority:** High.
 - **Assigned:** Olivier Faure.
 - **Description:** We've agreed on a layout for Linebender repositories. We should move projects in the Xilem repo to match that layout.
-- **PR:** [xilem#302](https://github.com/linebender/xilem/pull/302)
+- **PRs:** [xilem#302](https://github.com/linebender/xilem/pull/302), [vello#590](https://github.com/linebender/vello/pull/590)
 
 ### Rework xilem_core to be compatible with Masonry backend
 
