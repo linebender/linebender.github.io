@@ -1,7 +1,7 @@
 +++
 title = "Report on the RustNL 2024 Unconference"
 authors = ["Olivier Faure"]
-date = "2024-05-23 18:00:00"
+date = "2024-06-12 18:00:00"
 +++
 
 On May 7 and 8, 2024, folks from the Linebender team went to [the RustNL conference](https://2024.rustnl.org/) in Delft.
