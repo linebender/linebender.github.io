@@ -120,7 +120,8 @@ The current reference in the Rust ecosystem is [the AccessKit implementation in 
 
 ### Requests for Rust features
 
-Jon Kelley, the creator of Dioxus, had [a laundry list of features](https://dioxus.notion.site/Dioxus-Labs-High-level-Rust-5fe1f1c9c8334815ad488410d948f05e) he wanted from the Rust language. That list was later [filed in the Project Goals repository]((https://github.com/rust-lang/rust-project-goals/pull/10)).
+Jon Kelley, the creator of Dioxus, had [a laundry list of features](https://dioxus.notion.site/Dioxus-Labs-High-level-Rust-5fe1f1c9c8334815ad488410d948f05e) he wanted from the Rust language.
+That list was later [filed in the Project Goals repository]((https://github.com/rust-lang/rust-project-goals/pull/10)).
 
 The requests were well-documented, with motivating examples in existing Dioxus code that would clearly be improved by the features.
 Most of them felt both self-contained and like they would tremendously help beginners working on their first Rust project.
@@ -187,7 +188,8 @@ Most of the attendees were absolutely exhausted after two days of talks and two 
 I think everyone who attended was fairly impressed.
 
 Overall RustNL and the Unconference felt like getting a year of coordination done in a week.
-It was a thoroughly productive time, and I couldn't be happier I attended. Everyone I asked about it shared the same opinion.
+It was a thoroughly productive time, and I couldn't be happier I attended.
+Everyone I asked about it shared the same opinion.
 
 And the discussions we had during the event showed there was great appetite to push the ecosystem towards more cooperation, both between GUI projects and with Rust maintainers.
 
