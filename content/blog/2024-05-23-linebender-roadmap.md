@@ -1,5 +1,5 @@
 +++
-title = "Roadmap for the next three months of work on Linebender"
+title = "May-July roadamp for Linebender"
 authors = ["Olivier Faure"]
 date = "2024-05-23 18:00:00"
 +++
