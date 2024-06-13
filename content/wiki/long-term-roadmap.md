@@ -2,7 +2,9 @@
 title = "Post-July Linebender roadmap"
 +++
 
-Unstructured notes from our last roadmap brainstorming that were left out of the formal roadmap blog post.
+Unstructured notes from the RustNL roadmap brainstorming that were left out of the May-July roadmap blog post.
+
+This may become a living document, eg a long-term roadmap for the project. For now it's the post-July roadmap.
 
 ## Vello
 

@@ -1,7 +1,6 @@
 +++
 title = "May-July roadmap for Linebender"
 authors = ["Olivier Faure"]
-date = "2024-05-23 18:00:00"
 +++
 
 On May 7 and 8, 2024, folks from the Linebender team went to [the RustNL conference](https://2024.rustnl.org/) for two days, followed by two days of Unconference.
@@ -12,6 +11,9 @@ We'd initially thought of that this day would be an informal day of unstructured
 
 What follows is a comprehensive summary of what exactly we're planning to do.
 We've tried to focus on blockers, where a missing feature in one project is stalling progress on other projects, because those are the hardest barriers to coordination, and we wanted to take advantage of being in the same room together to knock them down.
+
+This is a snapshot of the project status at the time we're writing this.
+It includes some work we already finished since RustNL, but will not be updated when further work finishes.
 
 
 ## Vello
@@ -51,7 +53,7 @@ We've tried to focus on blockers, where a missing feature in one project is stal
 
 - **Priority:** Highest.
 - **Assigned:** Olivier Faure, Aaron Muir Hamilton.
-- **Description:** We'd like to bring up Masonry's textbox widget to be best-in-class among Rust frameworks. We want to support native-feeling interactions out of the box, such as cursor movement (go to next word, go to beginning of line), selection (select to end of text) and edition (IME, deleting an entire word, etc). This is something other framework developers have expressed interest in, so we want to implement it in a composable way.
+- **Description:** We'd like to bring up Masonry's textbox widget to be best-in-class among Rust frameworks. We want to support native-feeling interactions out of the box, such as cursor movement (go to next word, go to beginning of line), selection (select to end of text) and editing (IME, deleting an entire word, etc). This is something other framework developers have expressed interest in, so we want to implement it in a composable way.
 - **Issue:** [xilem#388](https://github.com/linebender/xilem/issues/388)
 
 ### Better tracing for debugging
@@ -71,7 +73,7 @@ We've tried to focus on blockers, where a missing feature in one project is stal
 ### Finish repository port
 
 - **Priority:** High.
-- **Assigned:** Daniel McNab. (?)
+- **Assigned:** Daniel McNab.
 - **Description:** We've ported the `masonry-rs` repository to the `linebender` organization, but that repository isn't where the crate's code lives anymore. We should update the README to reflect that information, port the issues to `linebender/xilem`, and archive `linebender/masonry`.
 - **Zulip thread:** [Finishing the Masonry repository transition](https://xi.zulipchat.com/#narrow/stream/317477-masonry/topic/.E2.9C.94.20Finishing.20the.20Masonry.20repository.20transition)
 
@@ -184,13 +186,13 @@ We've tried to focus on blockers, where a missing feature in one project is stal
 
 - **Priority:** Low.
 - **Assigned:** Olivier Faure.
-- **Description:** We need to figure out an architecture for doing unit tests in Xilem. Tests can then be added by volunteer contributors.
+- **Description:** We need to figure out an architecture for doing unit tests in Xilem. Tests can then be added by volunteer contributors. At some point we should hopefully switch to a "new test for every new feature" workflow.
 - **Issue:** [xilem#393](https://github.com/linebender/xilem/issues/393)
 
 ### Add basic benchmarks
 
 - **Priority:** Low.
-- **Assigned:** Olivier.
+- **Assigned:** Olivier Faure.
 - **Description:** Right now we're mostly working off vibes to know whether or not any of our work improved performance or introduced regressions.
 We should write at least *one* benchmark that would test a basic Xilem use-case, so we get a general idea how our performance is progressing.
 - **Issue:** [xilem#362](https://github.com/linebender/xilem/issues/362)
@@ -223,7 +225,7 @@ Some notable sub-goals:
 
 - **Priority:** Highest.
 - **Assigned:** Aaron Muir Hamilton, Raph Levien.
-- **Description:** We need to extend Winit to be compatible with Android IME interfaces. An Android application without IME is a non-starter. Our design choices here will have influence on accessibility as well.
+- **Description:** We need to extend Winit to be compatible with Android IME interfaces. An Android application without support for virtual keyboard and other input methods is a non-starter. Our design choices here will have influence on accessibility as well.
 
 ### Gesture recognition
 
@@ -243,6 +245,6 @@ What comes after that is a bit hazier.
 Our three areas of focus are likely to be Android support, accessibility, and developer experience.
 
 As we fill out gaps in our feature set, Xilem is moving closer to becoming a stable, mature framework for writing GUI applications.
-We're not GUI yet, but we hope we'll be in the near future.
+We're not GUI yet, but we certainly hope to be one day.
 
 In the meantime, stay tuned!
