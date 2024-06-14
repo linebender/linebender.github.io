@@ -14,7 +14,7 @@ To get started with foobar, use the [`frobnicate`][] function.
 ```
 
 However, [including](https://doc.rust-lang.org/rustdoc/write-documentation/the-doc-attribute.html#the-doc-attribute) this as your crate's root documentation means that any users of `cargo doc` will be redirected to your crate's online docs (rather than their local docs) when clicking on that link.
-It is however possible to make this link be an intra-doc link, by adding a link definition *before* the `doc = include_str!()` line, inside the same documentation:
+It is however possible to make this link be an intra-doc link, by adding a second link reference definition *before* the `doc = include_str!()` line, inside `lib.rs`:
 
 ```rust
 // https://linebender.org/blog/doc-include
@@ -22,23 +22,25 @@ It is however possible to make this link be an intra-doc link, by adding a link 
 #![doc = include_str("../README.md")]
 ```
 
-This means that the link has the expected link target on both <https://crates.io> and in rustdoc (including on <https://docs.rs>).
+This means that the link has the expected link target on <https://crates.io> *and* in rustdoc (including on <https://docs.rs>).
 This trick works because when there are duplicate markdown link reference definitions, ["the first one takes precedence"](https://spec.commonmark.org/0.31.2/#example-204).
-When rendering using rustdoc, the intra-doc link appears before the link to the online docs, so that is used.
-However, with standalone markdown rendering, only the link to the online docs is present, and so that fallback is used.
+When rendering using rustdoc, the intra-doc link appears before the link to the online docs, and so effectively overwrites that link.
+However, when the README is rendered standalone, only the link reference definition of the online docs is present, and so that target is used.
 
 ### Example
 
-For an example of both of these techniques in action, see the `tracing_android_trace` crate:
+For an example of both of these techniques in action, see the Android Trace crate (`android_trace`).
+In particular, the text of interest is: "the main entry point to the library is **AndroidTrace**".
+You can observe that this link goes to version 0.1.1 on the docs page, but version 0.1.0 elsewhere.
 
-- [GitHub Readme](https://github.com/linebender/android_trace/tree/main/tracing_android_trace)
-- [crates.io page](https://crates.io/crates/tracing_android_trace)
-- [docs.rs page](https://docs.rs/tracing_android_trace/latest/tracing_android_trace/)
+- [GitHub rendered readme](https://github.com/linebender/android_trace/blob/v0.1.1/android_trace/README.md)
+- [crates.io page](https://crates.io/crates/android_trace/0.1.1)
+- [docs.rs page](https://docs.rs/android_trace/0.1.1/android_trace/)
 
 And the corresponding source code:
 
-- [README.md](https://github.com/linebender/android_trace/blob/main/tracing_android_trace/README.md?plain=1)
-- [lib.rs](https://github.com/linebender/android_trace/blob/main/tracing_android_trace/src/lib.rs)
+- [README.md](https://github.com/linebender/android_trace/blob/v0.1.1/android_trace/README.md?plain=1)
+- [lib.rs](https://github.com/linebender/android_trace/blob/v0.1.1/android_trace/src/lib.rs)
 
 ### Getting external documentation links
 
