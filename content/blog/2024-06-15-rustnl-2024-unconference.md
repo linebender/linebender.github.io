@@ -69,7 +69,7 @@ I think those discussions mostly reflected the Bevy community's consensus, that 
 
 Everyone agreed that a better solution was needed to ship non-TUI Rust apps.
 
-There was discussion about various platforms and build systems, and the difficulty of having to eg write Java code for an Android port, and whether anyone wanted to take responsibility for maintaining that glue layer for the rest of the ecosystem.
+There was discussion about various platforms and build systems, and the difficulty of having to e.g. write Java code for an Android port, and whether anyone wanted to take responsibility for maintaining that glue layer for the rest of the ecosystem.
 
 No actionable decisions were made, but the consensus seems to be that although integrated build tools are desirable, external build tooling for complex platforms (primarily Apple and Android) is likely to remain necessary.
 Nobody seems to have stepped up to work on multi-target builds in Cargo, and since external build tools are required as it is, most people are okay with building everything several times when they release a multi-target package.
@@ -78,7 +78,7 @@ Most users are comfortable invoking platform-specific tools for bundling, signin
 ### Text layout and editing
 
 There was some widespread interest in the Linebender ecosystem's text-handling crates.
-From what I remember, Rik Arends and others had concerns about whether eg Parley and Swash depend on our Vello renderer (they don't).
+From what I remember, Rik Arends and others had concerns about whether e.g. Parley and Swash depend on our Vello renderer (they don't).
 
 Some people also wanted Parley to be decoupled from Swash.
 
@@ -98,7 +98,7 @@ Most were happy to see Winit becoming more trait-oriented, and to see the `dpi` 
 Glazier is still shelved and we're planning to port its features to Winit until it reaches feature parity.
 
 A discussion that came up was the idea of splitting more "vocabulary types" from Winit into standalone crates.
-Vocabulary crates, eg crates that only define types and very little code, have a very low cost in memory and build times, while allowing projects to interop with eg Winit without actually adding a dependency on Winit.
+Vocabulary crates, e.g. crates that only define types and very little code, have a very low cost in memory and build times, while allowing projects to interop with e.g. Winit without actually adding a dependency on Winit.
 
 This was connected with the discussions about text editing: having a vocabulary crate that would list Winit's events and also Parley's cursor movements would allow for a very low-dependency text editing widget.
 
