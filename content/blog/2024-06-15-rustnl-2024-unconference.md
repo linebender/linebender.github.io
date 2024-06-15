@@ -123,7 +123,7 @@ Accessibility isn't just about screen readers, and making a framework accessible
 
 Rik asked if there was a minimal set of ARIA attributes that people could start using in their UI, as the set of available attributes is gigantic.
 The AccessKit framework is rich, and it's not obvious at first glance how much is needed versus nice-to-have.
-The current reference in the Rust ecosystem is [the AccessKit implementation in eGUI](https://github.com/emilk/egui/pull/2294).
+The current reference in the Rust ecosystem is [the AccessKit implementation in egui](https://github.com/emilk/egui/pull/2294).
 
 ### Requests for Rust features
 
