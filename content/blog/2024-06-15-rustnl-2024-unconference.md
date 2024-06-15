@@ -4,7 +4,7 @@ authors = ["Olivier Faure"]
 +++
 
 On May 7 and 8, 2024, folks from the Linebender team went to [the RustNL conference](https://2024.rustnl.org/) in Delft.
-We listened to [some Rust-related talks]((https://www.youtube.com/playlist?list=PL8Q1w7Ff68DBZZbJt3ie5MUoJV5v2HeA7)), Raph [gave one on Xilem](https://www.youtube.com/watch?v=OvfNipIcRiQ&list=PL8Q1w7Ff68DBZZbJt3ie5MUoJV5v2HeA7&index=15), Rik Arends did the "hot-reload my entire editor live" thing that makes every other Rust GUI developer jealous, it was an all-around great time.
+We listened to [some Rust-related talks](https://www.youtube.com/playlist?list=PL8Q1w7Ff68DBZZbJt3ie5MUoJV5v2HeA7), Raph [gave one on Xilem](https://www.youtube.com/watch?v=OvfNipIcRiQ&list=PL8Q1w7Ff68DBZZbJt3ie5MUoJV5v2HeA7&index=15), Rik Arends did the "hot-reload my entire editor live" thing that makes every other Rust GUI developer jealous, it was an all-around great time.
 
 After RustNL, though, another less-documented event called [The Unconference](https://2024.rustnl.org/unconf/).
 It was from roughly the same organizers and took place in the same city, but the format was fairly different.
@@ -128,7 +128,7 @@ The current reference in the Rust ecosystem is [the AccessKit implementation in 
 ### Requests for Rust features
 
 Jon Kelley, the creator of Dioxus, had [a laundry list of features](https://dioxus.notion.site/Dioxus-Labs-High-level-Rust-5fe1f1c9c8334815ad488410d948f05e) he wanted from the Rust language.
-That list was later [filed in the Project Goals repository]((https://github.com/rust-lang/rust-project-goals/pull/10)).
+That list was later [filed in the Project Goals repository](https://github.com/rust-lang/rust-project-goals/pull/10).
 
 The requests were well-documented, with motivating examples in existing Dioxus code that would clearly be improved by the features.
 Most of them felt both self-contained and like they would tremendously both beginners and veteran Rust developers; though Jon made the point that the papercuts he wanted to remove were especially punishing for new developers trying to become familiar with Rust.
@@ -161,7 +161,7 @@ The main ecosystem crates that people are enthusiastic about sharing are:
 
 - [winit](https://github.com/rust-windowing/winit) for creating windows.
 - [AccessKit](https://github.com/AccessKit/accesskit/) for plugging into accessibility APIs.
-- [Parley](https://github.com/linebender/parley) for rendering text and as a basis for a text-editing widget.
+- [wgpu](https://github.com/gfx-rs/wgpu/) for using modern GPU features.
 
 Jon Kelley also said he would be interested in using Masonry as the native backend for Dioxus, though we haven't hashed out details yet.
 
