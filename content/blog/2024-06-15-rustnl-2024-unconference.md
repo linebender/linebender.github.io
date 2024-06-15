@@ -6,7 +6,8 @@ authors = ["Olivier Faure"]
 On May 7 and 8, 2024, folks from the Linebender team went to [the RustNL conference](https://2024.rustnl.org/) in Delft.
 We listened to [some Rust-related talks]((https://www.youtube.com/playlist?list=PL8Q1w7Ff68DBZZbJt3ie5MUoJV5v2HeA7)), Raph [gave one on Xilem](https://www.youtube.com/watch?v=OvfNipIcRiQ&list=PL8Q1w7Ff68DBZZbJt3ie5MUoJV5v2HeA7&index=15), Rik Arends did the "hot-reload my entire editor live" thing that makes every other Rust GUI developer jealous, it was an all-around great time.
 
-After RustNL, though, another less-documented event called [The Unconference](https://2024.rustnl.org/unconf/). It was from roughly the same organizers and took place in the same city, but the format was fairly different.
+After RustNL, though, another less-documented event called [The Unconference](https://2024.rustnl.org/unconf/).
+It was from roughly the same organizers and took place in the same city, but the format was fairly different.
 
 The Unconference wasn't livestreamed, and I haven't found any public discussion of it, so I thought I'd take the time to describe a bit of what was going on.
 
@@ -32,7 +33,8 @@ I'm not sure the self-organized format worked well.
 
 From what I saw, the Embedded team took well to it, and the Rust team was kept productive thanks to Alice Cecile's efforts in marshaling everyone.
 
-In the case of the GUI team, people were spread in a very large room, which should have been conducive to small side discussions and people splitting up to talk about the problems that interested them. Instead, there was an unspoken accord to progress through agenda items one by one, with a few people dominating the discussions on these items.
+In the case of the GUI team, people were spread in a very large room, which should have been conducive to small side discussions and people splitting up to talk about the problems that interested them.
+Instead, there was an unspoken accord to progress through agenda items one by one, with a few people dominating the discussions on these items.
 
 Because those people we spread around a large room, they had to talk loudly to address each other, which left little room for side-discussions.
 Because the people talking were naturally the most confident and extroverted, more introverted people ended up taking a passive role in the discussion.
@@ -91,7 +93,7 @@ By now all of the Rust ecosystem has firmly converged on [`winit`](https://githu
 
 The consensus during this discussion seemed to be that Winit was there to stay.
 [TAO](https://github.com/tauri-apps/tao) users present were generally interested in being able to use upstream Winit in the future, if its API adopts or supersedes the improvements made in TAO.
-Most were happy to see Winit becoming more trait-oriented, and to see the `dpi` crate spun off from Winit. 
+Most were happy to see Winit becoming more trait-oriented, and to see the `dpi` crate spun off from Winit.
 
 Glazier is still shelved and we're planning to port its features to Winit until it reaches feature parity.
 
@@ -112,7 +114,9 @@ This is an unfortunate pattern that I think is worth pointing out: if projects d
 Matt Campbell, the maintainer of AccessKit, could not attend the Unconference.
 I'm concerned that, in his absence, other maintainers might have felt a dilution of responsibility: since the accessibility guy wasn't there, nobody felt empowered to bring up accessibility.
 
-(This might sound like it contradicts my section about structurelessness above. It doesn't. I'm not saying organizers should have pushed harder for accessibility - they did try - I'm saying that we should strive for a culture where framework developers think about accessibility without waiting for someone to tell them to.)
+(This might sound like it contradicts my section about structurelessness above.
+It doesn't.
+I'm not saying organizers should have pushed harder for accessibility - they did try - I'm saying that we should strive for a culture where framework developers think about accessibility without waiting for someone to tell them to.)
 
 One point did come up during the discussion which I'd like to hammer in: the Rust ecosystem should adopt a holistic view of accessibility.
 Accessibility isn't just about screen readers, and making a framework accessible doesn't stop at adding AccessKit as a dependency, though doing so is a great first step.
