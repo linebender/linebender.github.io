@@ -3,9 +3,10 @@ title = "#![doc = include_str!()] with intra-doc links"
 authors = ["Daniel McNab"]
 +++
 
-When using `#![doc = include_str!("../README.md")]` for your documentation, you will also want to link directly to mentioned [items][].
-These links need to work in other places that the README is rendered, such as on your package's <https://crates.io> homepage.
-Because of this, you should be using direct links to the online documentation of the items:
+Creating crate level documentation by [including](https://doc.rust-lang.org/rustdoc/write-documentation/the-doc-attribute.html#the-doc-attribute) your README can lower maintenance burden, as you do not need to manually keep the crate level docs synchronised.
+However, when writing this documentation, you will also want to link directly to some mentioned [items][].
+These links need to work in all the places that the README is rendered, such as on your package's <https://crates.io> homepage, in addition to in rustdoc output.
+To achieve this, you can link to the online documentation for the items:
 
 ```md
 To get started with foobar, use the [`frobnicate`][] function.
@@ -13,9 +14,9 @@ To get started with foobar, use the [`frobnicate`][] function.
 [`frobnicate`]: https://docs.rs/foobar/latest/foobar/fn.frobnicate.html
 ```
 
-However, [including](https://doc.rust-lang.org/rustdoc/write-documentation/the-doc-attribute.html#the-doc-attribute) this as your crate's root documentation means that any users of `cargo doc` will be redirected to your crate's online docs (rather than their local docs) when clicking on that link.
-It is however possible to make this link be an intra-doc link, by adding a second link reference definition in the same doc comment.
-This must be placed *before* the `doc = include_str!()` line, in `lib.rs`:
+This would however mean that users of `cargo doc` will be redirected to your crate's online docs (as opposed to their local docs) when clicking on that link.
+It is however possible to make links in included markdown files behave as intra-doc links, by adding a second link reference definition in the documentation comment.
+This must be placed *before* the `doc = include_str!()` line, for example:
 
 ```rust
 //! [`frobnicate`]: frobnicate
@@ -24,7 +25,7 @@ This must be placed *before* the `doc = include_str!()` line, in `lib.rs`:
 
 This means that the link has the expected link target on <https://crates.io> *and* in rustdoc (including on <https://docs.rs>).
 This trick works because when there are duplicate markdown link reference definitions, ["the first one takes precedence"](https://spec.commonmark.org/0.31.2/#example-204).
-When rendering using rustdoc, the intra-doc link appears before the link to the online docs, and so effectively overwrites that link.
+rustdoc sees the intra-doc link before the link to the online docs, and so uses the intra-doc link.
 However, when the README is rendered standalone, only the link reference definition for the online docs is present, and so that target is used.
 
 ### Example
@@ -93,7 +94,7 @@ However, this should only be included in your `lib.rs`, so that the header is sh
 //! </style>
 ```
 
-Any text in the README which should be excluded from your docs page can be surrounded by a `rustdoc-hidden` `div`, for example:
+Any text in the README which should be excluded from your docs page can then be surrounded by a `div` with the `rustdoc-hidden` class, for example:
 
 ```md
 <div class = "rustdoc-hidden">
