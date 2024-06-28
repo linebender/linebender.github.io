@@ -115,6 +115,8 @@ Using `#![doc = include_str!("../README.md")]` can integrate nicely with intra-d
 I believe that this pattern reduces the quality gap between bespoke documentation in `lib.rs` enough that using README includes becomes the right pattern for most crates.
 This avoids the maintenance burden of needing to ensure that text in the crate level docs and the README do not become out-of-sync.
 I intend to evaluate this technique by applying it across Linebender crates.
+It may still be better to have bespoke documentation for each location, for projects which can afford the maintenance costs of that solution.
+But for other projects, this can provide an easy way to improve their crate level documentation.
 
 These patterns can also be applied when including non-`README` markdown documents.
 I suggest linking to this post when using these patterns, to allow future readers of your code to understand the technique being used.
