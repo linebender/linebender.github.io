@@ -4,7 +4,7 @@ authors = ["Daniel McNab"]
 +++
 
 We released [Vello 0.2.0][] at the start of the month, which included some key improvements discussed in previous months' updates.
-In June, we merged initial handling of Emoji ([vello#615][]), which supports glyphs which use the COLR specification (so this does not, for example, support Apple's system Emoji).
+In June, we merged initial handling of Emoji ([vello#615][]), which supports glyphs which use the COLR specification (Apple's system emoji font does not use this format and so currently will not render).
 In-flight work includes an enhanced testing setup ([vello#610][]), GPU memory allocation robustness ([vello#606][]), and improved correctness for some unusual strokes ([vello#607][]).
 
 <figure>
@@ -13,20 +13,19 @@ In-flight work includes an enhanced testing setup ([vello#610][]), GPU memory al
 
 <figcaption>
 
-An in-progress Emoji viewer example ([xilem#420][]) running on Android.
-This example currently only works for systems with COLR system emoji, such as some Android systems.
+A toy Emoji viewer example ([xilem#420][]) running on Android.
+This example uses system fonts, so has limited platform support because of the caveat mentioned above.
 
 </figcaption>
 </figure>
 
-[xilem#310][] brought in some new ideas about how Xilem Core can be structured, to move away from the macro heavy design used previously.
-I believe that this has additional advantages for specialised `View` types, such as OS windows, although this is yet to be integrated.
-Support for the `Adapt` views built on this has enabled an [Elm](https://elm-lang.org/)-inspired example for Xilem in [xilem#401][], showing the flexibility of the Xilem architecture.
-Our observability support has also been improved, with automatic tracing to a file in debug builds added in [xilem#384][]; [xilem#396][] will lay the foundation for more advanced debugging capabilities.
-My immediate focus will be on integration with async Rust, for features such as timers and network interaction.
-
+[xilem#310][] brought in some new ideas about how Xilem Core can be structured, which enables support for specialised kinds of `View`, such as for window properties.
+`Adapt` views built on this were used to create an [Elm](https://elm-lang.org/)-inspired example in [xilem#401][], showing the flexibility of the Xilem architecture.
 Philipp Mildenberger has been prolific in his work on Xilem, as a co-author of the new Xilem Core, and in adapting Xilem Web to use it.
 He also worked to bring support for `OneOf` views to Xilem Core in [xilem#394][] - these were previously only supported in Xilem Web.
+
+Masonry's observability support has also been improved, with automatic tracing to a temporary file in debug builds added in [xilem#384][].
+[xilem#396][] implements [rfcs#6][], changing the architecture of Masonry to make it easier to write new features and tests.                                                            
 
 There was also some excellent community engagement with Xilem in June.
 Veniamin Ilmer has created an open source [Minesweeper game](https://github.com/veniamin-ilmer/minesweeper_xilem/) using Xilem.
@@ -61,3 +60,5 @@ I expect that we will soon be looking at prioritising items on our [long-term ro
 [vello#607]: https://github.com/linebender/vello/pull/607
 [vello#610]: https://github.com/linebender/vello/pull/610
 [vello#615]: https://github.com/linebender/vello/pull/615
+
+[rfcs#6]: https://github.com/linebender/rfcs/pull/6
