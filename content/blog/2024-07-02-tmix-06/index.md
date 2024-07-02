@@ -9,7 +9,7 @@ In-flight work includes an enhanced testing setup ([vello#610][]), GPU memory al
 
 <figure>
 
-<img src="Xilem Emoji Picker.png" alt="Screenshot of an app, containing a 4x4 grid of labelled Emoji, zoom in and out buttons and pagination controls. 'cat face with wry smile' is selected" height="1132" width = "863">
+<img src="Xilem Emoji Picker.png" style="height: auto" alt="Screenshot of an app, containing a 4x4 grid of labelled Emoji, zoom in and out buttons and pagination controls. 'cat face with wry smile' is selected" height="1132" width = "863">
 
 <figcaption>
 
