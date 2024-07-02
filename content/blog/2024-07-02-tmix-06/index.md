@@ -6,6 +6,8 @@ authors = ["Daniel McNab"]
 We released [Vello 0.2.0][] at the start of the month, which included some key improvements discussed in previous months' updates.
 In June, we merged initial handling of Emoji ([vello#615][]), which supports glyphs which use the COLR specification (Apple's system emoji font does not use this format and so currently will not render).
 In-flight work includes an enhanced testing setup ([vello#610][]), GPU memory allocation robustness ([vello#606][]), and improved correctness for some unusual strokes ([vello#607][]).
+The [GPU-Friendly Stroke Expansion](https://github.com/linebender/gpu-stroke-expansion-paper) paper has been accepted to [High Performance Graphics 2024](https://www.highperformancegraphics.org/2024/index.html), and will be presented in Denver on July 26.
+A revised draft of the paper is published on [arXiv](https://arxiv.org/abs/2405.00127).
 
 <figure>
 
