@@ -25,8 +25,8 @@ Support for the `Adapt` views built on this has enabled an [Elm](https://elm-lan
 Our observability support has also been improved, with automatic tracing to a file in debug builds added in [xilem#384][]; [xilem#396][] will lay the foundation for more advanced debugging capabilities.
 My immediate focus will be on integration with async Rust, for features such as timers and network interaction.
 
-Philipp Mildenberger has been prolific in their work on Xilem, as a co-author of the new Xilem Core, and in adapting Xilem Web to use it.
-They also worked to bring support for `OneOf` views to Xilem Core in [xilem#394][] - these were previously only supported in Xilem Web.
+Philipp Mildenberger has been prolific in his work on Xilem, as a co-author of the new Xilem Core, and in adapting Xilem Web to use it.
+He also worked to bring support for `OneOf` views to Xilem Core in [xilem#394][] - these were previously only supported in Xilem Web.
 
 There was also some excellent community engagement with Xilem in June.
 Veniamin Ilmer has created an open source [Minesweeper game](https://github.com/veniamin-ilmer/minesweeper_xilem/) using Xilem.
