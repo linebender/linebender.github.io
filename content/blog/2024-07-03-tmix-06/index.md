@@ -32,7 +32,6 @@ Masonry's observability support has also been improved, with automatic tracing t
 There was also some excellent community engagement with Xilem in June.
 Veniamin Ilmer has created an open source [Minesweeper game](https://github.com/veniamin-ilmer/minesweeper_xilem/) using Xilem.
 The discussion on Zulip (in [#xilem > Minesweeper converted from Iced to Xilem](https://xi.zulipchat.com/#narrow/stream/354396-xilem/topic/Minesweeper.20converted.20from.20Iced.20to.20Xilem)) has been very useful in guiding areas for improvement.
-[xilem#418][] resolved a compilation failure on iOS, although we do not currently actively support that platform.
 
 <figure>
 
