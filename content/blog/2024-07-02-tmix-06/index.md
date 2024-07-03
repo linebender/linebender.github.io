@@ -4,7 +4,7 @@ authors = ["Daniel McNab"]
 +++
 
 We released [Vello 0.2.0][] at the start of the month, which included some key improvements discussed in previous months' updates.
-In June, we merged initial handling of Emoji ([vello#615][]), which supports glyphs which use the COLR specification (Apple's system emoji font does not use this format and so currently will not render).
+We also merged initial handling of Emoji ([vello#615][]), which supports glyphs which use the COLR specification (Apple's system emoji font does not use this format and so currently will not render).
 In-flight work includes an enhanced testing setup ([vello#610][]), GPU memory allocation robustness ([vello#606][]), and improved correctness for some unusual strokes ([vello#607][]).
 The [GPU-Friendly Stroke Expansion](https://github.com/linebender/gpu-stroke-expansion-paper) paper has been accepted to [High Performance Graphics 2024](https://www.highperformancegraphics.org/2024/index.html), and will be presented in Denver on July 26.
 A revised draft of the paper is published on [arXiv](https://arxiv.org/abs/2405.00127).
@@ -46,7 +46,7 @@ Screenshot by Veniamin Ilmer of their Minesweeper game, used under the [Apache 2
 
 Following on from May, Olivier wrote and published a [report](@/blog/2024-06-15-rustnl-2024-unconference.md) on our experience of the RustNL unconference.
 This led to some useful discussion online - see [the zulip thread](https://xi.zulipchat.com/#narrow/stream/181284-blogging/topic/Draft.20-.20Report.20on.20the.20RustNL.202024.20Conference/near/444974910) corresponding with that post for links.
-We are now in the final month of the [May-July 2024 roadmap](@/blog/2024-06-15-rustnl-2024-unconference.md).
+We are now in the final month of the [May-July 2024 roadmap](@/blog/2024-06-17-roadmap-may-2024.md).
 In the intervening time much of the work has been started or completed, although there have been some changes of priorities.
 I expect that we will soon be looking at prioritising items on our [long-term roadmap](@/wiki/long-term-roadmap.md).
 
