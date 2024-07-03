@@ -27,11 +27,12 @@ Philipp Mildenberger has been prolific in his work on Xilem, as a co-author of t
 He also worked to bring support for `OneOf` views to Xilem Core in [xilem#394][] - these were previously only supported in Xilem Web.
 
 Masonry's observability support has also been improved, with automatic tracing to a temporary file in debug builds added in [xilem#384][].
-[xilem#396][] implements [rfcs#6][], changing the architecture of Masonry to make it easier to write new features and tests.                                                            
+[xilem#396][] implements [rfcs#6][], changing the architecture of Masonry to make it easier to write new features and tests.
 
 There was also some excellent community engagement with Xilem in June.
 Veniamin Ilmer has created an open source [Minesweeper game](https://github.com/veniamin-ilmer/minesweeper_xilem/) using Xilem.
-The discussion on Zulip (in [#xilem > Minesweeper converted from Iced to Xilem](https://xi.zulipchat.com/#narrow/stream/354396-xilem/topic/Minesweeper.20converted.20from.20Iced.20to.20Xilem)) has been very useful in guiding areas for improvement.      
+The discussion on Zulip (in [#xilem > Minesweeper converted from Iced to Xilem](https://xi.zulipchat.com/#narrow/stream/354396-xilem/topic/Minesweeper.20converted.20from.20Iced.20to.20Xilem)) has been very useful in guiding areas for improvement.
+[xilem#418][] resolved a compilation failure on iOS, although we do not currently actively support that platform.
 
 <figure>
 
@@ -55,6 +56,7 @@ I expect that we will soon be looking at prioritising items on our [long-term ro
 [xilem#394]: https://github.com/linebender/xilem/pull/394
 [xilem#396]: https://github.com/linebender/xilem/pull/396
 [xilem#401]:https://github.com/linebender/xilem/pull/401
+[xilem#418]: https://github.com/linebender/xilem/pull/418
 [xilem#420]: https://github.com/linebender/xilem/pull/420
 [vello 0.2.0]: https://github.com/linebender/vello/releases/tag/v0.2.0
 
