@@ -84,8 +84,8 @@ These crates are under active development.
 
  - [`glazier`][glazier] - A windowing library.
 
-  Glazier was created due to limitations with [`winit`][winit], however we have since decided to work together with the winit team to resolve those issues.
-  We now recommend the use of winit over Glazier.
+  Glazier was created due to limitations with [`winit`][winit], however we have since decided to work together with the `winit` team to resolve those issues.
+  We now recommend the use of `winit` over Glazier.
 
 [xi.zulip]: https://xi.zulipchat.com
 [rust]: https://rust-lang.org
