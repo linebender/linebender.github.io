@@ -11,7 +11,7 @@ We hang out on the [Linebender Zulip][xi.zulip] and always welcome new people.
 
 # Linebender projects
 
-Below is a list of the main Linebender projects, and a short description of each project's purpose, as of 2023-04-22.
+Below is a list of the main Linebender projects, and a short description of each project's purpose, as of 2024-07-23.
 
 ## Crates (actively developed)
 
@@ -19,17 +19,18 @@ These crates are under active development.
 
  - [`xilem`][xilem] - An experimental Rust architecture for reactive UI.
 
-   Xilem is a new UI toolkit with a medium-grained reactive architecture strongly inspired by SwiftUI. It is an evolution of Druid, aiming to keep what is good while improving on Druid's shortcomings.
+   Xilem is a UI toolkit with a medium-grained reactive architecture strongly inspired by SwiftUI.
+   It is currently in a pre-alpha state, with several significant issues, but is improving rapidly.
+
+ - [`masonry`][masonry] - A foundational framework for Rust GUI libraries.
+
+   Masonry is an evolution of Druid, designed to be driven by a higher-level UI toolkits.
+   It is currently used to power Xilem, but is designed to be usable by other libraries as well.
 
  - [`vello`][vello] - An experimental GPU compute-centric 2D renderer.
 
-   This crate contains a set of compute shaders and a framework for rasterizing 2D
-   geometry on the GPU. The goal is high performance, low resource usage and easy
-   interoperability between platforms.
-
- - [`glazier`][glazier] - An experimental windowing library.
-
-   This crate provides access to the platform API, in order to create windows and contexts to draw to, and to feed platform events like keypresses and mouse/touch events into an application. It serves a similar purpose to [`winit`][winit], and indeed either `winit` or `glazier` can be used as the windowing layer with `vello`. It exists because our requirements for Xilem slightly differ from the goals of `winit`: we want to optimize for rich desktop applications, including things like menus, contrasted to `winit` which is more focused on fully custom drawn applications like games.
+   Vello is an experimental 2D graphics rendering engine written in Rust, with a focus on GPU compute.
+   It can draw large 2D scenes with interactive or near-interactive performance, using [`wgpu`][wgpu] for GPU access.
 
  - [`kurbo`][kurbo] - A library for creating, manipulating and interrogating 2D curve shapes.
 
@@ -79,6 +80,13 @@ These crates are under active development.
 
  - [`linebender.github.io`][linebender.github.io] - This website. If you see anything that looks incorrect, please submit a PR to [the repo][linebender.github.io].
 
+## Archived projects
+
+ - [`glazier`][glazier] - A windowing library.
+
+   Glazier was created due to limitations with [`winit`][winit], however we have since decided to work together with the `winit` team to resolve those issues.
+   We now recommend the use of `winit` over Glazier.
+
 [xi.zulip]: https://xi.zulipchat.com
 [rust]: https://rust-lang.org
 [piet]: https://github.com/linebender/piet
@@ -87,8 +95,10 @@ These crates are under active development.
 [druid-shell]: https://github.com/linebender/druid/tree/master/druid-shell
 [glazier]: https://github.com/linebender/glazier
 [vello]: https://github.com/linebender/vello
+[wgpu]: https://wgpu.rs/
 [runebender]: https://github.com/linebender/runebender
 [xilem]: https://github.com/linebender/xilem
+[masonry]: https://github.com/linebender/xilem/tree/main/masonry
 [2d.graphics]: https://github.com/linebender/2d.graphics
 [velato]: https://github.com/linebender/velato
 [vello_svg]: https://github.com/linebender/vello_svg
