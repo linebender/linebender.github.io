@@ -40,7 +40,7 @@ Widgets are now stored in a global arena, which has little impact on the public 
 
 - [xilem#417][] exposes an unstable API for embedding Masonry and Xilem into an existing Winit application.
 - [xilem#418][], [xilem#421][] improved our unofficial support for iOS.
-- [rfcs#7][] specifies a clearer architect  ure for passes, including simplifications necessary for compositor use.
+- [rfcs#7][] specifies a clearer architecture for passes, including simplifications necessary for compositor use.
   Actually integrating with the compositor is still out of scope [for reasons Raph has laid out before](https://raphlinus.github.io/ui/graphics/2020/09/13/compositor-is-evil.html), but the new pass specification gives us a starting point when we get there.
 
 ## Vello
