@@ -19,7 +19,7 @@ Xilem is our flagship GUI project, inspired by SwiftUI.
   - [xilem#440][] is an experiment into async event handling.
   - [xilem#448][] added the `MemoizedAwait` view, which runs a task whenever the input data has a new value.
 - [xilem#467][] by Jared O'Connell adds a calculator example.
-  This example can also be run on Android ([xilem#474][])
+  This example can also be run on Android ([xilem#474][]).  
 
 <figure>
 
@@ -73,8 +73,8 @@ An interactive version can be found on the [paper's website](https://linebender.
 Parley is a text layout library.
 Nico Burns contributed quite a few improvements to Parley this month:
 
-- [parley#67] implements inline box layout, which lets us mix textual and non-textual content and have the non-textual content laid out in flow with the text.
-- [parley#76], [parley#84] gets style types closer to CSS engines.
+- [parley#67][] implements inline box layout, which lets us mix textual and non-textual content and have the non-textual content laid out in flow with the text.
+- [parley#76][], [parley#84][] gets style types closer to CSS engines.
 
 ## Others
 
@@ -99,5 +99,6 @@ Nico Burns contributed quite a few improvements to Parley this month:
 [rfcs#7]: https://github.com/linebender/rfcs/pull/7
 [vello#643]: https://github.com/linebender/vello/pull/643
 [vello#647]: https://github.com/linebender/vello/pull/647
+[parley#67]: https://github.com/linebender/parley/pull/67
 [parley#76]: https://github.com/linebender/parley/pull/76
 [parley#84]: https://github.com/linebender/parley/pull/84
