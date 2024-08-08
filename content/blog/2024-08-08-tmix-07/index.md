@@ -19,9 +19,18 @@ Xilem is our flagship GUI project, inspired by SwiftUI.
   - [xilem#440][] is an experiment into async event handling.
   - [xilem#448][] added the `MemoizedAwait` view, which runs a task whenever the input data has a new value.
 - [xilem#467][] by Jared O'Connell adds a calculator example.
-See the screenshot:
+  This example can also be run on Android ([xilem#474][])
 
-![Screenshot of a calculator app](/calculator_example.png)
+<figure>
+
+<img style="height: auto" src="calculator_example.png" alt="A calculator with display section showing the calculation 9994 + 3231 = 13225. Below this section is a grid of buttons 4 wide and 5 tall, containing the digits 0-9 and some other calculator operations." height="533" width = "931">
+
+<figcaption>
+
+The new `calc` example for Xilem.
+
+</figcaption>
+</figure>
 
 ## Masonry
 
@@ -31,7 +40,7 @@ Widgets are now stored in a global arena, which has little impact on the public 
 
 - [xilem#417][] exposes an unstable API for embedding Masonry and Xilem into an existing Winit application.
 - [xilem#418][], [xilem#421][] improved our unofficial support for iOS.
-- [rfcs#7][] specifies a clearer architecture for passes, including simplifications necessary for compositor use.
+- [rfcs#7][] specifies a clearer architect  ure for passes, including simplifications necessary for compositor use.
   Actually integrating with the compositor is still out of scope [for reasons Raph has laid out before](https://raphlinus.github.io/ui/graphics/2020/09/13/compositor-is-evil.html), but the new pass specification gives us a starting point when we get there.
 
 ## Vello
@@ -47,9 +56,17 @@ Vello is our GPU vector renderer.
   Git LFS is an open-source Git extension supported by Github, that lets users commit large files to a repository without permanently bloating it.
   Using it has trade-offs around bandwidth usage in CI, but otherwise matches our use-case perfectly.
 
-Screenshot of the stroke expansion demo:
+<figure>
 
-![Screenshot of an editor with sliders to edit a curve](/stroke_expansion_demo.png)
+<img style="height: auto" src="stroke_expansion_demo.png" alt="A screenshot containing a single bezier curve, split into several differently coloured segments. The control points of the curve are visible. The expanded stroke for this curve is shown as a filled section, with the generated line segment end points visible as small circles. There are several controls for settings of the stroke expansion above the curve." height="755" width = "868">
+
+<figcaption>
+
+The demo for the stroke expansion paper, which was created using Xilem Web.
+An interactive version can be found on the [paper's website](https://linebender.org/gpu-stroke-expansion-paper/#beztoy-container).
+
+</figcaption>
+</figure>
 
 ## Parley
 
@@ -69,6 +86,7 @@ Nico Burns contributed quite a few improvements to Parley this month:
   - [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
   - [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
 
+[xilem#396]: https://github.com/linebender/xilem/pull/396
 [xilem#417]: https://github.com/linebender/xilem/pull/417
 [xilem#418]: https://github.com/linebender/xilem/pull/418
 [xilem#421]: https://github.com/linebender/xilem/pull/421
@@ -76,10 +94,10 @@ Nico Burns contributed quite a few improvements to Parley this month:
 [xilem#428]: https://github.com/linebender/xilem/pull/428
 [xilem#440]: https://github.com/linebender/xilem/pull/440
 [xilem#448]: https://github.com/linebender/xilem/pull/448
-[xilem#396]: https://github.com/linebender/xilem/pull/396
+[xilem#467]: https://github.com/linebender/xilem/pull/467
+[xilem#474]: https://github.com/linebender/xilem/pull/474
 [rfcs#7]: https://github.com/linebender/rfcs/pull/7
 [vello#643]: https://github.com/linebender/vello/pull/643
 [vello#647]: https://github.com/linebender/vello/pull/647
 [parley#76]: https://github.com/linebender/parley/pull/76
 [parley#84]: https://github.com/linebender/parley/pull/84
-[xilem#467]: https://github.com/linebender/xilem/pull/467
