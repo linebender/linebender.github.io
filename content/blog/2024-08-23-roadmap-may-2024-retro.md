@@ -112,8 +112,7 @@ To unblock these users, some additional important features were added outside of
 - Support for embedding Masonry inside a pre-existing event loop ([xilem#417](https://github.com/linebender/xilem/pull/417)).
 - Support for a `gap` property in the flexbox ([xilem#437](https://github.com/linebender/xilem/pull/437)).
 - Fixes on iOS, including [xilem#418](https://github.com/linebender/xilem/pull/418) and [xilem#421](https://github.com/linebender/xilem/pull/421).
-
-Additionally, some of the items tracked under [Xilem](#xilem) below also impacted Masonry, especially for testing.
+- [xilem#233](https://github.com/linebender/xilem/pull/233) allowed our tests to be run on CI in a consistent manner.
 
 ## Parley [(original)](@/blog/2024-06-17-roadmap-may-2024.md#parley)
 
@@ -149,36 +148,96 @@ Additionally, some of the items tracked under [Xilem](#xilem) below also impacte
 
 <!-- TODO: Accurate sentence on Harfruzz -->
 
-## Xilem
+## Xilem [(original)](@/blog/2024-06-17-roadmap-may-2024.md#xilem) {#xilem}
 
-Android bringup
-Status: basic bringup done
-Update repository layout
-Status: done
-Rework xilem_core to be compatible with Masonry backend
-Status: done
-Write documentation
-Status: pending.
-Re-implement async integration
-Status: largely done (todo: link relevant PRs, as xilem#340 is not updated). xilem#423 was the main implementation
-Add unit tests
-Status: pending
-Add basic benchmarks
-Status: pending
+### Android bringup [(original)](@/blog/2024-06-17-roadmap-may-2024.md#android-bringup)
 
-AccessKit
-Proof-of-concept Android adapter in progress (<https://github.com/AccessKit/accesskit/tree/android-basics>)
+- **Priority**: Highest
+- **Status**: Android is supported in several of our examples, with the primary work required for support completed in [xilem#309](https://github.com/linebender/xilem/pull/309).
+  No non-boilerplate code changes are required to get a Xilem application running on Android.
+  Some compromises were made, in particular cargo gives an un-silencable warning for each example which supports Android and cross-platform backends.
+  We did reach out to the Cargo team about this use case, but did not get a positive response.
 
-Android specific work
-Injecting custom logic into View/Application/Activity
-Status: in progress (we also spent some time investigating DEX injection, which Matt has got implemented; it’s now looking like a custom Activity and View is the way forward)
-IME
-Status: progress (winit#3787 opens keyboard, real IME involves content view subclassing and therefore requires the Activity to support it directly)
-Gesture recognition
-Status: not started
+### Update repository layout [(original)](@/blog/2024-06-17-roadmap-may-2024.md#update-repository-layout)
+
+- **Priority**: High
+- **Status**: This was completed in [xilem#302](https://github.com/linebender/xilem/pull/302).
+  Kaur applied the same change to Vello in [vello#590](https://github.com/linebender/vello/pull/590).
+
+### Rework xilem_core to be compatible with Masonry backend [(original)](@/blog/2024-06-17-roadmap-may-2024.md#rework-xilem-core-to-be-compatible-with-masonry-backend)
+
+- **Priority**: High
+- **Status**: This was completed in [xilem#310](https://github.com/linebender/xilem/pull/310).
+  Philipp then applied this to Xilem Web in [xilem#403](https://github.com/linebender/xilem/pull/403).
+
+### Write documentation [(original)](@/blog/2024-06-17-roadmap-may-2024.md#write-documentation)
+
+- **Priority**: High
+- **Status**: This was not completed.
+  The work in [xilem#310](https://github.com/linebender/xilem/pull/310) did document some of the core, but there is very little user-facing documentation of the Xilem level.
+
+### Re-implement async integration [(original)](@/blog/2024-06-17-roadmap-may-2024.md#re-implement-async-integration)
+
+- **Priority**: Medium
+- **Status**: The core of this task was completed in [xilem#423](https://github.com/linebender/xilem/pull/423) was the main implementation.
+  Two-way communication with the async tasks is not yet implemented
+
+### Add unit tests [(original)](@/blog/2024-06-17-roadmap-may-2024.md#add-unit-tests)
+
+- **Priority**: Low
+- **Status**: This was not prioritised.
+  We have raised the priority of this item in our next roadmap.
+
+### Add basic benchmarks [(original)](@/blog/2024-06-17-roadmap-may-2024.md#add-basic-benchmarks)
+
+- **Priority**: Low
+- **Status**: There has been no progress on this item.
+  This will be a "highest" priority item in the next roadmap.
+
+### Progress beyond roadmap {#xilem-extras}
+
+Xilem has also seen some very useful changes not tracked above, including many community contributions.
+Some highlights of these contributions are:
+
+<!-- TODO: Writeup properly -->
+
+- Jared: Calc (#467)/stopwatch (#492) examples
+- Philipp: Returning `ViewSequence`s (#472)
+- Philipp: OneOf (#394)
+- Philipp: Flex properties
+- Philipp: Adapt (#401)
+
+There was also lots of progress on Xilem Web, but this is entirely unrelated to the roadmap and so is not discussed here.
+
+## AccessKit [(original)](@/blog/2024-06-17-roadmap-may-2024.md#accesskit)
+
+Matt Campbell's work on AccessKit has begun, and a proof-of-concept Android adapter is in progress in the [android-basics](https://github.com/AccessKit/accesskit/tree/android-basics) branch.
+<!-- TODO: This link might become dead: Can we point to a PR instead? -->
+
+## Android specific work [(original)](@/blog/2024-06-17-roadmap-may-2024.md#android-specific-work)
+
+### Subclassing View/Application/Activity [(original)](@/blog/2024-06-17-roadmap-may-2024.md#subclassing-view-application-activity)
+
+- **Priority**: Highest
+- **Status**: This work is in progress, and unfortunately has required more research than expected.
+  We spent some time investigating DEX injection, which Matt has got implemented.
+  However, it’s now looking like a custom Activity and View is the way forward, which requires close collaboration with upstream tools.
+  We are continuing to prioritise this highly.
+
+### Handling IME [(original)](@/blog/2024-06-17-roadmap-may-2024.md#handling-ime)
+
+- **Priority**: Highest
+<!-- TODO: Finish -->
+- **Status**: There has progress (winit#3787 opens keyboard, real IME involves content view subclassing and therefore requires the Activity to support it directly)
+
+### Gesture recognition [(original)](@/blog/2024-06-17-roadmap-may-2024.md#handling-ime)
+
+- **Priority**: Low
+- **Status**: Not started.
+  The priority on scrolling gestures has been increased slightly.
 
 ## Conclusions
 
 Overall, the roadmap provided a useful guide of what to work on, and .
-One clear recurring issue is around documentation.
+One clear recurring issue is around documentation, testing and other.
 We have consistently found.
