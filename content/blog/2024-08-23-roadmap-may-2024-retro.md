@@ -147,7 +147,7 @@ To unblock these users, some additional important features were added outside of
 
 [parley#56](https://github.com/linebender/parley/pull/56) added support for Emoji, which is used with the [Vello PRs](#vello-extras).
 
-<!-- TODO: Accurate sentence on Harfruzz -->
+Recently the [harfruzz](https://github.com/harfbuzz/harfruzz) project, a fork of rustybuzz to be integrated fully with fontations, has emerged as an extremely promising direction for text shaping for the Rust ecosystem. We plan to use it as the basis for text layout.
 
 ## Xilem [(original)](@/blog/2024-06-17-roadmap-may-2024.md#xilem) {#xilem}
 
