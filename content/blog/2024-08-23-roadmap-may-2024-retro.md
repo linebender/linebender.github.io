@@ -57,7 +57,8 @@ This was presented at ACM High Performance Graphics (HPG) 2024, placing 3rd Plac
 
 - **Priority**: Highest
 - **Status**: Not that much progress.
-  There were some community contributions such as
+  This work is being continued, and indeed there has been significant progress as of the time of writing.
+  This is tracked in [parley#52](https://github.com/linebender/parley/issues/52).
 
 ### Better tracing for debugging [(original)](@/blog/2024-06-17-roadmap-may-2024.md#better-tracing-for-debugging)
 
@@ -68,7 +69,7 @@ This was presented at ACM High Performance Graphics (HPG) 2024, placing 3rd Plac
 ### Fix glaring documentation problems [(original)](@/blog/2024-06-17-roadmap-may-2024.md#fix-glaring-documentation-problems)
 
 - **Priority**: High
-- **Status**: The issues mentioned in this item were addressed in [xilem#329](https://github.com/linebender/xilem/pull/329), and.
+- **Status**: The issues mentioned in this item were addressed in [xilem#329](https://github.com/linebender/xilem/pull/329) and [xilem#503](https://github.com/linebender/xilem/pull/503).
 
 ### Finish repository port [(original)](@/blog/2024-06-17-roadmap-may-2024.md#fix-glaring-documentation-problems)
 
@@ -86,7 +87,6 @@ This was presented at ACM High Performance Graphics (HPG) 2024, placing 3rd Plac
 
 - **Prioriy**: High
 - **Status**: [rfcs#7](https://github.com/linebender/rfcs/pull/7) is in draft, and several important parts of the RFC have been completed.
-  We have also learned several important lessons about the RFC process, including.
 
 ### Rewrite documentation [(original)](@/blog/2024-06-17-roadmap-may-2024.md#rewrite-documentation)
 
