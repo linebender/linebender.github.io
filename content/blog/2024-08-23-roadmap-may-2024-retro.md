@@ -25,7 +25,8 @@ We recently went through a process of analysing how well our progress was guided
 ### Sparse strips [(original)](@/blog/2024-06-17-roadmap-may-2024.md#sparse-strips)
 
 - **Priority:** High.
-- **Status**: Not much progress. We have deferred this.
+- **Status**: We are continuing this work, but there is no code currently available.
+  See [#gpu > Sparse strip path rendering](https://xi.zulipchat.com/#narrow/stream/197075-gpu/topic/Sparse.20strip.20path.20rendering) for details.
 
 ### Add tests [(original)](@/blog/2024-06-17-roadmap-may-2024.md#add-tests)
 
@@ -164,7 +165,7 @@ To unblock these users, some additional important features were added outside of
 - **Status**: This was completed in [xilem#302](https://github.com/linebender/xilem/pull/302).
   Kaur applied the same change to Vello in [vello#590](https://github.com/linebender/vello/pull/590).
 
-### Rework xilem_core to be compatible with Masonry backend [(original)](@/blog/2024-06-17-roadmap-may-2024.md#rework-xilem-core-to-be-compatible-with-masonry-backend)
+### Rework xilem_core to be compatible with Masonry backend [(original)](@/blog/2024-06-17-roadmap-may-2024.md#rework-xilem-core-to-be-compatible-with-masonry-backend) {#rework-core}
 
 - **Priority**: High
 - **Status**: This was completed in [xilem#310](https://github.com/linebender/xilem/pull/310).
@@ -199,24 +200,22 @@ To unblock these users, some additional important features were added outside of
 Xilem has also seen some very useful changes not tracked above, including many community contributions.
 Some highlights of these contributions are:
 
-<!-- TODO: Writeup properly -->
+- Philipp Mildenberger contributed heavily to Xilem's core design, such as by restoring the ability to return `ViewSequence`s by returning to a previous workaround for Rust's overly-cautious trait solver ([xilem#472](https://github.com/linebender/xilem/pull/394)).
+  He also extended the Xilem API by restoring `OneOf` ([xilem#394](https://github.com/linebender/xilem/pull/394)), and implementing various `Adapt` nodes ([xilem#401](https://github.com/linebender/xilem/pull/401)).
+  Additionally, he picked up the work to expand `Flex` to use the [new Xilem Core](#rework-core) in [xilem#428](https://github.com/linebender/xilem/pull/428).
+- Jared O'Connell contributed two new examples, a calculator ([xilem#467](https://github.com/linebender/xilem/pull/467)), and a stopwatch ([xilem#492](https://github.com/linebender/xilem/pull/492)).
 
-- Jared: Calc (#467)/stopwatch (#492) examples
-- Philipp: Returning `ViewSequence`s (#472)
-- Philipp: OneOf (#394)
-- Philipp: Flex properties
-- Philipp: Adapt (#401)
-
-There was also lots of progress on Xilem Web, but this is entirely unrelated to the roadmap and so is not discussed here.
+There has also been lots of really good progress on Xilem Web, but we do not roadmap Xilem Web and so is not discussed here.
 
 ## AccessKit [(original)](@/blog/2024-06-17-roadmap-may-2024.md#accesskit)
 
-Matt Campbell's work on AccessKit has begun, and a proof-of-concept Android adapter is in progress in the [android-basics](https://github.com/AccessKit/accesskit/tree/android-basics) branch.
-<!-- TODO: This link might become dead: Can we point to a PR instead? -->
+Matt Campbell's work on AccessKit has begun, and a proof-of-concept Android adapter is in progress.
+<!-- TODO: Can we point to a PR instead? -->
+At the time of writing there is not a permanent link to this work, but it can be seen in the [android-basics](https://github.com/AccessKit/accesskit/tree/android-basics) branch.
 
 ## Android specific work [(original)](@/blog/2024-06-17-roadmap-may-2024.md#android-specific-work)
 
-### Subclassing View/Application/Activity [(original)](@/blog/2024-06-17-roadmap-may-2024.md#subclassing-view-application-activity)
+### Subclassing View/Application/Activity [(original)](@/blog/2024-06-17-roadmap-may-2024.md#subclassing-view-application-activity) {#subclassing}
 
 - **Priority**: Highest
 - **Status**: This work is in progress, and unfortunately has required more research than expected.
@@ -227,17 +226,20 @@ Matt Campbell's work on AccessKit has begun, and a proof-of-concept Android adap
 ### Handling IME [(original)](@/blog/2024-06-17-roadmap-may-2024.md#handling-ime)
 
 - **Priority**: Highest
-<!-- TODO: Finish -->
-- **Status**: There has progress (winit#3787 opens keyboard, real IME involves content view subclassing and therefore requires the Activity to support it directly)
+- **Status**: This work is ongoing.
+  [winit#3787](https://github.com/rust-windowing/winit/pull/3787) allows opening a virtual keyboard, however this does not integrate with full IME (so for example, it is incompatible with autocorrect).
+  Real IME requires the Activity to support it directly and therefore involves [content view subclassing](#subclassing).
 
-### Gesture recognition [(original)](@/blog/2024-06-17-roadmap-may-2024.md#handling-ime)
+### Gesture recognition [(original)](@/blog/2024-06-17-roadmap-may-2024.md#gesture-recognition)
 
 - **Priority**: Low
-- **Status**: Not started.
-  The priority on scrolling gestures has been increased slightly.
+- **Status**: [xilem#313](https://github.com/linebender/xilem/pull/313) added emulated mouse press and move from touches.
+  This unblocked use of Xilem on Android, but is not the intended final state.
+  The priority of detecting a scrolling gesture has been increased slightly.
 
 ## Conclusions
 
-Overall, the roadmap provided a useful guide of what to work on, and .
-One clear recurring issue is around documentation, testing and other.
-We have consistently found.
+Overall, the roadmap provided a useful guide of what to work on, and we have implemented many of the most important features from it.
+One clear recurring issue is around documentation and testing.
+Where we have chosen to roadmap this, we have not managed to complete this work.
+We firmly recognise the importance of testing and documentation, and so would welcome community collaboration in this area.
