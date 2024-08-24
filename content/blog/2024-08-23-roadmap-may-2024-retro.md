@@ -110,7 +110,7 @@ This was presented at ACM High Performance Graphics (HPG) 2024, placing 3rd Plac
 Masonry is in a state of flux, however is starting to see a few exploratory users.
 To unblock these users, some additional important features were added outside of the roadmap, such as:
 
-- Support for embedding Masonry inside a pre-existing event loop ([xilem#417](https://github.com/linebender/xilem/pull/417)).
+- Support for embedding Masonry inside a pre-existing event loop ([xilem#417](https://github.com/linebender/xilem/commit/cf3530097baf0fc5c458593e215a19973572b991)).
 - Support for a `gap` property in the flexbox ([xilem#437](https://github.com/linebender/xilem/pull/437)).
 - Fixes on iOS, including [xilem#418](https://github.com/linebender/xilem/pull/418) and [xilem#421](https://github.com/linebender/xilem/pull/421).
 - [xilem#233](https://github.com/linebender/xilem/pull/233) allowed our tests to be run on CI in a consistent manner.
