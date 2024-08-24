@@ -93,12 +93,12 @@ This was presented at ACM High Performance Graphics (HPG) 2024, placing 3rd Plac
 - **Priority**: Medium
 - **Status**: This work has been deferred until the "pass order" refactor is complete, as we expect Masonry's core to be quite stable at that point.
 
-### Improve focus handling [(original)](@/blog/2024-06-17-roadmap-may-2024.md#improve-focus-handling) ?
+### Improve focus handling [(original)](@/blog/2024-06-17-roadmap-may-2024.md#improve-focus-handling)
 
 - **Priority**: Medium
 - **Status**: Not done.
 
-### Improve pointer status handling [(original)](@/blog/2024-06-17-roadmap-may-2024.md#improve-pointer-status-handling) ?
+### Improve pointer status handling [(original)](@/blog/2024-06-17-roadmap-may-2024.md#improve-pointer-status-handling)
 
 - **Priority**: Medium
 - **Status**: Basic translation of touch events was added in ([xilem#313](https://github.com/linebender/xilem/pull/313)).
@@ -205,7 +205,7 @@ Some highlights of these contributions are:
   Additionally, he picked up the work to expand `Flex` to use the [new Xilem Core](#rework-core) in [xilem#428](https://github.com/linebender/xilem/pull/428).
 - Jared O'Connell contributed two new examples, a calculator ([xilem#467](https://github.com/linebender/xilem/pull/467)), and a stopwatch ([xilem#492](https://github.com/linebender/xilem/pull/492)).
 
-There has also been lots of really good progress on Xilem Web, but we do not roadmap Xilem Web and so is not discussed here.
+There has also been lots of really good progress on Xilem Web, but we do not roadmap Xilem Web and so we do not cover that progress here.
 
 ## AccessKit [(original)](@/blog/2024-06-17-roadmap-may-2024.md#accesskit)
 
