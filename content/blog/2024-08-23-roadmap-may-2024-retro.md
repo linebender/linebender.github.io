@@ -42,7 +42,7 @@ We recently went through a process of analysing how well our progress was guided
 We have also landed several important features which were not part of our planned roadmap.
 These include:
 
-- Blending which uses more than four deep layers ([vello#661](https://github.com/linebender/vello/pull/661)).
+- Blending which uses more than four deep layers ([vello#657](https://github.com/linebender/vello/pull/657)).
 - Preliminary support for embedding pre-existing `wgpu` textures ([vello#636](https://github.com/linebender/vello/pull/636)).
   This was driven by user needs.
   Further work in this direction is tracked in [vello#664](https://github.com/linebender/vello/issues/664).
