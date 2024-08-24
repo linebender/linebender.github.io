@@ -240,6 +240,7 @@ At the time of writing there is not a permanent link to this work, but it can be
 ## Conclusions
 
 Overall, the roadmap provided a useful guide of what to work on, and we have implemented many of the most important features from it.
-One clear recurring issue is around documentation and testing.
-Where we have chosen to roadmap this, we have not managed to complete this work.
-We firmly recognise the importance of testing and documentation, and so would welcome community collaboration in this area.
+One clear recurring issue is documentation - even where we have chosen to roadmap this, we have made little progress.
+Similar concerns are clear for testing in Xilem, although we have laid some important groundwork there.
+We firmly recognise the role of documentation as an aid to onboarding, which is becoming more important as we work towards alpha releases.
+I believe that we can make good progress in this area before the end of 2024.
