@@ -3,6 +3,8 @@ title = "Retrospective on the May-July roadmap"
 authors = ["Daniel McNab"]
 +++
 
+Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
+
 At the start of May, we created a [roadmap](@/blog/2024-06-17-roadmap-may-2024.md) for the following three months.
 We recently went through a process of analysing how well our progress was guided by the roadmap; this report summarises those results.
 
