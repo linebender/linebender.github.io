@@ -22,23 +22,25 @@ We're seeking feedback on Zulip in [#linebender>logo](https://xi.zulipchat.com/#
 
 Xilem is our flagship GUI project, inspired by SwiftUI.
 
-<!-- TODO: Slightly better writing here -->
+<!-- TODO: Slightly better writing in these first two items -->
 - Viewmarker [xilem#472][]
 - Variable fonts experiments ([xilem#507][])
-- Stopwatch example [xilem#]
-- Views for existing and new widgets: spinner ([xilem#497][]), portal ([xilem#561][]), progress bar ([xilem#513][])
+- We added Views for some existing and new widgets:
+  - spinners, useful for showing indetermine progress ([xilem#497][]);
+  - progress bars ([xilem#513][]); and
+  - the `Portal` widget, which brings support for scroll areas to Xilem ([xilem#561][]).
 - Xilem Web:
     <!-- TODO: -->
   - One or two most impactful items.
 
 <figure>
 
-<img style="height: auto" src="..." alt="..." height=".." width = "..">
+<!-- TODO: Alt text -->
+<img style="height: auto" src="stopwatch.png" alt="TODO" height="388" width = "559">
 
 <figcaption>
 
-...
-<!-- TODO: Is there a relevant image for here? Maybe the stopwatch? -->
+Jared O'Connell additionally contributed a stopwatch example in [xilem#492][].
 
 </figcaption>
 </figure>
@@ -51,14 +53,30 @@ This month has been dominated by Olivier's implementation of pass specification 
 <!-- TODO: Rest of the pass specification PRs -->
 - [xilem#522][]: Paint/Accessibility, with follow-up by Tom Churchman in [xilem#557][]
 
-Other work from August includes:
+We also had some great community contributions, such as:
 
+- A new progress Bar widget ([xilem#513][])
 - Tom Churchman has contributed fixes for Portal scrolling ([#xilem#563][])
 - Snapshot tests now are cross-platform and run in CI ([xilem#233][])
-- Progress Bar widget ([xilem#513][])
-- Pan/flick gestures ([xilem#562][]).
+
+<figure>
+
+<img style="height: auto" src="progress_bar.png" alt="A horizontal progress bar which is 70% filled with blue, with white text overlaid saying 70%. Below this is a checkbox labelled 'set indetermine progress', and a button labelled 'change progress'." height="129" width = "431">
+
+<figcaption>
+
+A progress bar widget was contributed by Richard Dodd in ([xilem#513][]).
+
+</figcaption>
+</figure>
+
+We continue to make progress on other key features.
+
+- Pan/flick gestures ([xilem#562][])
 - Progress continues on text input for Android <!-- TODO: links? - cc @xorgy -->
-- We were given a demonstration of initial [Android TalkBack](https://support.google.com/accessibility/android/answer/6283677) support in office hours.
+- We were given a demonstration of initial [Android TalkBack](https://support.google.com/accessibility/android/answer/6283677) support in office hours. <!-- TODO: Link to PR? -->
+
+<!-- TODO: Accessibility video. Embed? -->
 
 ## Vello
 
@@ -81,6 +99,7 @@ We have made some really great progress in August<!-- , TODO: and are actively p
 <figcaption>
 
 Rounded rectangles!
+Likely: Split image - Vello example and Blitz Web
 
 </figcaption>
 </figure>
@@ -89,7 +108,7 @@ Rounded rectangles!
 
 Parley is a text layout library.
 
-- Primitives required for robust text editing added in [parley#106][].
+- Primitives required for robust text editing were added in [parley#106][].
 
 ## Others
 
@@ -99,7 +118,6 @@ Parley is a text layout library.
   - [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
   - [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
 
-<!--  -->
 <!-- TODO: Add remaining links -->
 [xilem#396]: https://github.com/linebender/xilem/pull/396
 [rfcs#7]: https://github.com/linebender/rfcs/pull/7
