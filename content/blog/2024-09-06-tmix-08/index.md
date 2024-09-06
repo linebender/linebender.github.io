@@ -100,7 +100,7 @@ We have made some really great progress in August<!-- , TODO: and are actively p
 
 <figcaption>
 
-Vello now supports blurred rounded rectangles, based on the maths      from [Raph's blog](https://raphlinus.github.io/graphics/2020/04/21/blurred-rounded-rects.html).
+Vello now supports blurred rounded rectangles, based on the maths from [Raph's blog](https://raphlinus.github.io/graphics/2020/04/21/blurred-rounded-rects.html).
 Left: Vello's blurred rounded rectangles test scene.
 Right: [Blitz](https://github.com/DioxusLabs/blitz/)'s `servo` example which renders box shadows using this feature.
 
