@@ -57,7 +57,7 @@ This month has been dominated by Olivier's implementation of pass specification 
 We also had some great community contributions, such as:
 
 - Richard Dodd added a new progress Bar widget ([xilem#513][]).
-- Fixes for Portal scrolling, by Tom Churchman ([#xilem#563][]).
+- Fixes for Portal scrolling, by Tom Churchman ([xilem#563][]).
 
 <figure>
 
@@ -122,5 +122,33 @@ Parley is a text layout library.
   - [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
 
 <!-- TODO: Add remaining links -->
-[xilem#396]: https://github.com/linebender/xilem/pull/396
+
+[parley#106]: https://github.com/linebender/parley/pull/106
 [rfcs#7]: https://github.com/linebender/rfcs/pull/7
+[vello#636]: https://github.com/linebender/vello/pull/636
+[vello#641]: https://github.com/linebender/vello/pull/641
+[vello#651]: https://github.com/linebender/vello/pull/651
+[vello#661]: https://github.com/linebender/vello/pull/661
+[vello#665]: https://github.com/linebender/vello/pull/665
+[vello#670]: https://github.com/linebender/vello/pull/670
+[vello#673]: https://github.com/linebender/vello/pull/673
+[vello#674]: https://github.com/linebender/vello/pull/674
+[xilem#233]: https://github.com/linebender/xilem/pull/233
+[xilem#472]: https://github.com/linebender/xilem/pull/472
+[xilem#488]: https://github.com/linebender/xilem/pull/488
+[xilem#492]: https://github.com/linebender/xilem/pull/492
+[xilem#497]: https://github.com/linebender/xilem/pull/497
+[xilem#507]: https://github.com/linebender/xilem/pull/507
+[xilem#510]: https://github.com/linebender/xilem/pull/510
+[xilem#512]: https://github.com/linebender/xilem/pull/512
+[xilem#513]: https://github.com/linebender/xilem/pull/513
+[xilem#522]: https://github.com/linebender/xilem/pull/522
+[xilem#529]: https://github.com/linebender/xilem/pull/529
+[xilem#538]: https://github.com/linebender/xilem/pull/538
+[xilem#539]: https://github.com/linebender/xilem/pull/539
+[xilem#550]: https://github.com/linebender/xilem/pull/550
+[xilem#557]: https://github.com/linebender/xilem/pull/557
+[xilem#561]: https://github.com/linebender/xilem/pull/561
+[xilem#562]: https://github.com/linebender/xilem/pull/562
+[xilem#563]: https://github.com/linebender/xilem/pull/563
+[xilem#575]: https://github.com/linebender/xilem/pull/575
