@@ -17,14 +17,13 @@ We're seeking feedback on Zulip in [#linebender>logo](https://xi.zulipchat.com/#
 </figcaption>
 </figure>
 
-
 ## Xilem
 
 Xilem is our flagship GUI project, inspired by SwiftUI.
 
-<!-- TODO: Slightly better writing in these first two items -->
-- Viewmarker [xilem#472][]
-- Variable fonts experiments ([xilem#507][])
+- We integrated basic animated variable font rendering ([xilem#507][]).
+- Philipp Mildenberger moved us back to using `Viewmarker` in [xilem#472][].
+  This restores the ability to return `ViewSequence`s, by making a tradeoff to work around Rust's faulty trait ambiguity rules.
 - We added Views for some existing and new widgets:
   - spinners, useful for showing indetermine progress ([xilem#497][]);
   - progress bars ([xilem#513][]); and
@@ -35,8 +34,7 @@ Xilem is our flagship GUI project, inspired by SwiftUI.
 
 <figure>
 
-<!-- TODO: Alt text -->
-<img style="height: auto" src="stopwatch.png" alt="TODO" height="388" width = "559">
+<img style="height: auto" src="stopwatch.png" alt="A timer with the value '0:00:26.4' (26.4 seconds) above two buttons, reset and start. Below these are 5 laps, labelled 'lap 5' to 'lap 1', each with a lap time of approximately 5 seconds and a corresponding elapsed time. This is all contained in an OS window titled 'Stopwatch'." height="388" width = "559">
 
 <figcaption>
 
@@ -50,14 +48,16 @@ Jared O'Connell additionally contributed a stopwatch example in [xilem#492][].
 Masonry is the widget system used by Xilem.
 This month has been dominated by Olivier's implementation of pass specification ([rfcs#7][]):
 
-<!-- TODO: Rest of the pass specification PRs -->
-- [xilem#522][]: Paint/Accessibility, with follow-up by Tom Churchman in [xilem#557][]
+- [xilem#512][]: The new compose pass, which is used to minimise redraw when scrolling.
+- [xilem#510][]: Adds the mutate pass, which allows later passes to assume the tree structure is stable by limiting when tree mutation can occur.
+- [xilem#522][]: Implements paint and accessibility as passes, with follow-up by Tom Churchman in [xilem#557][].
+- [xilem#488][] and [xilem#540]: updated event and pointer handling, and disabled handling respectively.
+- In progress work includes layout in [xilem#529][], focus in [xilem#538][], animation in [xilem#539][] and scroll requests in [xilem#550][].
 
 We also had some great community contributions, such as:
 
-- A new progress Bar widget ([xilem#513][])
-- Tom Churchman has contributed fixes for Portal scrolling ([#xilem#563][])
-- Snapshot tests now are cross-platform and run in CI ([xilem#233][])
+- Richard Dodd added a new progress Bar widget ([xilem#513][]).
+- Fixes for Portal scrolling, by Tom Churchman ([#xilem#563][]).
 
 <figure>
 
@@ -72,34 +72,37 @@ A progress bar widget was contributed by Richard Dodd in ([xilem#513][]).
 
 We continue to make progress on other key features.
 
-- Pan/flick gestures ([xilem#562][])
-- Progress continues on text input for Android <!-- TODO: links? - cc @xorgy -->
-- We were given a demonstration of initial [Android TalkBack](https://support.google.com/accessibility/android/answer/6283677) support in office hours. <!-- TODO: Link to PR? -->
+- Snapshot tests now are cross-platform and run in CI ([xilem#233][]).
+- Pan/flick gestures are being developed in ([xilem#562][]).
+- Progress continues on text input for Android. This has shifted into creating our own activity type, with better support for accessibility and text input than `NativeActivity`. <!-- TODO: links? - cc @xorgy -->
+- Progress is continuing well on Accessibility for Android. You can try this in [xilem#575][]<!-- , or see it in the below video -->.
 
 <!-- TODO: Accessibility video. Embed? -->
 
 ## Vello
 
 Vello is our GPU vector renderer.
-We have made some really great progress in August<!-- , TODO: and are actively planning a 0.3.0 release -->.
+We have made some really great progress in August<!-- , TODO: and are actively planning a 0.3.0 release? -->.
 
-- Blurred rounded rectangles, by Markus Siglreithmaier ([vello#665][])
-- Blend stack spilling, allowing blends more than four layers deep ([vello#661][]).
+- We now support blurred rounded rectangles, contributed by Markus Siglreithmaier ([vello#665][])
+- Blend stack spilling was implementing, which allows blends more than four layers deep ([vello#661][]).
 - Fixes for some visual artifacts in [vello#651][], [vello#659] and [vello#673][].
-- Embedding existing wgpu textures ([vello#636][]).
-- Bitmap glyph (emoji) support in ([vello#641][]).
+- Embedding existing wgpu textures is now supported ([vello#636][]).
+- We now support bitmap glyphs (i.e. emoji), in addition to our previous COLR support ([vello#641][]).
 - Work has begun on sparse strips, which is tracked in [vello#670][].
 - Frame pacing for Android is being investigated and developed in [vello#674][].
-- <!-- TODO: Thomas Smith incredible deep-dives into parallel scan, which is the core operation in Vello. -->
+- Thomas Smith has been doing some deep-dives into parallel scan, which is the core operation in Vello.
+  This work can be found in [#gpu>Progress for GPU's Without Forward Progress Guarantees](https://xi.zulipchat.com/#narrow/stream/197075-gpu/topic/Progress.20for.20GPU's.20Without.20Forward.20Progress.20Guarantees).
 
 <figure>
 
-<img style="height: auto" src="..." alt="..." height=".." width = "..">
+<img style="height: auto" src="rounded_rectangles.png" alt="A vertically split image. On the left are three blurred shapes: a blue rectangle with rounded corners, and two black ellipses. The ellipses are partially occluded by the boundaries of the image. On the right is a web page, showing three blog post titles and summaries, each in a box with a black box shadow." height="644" width = "944">
 
 <figcaption>
 
-Rounded rectangles!
-Likely: Split image - Vello example and Blitz Web
+Vello now supports blurred rounded rectangles, based on the maths      from [Raph's blog](https://raphlinus.github.io/graphics/2020/04/21/blurred-rounded-rects.html).
+Left: Vello's blurred rounded rectangles test scene.
+Right: [Blitz](https://github.com/DioxusLabs/blitz/)'s `servo` example which renders box shadows using this feature.
 
 </figcaption>
 </figure>
