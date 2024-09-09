@@ -28,9 +28,12 @@ Xilem is our flagship GUI project, inspired by SwiftUI.
   - spinners, useful for showing indetermine progress ([xilem#497][]);
   - progress bars ([xilem#513][]); and
   - the `Portal` widget, which brings support for scroll areas to Xilem ([xilem#561][]).
-- Xilem Web:
-    <!-- TODO: -->
-  - One or two most impactful items.
+
+Xilem Web is a community managed experimental DOM implementation of the Xilem pattern.
+This month, the updates include:
+  
+- Support for returning multiple views from the main logic ([xilem#482][]).
+- Support for DOM templating, for efficient repeated creation of similar views ([xilem#495][]).
 
 <figure>
 
@@ -115,13 +118,11 @@ Parley is a text layout library.
 
 ## Others
 
-- Bruce Mitchener has started work on Interpoli, a... <!-- TODO: Finish -->
+- Bruce Mitchener has started work on [Interpoli](https://github.com/linebender/interpoli/), an animation support library.
 - We have performed a [retrospective](@/blog/2024-08-24-roadmap-may-2024-retro.md) on our last roadmap.
 - Daniel and Olivier's "office hours" appointments can still be booked by anyone for open-ended time-limited discussion of the ecosystem.
   - [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
   - [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
-
-<!-- TODO: Add remaining links -->
 
 [parley#106]: https://github.com/linebender/parley/pull/106
 [rfcs#7]: https://github.com/linebender/rfcs/pull/7
@@ -135,8 +136,10 @@ Parley is a text layout library.
 [vello#674]: https://github.com/linebender/vello/pull/674
 [xilem#233]: https://github.com/linebender/xilem/pull/233
 [xilem#472]: https://github.com/linebender/xilem/pull/472
+[xilem#482]: https://github.com/linebender/xilem/pull/482
 [xilem#488]: https://github.com/linebender/xilem/pull/488
 [xilem#492]: https://github.com/linebender/xilem/pull/492
+[xilem#495]: https://github.com/linebender/xilem/pull/495
 [xilem#497]: https://github.com/linebender/xilem/pull/497
 [xilem#507]: https://github.com/linebender/xilem/pull/507
 [xilem#510]: https://github.com/linebender/xilem/pull/510
