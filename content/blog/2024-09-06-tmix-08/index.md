@@ -78,9 +78,19 @@ We continue to make progress on other key features.
 - Snapshot tests now are cross-platform and run in CI ([xilem#233][]).
 - Pan/flick gestures are being developed in ([xilem#562][]).
 - Progress continues on text input for Android. This has shifted into creating our own activity type, with better support for accessibility and text input than `NativeActivity`. <!-- TODO: links? - cc @xorgy -->
-- Progress is continuing well on Accessibility for Android. You can try this in [xilem#575][]<!-- , or see it in the below video -->.
+- Progress continues on the Accessibility integration for Android. You can try this in [xilem#575][], or see it in the below video.
 
-<!-- TODO: Accessibility video. Embed? -->
+<figure>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/IObBk40MdJs?si=GXDNRNelhVz4nTjU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<figcaption>
+
+The Xilem `to_do_mvc` example running with [TalkBack](https://en.wikipedia.org/wiki/Google_TalkBack) integration.
+Video provided by Matt Campbell.
+
+</figcaption>
+</figure>
 
 ## Vello
 
