@@ -132,7 +132,7 @@ Xilem's approach of "you own your children" is a little bespoke. It means the fr
 
 I believe Widgets should be owned by the library. If your container has children, then the only thing the container will actually own is keys into a structure (probably a slotmap) where the widget is stored. This makes a lot of things easier, like serialization and debugging, but it has an impact on the entire backend. It's an infrastructure investment.
 
-Lately, I've seen more and more dicussion of implementing GUI through an ECS. A lot of that discussion comes from Bevy, which is natural, since the bevy community ~~is made up of ruthless cultists striving to feed ever more sacrifices to the ECS god until it consumes the Earth~~ is intimately familiar with the ECS pattern and has reached a phase where UI work is getting a lot of attention[^2]. But I've seen discussions about it in the Linebender community too.
+Lately, I've seen more and more discussion of implementing GUI through an ECS. A lot of that discussion comes from Bevy, which is natural, since the bevy community ~~is made up of ruthless cultists striving to feed ever more sacrifices to the ECS god until it consumes the Earth~~ is intimately familiar with the ECS pattern and has reached a phase where UI work is getting a lot of attention[^2]. But I've seen discussions about it in the Linebender community too.
 
 Whether we actually want to use ECS is something we still need to research.
 
@@ -144,7 +144,7 @@ GUI is pretty far from that ideal use-case: updates are sparse and should only r
 
 I think there are two things you really want from a Rust ECS library for GUI: slotmaps, and efficient ways to add and remove components from an entity.
 
-Implementing those is going to be a major undertaking, which we'll have to divide into small experiements, but one I expect to pay many times over.
+Implementing those is going to be a major undertaking, which we'll have to divide into small experiments, but one I expect to pay many times over.
 
 
 ## Community involvement and more to come
