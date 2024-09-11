@@ -77,7 +77,10 @@ We continue to make progress on other key features.
 
 - Snapshot tests now are cross-platform and run in CI ([xilem#233][]).
 - Pan/flick gestures are being developed in ([xilem#562][]).
-- Progress continues on text input for Android. This has shifted into creating our own activity type, with better support for accessibility and text input than `NativeActivity`. <!-- TODO: links? - cc @xorgy -->
+- Progress continues on text input for Android. This has shifted into creating our own activity type, with better support for accessibility and text input than `NativeActivity`.
+`NativeActivity` and similar activity implementations have limitations for integrating accessibility, due to taking over the input queue and the main window surface.
+This new `Activity` will use `SurfaceView` like other modern native code based activities (`GameActivity`, `MakepadActivity`, etc.).
+Unlike `GameActivity`, we aim to have a version that doesn't require a java toolchain to build a simple application, which is the one strength of `NativeActivity`.
 - Progress continues on the Accessibility integration for Android. You can try this in [xilem#575][], or see it in the below video.
 
 <figure>
