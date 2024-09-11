@@ -22,7 +22,7 @@ We're seeking feedback on Zulip in [#linebender>logo](https://xi.zulipchat.com/#
 Xilem is our flagship GUI project, inspired by SwiftUI.
 
 - We integrated basic animated variable font rendering ([xilem#507][]).
-- Philipp Mildenberger moved us back to using `Viewmarker` in [xilem#472][].
+- Philipp Mildenberger moved us back to using `ViewMarker` in [xilem#472][].
   This restores the ability to return `ViewSequence`s, by making a tradeoff to work around Rust's faulty trait ambiguity rules.
 - We added Views for some existing and new widgets:
   - spinners, useful for showing indetermine progress ([xilem#497][]);
