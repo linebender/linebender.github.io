@@ -68,7 +68,7 @@ We also had some great community contributions, such as:
 
 <figcaption>
 
-A progress bar widget was contributed by Richard Dodd in ([xilem#513][]).
+The progress bar widget was contributed by Richard Dodd in [xilem#513][].
 
 </figcaption>
 </figure>
@@ -76,9 +76,9 @@ A progress bar widget was contributed by Richard Dodd in ([xilem#513][]).
 We continue to make progress on other key features.
 
 - Snapshot tests now are cross-platform and run in CI ([xilem#233][]).
-- Pan/flick gestures are being developed in ([xilem#562][]).
+- Pan/flick gestures are being developed in [xilem#562][].
 - Progress continues on text input for Android. This involves creating our own `Activity`, with support for both text input and accessibility.
-  This new `Activity` will use `SurfaceView` like other modern native code based activities (`GameActivity`, `MakepadActivity`, etc.), and we hope it won't require a Java toolchain to build a simple application.
+  This new `Activity` will use `SurfaceView` like other modern native code based activities (`GameActivity`, `MakepadActivity`, etc.), and our aim is that it won't require a Java toolchain to build a simple application.
 - Progress continues on the Accessibility integration for Android. You can try this in [xilem#575][], or see it in the below video.
 
 <figure>
