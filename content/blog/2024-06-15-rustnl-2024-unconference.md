@@ -180,7 +180,7 @@ With that in mind, some notable sponsors for projects represented at the Unconfe
 - **Foresight Spatial Labs:** Bevy.
 - **Rerun.io:** egui.
 
-Not present at RustNL but relevant to the ecosystem are **System76** (funding COSMIC-Text and contributing to iced), **Kraken** (funding iced), and **Slint** who are self-funding as a startup targetting embedded UIs and couldn't attend due to time constraints.
+Not present at RustNL but relevant to the ecosystem are **System76** (funding COSMIC-Text and contributing to iced), **Kraken** (funding iced), and **Slint** who are self-funding as a startup targeting embedded UIs and couldn't attend due to time constraints.
 
 Overall the number of different backers feels like a symptom of a healthy ecosystem: while some large corporate sponsors bring much more resources than others (Google and Futurewei especially), the ecosystem isn't in a state where any specific backer pulling out would completely collapse progress.
 
