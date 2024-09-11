@@ -54,7 +54,7 @@ This month has been dominated by Olivier's implementation of pass specification 
 - [xilem#512][]: The new compose pass, which is used to minimise redraw when scrolling.
 - [xilem#510][]: Adds the mutate pass, which allows later passes to assume the tree structure is stable by limiting when tree mutation can occur.
 - [xilem#522][]: Implements paint and accessibility as passes, with follow-up by Tom Churchman in [xilem#557][].
-- [xilem#488][] and [xilem#540]: updated event and pointer handling, and disabled handling respectively.
+- [xilem#488][] and [xilem#540][]: updated event and pointer handling, and disabled handling respectively.
 - In progress work includes layout in [xilem#529][], focus in [xilem#538][], animation in [xilem#539][] and scroll requests in [xilem#550][].
 
 We also had some great community contributions, such as:
@@ -77,10 +77,8 @@ We continue to make progress on other key features.
 
 - Snapshot tests now are cross-platform and run in CI ([xilem#233][]).
 - Pan/flick gestures are being developed in ([xilem#562][]).
-- Progress continues on text input for Android. This has shifted into creating our own activity type, with better support for accessibility and text input than `NativeActivity`.
-`NativeActivity` and similar activity implementations have limitations for integrating accessibility, due to taking over the input queue and the main window surface.
-This new `Activity` will use `SurfaceView` like other modern native code based activities (`GameActivity`, `MakepadActivity`, etc.).
-Unlike `GameActivity`, we aim to have a version that doesn't require a java toolchain to build a simple application, which is the one strength of `NativeActivity`.
+- Progress continues on text input for Android. This involves creating our own `Activity`, with support for both text input and accessibility.
+  This new `Activity` will use `SurfaceView` like other modern native code based activities (`GameActivity`, `MakepadActivity`, etc.), and we hope it won't require a Java toolchain to build a simple application.
 - Progress continues on the Accessibility integration for Android. You can try this in [xilem#575][], or see it in the below video.
 
 <figure>
@@ -102,7 +100,7 @@ We have made some really great progress in August<!-- , TODO: and are actively p
 
 - We now support blurred rounded rectangles, contributed by Markus Siglreithmaier ([vello#665][])
 - Blend stack spilling was implementing, which allows blends more than four layers deep ([vello#661][]).
-- Fixes for some visual artifacts in [vello#651][], [vello#659] and [vello#673][].
+- Fixes for some visual artifacts in [vello#651][], [vello#659][] and [vello#673][].
 - Embedding existing wgpu textures is now supported ([vello#636][]).
 - We now support bitmap glyphs (i.e. emoji), in addition to our previous COLR support ([vello#641][]).
 - Work has begun on sparse strips, which is tracked in [vello#670][].
@@ -142,6 +140,7 @@ Parley is a text layout library.
 [vello#636]: https://github.com/linebender/vello/pull/636
 [vello#641]: https://github.com/linebender/vello/pull/641
 [vello#651]: https://github.com/linebender/vello/pull/651
+[vello#659]: https://github.com/linebender/vello/pull/659
 [vello#661]: https://github.com/linebender/vello/pull/661
 [vello#665]: https://github.com/linebender/vello/pull/665
 [vello#670]: https://github.com/linebender/vello/pull/670
@@ -162,6 +161,7 @@ Parley is a text layout library.
 [xilem#529]: https://github.com/linebender/xilem/pull/529
 [xilem#538]: https://github.com/linebender/xilem/pull/538
 [xilem#539]: https://github.com/linebender/xilem/pull/539
+[xilem#540]: https://github.com/linebender/xilem/pull/540
 [xilem#550]: https://github.com/linebender/xilem/pull/550
 [xilem#557]: https://github.com/linebender/xilem/pull/557
 [xilem#561]: https://github.com/linebender/xilem/pull/561
