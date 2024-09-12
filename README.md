@@ -3,6 +3,8 @@ available on the website.
 
 # Development
 
+**Note: The site is currently built with Zola version 0.19.2.**
+
 The steps you need to get building the website locally are:
 
  1. [Install Zola](https://www.getzola.org/documentation/getting-started/installation/)
