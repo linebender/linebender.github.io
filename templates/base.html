@@ -17,8 +17,10 @@
         <meta property="twitter:title" content="{% if page.title %}{{page.title}}{% else %}{{config.title}}{% endif %}">
         <!-- End Jekyll SEO tag -->
         <link rel="stylesheet" href="/main.css">
-        {% if config.generate_feed %}
-        <link type="application/atom+xml" rel="alternate" href="/{{config.feed_filename}}" title="{{config.title}}">
+        {% if config.generate_feeds %}
+        {% for feed_filename in config.feed_filenames %}
+        <link type="application/atom+xml" rel="alternate" href="/{{feed_filename}}" title="{{config.title}}">
+        {% endfor %}
         {% endif %}
     <!-- mathjax support -->
     <script>
