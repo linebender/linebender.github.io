@@ -99,7 +99,7 @@ Vello is our GPU vector renderer.
 We have made some really great progress in August<!-- , TODO: and are actively planning a 0.3.0 release? -->.
 
 - We now support blurred rounded rectangles, contributed by Markus Siglreithmaier ([vello#665][])
-- Blend stack spilling was implementing, which allows blends more than four layers deep ([vello#661][]).
+- Blend stack spilling was implemented, which allows blends more than four layers deep ([vello#661][]).
 - Fixes for some visual artifacts in [vello#651][], [vello#659][] and [vello#673][].
 - Embedding existing wgpu textures is now supported ([vello#636][]).
 - We now support bitmap glyphs (i.e. emoji), in addition to our previous COLR support ([vello#641][]).
