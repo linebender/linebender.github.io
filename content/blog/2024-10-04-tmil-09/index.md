@@ -56,18 +56,6 @@ Some ongoing work includes:
 - [xilem#591][]: An SVG-like widget for absolute positioning, by Muhammad Ragib Hasin.
 
 
-<figure>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/IObBk40MdJs?si=qNUqQ6U7POs0ROEG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-<figcaption>
-
-Demo of work-in-progress AccessKit Android adapter by Matt Campbell.
-
-</figcaption>
-</figure>
-
-
 ## Vello
 
 Vello is our GPU vector renderer.
