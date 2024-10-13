@@ -1,6 +1,6 @@
 +++
 title = "This Month in Linebender, September 2024"
-authors = ["Daniel McNab"]
+authors = ["Daniel McNab", "Olivier Faure"]
 +++
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
