@@ -22,7 +22,7 @@ It lets you build user interfaces declaratively by composing lightweight views t
 
 <figure>
 
-<img style="height: auto" src="http-cats.png" alt="A list of HTTP status codes, with 'Select' buttons. HTTP code 418 'I'm a teapot' is selected, with a picture of a kitten hiding in a teapot. height="962" width = "600">
+<img style="height: auto" src="http_cats.png" alt="A list of HTTP status codes, with 'Select' buttons. HTTP code 418 'I'm a teapot' is selected, with a picture of a kitten hiding in a teapot." height="962" width="600">
 
 <figcaption>
 
