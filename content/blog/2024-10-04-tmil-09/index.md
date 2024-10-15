@@ -34,7 +34,7 @@ The HTTP cats example.
 ## Masonry
 
 Masonry is the widget system used by Xilem.
-It provides a non-opinionated retained widget tree on top of Winit, designed as a base layer for high-level GUI frameworks.
+It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
 
 Our ongoing pass specification project has been largely implemented.
 That work is now in a wrapping-up stage, which has allowed Olivier to work on improving the codebase's quality in general.
@@ -59,9 +59,9 @@ Some ongoing work includes:
 ## Vello
 
 Vello is our GPU vector renderer.
-It can draw large 2D scenes with high performance, using GPU compute shadersfor most of the work.
+It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.
 
-Progress towards the upcoming 0.3.0 release can be tracked in [the milestone](https://github.com/linebender/vello/milestone/2).
+The month of september included a lot of progress towards the 0.3.0 release.
 
 - We no longer consider Vello to be experimental ([vello#691][]). Please note that Vello is still an alpha, and has several known issues.
 - An implementation of the single pass scan described last month is being created by Thomas Smith in [vello#685][].
