@@ -9,13 +9,7 @@ All Linebender projects should include the following set of lints in their `Carg
 # This one may vary depending on the project.
 rust.unsafe_code = "forbid"
 
-# These two should be added to projects with an MSRV of 1.81 or higher
-# Note that allow_attributes only warns on outer `#[allow(...)]` attributes.
-clippy.allow_attributes = "warn"
-# Combined with allow_attributes, this is expected to trigger on module-wide or crate-wide `#![allow(...)]` attributes.
-clippy.allow_attributes_without_reason = "warn"
-
-# LINEBENDER LINT SET
+# LINEBENDER LINT SET - v1
 # See https://linebender.org/wiki/canonical-lints/
 rust.keyword_idents_2024 = "forbid"
 rust.non_ascii_idents = "forbid"
@@ -67,10 +61,7 @@ clippy.unseparated_literal_suffix = "warn"
 clippy.use_self = "warn"
 clippy.wildcard_imports = "warn"
 
-# In theory we could use clippy.cargo, but we don't want to automatically add
-# new cargo lints when clippy updates.
 clippy.cargo_common_metadata = "warn"
-clippy.multiple_crate_versions = "warn"
 clippy.negative_feature_names = "warn"
 clippy.redundant_feature_names = "warn"
 clippy.wildcard_dependencies = "warn"
@@ -80,7 +71,9 @@ clippy.wildcard_dependencies = "warn"
 And in their `lib.rs`:
 
 ```rust
-// These two aren't included in Cargo.toml because they
+// LINEBENDER LINT SET - v1
+// See https://linebender.org/wiki/canonical-lints/
+// These lints aren't included in Cargo.toml because they
 // shouldn't apply to examples and tests
 #![warn(unused_crate_dependencies)]
 #![warn(clippy::print_stdout, clippy::print_stderr)]
@@ -95,5 +88,5 @@ The list above should be considered canonical.
 If you think a new lint should be added to Linebender projects, add it to this file in alphabetical order, then copy-paste the list across projects.
 
 To keep this process simple, avoid modifying this list in individual projects.
-If you want to add other per-project lints, add them besides the list.
-If you want to remove a lint, `#![allow]` or `#![expect]` it at the project root.
+If you want to add other per-project lints, add them above the list.
+If you want to remove a lint, `#![allow]` or `#![expect]` it at the crate root.
