@@ -9,6 +9,12 @@ All Linebender projects should include the following set of lints in their `Carg
 # This one may vary depending on the project.
 rust.unsafe_code = "forbid"
 
+# These two should be added to projects with an MSRV of 1.81 or higher
+# Note that allow_attributes only warns on outer `#[allow(...)]` attributes.
+clippy.allow_attributes = "warn"
+# Combined with allow_attributes, this is expected to trigger on module-wide or crate-wide `#![allow(...)]` attributes.
+clippy.allow_attributes_without_reason = "warn"
+
 # LINEBENDER LINT SET
 # See https://linebender.org/wiki/canonical-lints/
 rust.keyword_idents_2024 = "forbid"
