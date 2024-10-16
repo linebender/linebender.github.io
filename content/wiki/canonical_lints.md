@@ -10,6 +10,7 @@ All Linebender projects should include the following set of lints in their `Carg
 rust.unsafe_code = "forbid"
 
 # LINEBENDER LINT SET
+# See https://linebender.org/wiki/canonical-lints/
 rust.keyword_idents_2024 = "forbid"
 rust.non_ascii_idents = "forbid"
 rust.non_local_definitions = "forbid"
@@ -60,9 +61,13 @@ clippy.unseparated_literal_suffix = "warn"
 clippy.use_self = "warn"
 clippy.wildcard_imports = "warn"
 
-# This catches duplicated dependencies in the tree, which we don't have much control over
-# We should use cargo deny for this, anyway
-clippy.cargo = { level = "warn", priority = -1 }
+# In theory we could use clippy.cargo, but we don't want to automatically add
+# new cargo lints when clippy updates.
+clippy.cargo_common_metadata = "warn"
+clippy.multiple_crate_versions = "warn"
+clippy.negative_feature_names = "warn"
+clippy.redundant_feature_names = "warn"
+clippy.wildcard_dependencies = "warn"
 # END LINEBENDER LINT SET
 ```
 
