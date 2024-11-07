@@ -89,7 +89,8 @@ We do still have several known issues, but are not aware of any blocking issues.
 
 <figcaption>
 
-Vello is now supported as the renderer for the external [Floem](https://lap.dev/floem/) project.
+Vello is now supported as the renderer for the external [Floem](https://lap.dev/floem/) project, developed for the Lapce editor.
+Note that Lapce does not currently itself use Vello.
 
 </figcaption>
 </figure>
@@ -119,9 +120,11 @@ Piet is a 2d graphics library which abstracts over platform-native graphics APIs
 During October, we released [Piet 0.7.0](https://github.com/linebender/piet/releases/tag/v0.7.0).
 
 Some key updates from October included in this release are:
+
 - [piet#572][]: Use of `Arc` over `Rc` for stroke dashing, by anesthetice.
 - [piet#585][]: An update to the Rust 2018 edition, from Bruce Mitchener.
 - [piet#578][]: Improved robustness of `copy_raw_pixels` on Direct2D by Kaur Kuut.
+- Many dependency updates.
 
 ## Druid
 
