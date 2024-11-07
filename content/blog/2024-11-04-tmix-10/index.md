@@ -1,5 +1,5 @@
 +++
-title = "Linebender in October 2024: resvg Adoption"
+title = "Linebender in October 2024: resvg stewardship"
 authors = ["Daniel McNab"]
 +++
 
