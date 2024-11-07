@@ -38,18 +38,7 @@ Xilem is our flagship GUI project, inspired by SwiftUI.
 It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
 
 - [xilem#681][]: `View::rebuild` was updated to reflect the ability to use reborrowing.
-- [xilem#669][]: The font weight for `label`s was exposed.
-
-<figure>
-
-<!-- <img style="height: auto" src="http_cats.png" alt="A list of HTTP status codes, with 'Select' buttons. HTTP code 418 'I'm a teapot' is selected, with a picture of a kitten hiding in a teapot." height="962" width="600"> -->
-
-<figcaption>
-
-<!-- The HTTP cats example. -->
-
-</figcaption>
-</figure>
+- [xilem#669][]: The font weight for `label`s was exposed, by Marco Melorio.
 
 Work on Xilem Web continues.
 
@@ -71,19 +60,58 @@ It provides a non-opinionated retained widget tree, designed as a base layer for
 Daniel also provided a talk to [GOSIM China 2024](https://china2024.gosim.org/) about Masonry.
 The recording of this presentation is not yet available.
 
+<figure>
+
+<img style="height: auto" src="masonry-tracy.png" alt="A tracing view of a single frame in Masonry. There are high-level spans with details underneath, and GPU operations are shown." height="367" width="784">
+
+<figcaption>
+
+Masonry now has built-in support for tracing using Tracy, using the [tracing-tracy](https://crates.io/crates/tracing-tracy) crate.
+
+</figcaption>
+</figure>
+
 ## Vello
 
 Vello is our GPU vector renderer.
 It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.
 
-The main update is the release of version 0.3.0...
+The main update is the release of version [0.3.0](https://github.com/linebender/vello/releases/tag/v0.3.0).
+This release includes previously discussed support for emoji and blurred rounded rectangles.
+We also now no longer consider Vello to be experimental, and so would encourage you to try Vello for your projects.
+Raph has been working on Sparse Strip Path rendering; progress can be followed [in the Zulip thread](https://xi.zulipchat.com/#narrow/channel/197075-gpu/topic/Sparse.20strip.20path.20rendering).
+
+We do still have several known issues, but are not aware of any blocking issues.
+
+<figure>
+
+<img style="height: auto" src="floem-todo-list.png" alt="A to-do list desktop app, in a vertical layout: Use Floem, unchecked; Create more TODOs, checked; Join the Linebender Zulip, unchecked. There is a button labelled 'New To-Do'." height="367" width="784">
+
+<figcaption>
+
+Vello is now supported as the renderer for the external [Floem](https://lap.dev/floem/) project.
+
+</figcaption>
+</figure>
 
 ## Parley
 
 Parley is a text layout library.
 It handles text layout, mostly at the level of line breaking and resolving glyph positions.
 
-Editor things?
+We released [Parley 0.2.0](https://github.com/linebender/parley/releases/tag/v0.2.0).
+This includes:
+
+- [parley#126][]: A new abstraction for text editing operations.
+- [parley#129][]: Ergonomics improvements for style properties.
+- [parley#76][]: A tree-style layout builder, useful for building up a text section (e.g. between elements).
+
+We have also done some follow up work, including:
+
+- [parley#143][]: Support for shortcutting drawing work if rendering has not changed.
+- [parley#152][] (in progress): An example showing cursor blinking, by tannal.
+
+<!-- TODO: Do we want to mention Aaron's contract finishing? -->
 
 ## Piet
 
