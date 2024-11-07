@@ -62,7 +62,7 @@ The recording of this presentation is not yet available.
 
 <figure>
 
-<img style="height: auto" src="masonry-tracy.png" alt="A tracing view of a single frame in Masonry. There are high-level spans with details underneath, and GPU operations are shown." height="367" width="784">
+<img style="height: auto" src="masonry-tracy.png" alt="A tracing view of a single frame in Masonry. There are high-level spans with details underneath, and GPU operations are shown." height="613" width="1275">
 
 <figcaption>
 
