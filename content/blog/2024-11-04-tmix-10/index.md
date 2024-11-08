@@ -108,7 +108,7 @@ This release includes previously discussed support for emoji and blurred rounded
 We also now no longer consider Vello to be experimental, and so would encourage you to try Vello for your projects.
 Raph has been working on Sparse Strip Path rendering; progress can be followed [in the Zulip thread](https://xi.zulipchat.com/#narrow/channel/197075-gpu/topic/Sparse.20strip.20path.20rendering).
 
-We do still have several known issues, but are not aware of any blocking issues.
+We do still have several known issues, but are not aware of any issues which would block wider adoption.
 
 <figure>
 
