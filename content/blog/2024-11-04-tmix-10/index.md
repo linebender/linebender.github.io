@@ -116,7 +116,7 @@ We do still have several known issues, but are not aware of any blocking issues.
 
 <figcaption>
 
-Vello is now supported as the renderer for the external [Floem](https://lap.dev/floem/) project, developed for the Lapce editor.
+Vello is now supported as a renderer for the external [Floem](https://lap.dev/floem/) project, developed for the Lapce editor.
 Note that Lapce does not currently itself use Vello.
 
 </figcaption>
@@ -144,6 +144,7 @@ We have also done some follow up work, including:
 ## Piet
 
 Piet is a 2d graphics library which abstracts over platform-native graphics APIs.
+Linebender is focused on [Vello](#vello) rather than Piet for performance reasons, but some users may find Piet useful, as it relies on more mature renderers and is more compatible with older platforms.
 During October, we released [Piet 0.7.0](https://github.com/linebender/piet/releases/tag/v0.7.0).
 
 Some key updates from October included in this release are:
@@ -159,8 +160,9 @@ Druid is a GUI library which was a predecessor to Xilem, and an ancestor of Maso
 
 We are in the process of relicensing Druid from its current license of Apache 2.0 only to the Rust ecosystem standard Apache 2.0 OR MIT dual license.
 If you have previously contributed to Druid, please read and respond to [druid#2414][].
-This will greatly improve cross-compatibility will the rest of the Rust ecosystem.
-We will also apply this to Xilem, Masonry and Glazier (which is currently archived).
+This will greatly improve cross-compatibility will the rest of the Rust ecosystem, particularly for adapting code from Druid into newer toolkits.
+We plan to archive the Druid repo after one more release, as we are not actively developing it; we are working to bring Xilem to parity in capability.
+Will also apply this license change to Xilem and Masonry, as well as Glazier, which is currently archived.
 
 ## Others
 
