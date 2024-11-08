@@ -14,7 +14,7 @@ Due to some changes in his personal circumstances, he has to give up working on 
 The following projects are now part of Linebender:
 
 - [resvg](https://github.com/linebender/resvg) - an SVG rendering library, including [usvg](https://crates.io/crates/usvg);
-- [tiny-skia](https://github.com/linebender/tiny-skia);
+- [tiny-skia](https://github.com/linebender/tiny-skia) - a skia subset ported to Rust.
 
 These crates are widely used within the ecosystem and play an important role in many software projects, and not just in Rust!
 Given that Linebender has a mission to provide high quality libraries for GUI and we have established processes for managing those libraries, we feel well positioned to step in and help out.
@@ -139,8 +139,6 @@ We have also done some follow up work, including:
 - [parley#143][]: Support for shortcutting drawing work if rendering has not changed.
 - [parley#152][] (in progress): An example showing cursor blinking, by tannal.
 
-<!-- TODO: Do we want to mention Aaron's contract finishing? -->
-
 ## Piet
 
 Piet is a 2d graphics library which abstracts over platform-native graphics APIs.
@@ -170,4 +168,24 @@ Will also apply this license change to Xilem and Masonry, as well as Glazier, wh
   - [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
   - [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
 
-<!-- [xilem#515]: https://github.com/linebender/xilem/pull/515 -->
+[druid#2414]: https://github.com/linebender/druid/pull/2414
+[parley#126]: https://github.com/linebender/parley/pull/126
+[parley#129]: https://github.com/linebender/parley/pull/129
+[parley#143]: https://github.com/linebender/parley/pull/143
+[parley#152]: https://github.com/linebender/parley/pull/152
+[parley#76]: https://github.com/linebender/parley/pull/76
+[piet#572]: https://github.com/linebender/piet/pull/572
+[piet#578]: https://github.com/linebender/piet/pull/578
+[piet#585]: https://github.com/linebender/piet/pull/585
+[resvg#838]: https://github.com/linebender/resvg/pull/838
+[rfcs#5]: https://github.com/linebender/rfcs/pull/5
+[rfcs#7]: https://github.com/linebender/rfcs/pull/7
+[xilem#612]: https://github.com/linebender/xilem/pull/612
+[xilem#615]: https://github.com/linebender/xilem/pull/615
+[xilem#632]: https://github.com/linebender/xilem/pull/632
+[xilem#660]: https://github.com/linebender/xilem/pull/660
+[xilem#669]: https://github.com/linebender/xilem/pull/669
+[xilem#681]: https://github.com/linebender/xilem/pull/681
+[xilem#705]: https://github.com/linebender/xilem/pull/705
+[xilem#718]: https://github.com/linebender/xilem/pull/718
+[xilem#720]: https://github.com/linebender/xilem/pull/720
