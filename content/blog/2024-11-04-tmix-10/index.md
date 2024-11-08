@@ -81,7 +81,7 @@ It provides a non-opinionated retained widget tree, designed as a base layer for
   - This change is intended to improve rustdoc output, and the ergonomics should be restored once Rust has Arbitrary Self Types V2.
 - [xilem#615][]: Our accessibility for text has been greatly improved, allowing by-character and by-word movement through accessibility tools.
 - [xilem#660][]: `request_paint` has been removed in favour of a new `request_render`, so that accessibility updates are less likely to be missed.
-- [xilem#718][], [xilem#720][]: restored the ability to embed Masonry in external projects by re-exported required items.
+- [xilem#718][], [xilem#720][]: restored the ability to embed Masonry in external projects by re-exporting required items.
 - [xilem#612][]: A built-in feature-gated integration with [Tracy](https://github.com/wolfpld/tracy).
 
 Daniel also provided a talk to [GOSIM China 2024](https://china2024.gosim.org/) about Masonry.
@@ -158,9 +158,9 @@ Druid is a GUI library which was a predecessor to Xilem, and an ancestor of Maso
 
 We are in the process of relicensing Druid from its current license of Apache 2.0 only to the Rust ecosystem standard Apache 2.0 OR MIT dual license.
 If you have previously contributed to Druid, please read and respond to [druid#2414][].
-This will greatly improve cross-compatibility will the rest of the Rust ecosystem, particularly for adapting code from Druid into newer toolkits.
+This will greatly improve cross-compatibility with the rest of the Rust ecosystem, particularly for adapting code from Druid into newer toolkits.
 We plan to archive the Druid repo after one more release, as we are not actively developing it; we are working to bring Xilem to parity in capability.
-Will also apply this license change to Xilem and Masonry, as well as Glazier, which is currently archived.
+We will also apply this license change to Xilem and Masonry, as well as Glazier, which is currently archived.
 
 ## Others
 
