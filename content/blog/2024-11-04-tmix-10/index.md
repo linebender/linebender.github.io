@@ -9,25 +9,32 @@ This month's update is very significant, featuring several crate releases and th
 
 ## Resvg, Tiny-Skia, and Related Projects
 
-We would like to thank [Yevhenii Reizner (RazrFalcon)](https://github.com/RazrFalcon) for all their work on resvg, tiny-skia, and related projects.
-Due to some changes in his personal circumstances, he has to give up working on his collection of excellent crates and he has generously been seeking new homes for them to help keep the lights on.
+We would like to thank [Yevhenii Reizner (RazrFalcon)](https://github.com/RazrFalcon) for all his work on resvg, tiny-skia, and related projects.
+Due to some changes in his personal circumstances, he has to give up working on his collection of excellent crates and he has been seeking new homes for them to help keep the lights on.
+The following projects are now part of Linebender:
 
-His crates for loading and rendering SVG as well as the general purpose tiny-skia renderer are widely used within the ecosystem and play an important role in many software projects, and not just in Rust!
-Given that Linebender has a mission to provide high quality libraries within the GUI space and we have an established process for managing those libraries, we felt that it would be beneficial to everyone for us to step in and help out.
+- [resvg](https://github.com/linebender/resvg) - an SVG rendering library, including [usvg](https://crates.io/crates/usvg);
+- [tiny-skia](https://github.com/linebender/tiny-skia);
 
-This should not have a negative impact on current users of `resvg`, `usvg`, or `tiny-skia` and will allow us to provide updates as needed by the community.
-If things work for you now, our goal is that they continue to work for you going forward.
+These crates are widely used within the ecosystem and play an important role in many software projects, and not just in Rust!
+Given that Linebender has a mission to provide high quality libraries for GUI and we have established processes for managing those libraries, we feel well positioned to step in and help out.
+Several associated repositories and projects are also now part of Linebender.
+These are [simplecss](https://github.com/linebender/simplecss), [svgtypes](https://github.com/linebender/svgtypes), and [resvg-test-suite](https://github.com/linebender/resvg-test-suite).
+
+We do not expect this change to significantly impact current users of `resvg`, `usvg`, or `tiny-skia`.
+Our role is a stewardship role, to allow updates to continue as needed by the community.
+If things work for you now, they will continue to work for you going forward.
 
 Our plans for the near future are:
 
-* Integrate with existing Linebender practices for CI, testing, and releases.
-* Review and respond to incoming pull requests and issues.
-* Re-license the `resvg` repository (including both `resvg` and `usvg`) from the MPL-2.0 license to a dual Apache 2.0 / MIT license as is common within the Rust world.
-* Keep the lights on and provide new releases as needed.
+- Integrate with existing Linebender [practices for CI][rfcs#5], testing, and releases.
+- Review and respond to incoming pull requests and issues.
+- Re-license the `resvg` repository (including both `resvg` and `usvg`) from the MPL-2.0 license to a dual Apache 2.0 / MIT license as is common within the Rust world and the standard for Linebender projects.
+- Provide new releases as needed, working with the community to bring additional maintainers.
 
 In the longer term, we will look at how the ecosystem is evolving and what’s needed or useful.
 The Linebender team has deep expertise in 2D rendering, including vector graphics, color and text layout, shaping, and rendering.
-We look forward to seeing how we can apply this to improve the state of the ecosystem.
+We look forward to seeing how we can apply this to these projects.
 
 ### Relicensing
 
@@ -43,6 +50,8 @@ We welcome pull requests and issues.
 
 Also, with RazrFalcon becoming less involved, we’re losing a key source of knowledge about the code itself as well as the philosophy behind it.
 We look forward to hearing from people who use the various crates to understand how you use it, what you use it for, and what you’d like to see.
+
+For further discussion, please use the [resvg channel on the Zulip](https://xi.zulipchat.com/#narrow/channel/465085-resvg).
 
 ---
 
