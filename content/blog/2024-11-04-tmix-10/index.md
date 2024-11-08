@@ -1,30 +1,48 @@
 +++
 title = "Linebender in October 2024: resvg stewardship"
-authors = ["Daniel McNab"]
+authors = ["Bruce Mitchener", "Daniel McNab"]
 +++
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
 
 This month's update is very significant, featuring several crate releases and the adoption of resvg.
 
-## Resvg
+## Resvg, Tiny-Skia, and Related Projects
 
-We would like to thank [Yevhenii Reizner (RazrFalcon)](https://github.com/RazrFalcon) for all their work on resvg.
-The project is...
+We would like to thank [Yevhenii Reizner (RazrFalcon)](https://github.com/RazrFalcon) for all their work on resvg, tiny-skia, and related projects.
+Due to some changes in his personal circumstances, he has to give up working on his collection of excellent crates and he has generously been seeking new homes for them to help keep the lights on.
 
-The biggest update from this month is that .
+His crates for loading and rendering SVG as well as the general purpose tiny-skia renderer are widely used within the ecosystem and play an important role in many software projects, and not just in Rust!
+Given that Linebender has a mission to provide high quality libraries within the GUI space and we have an established process for managing those libraries, we felt that it would be beneficial to everyone for us to step in and help out.
 
-### Relicense
+This should not have a negative impact on current users of `resvg`, `usvg`, or `tiny-skia` and will allow us to provide updates as needed by the community.
+If things work for you now, our goal is that they continue to work for you going forward.
 
-We are in the process of relicensing the resvg crate from their current MPL-2.0.
-This allows us to more easily integrate existing Linebender code, and enables greater compatibility.
-This was inspired by a similar move made by wgpu (TODO: Link).
+Our plans for the near future are:
+
+* Integrate with existing Linebender practices for CI, testing, and releases.
+* Review and respond to incoming pull requests and issues.
+* Re-license the `resvg` repository (including both `resvg` and `usvg`) from the MPL-2.0 license to a dual Apache 2.0 / MIT license as is common within the Rust world.
+* Keep the lights on and provide new releases as needed.
+
+In the longer term, we will look at how the ecosystem is evolving and what’s needed or useful.
+The Linebender team has deep expertise in 2D rendering, including vector graphics, color and text layout, shaping, and rendering.
+We look forward to seeing how we can apply this to improve the state of the ecosystem.
+
+### Relicensing
+
+We’ve already begun the process of re-licensing the `resvg` repository and are nearly done.
+The change of license will be present in the next release, which will also be our first release under the Linebender umbrella.
+This will allow us to share code between the Linebender crates more easily.
+
 This process can be followed at [resvg#838][].
 
-### Plans
+### Help Wanted
 
-We have no immediate plans for changes in resvg or tiny skia.
-We are currently serving.
+We welcome pull requests and issues.
+
+Also, with RazrFalcon becoming less involved, we’re losing a key source of knowledge about the code itself as well as the philosophy behind it.
+We look forward to hearing from people who use the various crates to understand how you use it, what you use it for, and what you’d like to see.
 
 ---
 
