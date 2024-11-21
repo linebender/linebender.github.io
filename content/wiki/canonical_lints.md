@@ -89,7 +89,7 @@ clippy.wildcard_dependencies = "warn"
 # LINEBENDER LINT SET - .clippy.toml - v1
 # See https://linebender.org/wiki/canonical-lints/
 
-# The default Clippy value for this is 8 bytes, which was chosen to improve performance on 32-bit.
+# The default Clippy value is capped at 8 bytes, which was chosen to improve performance on 32-bit.
 # Given that we are building for the future and even low-end mobile phones have 64-bit CPUs,
 # it makes sense to optimize for 64-bit and accept the performance hits on 32-bit.
 # 16 bytes is the number of bytes that fits into two 64-bit CPU registers.
