@@ -2,14 +2,16 @@
 title = "Canonical lint set for Linebender projects"
 +++
 
-All Linebender projects should include the following set of lints in their `Cargo.toml`:
+All Linebender projects should include the following set of lints:
+
+## `Cargo.toml`
 
 ```toml
 [lints]
 # This one may vary depending on the project.
 rust.unsafe_code = "forbid"
 
-# LINEBENDER LINT SET - v1
+# LINEBENDER LINT SET - Cargo.toml - v2
 # See https://linebender.org/wiki/canonical-lints/
 rust.keyword_idents_2024 = "forbid"
 rust.non_ascii_idents = "forbid"
@@ -57,6 +59,7 @@ clippy.semicolon_if_nothing_returned = "warn"
 clippy.shadow_unrelated = "warn"
 clippy.should_panic_without_expect = "warn"
 clippy.todo = "warn"
+clippy.trivially_copy_pass_by_ref = "warn"
 clippy.unseparated_literal_suffix = "warn"
 clippy.use_self = "warn"
 clippy.wildcard_imports = "warn"
@@ -68,15 +71,32 @@ clippy.wildcard_dependencies = "warn"
 # END LINEBENDER LINT SET
 ```
 
-And in their `lib.rs`:
+## `lib.rs`
 
 ```rust
-// LINEBENDER LINT SET - v1
+// LINEBENDER LINT SET - lib.rs - v1
 // See https://linebender.org/wiki/canonical-lints/
 // These lints aren't included in Cargo.toml because they
 // shouldn't apply to examples and tests
 #![warn(unused_crate_dependencies)]
 #![warn(clippy::print_stdout, clippy::print_stderr)]
+// END LINEBENDER LINT SET
+#![cfg_attr(docsrs, feature(doc_auto_cfg))]
+```
+
+## `.clippy.toml`
+
+```toml
+# LINEBENDER LINT SET - .clippy.toml - v1
+# See https://linebender.org/wiki/canonical-lints/
+
+# The default Clippy value is capped at 8 bytes, which was chosen to improve performance on 32-bit.
+# Given that we are building for the future and even low-end mobile phones have 64-bit CPUs,
+# it makes sense to optimize for 64-bit and accept the performance hits on 32-bit.
+# 16 bytes is the number of bytes that fits into two 64-bit CPU registers.
+trivial-copy-size-limit = 16
+
+# END LINEBENDER LINT SET
 ```
 
 This is a curated list: Clippy has a *lot* of lints, and most of them are not included above.
