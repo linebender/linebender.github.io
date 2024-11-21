@@ -81,6 +81,7 @@ clippy.wildcard_dependencies = "warn"
 #![warn(unused_crate_dependencies)]
 #![warn(clippy::print_stdout, clippy::print_stderr)]
 // END LINEBENDER LINT SET
+#![cfg_attr(docsrs, feature(doc_auto_cfg))]
 ```
 
 ## `.clippy.toml`
