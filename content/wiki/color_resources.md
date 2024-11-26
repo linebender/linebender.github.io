@@ -5,7 +5,7 @@ This page is an annotated list of resources about color.
 
 ## Libraries
 
-* [Color](https://crates.io/crates/color) is the linebender crate for color
+* [Color](https://crates.io/crates/color) is the Linebender crate for color
 * [palette](https://crates.io/crates/palette) (Rust) does more color science stuff
 * [color.js](https://github.com/color-js/color.js) is co-developed with CSS Color, can be considered authoritative
 * [Colour](https://www.colour-science.org/) for Python - quite comprehensive
@@ -59,6 +59,7 @@ This page is an annotated list of resources about color.
 * [Chromatic adaptation](https://cran.r-project.org/web/packages/spacesXYZ/vignettes/adaptation.html) by Glenn Davis (mathematical vignette)
 
 ## Color systems
+
 * [Pantone](https://www.pantone.com/) is widely used in commercial applications
 * [Freiefarbe](https://freiefarbe.de/en/) is a free alternative based on CIE HLC
 * [Munsell color system](https://en.wikipedia.org/wiki/Munsell_color_system) (Wikipedia) - the great historical color system
