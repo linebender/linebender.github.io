@@ -5,8 +5,12 @@ This page is an annotated list of resources about color.
 
 ## Libraries
 
-* [Color](https://crates.io/crates/color) is the Linebender crate for color
-* [palette](https://crates.io/crates/palette) (Rust) does more color science stuff
+* Rust crates
+  + [Color](https://crates.io/crates/color) is the Linebender crate for color
+  + [palette](https://crates.io/crates/palette) - does more color science stuff
+  + [kolor](https://crates.io/crates/kolor) - color conversion crate with minimal API
+  + [bevy_color](https://docs.rs/bevy_color/latest/bevy_color/) - color representations in [Bevy](https://bevyengine.org/)
+  + [colstodion](https://github.com/fu5ha/colstodian) - practical, opinionated color management library
 * [color.js](https://github.com/color-js/color.js) is co-developed with CSS Color, can be considered authoritative
 * [Colour](https://www.colour-science.org/) for Python - quite comprehensive
 * [OpenColorIO](https://opencolorio.org/) - widely used in motion pictures
@@ -68,3 +72,11 @@ This page is an annotated list of resources about color.
 
 * [Algorithmic improvements for the CIECAM02 and CAM16 color appearance models](https://arxiv.org/abs/1802.06067)
 * [The non-Riemannian nature of perceptual color space](https://www.pnas.org/doi/10.1073/pnas.2119753119)
+
+## Other color management resources
+
+* [color-and-Color management and HDR documentation for FOSS graphics](https://gitlab.freedesktop.org/pq/color-and-hdr) - freedesktop
+* [CG Cinematography book](https://chrisbrejon.com/cg-cinematography/) by Chris Brejon
+  + [Chapter 1: Color management](https://chrisbrejon.com/cg-cinematography/chapter-1-color-management/)
+  + [Chapter 1.5: Academy Color Encoding System (ACES)](https://chrisbrejon.com/cg-cinematography/chapter-1-5-academy-color-encoding-system-aces/)
+  + [Chapter 2: Color theory](https://chrisbrejon.com/cg-cinematography/chapter-2-color-theory/)
