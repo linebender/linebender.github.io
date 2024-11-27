@@ -11,7 +11,7 @@ All Linebender projects should include the following set of lints:
 # This one may vary depending on the project.
 rust.unsafe_code = "forbid"
 
-# LINEBENDER LINT SET - Cargo.toml - v2
+# LINEBENDER LINT SET - Cargo.toml - v3
 # See https://linebender.org/wiki/canonical-lints/
 rust.keyword_idents_2024 = "forbid"
 rust.non_ascii_idents = "forbid"
@@ -59,7 +59,6 @@ clippy.semicolon_if_nothing_returned = "warn"
 clippy.shadow_unrelated = "warn"
 clippy.should_panic_without_expect = "warn"
 clippy.todo = "warn"
-clippy.trivially_copy_pass_by_ref = "warn"
 clippy.unseparated_literal_suffix = "warn"
 clippy.use_self = "warn"
 clippy.wildcard_imports = "warn"
@@ -74,12 +73,14 @@ clippy.wildcard_dependencies = "warn"
 ## `lib.rs`
 
 ```rust
-// LINEBENDER LINT SET - lib.rs - v1
+// LINEBENDER LINT SET - lib.rs - v2
 // See https://linebender.org/wiki/canonical-lints/
 // These lints aren't included in Cargo.toml because they
 // shouldn't apply to examples and tests
 #![warn(unused_crate_dependencies)]
 #![warn(clippy::print_stdout, clippy::print_stderr)]
+// Targeting e.g. 32-bit means structs containing usize can give false positives for 64-bit.
+#![cfg_attr(target_pointer_width = "64", warn(clippy::trivially_copy_pass_by_ref))]
 // END LINEBENDER LINT SET
 #![cfg_attr(docsrs, feature(doc_auto_cfg))]
 ```
