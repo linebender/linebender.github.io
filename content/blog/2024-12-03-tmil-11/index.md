@@ -14,7 +14,7 @@ When we published the update for [October, 2024](/blog/tmix-10/), we had already
 We may have a dedicated blog post about the Color crate in the future and laying out some of the motivations, but we'll go over it a bit here.
 
 Linebender, among other things, believes in helping build solid foundations for people building user interfaces and working in graphics, in the Rust programming language (and on GPUs).
-Upon seeing a problem, we would rather produce a focused crate that solves that problem and that can be used by others within the Rust ecosystem.
+Upon seeing a problem, we prefer to produce a focused crate that solves that problem and that can be used by others within the Rust ecosystem.
 Color is one such area.
 It is much harder than it may appear at first, with many complicating factors like what should be done by a basic color struct, what color spaces to support, and whether or not to support color formats used in print (like CMYK).
 
@@ -38,6 +38,9 @@ We're very excited about the future of this crate and look forward to talking to
 ## Kurbo
 
 Kurbo has seen some minor updates within the last month and we're planning to publish them in a minor patch release within the next month.
+
+* [kurbo#390][] Reduce number of operations in `Triangle::circumscribed_circle`.
+* [kurbo#399][] Implement `Sum` for `Vec2`.
 
 Internally, we're talking about the future direction of Kurbo and how we can improve upon it as a foundational crate for curves, shapes, and math.
 Hopefully we'll be writing about that in more detail within the next couple of months.
@@ -128,11 +131,20 @@ We'd love to [talk][] to people who are adopting Slang within the Rust ecosystem
 We welcome collaboration on any of our crates.
 This can include improving the documentation, implementing new features, improving our test coverage, or using them within your own code.
 
+We host an hour long office hours meeting each week where we discuss what's going on in our projects. See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-office-hours) for details.
+
+- Daniel and Olivier's "office hours" appointments can still be booked by anyone for open-ended discussion of the ecosystem.
+  - [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
+  - [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
+
 [CSS Color Module Level 4]: https://www.w3.org/TR/css-color-4/
 [Low-level Piet]: https://xi.zulipchat.com/#narrow/channel/197075-gpu/topic/Low-level.20Piet
 [talk]: https://xi.zulipchat.com/#narrow/channel/197075-gpu
 
 [color 0.1.0]: https://docs.rs/color/0.1.0/color/
+
+[kurbo#390]: https://github.com/linebender/kurbo/pull/390
+[kurbo#399]: https://github.com/linebender/kurbo/pull/399
 
 [resvg#843]: https://github.com/linebender/resvg/pull/843
 [resvg#850]: https://github.com/linebender/resvg/pull/850
