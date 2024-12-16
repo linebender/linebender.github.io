@@ -58,7 +58,18 @@ Vello was updated to `wgpu` v23.
 
 ## Parley
 
-***SOMEONE ELSE WRITE THIS***
+Parley is a text layout library. It handles text layout, mostly at the level of line breaking and resolving glyph positions.
+In November, the main updates were:
+
+* [parley#158][], [parley#160][]: Worked towards `no_std`. Full `no_std` is currently blocked (only) on the release of a dependency.
+* [parley#154][]: `PlainEditor` was significantly refactored to have a more ergonomic and efficient API.
+* [parley#166][]: AccessKit support was integrated directly into Parley. This was previous possible externally, but the external integration is much simpler.
+* [parley#152][]: Cursor blinking was added to the editor example by [tannal](https://github.com/tannal).
+* [parley#182][]: Font fallback on misconfigured Linux systems was resolved by Richard Hozák.
+* [parley#173][]: Ada Böhm added snapshot testing, which will significantly improve our confidence in future changes.
+* [parley#170][]: Significantly simplified the cursor model, which resolved several longstanding issues in text editing.
+
+Kaur also made several improvements to our CI, in [parley#156][], [parley#171][] and [parley#184][].
 
 ## Masonry
 
