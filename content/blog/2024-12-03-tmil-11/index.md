@@ -35,7 +35,7 @@ His original crate was published as 0.0.1 on November 21, 2014, motivating us te
 
 We're very excited about the future of this crate and look forward to talking to other people within the Rust ecosystem about using it.
 
-<!-- Screenshot: The gradient demo screenshot? -->
+<!-- TODO: Screenshot: The gradient demo screenshot? -->
 
 ## Kurbo
 
@@ -57,7 +57,7 @@ Vello was updated to `wgpu` v23.
 * [vello#722][]: Improving image sampling.
 * [vello#740][]: Correcting support for PNG glyphs in fonts, important for emoji on macOS.
 
-<!-- Screenshot: System emoji on macOS? -->
+<!-- TODO: Screenshot: System emoji on macOS? -->
 
 ## Parley
 
@@ -87,7 +87,19 @@ Daniel's talk *Masonry: An Imperative Widget toolkit in Rust* for GOSIM China 20
 
 ## Xilem
 
-***SOMEONE ELSE WRITE THIS***
+Xilem is our flagship GUI project, inspired by SwiftUI.
+It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
+
+The majority of changes in November have already been reflected in the Masonry section.
+This month only had small updates otherwise:
+
+* [xilem#742][]: Made all built-in `View` types `#[must_use]`.
+* [xilem#732][]: Implemented `View` for `Rc<impl View>`.
+
+Work on Xilem web has been continuing well:
+
+* [xilem#731][], [xilem#734][]: `svgdraw` <!-- TODO: Writeup -->.
+* [xilem#749][]: Experimentally increased support for custom view context types.
 
 ## Piet
 
@@ -135,7 +147,7 @@ November also saw the transition of the Slang shader language from Nvidia to Khr
 We don't have any immediate plans to adopt Slang in Vello (we're already pretty busy!), but we are looking at Slang and thinking about how we can best make use of it to improve the usefulness of our crates.
 We'd love to [talk][] to people who are adopting Slang within the Rust ecosystem or interested in publishing Slang code for wider use.
 
-## Get Involved!
+## Get Involved
 
 We welcome collaboration on any of our crates.
 This can include improving the documentation, implementing new features, improving our test coverage, or using them within your own code.
@@ -143,9 +155,9 @@ This can include improving the documentation, implementing new features, improvi
 We host an hour long office hours meeting each week where we discuss what's going on in our projects.
 See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-office-hours) for details.
 
-- Daniel and Olivier's "office hours" appointments can still be booked by anyone for open-ended discussion of the ecosystem.
-  - [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
-  - [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
+* Daniel and Olivier's "office hours" appointments can still be booked by anyone for open-ended discussion of the ecosystem.
+  * [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
+  * [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
 
 [CSS Color Module Level 4]: https://www.w3.org/TR/css-color-4/
 [Low-level Piet]: https://xi.zulipchat.com/#narrow/channel/197075-gpu/topic/Low-level.20Piet
