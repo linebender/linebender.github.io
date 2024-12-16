@@ -76,7 +76,14 @@ Kaur also made several improvements to our CI, in [parley#156][], [parley#171][]
 
 ## Masonry
 
-***SOMEONE ELSE WRITE THIS***
+* [xilem#670][]: Added some features needed for custom client side decorations, by  Marco Melorio.
+* [xilem#735][]: Viktor Strate Kløvedal found and resolved several features which incorrectly private.
+* [xilem#736][]: Added a padding property to `SizedBox`. This PR also exposed this property to Xilem.
+* [xilem#754][], [xilem#755][], [xilem#762][]: Refactored Masonry's text support to reduce internal duplication and validate previously mentioned changes in Parley.
+
+Daniel's talk *Masonry: An Imperative Widget toolkit in Rust* for GOSIM China 2024, was also published [on YouTube](https://youtu.be/99zU4bU4kP8).
+
+<!-- TODO: Do we want to/could we embed the video? -->
 
 ## Xilem
 
