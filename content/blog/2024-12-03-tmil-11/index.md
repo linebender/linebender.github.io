@@ -35,6 +35,8 @@ His original crate was published as 0.0.1 on November 21, 2014, motivating us te
 
 We're very excited about the future of this crate and look forward to talking to other people within the Rust ecosystem about using it.
 
+<!-- Screenshot: The gradient demo screenshot? -->
+
 ## Kurbo
 
 Kurbo has seen some minor updates within the last month and we're planning to publish them in a minor patch release within the next month.
@@ -55,6 +57,7 @@ Vello was updated to `wgpu` v23.
 * [vello#722][]: Improving image sampling.
 * [vello#740][]: Correcting support for PNG glyphs in fonts, important for emoji on macOS.
 
+<!-- Screenshot: System emoji on macOS? -->
 
 ## Parley
 
