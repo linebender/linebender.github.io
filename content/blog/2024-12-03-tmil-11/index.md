@@ -86,7 +86,7 @@ Work on Xilem web has been continuing well:
 Masonry is the widget system used by Xilem.
 It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
 
-* [xilem#670][]: Added some features needed for custom client side decorations, by  Marco Melorio.
+* [xilem#670][]: Added some features needed for custom client side decorations, by Marco Melorio.
 * [xilem#735][]: Viktor Strate Kløvedal found and resolved several features which incorrectly private.
 * [xilem#736][]: Added a padding property to `SizedBox`. This PR also exposed this property to Xilem.
 * [xilem#754][], [xilem#755][], [xilem#762][]: Refactored Masonry's text support to reduce internal duplication and validate previously mentioned changes in Parley.
@@ -106,7 +106,8 @@ It can draw large 2D scenes with high performance, using GPU compute shaders for
 
 ## Parley
 
-Parley is a text layout library. It handles text layout, mostly at the level of line breaking and resolving glyph positions.
+Parley is a text layout library.
+It handles text layout, mostly at the level of line breaking and resolving glyph positions.
 In November, the main updates were:
 
 * [parley#158][], [parley#160][]: Worked towards `no_std`. Full `no_std` is currently blocked (only) on the release of a dependency.
@@ -130,8 +131,6 @@ Kurbo has seen some minor updates within the last month and we're planning to pu
 
 We've been working towards a big release, which will remove the old `peniko::Color` type and use the new `color` crate instead.
 This release will be the start of a path towards wider color gamut support throughout the Linebender ecosystem.
-
-
 ## Piet
 
 While there were no code changes, we did begin a discussion about a possible major revision to Piet and what a next-generation Piet might look like.
@@ -194,34 +193,34 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 [talk]: https://xi.zulipchat.com/#narrow/channel/197075-gpu
 [brendanzab]: https://github.com/brendanzab
 
-[parley#152]: https://github.com/linebender/parley/pull/743
-[parley#154]: https://github.com/linebender/parley/pull/743
-[parley#156]: https://github.com/linebender/parley/pull/743
-[parley#158]: https://github.com/linebender/parley/pull/743
-[parley#160]: https://github.com/linebender/parley/pull/743
-[parley#166]: https://github.com/linebender/parley/pull/743
-[parley#170]: https://github.com/linebender/parley/pull/743
-[parley#171]: https://github.com/linebender/parley/pull/743
-[parley#173]: https://github.com/linebender/parley/pull/743
-[parley#182]: https://github.com/linebender/parley/pull/743
-[parley#184]: https://github.com/linebender/parley/pull/743
+[parley#152]: https://github.com/linebender/parley/pull/152
+[parley#154]: https://github.com/linebender/parley/pull/154
+[parley#156]: https://github.com/linebender/parley/pull/156
+[parley#158]: https://github.com/linebender/parley/pull/158
+[parley#160]: https://github.com/linebender/parley/pull/160
+[parley#166]: https://github.com/linebender/parley/pull/166
+[parley#170]: https://github.com/linebender/parley/pull/170
+[parley#171]: https://github.com/linebender/parley/pull/171
+[parley#173]: https://github.com/linebender/parley/pull/173
+[parley#182]: https://github.com/linebender/parley/pull/182
+[parley#184]: https://github.com/linebender/parley/pull/184
 [resvg#843]: https://github.com/linebender/resvg/pull/843
 [resvg#850]: https://github.com/linebender/resvg/pull/850
 [vello#722]: https://github.com/linebender/vello/pull/722
 [vello#735]: https://github.com/linebender/vello/pull/735
 [vello#740]: https://github.com/linebender/vello/pull/740
 [vello#743]: https://github.com/linebender/vello/pull/743
-[xilem#670]: https://github.com/linebender/xilem/pull/743
-[xilem#731]: https://github.com/linebender/xilem/pull/743
-[xilem#732]: https://github.com/linebender/xilem/pull/743
-[xilem#734]: https://github.com/linebender/xilem/pull/743
-[xilem#735]: https://github.com/linebender/xilem/pull/743
-[xilem#736]: https://github.com/linebender/xilem/pull/743
-[xilem#742]: https://github.com/linebender/xilem/pull/743
-[xilem#749]: https://github.com/linebender/xilem/pull/743
-[xilem#754]: https://github.com/linebender/xilem/pull/743
-[xilem#755]: https://github.com/linebender/xilem/pull/743
-[xilem#762]: https://github.com/linebender/xilem/pull/743
+[xilem#670]: https://github.com/linebender/xilem/pull/670
+[xilem#731]: https://github.com/linebender/xilem/pull/731
+[xilem#732]: https://github.com/linebender/xilem/pull/732
+[xilem#734]: https://github.com/linebender/xilem/pull/734
+[xilem#735]: https://github.com/linebender/xilem/pull/735
+[xilem#736]: https://github.com/linebender/xilem/pull/736
+[xilem#742]: https://github.com/linebender/xilem/pull/742
+[xilem#749]: https://github.com/linebender/xilem/pull/749
+[xilem#754]: https://github.com/linebender/xilem/pull/754
+[xilem#755]: https://github.com/linebender/xilem/pull/755
+[xilem#762]: https://github.com/linebender/xilem/pull/762
 
 [Color 0.1.0]: https://docs.rs/color/0.1.0/color/
 [Velato 0.4.0]: https://github.com/linebender/velato/releases/tag/v0.4.0
