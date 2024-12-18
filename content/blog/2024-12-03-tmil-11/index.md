@@ -121,19 +121,6 @@ In November, the main updates were:
 
 Kaur also made several improvements to our CI, in [parley#156][], [parley#171][] and [parley#184][].
 
-## Kurbo
-
-Kurbo has seen some minor updates within the last month and we're planning to publish them in a minor patch release within the next month.
-
-* [kurbo#390][] Reduce number of operations in `Triangle::circumscribed_circle`.
-* [kurbo#399][] Implement `Sum` for `Vec2`.
-
-## Peniko
-
-We've been working towards a big release, which will remove the old `peniko::Color` type and use the new `color` crate instead.
-This release will be the start of a path towards wider color gamut support throughout the Linebender ecosystem.
-
-
 ## Piet
 
 While there were no code changes, we did begin a discussion about a possible major revision to Piet and what a next-generation Piet might look like.
