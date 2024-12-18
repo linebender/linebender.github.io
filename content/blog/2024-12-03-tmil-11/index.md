@@ -65,17 +65,37 @@ His original crate was published as 0.0.1 on November 21, 2014, motivating us te
 
 We're very excited about the future of this crate and look forward to talking to other people within the Rust ecosystem about using it.
 
-## Kurbo
 
-Kurbo has seen some minor updates within the last month and we're planning to publish them in a minor patch release within the next month.
+## Xilem
 
-* [kurbo#390][] Reduce number of operations in `Triangle::circumscribed_circle`.
-* [kurbo#399][] Implement `Sum` for `Vec2`.
+Xilem is our flagship GUI project, inspired by SwiftUI.
+It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
 
-## Peniko
+The majority of changes in November were made in the [widget layer](#masonry), which has its own section.
+This month only had small updates otherwise:
 
-We've been working towards a big release, which will remove the old `peniko::Color` type and use the new `color` crate instead.
-This release will be the start of a path towards wider color gamut support throughout the Linebender ecosystem.
+* [xilem#742][]: Made all built-in `View` types `#[must_use]`, improving error reporting in cases where views could be silently ignored.
+* [xilem#732][]: Implemented `View` for `Rc<impl View>`.
+
+Work on Xilem web has been continuing well:
+
+* [xilem#731][], [xilem#734][]: Added a example using our SVG support for drawing, called `svgdraw`.
+* [xilem#749][]: Experimentally increased support for custom view context types.
+
+
+## Masonry
+
+Masonry is the widget system used by Xilem.
+It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
+
+* [xilem#670][]: Added some features needed for custom client side decorations, by  Marco Melorio.
+* [xilem#735][]: Viktor Strate Kløvedal found and resolved several features which incorrectly private.
+* [xilem#736][]: Added a padding property to `SizedBox`. This PR also exposed this property to Xilem.
+* [xilem#754][], [xilem#755][], [xilem#762][]: Refactored Masonry's text support to reduce internal duplication and validate previously mentioned changes in Parley.
+
+Daniel's talk *Masonry: An Imperative Widget toolkit in Rust* for GOSIM China 2024, was also published [on YouTube](https://youtu.be/99zU4bU4kP8).
+
+<!-- TODO: Do we want to/could we embed the video? -->
 
 ## Vello
 
@@ -101,35 +121,18 @@ In November, the main updates were:
 
 Kaur also made several improvements to our CI, in [parley#156][], [parley#171][] and [parley#184][].
 
-## Masonry
+## Kurbo
 
-Masonry is the widget system used by Xilem.
-It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
+Kurbo has seen some minor updates within the last month and we're planning to publish them in a minor patch release within the next month.
 
-* [xilem#670][]: Added some features needed for custom client side decorations, by  Marco Melorio.
-* [xilem#735][]: Viktor Strate Kløvedal found and resolved several features which incorrectly private.
-* [xilem#736][]: Added a padding property to `SizedBox`. This PR also exposed this property to Xilem.
-* [xilem#754][], [xilem#755][], [xilem#762][]: Refactored Masonry's text support to reduce internal duplication and validate previously mentioned changes in Parley.
+* [kurbo#390][] Reduce number of operations in `Triangle::circumscribed_circle`.
+* [kurbo#399][] Implement `Sum` for `Vec2`.
 
-Daniel's talk *Masonry: An Imperative Widget toolkit in Rust* for GOSIM China 2024, was also published [on YouTube](https://youtu.be/99zU4bU4kP8).
+## Peniko
 
-<!-- TODO: Do we want to/could we embed the video? -->
+We've been working towards a big release, which will remove the old `peniko::Color` type and use the new `color` crate instead.
+This release will be the start of a path towards wider color gamut support throughout the Linebender ecosystem.
 
-## Xilem
-
-Xilem is our flagship GUI project, inspired by SwiftUI.
-It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
-
-The majority of changes in November have already been reflected in the Masonry section.
-This month only had small updates otherwise:
-
-* [xilem#742][]: Made all built-in `View` types `#[must_use]`.
-* [xilem#732][]: Implemented `View` for `Rc<impl View>`.
-
-Work on Xilem web has been continuing well:
-
-* [xilem#731][], [xilem#734][]: `svgdraw` <!-- TODO: Writeup -->.
-* [xilem#749][]: Experimentally increased support for custom view context types.
 
 ## Piet
 
