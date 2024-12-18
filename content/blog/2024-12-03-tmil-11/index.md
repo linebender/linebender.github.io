@@ -65,7 +65,6 @@ His original crate was published as 0.0.1 on November 21, 2014, motivating us te
 
 We're very excited about the future of this crate and look forward to talking to other people within the Rust ecosystem about using it.
 
-
 ## Xilem
 
 Xilem is our flagship GUI project, inspired by SwiftUI.
@@ -81,7 +80,6 @@ Work on Xilem web has been continuing well:
 
 * [xilem#731][], [xilem#734][]: Added a example using our SVG support for drawing, called `svgdraw`.
 * [xilem#749][]: Experimentally increased support for custom view context types.
-
 
 ## Masonry
 
@@ -161,7 +159,6 @@ We have a couple of active and ongoing research projects:
 
 * Raph Levien on new rendering approaches for Vello.
 * Joe Neeman on boolean path operations.
-* ***IS THERE ANYTHING ELSE TO MENTION HERE?***
 
 November also saw the transition of the Slang shader language from Nvidia to Khronos.
 We don't have any immediate plans to adopt Slang in Vello (we're already pretty busy!), but we are looking at Slang and thinking about how we can best make use of it to improve the usefulness of our crates.
@@ -184,16 +181,34 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 [talk]: https://xi.zulipchat.com/#narrow/channel/197075-gpu
 [brendanzab]: https://github.com/brendanzab
 
-[kurbo#390]: https://github.com/linebender/kurbo/pull/390
-[kurbo#399]: https://github.com/linebender/kurbo/pull/399
-
+[parley#152]: https://github.com/linebender/parley/pull/743
+[parley#154]: https://github.com/linebender/parley/pull/743
+[parley#156]: https://github.com/linebender/parley/pull/743
+[parley#158]: https://github.com/linebender/parley/pull/743
+[parley#160]: https://github.com/linebender/parley/pull/743
+[parley#166]: https://github.com/linebender/parley/pull/743
+[parley#170]: https://github.com/linebender/parley/pull/743
+[parley#171]: https://github.com/linebender/parley/pull/743
+[parley#173]: https://github.com/linebender/parley/pull/743
+[parley#182]: https://github.com/linebender/parley/pull/743
+[parley#184]: https://github.com/linebender/parley/pull/743
 [resvg#843]: https://github.com/linebender/resvg/pull/843
 [resvg#850]: https://github.com/linebender/resvg/pull/850
-
 [vello#722]: https://github.com/linebender/vello/pull/722
 [vello#735]: https://github.com/linebender/vello/pull/735
 [vello#740]: https://github.com/linebender/vello/pull/740
 [vello#743]: https://github.com/linebender/vello/pull/743
+[xilem#670]: https://github.com/linebender/xilem/pull/743
+[xilem#731]: https://github.com/linebender/xilem/pull/743
+[xilem#732]: https://github.com/linebender/xilem/pull/743
+[xilem#734]: https://github.com/linebender/xilem/pull/743
+[xilem#735]: https://github.com/linebender/xilem/pull/743
+[xilem#736]: https://github.com/linebender/xilem/pull/743
+[xilem#742]: https://github.com/linebender/xilem/pull/743
+[xilem#749]: https://github.com/linebender/xilem/pull/743
+[xilem#754]: https://github.com/linebender/xilem/pull/743
+[xilem#755]: https://github.com/linebender/xilem/pull/743
+[xilem#762]: https://github.com/linebender/xilem/pull/743
 
 [Color 0.1.0]: https://docs.rs/color/0.1.0/color/
 [Velato 0.4.0]: https://github.com/linebender/velato/releases/tag/v0.4.0
