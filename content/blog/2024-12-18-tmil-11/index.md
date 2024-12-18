@@ -194,6 +194,8 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 [talk]: https://xi.zulipchat.com/#narrow/channel/197075-gpu
 [brendanzab]: https://github.com/brendanzab
 
+[kurbo#390]:  https://github.com/linebender/kurbo/pull/390
+[kurbo#399]:  https://github.com/linebender/kurbo/pull/399
 [parley#152]: https://github.com/linebender/parley/pull/152
 [parley#154]: https://github.com/linebender/parley/pull/154
 [parley#156]: https://github.com/linebender/parley/pull/156
