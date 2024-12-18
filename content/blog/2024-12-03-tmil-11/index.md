@@ -60,7 +60,7 @@ Early next year, we hope to use it within SVG Types, Resvg, and Tiny Skia.
 We will be publishing a 0.2.0 release within the next month and encourage people to give it a try.
 The 0.2.0 release will include some additional (non-CSS 4) color spaces like ACEScg, OkHsl, and OkHsv as well as things that we found useful when using it in Peniko and Vello.
 
-Many thanks to [Brendan Zabarauskas][] for working with us to transfer his `color` crate name for our use.
+Many thanks to [Brendan Zabarauskas][brendanzab] for working with us to transfer his `color` crate name for our use.
 His original crate was published as 0.0.1 on November 21, 2014, motivating us ten years later to ship our 0.1.0 on November 21, 2024.
 
 We're very excited about the future of this crate and look forward to talking to other people within the Rust ecosystem about using it.
@@ -79,13 +79,12 @@ This release will be the start of a path towards wider color gamut support throu
 
 ## Vello
 
-Vello was updated to `wgpu` v23.
+Vello is our GPU vector renderer.
+It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.
 
 * [vello#735][], [vello#743][]: Update to wgpu 23.0.1, matching what is used by Bevy 0.15.
 * [vello#722][]: Improving image sampling.
 * [vello#740][]: Correcting support for PNG glyphs in fonts, important for emoji on macOS.
-
-<!-- TODO: Screenshot: System emoji on macOS? -->
 
 ## Parley
 
@@ -103,6 +102,9 @@ In November, the main updates were:
 Kaur also made several improvements to our CI, in [parley#156][], [parley#171][] and [parley#184][].
 
 ## Masonry
+
+Masonry is the widget system used by Xilem.
+It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
 
 * [xilem#670][]: Added some features needed for custom client side decorations, by  Marco Melorio.
 * [xilem#735][]: Viktor Strate Kløvedal found and resolved several features which incorrectly private.
@@ -190,8 +192,7 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 [CSS Color Module Level 4]: https://www.w3.org/TR/css-color-4/
 [Low-level Piet]: https://xi.zulipchat.com/#narrow/channel/197075-gpu/topic/Low-level.20Piet
 [talk]: https://xi.zulipchat.com/#narrow/channel/197075-gpu
-
-[Color 0.1.0]: https://docs.rs/color/0.1.0/color/
+[brendanzab]: https://github.com/brendanzab
 
 [kurbo#390]: https://github.com/linebender/kurbo/pull/390
 [kurbo#399]: https://github.com/linebender/kurbo/pull/399
@@ -204,5 +205,6 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 [vello#740]: https://github.com/linebender/vello/pull/740
 [vello#743]: https://github.com/linebender/vello/pull/743
 
+[Color 0.1.0]: https://docs.rs/color/0.1.0/color/
 [Velato 0.4.0]: https://github.com/linebender/velato/releases/tag/v0.4.0
 [Vello SVG 0.5.0]: https://github.com/linebender/vello_svg/releases/tag/v0.5.0
