@@ -78,7 +78,7 @@ This month only had small updates otherwise:
 
 Work on Xilem web has been continuing well:
 
-* [xilem#731][], [xilem#734][]: Added a example using our SVG support for drawing, called `svgdraw`.
+* [xilem#731][], [xilem#734][]: Added an example using our SVG support for drawing, called `svgdraw`.
 * [xilem#749][]: Experimentally increased support for custom view context types.
 
 ## Masonry
