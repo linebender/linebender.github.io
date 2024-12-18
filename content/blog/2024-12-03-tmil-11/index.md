@@ -58,7 +58,7 @@ Since then, we have begun the work of making Peniko and Vello use the Color crat
 Early next year, we hope to use it within SVG Types, Resvg, and Tiny Skia.
 
 We will be publishing a 0.2.0 release within the next month and encourage people to give it a try.
-The 0.2.0 release will include some additional (non-CSS 4) color spaces like ACEScg, OkHsl, and OkHsv as well as things that we found useful when using it in Peniko and Vello.
+The 0.2.0 release will include the (non-CSS 4) color space ACEScg, as well as things that we found useful when using Color in Peniko and Vello.
 
 Many thanks to [Brendan Zabarauskas][brendanzab] for working with us to transfer his `color` crate name for our use.
 His original crate was published as 0.0.1 on November 21, 2014, motivating us ten years later to ship our 0.1.0 on November 21, 2024.
@@ -87,7 +87,7 @@ Masonry is the widget system used by Xilem.
 It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
 
 * [xilem#670][]: Added some features needed for custom client side decorations, by Marco Melorio.
-* [xilem#735][]: Viktor Strate Kløvedal found and resolved several features which incorrectly private.
+* [xilem#735][]: Viktor Strate Kløvedal made several widget properties publicly accessible.
 * [xilem#736][]: Added a padding property to `SizedBox`. This PR also exposed this property to Xilem.
 * [xilem#754][], [xilem#755][], [xilem#762][]: Refactored Masonry's text support to reduce internal duplication and validate previously mentioned changes in Parley.
 
@@ -131,6 +131,7 @@ Kurbo has seen some minor updates within the last month and we're planning to pu
 
 We've been working towards a big release, which will remove the old `peniko::Color` type and use the new `color` crate instead.
 This release will be the start of a path towards wider color gamut support throughout the Linebender ecosystem.
+
 ## Piet
 
 While there were no code changes, we did begin a discussion about a possible major revision to Piet and what a next-generation Piet might look like.
