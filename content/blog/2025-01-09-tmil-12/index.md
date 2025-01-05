@@ -99,6 +99,27 @@ Discussion continued about [Low-level Piet].
 
 ## Velato, Vello SVG
 
+## Kompari
+
+Kompari is a tool for visual inspection of snapshot tests.
+This project is a new addition to Linebender.
+
+<img src="kompari.png"/>
+
+Kompari can be used as a standalone tool, but it is also prepared to be used from xtasks. Using it from xtask is also the main usage planned for other Linebender repositories.
+When running snapshot tests, you will be able to generate a report that showing failed tests:
+
+```commandline
+cargo xtask kompari report
+```
+
+Over the last month we have been laying the groundwork for the project:
+Added initial functionality and established CI in the repository.
+
+Ongoing work:
+
+*[kompari#12] - Refactoring the project to make it more modular
+*[kompari#13] - Interactive test blessing
 ## Research and Future Directions
 
 Linebender has an origin story in being a very research oriented group, looking to break new ground.
