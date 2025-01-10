@@ -52,7 +52,10 @@ Vello is now using the new Peniko 0.3 release along with the Color crate.
 Parley is a text layout library.
 It handles text layout, mostly at the level of line breaking and resolving glyph positions.
 
-**TODO: Add lots of stuff here**
+* [parley#193][]: Added snapshot tests for text selection areas and cursor positioning
+* [parley#192][]: Changed the `PlainEditor` abstraction to reduce unneeded work
+* [parley#224][]: Exports the text selection area, ensuring that input selection boxes don't overlap content
+* [parley#227][]: Adds infrastructure for easy to understand tests for text editing functionality
 
 ## Kompari
 
@@ -119,32 +122,18 @@ Miscellaneous:
 Xilem is our flagship GUI project, inspired by SwiftUI.
 It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
 
-* [xilem#797]: Button with customizable label (text)
-
-## Kurbo
-
-## Piet
-
-Discussion continued about [Low-level Piet].
-
-## Tiny Skia, Resvg, SimpleCSS, SVG Types
-
-## Velato, Vello SVG
+* [xilem#797]: The text colour and other properties inside buttons can now be customised
 
 ## Research and Future Directions
 
 Linebender has an origin story in being a very research oriented group, looking to break new ground.
 While we are focused on shipping code today, we still have an eye on the future and how to be prepared for the new opportunities and technologies that are coming.
-This can be seen in our thinking about the future of Piet as previously discussed as well as the work that we're doing with Color.
 
 We have a couple of active and ongoing research projects:
 
 * Raph Levien on SIMD, stroke expansion, and new rendering approaches for Vello.
 * Joe Neeman on boolean path operations.
-
-November also saw the transition of the Slang shader language from Nvidia to Khronos.
-We don't have any immediate plans to adopt Slang in Vello (we're already pretty busy!), but we are looking at Slang and thinking about how we can best make use of it to improve the usefulness of our crates.
-We'd love to [talk][] to people who are adopting Slang within the Rust ecosystem or interested in publishing Slang code for wider use.
+* A potential revival of the Piet project, [discussed on Zulip][Low-level Piet].
 
 ## Get Involved
 
@@ -163,6 +152,12 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 
 [color#109]: https://github.com/linebender/color/pull/109
 [color#111]: https://github.com/linebender/color/pull/111
+[kompari#12]: https://github.com/linebender/kompari/pull/12
+[kompari#13]: https://github.com/linebender/kompari/pull/13
+[parley#192]: https://github.com/linebender/parley/pull/192
+[parley#193]: https://github.com/linebender/parley/pull/193
+[parley#224]: https://github.com/linebender/parley/pull/224
+[parley#227]: https://github.com/linebender/parley/pull/227
 [peniko#63]: https://github.com/linebender/peniko/pull/63
 [peniko#71]: https://github.com/linebender/peniko/pull/71
 [peniko#77]: https://github.com/linebender/peniko/pull/77
@@ -182,13 +177,11 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 [xilem#797]: https://github.com/linebender/xilem/pull/797
 [xilem#798]: https://github.com/linebender/xilem/pull/798
 [xilem#800]: https://github.com/linebender/xilem/pull/800
-[kompari#12]: https://github.com/linebender/kompari/pull/12
-[kompari#13]: https://github.com/linebender/kompari/pull/13
 
-[Color]: https://docs.rs/color/
 [Color 0.2.0]: https://github.com/linebender/color/releases/tag/v0.2.0
 [Color 0.2.1]: https://github.com/linebender/color/releases/tag/v0.2.1
 [Peniko 0.3.0]: https://github.com/linebender/peniko/releases/tag/v0.3.0
 
+[Color]: https://docs.rs/color/
 [Kompari]: https://github.com/linebender/kompari
 [spirali]: https://github.com/spirali
