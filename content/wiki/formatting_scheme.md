@@ -21,6 +21,21 @@ Shaders are usually licensed under the former two licenses OR the Unlicense.
 Most Linebender projects files are written in Rust.
 For those files, the formatting produced by `rustfmt` is required.
 
+The following rustfmt config is recommended:
+
+```toml
+# LINEBENDER RUSTFMT CONFIG - v1
+# Ensure lines end with \n even if the git configuration core.autocrlf is not set to true
+newline_style = "Unix"
+
+# `Foobar { foo, bar }` is more readable than `Foo { foo: foo, bar: bar }`
+use_field_init_shorthand = true
+
+# Forces let else blocks to always be their own line(s)
+single_line_let_else_max_width = 0
+# END LINEBENDER RUSTFMT CONFIG
+```
+
 ## Markdown
 
 In Markdown files, every paragraph should have one line per sentence.
