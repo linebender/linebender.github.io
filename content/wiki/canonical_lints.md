@@ -36,6 +36,7 @@ clippy.cast_possible_truncation = "warn"
 clippy.collection_is_never_read = "warn"
 clippy.dbg_macro = "warn"
 clippy.debug_assert_with_mut_call = "warn"
+clippy.doc_markdown = "warn"
 clippy.fn_to_numeric_cast_any = "warn"
 clippy.infinite_loop = "warn"
 clippy.large_stack_arrays = "warn"
@@ -109,7 +110,6 @@ unused_qualifications
 variant_size_differences
 
 clippy::allow_attributes
-clippy::doc_markdown
 clippy::large_include_file
 clippy::match_same_arms
 clippy::partial_pub_fields
@@ -120,14 +120,14 @@ clippy::return_self_not_must_use
 As a runnable command, there are:
 
 ```sh
-cargo clippy -- -W let_underscore_drop -W single_use_lifetimes -W unit_bindings -W unused_qualifications -W variant_size_differences -W clippy::doc_markdown -W clippy::large_include_file -W clippy::match_same_arms -W clippy::partial_pub_fields -W clippy::default_trait_access -W clippy::return_self_not_must_use
+cargo clippy -- -W let_underscore_drop -W single_use_lifetimes -W unit_bindings -W unused_qualifications -W variant_size_differences -W clippy::large_include_file -W clippy::match_same_arms -W clippy::partial_pub_fields -W clippy::default_trait_access -W clippy::return_self_not_must_use
 ```
 
 You may also wish to enable some of these lints specifically in your editor, to improve as you go.
 The ones which are trivial to do this for are below (as the changes it will propose are always very small):
 
 ```sh
-cargo clippy -- -W single_use_lifetimes -W unit_bindings -W unused_qualifications -W clippy::allow_attributes -W clippy::default_trait_access -W clippy::doc_markdown
+cargo clippy -- -W single_use_lifetimes -W unit_bindings -W unused_qualifications -W clippy::allow_attributes -W clippy::default_trait_access
 ```
 
 If there are many failures of one of these lints across the project, a separate PR would be recommended.
