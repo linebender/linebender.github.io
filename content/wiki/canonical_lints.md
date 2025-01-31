@@ -11,7 +11,7 @@ All Linebender projects should include the following set of lints:
 # This one may vary depending on the project.
 rust.unsafe_code = "forbid"
 
-# LINEBENDER LINT SET - Cargo.toml - v4
+# LINEBENDER LINT SET - Cargo.toml - v5
 # See https://linebender.org/wiki/canonical-lints/
 rust.keyword_idents_2024 = "forbid"
 rust.non_ascii_idents = "forbid"
@@ -19,24 +19,18 @@ rust.non_local_definitions = "forbid"
 rust.unsafe_op_in_unsafe_fn = "forbid"
 
 rust.elided_lifetimes_in_paths = "warn"
-rust.let_underscore_drop = "warn"
 rust.missing_debug_implementations = "warn"
 rust.missing_docs = "warn"
-rust.single_use_lifetimes = "warn"
 rust.trivial_numeric_casts = "warn"
 rust.unexpected_cfgs = "warn"
-rust.unit_bindings = "warn"
 rust.unnameable_types = "warn"
 rust.unreachable_pub = "warn"
 rust.unused_import_braces = "warn"
 rust.unused_lifetimes = "warn"
 rust.unused_macro_rules = "warn"
-rust.unused_qualifications = "warn"
-rust.variant_size_differences = "warn"
 
 clippy.too_many_arguments = "allow"
 
-clippy.allow_attributes = "warn"
 clippy.allow_attributes_without_reason = "warn"
 clippy.cast_possible_truncation = "warn"
 clippy.collection_is_never_read = "warn"
@@ -45,16 +39,10 @@ clippy.debug_assert_with_mut_call = "warn"
 clippy.doc_markdown = "warn"
 clippy.fn_to_numeric_cast_any = "warn"
 clippy.infinite_loop = "warn"
-clippy.large_include_file = "warn"
 clippy.large_stack_arrays = "warn"
-clippy.match_same_arms = "warn"
 clippy.mismatching_type_param_order = "warn"
 clippy.missing_assert_message = "warn"
-clippy.missing_errors_doc = "warn"
 clippy.missing_fields_in_debug = "warn"
-clippy.missing_panics_doc = "warn"
-clippy.partial_pub_fields = "warn"
-clippy.return_self_not_must_use = "warn"
 clippy.same_functions_in_if_condition = "warn"
 clippy.semicolon_if_nothing_returned = "warn"
 clippy.shadow_unrelated = "warn"
@@ -62,7 +50,6 @@ clippy.should_panic_without_expect = "warn"
 clippy.todo = "warn"
 clippy.unseparated_literal_suffix = "warn"
 clippy.use_self = "warn"
-clippy.wildcard_imports = "warn"
 
 clippy.cargo_common_metadata = "warn"
 clippy.negative_feature_names = "warn"
@@ -103,12 +90,61 @@ trivial-copy-size-limit = 16
 
 This is a curated list: Clippy has a *lot* of lints, and most of them are not included above.
 
-You may occasionally want to run `cargo clippy` with `clippy::pedantic` on your codebase, which will cast a very wide nets and catch a lot of very minor issues.
-The lint set above focuses on problems that either impact correctness or tend to snowball over time.
-
 The list above should be considered canonical.
 If you think a new lint should be added to Linebender projects, add it to this file in alphabetical order, then copy-paste the list across projects.
 
 To keep this process simple, avoid modifying this list in individual projects.
 If you want to add other per-project lints, add them above the list.
 If you want to remove a lint, `#![allow]` or `#![expect]` it at the crate root.
+
+## Periodic Passes
+
+As a lot of our code is research code, there are lints which we believe improve code quality, but don't need to validate in CI.
+These lints can be run occasionally, such as when releases are near, to improve code quality asynchronously:
+
+```text
+let_underscore_drop
+single_use_lifetimes
+unit_bindings
+unused_qualifications
+variant_size_differences
+
+clippy::allow_attributes
+clippy::large_include_file
+clippy::match_same_arms
+clippy::partial_pub_fields
+clippy::default_trait_access
+clippy::return_self_not_must_use
+```
+
+As a runnable command, there are:
+
+```sh
+cargo clippy -- -W let_underscore_drop -W single_use_lifetimes -W unit_bindings -W unused_qualifications -W variant_size_differences -W clippy::large_include_file -W clippy::match_same_arms -W clippy::partial_pub_fields -W clippy::default_trait_access -W clippy::return_self_not_must_use
+```
+
+You may also wish to enable some of these lints specifically in your editor, to improve as you go.
+The ones which are trivial to do this for are below (as the changes it will propose are always very small):
+
+```sh
+cargo clippy -- -W single_use_lifetimes -W unit_bindings -W unused_qualifications -W clippy::allow_attributes -W clippy::default_trait_access
+```
+
+If there are many failures of one of these lints across the project, a separate PR would be recommended.
+Otherwise, resolving these in a drive-by manner is fine.
+
+### Pedantic
+
+You may occasionally want to run `cargo clippy` with `clippy::pedantic` on the codebase, which will cast a very wide net and catch a lot of very minor issues.
+There are a few lints which are definitely not in scope, such as:
+
+```sh
+cargo clippy -- -W clippy::pedantic -A clippy::module_name_repetitions
+```
+
+A command line which allows certain restriction lints and checks the rest is provided below.
+The vast majority of issues this raise should not be actioned, but for our smaller crates with a high quality bar (such as [Color](https://github.com/linebender/color)), this can be worthwhile.
+
+```sh
+cargo clippy -- -W clippy::restriction -A clippy::module_name_repetitions -A clippy::pattern_type_mismatch -A clippy::implicit_return -A clippy::missing_inline_in_public_items -A clippy::missing_docs_in_private_items -A clippy::float_arithmetic -A clippy::min_ident_chars -A clippy::impl_trait_in_params -A clippy::exhaustive_structs
+```
