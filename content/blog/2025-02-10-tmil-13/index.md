@@ -35,7 +35,7 @@ In January, a variety of layout edge cases have been fixed, support for bidirect
 
 - [parley#244][]: Adds screenshots to selection area and cursor positioning tests,
 - [parley#241][]: Allows configuring the behavior of alignment for lines that overflow the container width,
-- [parley#245][]: The base direction of text layouts (left-to-right or right-to-left) is now detected,
+- [parley#245][]: Enables detection of the base direction of text layouts (left-to-right or right-to-left),
 - [parley#249][]: Fixes issues related to line breaking around inline boxes, by new Linebender member Wim de With,
 - [parley#256][]: Corrects the calculation of trailing white space, also by Wim de With,
 - [parley#254][]: Follows the [CSS white space model][] in stripping leading white space following a new line in white space collapsing mode; and
