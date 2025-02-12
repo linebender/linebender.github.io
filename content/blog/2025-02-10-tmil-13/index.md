@@ -87,11 +87,11 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 [color#135]: https://github.com/linebender/color/pull/135
 [color#136]: https://github.com/linebender/color/pull/136
 
-[parley#239]: https://github.com/linebender/color/pull/239
-[parley#241]: https://github.com/linebender/color/pull/241
-[parley#244]: https://github.com/linebender/color/pull/244
-[parley#245]: https://github.com/linebender/color/pull/245
-[parley#249]: https://github.com/linebender/color/pull/249
-[parley#254]: https://github.com/linebender/color/pull/254
-[parley#256]: https://github.com/linebender/color/pull/256
+[parley#239]: https://github.com/linebender/parley/pull/239
+[parley#241]: https://github.com/linebender/parley/pull/241
+[parley#244]: https://github.com/linebender/parley/pull/244
+[parley#245]: https://github.com/linebender/parley/pull/245
+[parley#249]: https://github.com/linebender/parley/pull/249
+[parley#254]: https://github.com/linebender/parley/pull/254
+[parley#256]: https://github.com/linebender/parley/pull/256
 [CSS white space model]: https://www.w3.org/TR/CSS2/text.html#white-space-model
