@@ -9,10 +9,11 @@ Linebender is an informal open-source organization working on various projects t
 
 ## Color
 
-Color provides functionality for representing, converting, parsing, serializing, and manipulating colors in a variety of color spaces.
-It closely follows the [CSS Color Module Level 4] draft spec.
+[Color][] provides functionality for representing, converting, parsing, serializing, and manipulating colors in a variety of color spaces.
+It closely follows the [CSS Color Module Level 4][] draft spec.
 
-We released version 0.2.3, which added easier methods to convert the 8 bit colors from byte streams (for use with GPUs).
+We released [Color 0.2.3][], which added easier methods to convert 8-bit colors from byte streams (for use with GPUs) and to other color representations in [color#135][] and [color#136][].
+This release also saw the addition of the ACES2065-1 color space in [color#124][].
 
 ## Vello
 
@@ -72,10 +73,9 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
   * [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
   * [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
 
-[CSS Color Module Level 4]: https://www.w3.org/TR/css-color-4/
-
-[color#109]: https://github.com/linebender/color/pull/109
-
-[Color 0.2.0]: https://github.com/linebender/color/releases/tag/v0.2.0
-
 [Color]: https://docs.rs/color/
+[CSS Color Module Level 4]: https://www.w3.org/TR/css-color-4/
+[Color 0.2.3]: https://github.com/linebender/color/releases/tag/v0.2.3
+[color#124]: https://github.com/linebender/color/pull/124
+[color#135]: https://github.com/linebender/color/pull/135
+[color#136]: https://github.com/linebender/color/pull/136
