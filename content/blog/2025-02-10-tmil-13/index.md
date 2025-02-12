@@ -31,8 +31,15 @@ We released Vello 0.4.0
 
 Parley is a text layout library.
 It handles text layout, mostly at the level of line breaking and resolving glyph positions.
+In January, a variety of layout edge cases have been fixed, support for bidirectional text was expanded, and testing of text layout and selection has improved.
 
-<!-- Testing improvements, whitespace improvements, no_std improvement -->
+- [parley#244][]: Adds screenshots to selection area and cursor positioning tests,
+- [parley#241][]: Allows configuring the behavior of alignment for lines that overflow the container width,
+- [parley#245][]: The base direction of text layouts (left-to-right or right-to-left) is now detected,
+- [parley#249][]: Fixes issues related to line breaking around inline boxes, by new Linebender member Wim de With,
+- [parley#256][]: Corrects the calculation of trailing white space, also be Wim de With,
+- [parley#254][]: Follows the [CSS white space model][] in stripping leading white space following a new line in white space collapsing mode; and
+- [parley#239][]: Takes another step towards supporting `no_std`.
 
 ## Kompari
 
@@ -79,3 +86,12 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 [color#124]: https://github.com/linebender/color/pull/124
 [color#135]: https://github.com/linebender/color/pull/135
 [color#136]: https://github.com/linebender/color/pull/136
+
+[parley#239]: https://github.com/linebender/color/pull/239
+[parley#241]: https://github.com/linebender/color/pull/241
+[parley#244]: https://github.com/linebender/color/pull/244
+[parley#245]: https://github.com/linebender/color/pull/245
+[parley#249]: https://github.com/linebender/color/pull/249
+[parley#254]: https://github.com/linebender/color/pull/254
+[parley#256]: https://github.com/linebender/color/pull/256
+[CSS white space model]: https://www.w3.org/TR/CSS2/text.html#white-space-model
