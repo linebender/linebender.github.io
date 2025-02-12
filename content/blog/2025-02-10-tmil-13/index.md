@@ -12,7 +12,7 @@ Linebender is an informal open-source organization working on various projects t
 Color provides functionality for representing, converting, parsing, serializing, and manipulating colors in a variety of color spaces.
 It closely follows the [CSS Color Module Level 4] draft spec.
 
-We released version 0.2.3, which added easier methods to convert the 8 bit colours from byte streams (for use with GPUs).
+We released version 0.2.3, which added easier methods to convert the 8 bit colors from byte streams (for use with GPUs).
 
 ## Vello
 
