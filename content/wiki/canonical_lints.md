@@ -45,7 +45,6 @@ clippy.missing_assert_message = "warn"
 clippy.missing_fields_in_debug = "warn"
 clippy.same_functions_in_if_condition = "warn"
 clippy.semicolon_if_nothing_returned = "warn"
-clippy.shadow_unrelated = "warn"
 clippy.should_panic_without_expect = "warn"
 clippy.todo = "warn"
 clippy.unseparated_literal_suffix = "warn"
@@ -115,12 +114,13 @@ clippy::match_same_arms
 clippy::partial_pub_fields
 clippy::default_trait_access
 clippy::return_self_not_must_use
+clippy::shadow_unrelated
 ```
 
 As a runnable command, there are:
 
 ```sh
-cargo clippy -- -W let_underscore_drop -W single_use_lifetimes -W unit_bindings -W unused_qualifications -W variant_size_differences -W clippy::large_include_file -W clippy::match_same_arms -W clippy::partial_pub_fields -W clippy::default_trait_access -W clippy::return_self_not_must_use
+cargo clippy -- -W let_underscore_drop -W single_use_lifetimes -W unit_bindings -W unused_qualifications -W variant_size_differences -W clippy::large_include_file -W clippy::match_same_arms -W clippy::partial_pub_fields -W clippy::default_trait_access -W clippy::return_self_not_must_use -W clippy::shadow_unrelated
 ```
 
 You may also wish to enable some of these lints specifically in your editor, to improve as you go.
