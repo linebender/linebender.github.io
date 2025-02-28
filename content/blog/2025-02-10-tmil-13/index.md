@@ -64,9 +64,9 @@ It lets you build user interfaces declaratively by composing lightweight views t
 Linebender has an origin story in being a very research oriented group, looking to break new ground.
 While we are focused on shipping code today, we still have an eye on the future and how to be prepared for the new opportunities and technologies that are coming.
 
-We have a couple of active and ongoing research projects:
-
-- Raph Levien is working on a version of Vello which has bounded GPU memory usage. <!-- Codenamed? Potato. Is that the final name? -->
+While Vello has unmatched rendering speed thanks to its GPU-driven architecture, there are two practical tradeoffs: it can require unpredictable amounts of memory, and it doesn't work on downlevel GPUs with weak or nonexistent support for compute shaders.
+Raph Levien has been exploring a possible hybrid CPU/GPU direction for Vello to address these issues.
+Read the [design doc][Potato design doc], follow the [Zulip thread][Potato zulip thread], or stay tuned for more developments.
 
 ## Get Involved
 
@@ -95,3 +95,6 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 [parley#254]: https://github.com/linebender/parley/pull/254
 [parley#256]: https://github.com/linebender/parley/pull/256
 [CSS white space model]: https://www.w3.org/TR/CSS2/text.html#white-space-model
+
+[Potato design doc]: https://docs.google.com/document/d/1gEqf7ehTzd89Djf_VpkL0B_Fb15e0w5fuv_UzyacAPU/edit?usp=sharing
+[Potato zulip thread]: https://xi.zulipchat.com/#narrow/channel/197075-gpu/topic/Potato.20-.20a.20paper.20design.20for.20a.20CPU.2FGPU.20hybrid.20renderer
