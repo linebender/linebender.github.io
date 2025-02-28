@@ -77,6 +77,8 @@ This release also saw the addition of the ACES2065-1 color space in [color#124][
 
 ## Tiny Skia
 
+- [tiny-skia#146][]: Add `scale_by`/`scale_to` functions to `Size`.
+
 ## SimpleCSS
 
 We released [SimpleCSS 0.2.2] with updated docs clarifying Linebender involvement and to test run the publishing workflow.
@@ -117,6 +119,8 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 [parley#254]: https://github.com/linebender/parley/pull/254
 [parley#256]: https://github.com/linebender/parley/pull/256
 [CSS white space model]: https://www.w3.org/TR/CSS2/text.html#white-space-model
+
+[tiny-skia#146]: https://github.com/linebender/tiny-skia/pull/146
 
 [SimpleCSS 0.2.2]: https://crates.io/crates/simplecss/0.2.2
 
