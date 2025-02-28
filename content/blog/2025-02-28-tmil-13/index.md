@@ -1,6 +1,6 @@
 +++
 title = "Linebender in January 2025"
-authors = ["Bruce Mitchener", "Daniel McNab"]
+authors = ["Kaur Kuut", "Daniel McNab", "Tom Churchman", "Raph Levien"]
 +++
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
