@@ -5,15 +5,19 @@ authors = ["Kaur Kuut", "Daniel McNab", "Tom Churchman", "Raph Levien"]
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
 
-<!-- ## Peniko - Elided in TMIL-13, nothing relevant to discuss. Yes there was a release, but only to bump dependencies -->
+## Xilem
 
-## Color
+Xilem is our flagship GUI project, inspired by SwiftUI.
+It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
 
-[Color][] provides functionality for representing, converting, parsing, serializing, and manipulating colors in a variety of color spaces.
-It closely follows the [CSS Color Module Level 4][] draft spec.
+<!-- Docs contributed, pod flexibility, emoji picker landed,  -->
 
-We released [Color 0.2.3][], which added easier methods to convert 8-bit colors from byte streams (for use with GPUs) and to other color representations in [color#135][] and [color#136][].
-This release also saw the addition of the ACES2065-1 color space in [color#124][].
+## Masonry
+
+Masonry is the widget system used by Xilem.
+It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
+
+<!-- Docs, Box<dyn widget> cleanup, inspector, transforms, zstack -->
 
 ## Vello
 
@@ -26,6 +30,8 @@ We released Vello 0.4.0
 ...
 
 <!-- Screenshot of image extend modes -->
+
+## Kurbo
 
 ## Parley
 
@@ -41,23 +47,37 @@ In January, a variety of layout edge cases have been fixed, support for bidirect
 - [parley#254][]: Follows the [CSS white space model][] in stripping leading white space following a new line in white space collapsing mode; and
 - [parley#239][]: Takes another step towards supporting `no_std`.
 
+## Peniko
+
+<!-- there was a release, but only to bump dependencies -->
+
+## Color
+
+[Color][] provides functionality for representing, converting, parsing, serializing, and manipulating colors in a variety of color spaces.
+It closely follows the [CSS Color Module Level 4][] draft spec.
+
+We released [Color 0.2.3][], which added easier methods to convert 8-bit colors from byte streams (for use with GPUs) and to other color representations in [color#135][] and [color#136][].
+This release also saw the addition of the ACES2065-1 color space in [color#124][].
+
+## Velato
+
+<!-- Vello 0.4 https://github.com/linebender/velato/pull/49 -->
+
+## Vello SVG
+
+<!-- new release and stuff -->
+
 ## Kompari
 
 <!-- Repository rework, interactive review, multiple diff methods -->
 
-## Masonry
+## Resvg
 
-Masonry is the widget system used by Xilem.
-It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
+## SVG Types
 
-<!-- Docs, Box<dyn widget> cleanup, inspector, transforms, zstack -->
+## Tiny Skia
 
-## Xilem
-
-Xilem is our flagship GUI project, inspired by SwiftUI.
-It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
-
-<!-- Docs contributed, pod flexibility, emoji picker landed,  -->
+## SimpleCSS
 
 ## Research and Future Directions
 
