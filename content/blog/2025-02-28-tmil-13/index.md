@@ -75,6 +75,9 @@ This release also saw the addition of the ACES2065-1 color space in [color#124][
 
 ## SVG Types
 
+We released [SVG Types 0.15.3] with a few minor fixes.
+This is also the first release under the stewardship of Linebender.
+
 ## Tiny Skia
 
 - [tiny-skia#146][]: Add `scale_by`/`scale_to` functions to `Size`.
@@ -119,6 +122,8 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 [parley#254]: https://github.com/linebender/parley/pull/254
 [parley#256]: https://github.com/linebender/parley/pull/256
 [CSS white space model]: https://www.w3.org/TR/CSS2/text.html#white-space-model
+
+[SVG Types 0.15.3]: https://github.com/linebender/svgtypes/releases/tag/v0.15.3
 
 [tiny-skia#146]: https://github.com/linebender/tiny-skia/pull/146
 
