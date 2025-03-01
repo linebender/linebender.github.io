@@ -73,6 +73,9 @@ This release also saw the addition of the ACES2065-1 color space in [color#124][
 
 ## Resvg
 
+- [resvg#873][]: Added the stylesheet option to the C API.
+- [resvg#878][]: Updated to `svgtypes` 0.15.3.
+
 ## SVG Types
 
 We released [SVG Types 0.15.3] with a few minor fixes.
@@ -122,6 +125,9 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 [parley#254]: https://github.com/linebender/parley/pull/254
 [parley#256]: https://github.com/linebender/parley/pull/256
 [CSS white space model]: https://www.w3.org/TR/CSS2/text.html#white-space-model
+
+[resvg#873]: https://github.com/linebender/resvg/pull/873
+[resvg#878]: https://github.com/linebender/resvg/pull/878
 
 [SVG Types 0.15.3]: https://github.com/linebender/svgtypes/releases/tag/v0.15.3
 
