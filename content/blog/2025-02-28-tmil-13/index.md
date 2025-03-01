@@ -49,7 +49,7 @@ In January, a variety of layout edge cases have been fixed, support for bidirect
 
 ## Peniko
 
-Peniko provides a set of shared types for concepts that are important for drawing/stroking paths, but excluding the path geometry itself (which can be found in kurbo).
+Peniko provides a set of shared types for concepts that are important for drawing/stroking paths, but excluding the path geometry itself (which can be found in Kurbo).
 It includes types for brush styles (including gradient) and color.
 
 We released [Peniko 0.3.1] which was a simple maintenance release with tweaked docs and updated dependencies.
