@@ -33,6 +33,10 @@ We released Vello 0.4.0
 
 ## Kurbo
 
+Kurbo provides data structures and algorithms for curves and vector paths.
+
+- [kurbo#409][]: Add `turn_90` and `rotate_scale` methods to `Vec2`, plus fix the docs of `Vec2::cross`.
+
 ## Parley
 
 Parley is a text layout library.
@@ -120,6 +124,8 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 * Daniel and Olivier's "office hours" appointments can still be booked by anyone for open-ended discussion of the ecosystem.
   * [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
   * [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
+
+[kurbo#409]: https://github.com/linebender/kurbo/pull/409
 
 [parley#238]: https://github.com/linebender/parley/pull/238
 [parley#239]: https://github.com/linebender/parley/pull/239
