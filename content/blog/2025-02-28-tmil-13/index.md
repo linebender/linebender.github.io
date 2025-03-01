@@ -37,15 +37,17 @@ We released Vello 0.4.0
 
 Parley is a text layout library.
 It handles text layout, mostly at the level of line breaking and resolving glyph positions.
+
 In January, a variety of layout edge cases have been fixed, support for bidirectional text was expanded, and testing of text layout and selection has improved.
 
-- [parley#244][]: Adds screenshots to selection area and cursor positioning tests,
-- [parley#241][]: Allows configuring the behavior of alignment for lines that overflow the container width,
-- [parley#245][]: Enables detection of the base direction of text layouts (left-to-right or right-to-left),
-- [parley#249][]: Fixes issues related to line breaking around inline boxes, by new Linebender member Wim de With,
-- [parley#256][]: Corrects the calculation of trailing white space, also by Wim de With,
-- [parley#254][]: Follows the [CSS white space model][] in stripping leading white space following a new line in white space collapsing mode; and
-- [parley#239][]: Takes another step towards supporting `no_std`.
+- [parley#238][]: Updated to `swash` 0.2.0, which paves the way for future `no_std` support.
+- [parley#239][]: Takes another step towards supporting `no_std` by enabling further testing in CI.
+- [parley#241][]: Allows configuring the behavior of alignment for lines that overflow the container width.
+- [parley#244][]: Adds screenshots to selection area and cursor positioning tests.
+- [parley#245][]: Enables detection of the base direction of text layouts (left-to-right or right-to-left).
+- [parley#249][]: Fixes issues related to line breaking around inline boxes, by new Linebender member Wim de With.
+- [parley#254][]: Follows the [CSS white space model][] in stripping leading white space following a new line in white space collapsing mode.
+- [parley#256][]: Corrects the calculation of trailing white space, also by Wim de With.
 
 ## Peniko
 
@@ -119,6 +121,16 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
   * [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
   * [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
 
+[parley#238]: https://github.com/linebender/parley/pull/238
+[parley#239]: https://github.com/linebender/parley/pull/239
+[parley#241]: https://github.com/linebender/parley/pull/241
+[parley#244]: https://github.com/linebender/parley/pull/244
+[parley#245]: https://github.com/linebender/parley/pull/245
+[parley#249]: https://github.com/linebender/parley/pull/249
+[parley#254]: https://github.com/linebender/parley/pull/254
+[parley#256]: https://github.com/linebender/parley/pull/256
+[CSS white space model]: https://www.w3.org/TR/CSS2/text.html#white-space-model
+
 [Peniko 0.3.1]: https://github.com/linebender/peniko/releases/tag/v0.3.1
 
 [Color]: https://docs.rs/color/
@@ -128,15 +140,6 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 [color#124]: https://github.com/linebender/color/pull/124
 [color#135]: https://github.com/linebender/color/pull/135
 [color#136]: https://github.com/linebender/color/pull/136
-
-[parley#239]: https://github.com/linebender/parley/pull/239
-[parley#241]: https://github.com/linebender/parley/pull/241
-[parley#244]: https://github.com/linebender/parley/pull/244
-[parley#245]: https://github.com/linebender/parley/pull/245
-[parley#249]: https://github.com/linebender/parley/pull/249
-[parley#254]: https://github.com/linebender/parley/pull/254
-[parley#256]: https://github.com/linebender/parley/pull/256
-[CSS white space model]: https://www.w3.org/TR/CSS2/text.html#white-space-model
 
 [velato#49]: https://github.com/linebender/velato/pull/49
 
