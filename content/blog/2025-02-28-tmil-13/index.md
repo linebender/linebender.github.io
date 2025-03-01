@@ -81,7 +81,7 @@ This release also saw the addition of the ACES2065-1 color space in [color#124][
 
 ## SimpleCSS
 
-We released [SimpleCSS 0.2.2] with updated docs clarifying Linebender involvement and to test run the publishing workflow.
+We released [SimpleCSS 0.2.2] with `no_std` support, updated docs clarifying Linebender involvement, and to test run the publishing workflow.
 
 ## Research and Future Directions
 
@@ -122,7 +122,7 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 
 [tiny-skia#146]: https://github.com/linebender/tiny-skia/pull/146
 
-[SimpleCSS 0.2.2]: https://crates.io/crates/simplecss/0.2.2
+[SimpleCSS 0.2.2]: https://github.com/linebender/simplecss/releases/tag/v0.2.2
 
 [Potato design doc]: https://docs.google.com/document/d/1gEqf7ehTzd89Djf_VpkL0B_Fb15e0w5fuv_UzyacAPU/edit?usp=sharing
 [Potato zulip thread]: https://xi.zulipchat.com/#narrow/channel/197075-gpu/topic/Potato.20-.20a.20paper.20design.20for.20a.20CPU.2FGPU.20hybrid.20renderer
