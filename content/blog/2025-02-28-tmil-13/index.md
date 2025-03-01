@@ -69,7 +69,11 @@ This release also saw the addition of the ACES2065-1 color space in [color#124][
 
 ## Kompari
 
-<!-- Repository rework, interactive review, multiple diff methods -->
+[Kompari] is a tool for visual inspection of snapshot tests.
+
+- [kompari#13][]: Interactive review (in HTML).
+- [kompari#14][]: Rework of repository layout.
+- [kompari#16][]: Alternative diff views.
 
 ## Resvg
 
@@ -125,6 +129,11 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 [parley#254]: https://github.com/linebender/parley/pull/254
 [parley#256]: https://github.com/linebender/parley/pull/256
 [CSS white space model]: https://www.w3.org/TR/CSS2/text.html#white-space-model
+
+[Kompari]: https://github.com/linebender/kompari
+[kompari#13]: https://github.com/linebender/kompari/pull/13
+[kompari#14]: https://github.com/linebender/kompari/pull/14
+[kompari#16]: https://github.com/linebender/kompari/pull/16
 
 [resvg#873]: https://github.com/linebender/resvg/pull/873
 [resvg#878]: https://github.com/linebender/resvg/pull/878
