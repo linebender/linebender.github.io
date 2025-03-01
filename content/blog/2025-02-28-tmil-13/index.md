@@ -49,7 +49,10 @@ In January, a variety of layout edge cases have been fixed, support for bidirect
 
 ## Peniko
 
-<!-- there was a release, but only to bump dependencies -->
+Peniko provides a set of shared types for concepts that are important for drawing/stroking paths, but excluding the path geometry itself (which can be found in kurbo).
+It includes types for brush styles (including gradient) and color.
+
+We released [Peniko 0.3.1] which was a simple maintenance release with tweaked docs and updated dependencies.
 
 ## Color
 
@@ -115,6 +118,8 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 * Daniel and Olivier's "office hours" appointments can still be booked by anyone for open-ended discussion of the ecosystem.
   * [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
   * [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
+
+[Peniko 0.3.1]: https://github.com/linebender/peniko/releases/tag/v0.3.1
 
 [Color]: https://docs.rs/color/
 [CSS Color Module Level 4]: https://www.w3.org/TR/css-color-4/
