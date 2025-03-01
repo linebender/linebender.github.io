@@ -56,7 +56,7 @@ In January, a variety of layout edge cases have been fixed, support for bidirect
 [Color][] provides functionality for representing, converting, parsing, serializing, and manipulating colors in a variety of color spaces.
 It closely follows the [CSS Color Module Level 4][] draft spec.
 
-We released [Color 0.2.3][], which added easier methods to convert 8-bit colors from byte streams (for use with GPUs) and to other color representations in [color#135][] and [color#136][].
+We released [Color 0.2.2][], soon followed by [Color 0.2.3][], the latter of which added easier methods to convert 8-bit colors from byte streams (for use with GPUs) and to other color representations in [color#135][] and [color#136][].
 This release also saw the addition of the ACES2065-1 color space in [color#124][].
 
 ## Velato
@@ -118,6 +118,7 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 
 [Color]: https://docs.rs/color/
 [CSS Color Module Level 4]: https://www.w3.org/TR/css-color-4/
+[Color 0.2.2]: https://github.com/linebender/color/releases/tag/v0.2.2
 [Color 0.2.3]: https://github.com/linebender/color/releases/tag/v0.2.3
 [color#124]: https://github.com/linebender/color/pull/124
 [color#135]: https://github.com/linebender/color/pull/135
