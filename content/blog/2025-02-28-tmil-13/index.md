@@ -65,7 +65,9 @@ This release also saw the addition of the ACES2065-1 color space in [color#124][
 
 ## Vello SVG
 
-<!-- new release and stuff -->
+We released [Vello SVG 0.6.0] which most notably includes:
+- [vello_svg#50][]: Support for raster images to be completely disabled via a feature flag.
+- [vello_svg#53][]: Updated to `vello` 0.4.0.
 
 ## Kompari
 
@@ -129,6 +131,10 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 [parley#254]: https://github.com/linebender/parley/pull/254
 [parley#256]: https://github.com/linebender/parley/pull/256
 [CSS white space model]: https://www.w3.org/TR/CSS2/text.html#white-space-model
+
+[Vello SVG 0.6.0]: https://github.com/linebender/vello_svg/releases/tag/v0.6.0
+[vello_svg#50]: https://github.com/linebender/vello_svg/pull/50
+[vello_svg#53]: https://github.com/linebender/vello_svg/pull/53
 
 [Kompari]: https://github.com/linebender/kompari
 [kompari#13]: https://github.com/linebender/kompari/pull/13
