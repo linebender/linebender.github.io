@@ -37,7 +37,6 @@ Vello demo, showing image extend modes with nearest neighbor filtering.
 
 Of course work didn't stop with this release.
 In preparation for the next release we have already [upgraded Vello to use wgpu 0.24.0][vello#791].
-<!-- Screenshot of image extend modes -->
 
 ## Kurbo
 
