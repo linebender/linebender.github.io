@@ -24,11 +24,19 @@ It provides a non-opinionated retained widget tree, designed as a base layer for
 Vello is our GPU vector renderer.
 It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.
 
-We released Vello 0.4.0
+We released [Vello 0.4.0][] which has a bunch of improvements and fixes from the preceding four months.
+Among the improvements is the change from December that Vello now uses our own [Color][] library.
+Highlights from the additions in January include [image extend modes, alpha, and nearest neighbor sampling][vello#766] and [correct rendering of Apple Color Emoji][vello#792].
 
-- [xilem#791][]: Update to wgpu 0.24
-...
+<figure>
+<img style="height: auto" src="neighbor.png" alt="A screenshot of a Vello demo app. It shows four different variations of an image extended with nearest neighbor filtering." width="1570" height="1247">
+<figcaption>
+Vello demo, showing image extend modes with nearest neighbor filtering.
+</figcaption>
+</figure>
 
+Of course work didn't stop with this release.
+In preparation for the next release we have already [upgraded Vello to use wgpu 0.24.0][vello#791].
 <!-- Screenshot of image extend modes -->
 
 ## Kurbo
@@ -58,7 +66,7 @@ In January, a variety of layout edge cases have been fixed, support for bidirect
 Peniko provides a set of shared types for concepts that are important for drawing/stroking paths, but excluding the path geometry itself (which can be found in Kurbo).
 It includes types for brush styles (including gradient) and color.
 
-We released [Peniko 0.3.1] which was a simple maintenance release with tweaked docs and updated dependencies.
+We released [Peniko 0.3.1][] which was a simple maintenance release with tweaked docs and updated dependencies.
 
 ## Color
 
@@ -74,13 +82,13 @@ This release also saw the addition of the ACES2065-1 color space in [color#124][
 
 ## Vello SVG
 
-We released [Vello SVG 0.6.0] which most notably includes:
+We released [Vello SVG 0.6.0][] which most notably includes:
 - [vello_svg#50][]: Support for raster images to be completely disabled via a feature flag.
 - [vello_svg#53][]: Updated to `vello` 0.4.0.
 
 ## Kompari
 
-[Kompari] is a tool for visual inspection of snapshot tests.
+[Kompari][] is a tool for visual inspection of snapshot tests.
 
 - [kompari#13][]: Interactive review (in HTML).
 - [kompari#14][]: Rework of repository layout.
@@ -93,7 +101,7 @@ We released [Vello SVG 0.6.0] which most notably includes:
 
 ## SVG Types
 
-We released [SVG Types 0.15.3] with a few minor fixes.
+We released [SVG Types 0.15.3][] with a few minor fixes.
 This is also the first release under the stewardship of Linebender.
 
 ## Tiny Skia
@@ -102,7 +110,7 @@ This is also the first release under the stewardship of Linebender.
 
 ## SimpleCSS
 
-We released [SimpleCSS 0.2.2] with `no_std` support, updated docs clarifying Linebender involvement, and to test run the publishing workflow.
+We released [SimpleCSS 0.2.2][] with `no_std` support, updated docs clarifying Linebender involvement, and to test run the publishing workflow.
 
 ## Research and Future Directions
 
@@ -124,6 +132,11 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 * Daniel and Olivier's "office hours" appointments can still be booked by anyone for open-ended discussion of the ecosystem.
   * [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
   * [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
+
+[Vello 0.4.0]: https://github.com/linebender/vello/releases/tag/v0.4.0
+[vello#766]: https://github.com/linebender/vello/pull/766
+[vello#791]: https://github.com/linebender/vello/pull/791
+[vello#792]: https://github.com/linebender/vello/pull/792
 
 [kurbo#409]: https://github.com/linebender/kurbo/pull/409
 
