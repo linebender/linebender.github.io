@@ -10,7 +10,7 @@ Linebender is an informal open-source organization working on various projects t
 Xilem is our flagship GUI project, inspired by SwiftUI.
 It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
 
-Xilem saw decent direct progress and of course Xilem also benefits from all the changes in the rest of our stack which are detailed in later sections.
+Xilem saw decent direct progress in January and of course Xilem also benefits from all the progress in the rest of our stack which is detailed in later sections.
 
 - [xilem#420][], [xilem#833][]: Added emoji picker example.
 - [xilem#806][]: Made `Pod` more flexible to allow creating a wider variety of wrapper widgets.
