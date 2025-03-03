@@ -10,14 +10,46 @@ Linebender is an informal open-source organization working on various projects t
 Xilem is our flagship GUI project, inspired by SwiftUI.
 It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
 
-<!-- Docs contributed, pod flexibility, emoji picker landed,  -->
+Xilem saw decent direct progress and of course Xilem also benefits from all the changes in the rest of our stack which are detailed in later sections.
+
+- [xilem#420][], [xilem#833][]: Added emoji picker example.
+- [xilem#806][]: Made `Pod` more flexible to allow creating a wider variety of wrapper widgets.
+- [xilem#828][]: Moved transformation related boilerplate to a single `View`.
+- [xilem#840][]: Updated to `vello` 0.4.0.
+
+<figure>
+<img style="height: auto" src="emoji_picker.png" alt="A screenshot of a Xilem example app. It shows sixteen different facial expression emoji with a cat face with a wry smile being selected." width="864" height="1121">
+<figcaption>
+Xilem emoji picker example app, showing various emoji options.
+</figcaption>
+</figure>
+
+We also improved documentation, see e.g. [xilem#818][].
 
 ## Masonry
 
 Masonry is the widget system used by Xilem.
 It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
 
-<!-- Docs, Box<dyn widget> cleanup, inspector, transforms, zstack -->
+January was quite a busy month for Masonry with lots of significant changes landing, including both new features and improved old ones.
+Most notable are the following highlights:
+
+- [xilem#737][]: Added `zstack` widget for composing widgets on top of each other.
+- [xilem#753][]: Added support for transforming widgets with `kurbo::Affine`.
+- [xilem#808][]: `AppDriver` now takes a reference to `RenderRoot` for more flexibility.
+- [xilem#820][]: Added a basic widget inspector for debugging.
+- [xilem#822][]: Now widget focus is cleared when a user clicks outside of that focused widget.
+- [xilem#823][]: When text of a text area is changed the cursor now gets moved to the end.
+- [xilem#827][]: Refactored `TreeArena`.
+- [xilem#830][]: Improved handling of window focus.
+- [xilem#831][]: Applied `is`/`has` naming convention more consistently across context method names.
+- [xilem#834][]: Fixed crashing in `run_single_update_pass`.
+- [xilem#837][]: Removed a bunch of redundant `Box` usage around `Widget`.
+- [xilem#841][]: Added features to help test `Textbox`.
+- [xilem#848][]: Reorganized modules.
+
+We also improved documentation a lot, see e.g. [xilem#787][], [xilem#809][], [xilem#811][], [xilem#813][], [xilem#815][], [xilem#824][], [xilem#826][], [xilem#829][], [xilem#832][], and [xilem#835][].
+Additionally a bunch of stale code got cleaned up.
 
 ## Vello
 
@@ -42,7 +74,7 @@ In preparation for the next release we have already [upgraded Vello to use wgpu 
 
 Kurbo provides data structures and algorithms for curves and vector paths.
 
-- [kurbo#409][]: Add `turn_90` and `rotate_scale` methods to `Vec2`, plus fix the docs of `Vec2::cross`.
+- [kurbo#409][]: Added `turn_90` / `rotate_scale` methods to `Vec2`, and fixed the docs of `Vec2::cross`.
 
 ## Parley
 
@@ -52,13 +84,13 @@ It handles text layout, mostly at the level of line breaking and resolving glyph
 In January, a variety of layout edge cases have been fixed, support for bidirectional text was expanded, and testing of text layout and selection has improved.
 
 - [parley#238][]: Updated to `swash` 0.2.0, which paves the way for future `no_std` support.
-- [parley#239][]: Takes another step towards supporting `no_std` by enabling further testing in CI.
+- [parley#239][]: Took another step towards supporting `no_std` by enabling further testing in CI.
 - [parley#241][]: Allows configuring the behavior of alignment for lines that overflow the container width.
-- [parley#244][]: Adds screenshots to selection area and cursor positioning tests.
-- [parley#245][]: Enables detection of the base direction of text layouts (left-to-right or right-to-left).
-- [parley#249][]: Fixes issues related to line breaking around inline boxes, by new Linebender member Wim de With.
-- [parley#254][]: Follows the [CSS white space model][] in stripping leading white space following a new line in white space collapsing mode.
-- [parley#256][]: Corrects the calculation of trailing white space, also by Wim de With.
+- [parley#244][]: Added screenshots to selection area and cursor positioning tests.
+- [parley#245][]: Enabled detection of the base direction of text layouts (left-to-right or right-to-left).
+- [parley#249][]: Fixed issues related to line breaking around inline boxes, by new Linebender member Wim de With.
+- [parley#254][]: Now adhering to the [CSS white space model][] in stripping leading white space following a new line in white space collapsing mode.
+- [parley#256][]: Corrected the calculation of trailing white space, also by Wim de With.
 
 ## Peniko
 
@@ -82,7 +114,7 @@ This release also saw the addition of the ACES2065-1 color space in [color#124][
 ## Vello SVG
 
 We released [Vello SVG 0.6.0][] which most notably includes:
-- [vello_svg#50][]: Support for raster images to be completely disabled via a feature flag.
+- [vello_svg#50][]: Added support for raster images to be completely disabled via a feature flag.
 - [vello_svg#53][]: Updated to `vello` 0.4.0.
 
 ## Kompari
@@ -105,7 +137,7 @@ This is also the first release under the stewardship of Linebender.
 
 ## Tiny Skia
 
-- [tiny-skia#146][]: Add `scale_by`/`scale_to` functions to `Size`.
+- [tiny-skia#146][]: Added `scale_by` / `scale_to` methods to `Size`.
 
 ## SimpleCSS
 
@@ -131,6 +163,36 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 * Daniel and Olivier's "office hours" appointments can still be booked by anyone for open-ended discussion of the ecosystem.
   * [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
   * [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
+
+[xilem#420]: https://github.com/linebender/xilem/pull/420
+[xilem#737]: https://github.com/linebender/xilem/pull/737
+[xilem#753]: https://github.com/linebender/xilem/pull/753
+[xilem#787]: https://github.com/linebender/xilem/pull/787
+[xilem#806]: https://github.com/linebender/xilem/pull/806
+[xilem#808]: https://github.com/linebender/xilem/pull/808
+[xilem#809]: https://github.com/linebender/xilem/pull/809
+[xilem#811]: https://github.com/linebender/xilem/pull/811
+[xilem#813]: https://github.com/linebender/xilem/pull/813
+[xilem#815]: https://github.com/linebender/xilem/pull/815
+[xilem#818]: https://github.com/linebender/xilem/pull/818
+[xilem#820]: https://github.com/linebender/xilem/pull/820
+[xilem#822]: https://github.com/linebender/xilem/pull/822
+[xilem#823]: https://github.com/linebender/xilem/pull/823
+[xilem#824]: https://github.com/linebender/xilem/pull/824
+[xilem#826]: https://github.com/linebender/xilem/pull/826
+[xilem#827]: https://github.com/linebender/xilem/pull/827
+[xilem#828]: https://github.com/linebender/xilem/pull/828
+[xilem#829]: https://github.com/linebender/xilem/pull/829
+[xilem#830]: https://github.com/linebender/xilem/pull/830
+[xilem#831]: https://github.com/linebender/xilem/pull/831
+[xilem#832]: https://github.com/linebender/xilem/pull/832
+[xilem#833]: https://github.com/linebender/xilem/pull/833
+[xilem#834]: https://github.com/linebender/xilem/pull/834
+[xilem#835]: https://github.com/linebender/xilem/pull/835
+[xilem#837]: https://github.com/linebender/xilem/pull/837
+[xilem#840]: https://github.com/linebender/xilem/pull/840
+[xilem#841]: https://github.com/linebender/xilem/pull/841
+[xilem#848]: https://github.com/linebender/xilem/pull/848
 
 [Vello 0.4.0]: https://github.com/linebender/vello/releases/tag/v0.4.0
 [vello#766]: https://github.com/linebender/vello/pull/766
