@@ -13,8 +13,8 @@ It lets you build user interfaces declaratively by composing lightweight views t
 Xilem saw decent direct progress in January and of course Xilem also benefits from all the progress in the rest of our stack which is detailed in later sections.
 
 - [xilem#420][], [xilem#833][]: Added emoji picker example.
+- [xilem#753][], [xilem#828][]: Added support for transforming widgets with `kurbo::Affine`.
 - [xilem#806][]: Made `Pod` more flexible to allow creating a wider variety of wrapper widgets.
-- [xilem#828][]: Moved transformation related boilerplate to a single `View`.
 - [xilem#840][]: Updated to `vello` 0.4.0.
 
 <figure>
