@@ -50,7 +50,7 @@ These are the big changes I want to work on soon. Realistically, "soon" is going
 
 Okay, this one makes me blush a little.
 
-I'm the only maintainer of Masonry, a GUI crate with barely over 300 stars on Github and little outside interest. Can I really justify taking the money Google pays me to improve Xilem and spending my time on Masonry instead?
+I'm the only maintainer of Masonry, a GUI crate with barely over 300 stars on GitHub and little outside interest. Can I really justify taking the money Google pays me to improve Xilem and spending my time on Masonry instead?
 
 That choice isn't random, mind you: Masonry was forked from Druid, Xilem's ancestor, and in fact Xilem and Masonry share a lot of code right now.
 
