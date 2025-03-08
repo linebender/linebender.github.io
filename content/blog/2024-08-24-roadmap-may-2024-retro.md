@@ -87,7 +87,7 @@ This was presented at ACM High Performance Graphics (HPG) 2024, placing 3rd Plac
 
 ### Write “pass order” RFC [(original)](@/blog/2024-06-17-roadmap-may-2024.md#write-pass-order-rfc)
 
-- **Prioriy**: High
+- **Priority**: High
 - **Status**: [rfcs#7](https://github.com/linebender/rfcs/pull/7) is in draft, and several important parts of the RFC have been completed.
 
 ### Rewrite documentation [(original)](@/blog/2024-06-17-roadmap-may-2024.md#rewrite-documentation)
