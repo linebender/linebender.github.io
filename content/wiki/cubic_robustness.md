@@ -9,7 +9,7 @@ This page will discuss techniques for detecting and mitigating these robustness 
 
 ## Three cases
 
-It's useful to consider three different cases, as they have different consequences for mitigation. Roughly in order from easiest to hardest, they are coincident control points, simple cusp, and colinear.
+It's useful to consider three different cases, as they have different consequences for mitigation. Roughly in order from easiest to hardest, they are coincident control points, simple cusp, and collinear.
 
 ### Coincident control points
 
@@ -35,17 +35,17 @@ A reasonable mitigation is to displace the control points along the tangent line
 ![Illustration of cubic Bézier with simple cusp](/cubic_robust_simple.svg)
 
 
-### Colinear
+### Collinear
 
-Like the previous two cases, the colinear case is characterized by a (nearly) vanishing derivative, but is different in a number of important respects. Detection is reasonably straightforward, as the control points are close to colinear (which can be evaluated numerically as very small cross products relative to the magnitude of dot products).
+Like the previous two cases, the collinear case is characterized by a (nearly) vanishing derivative, but is different in a number of important respects. Detection is reasonably straightforward, as the control points are close to collinear (which can be evaluated numerically as very small cross products relative to the magnitude of dot products).
 
-From a classification perspective, the colinear case can either an S-shaped or loop curve, subject to an extreme nonuniform scale, squashing the gentle curve into a nearly flattened form, with high curvature. Unlike the simple cusp case, there are generally two cusps.
+From a classification perspective, the collinear case can either an S-shaped or loop curve, subject to an extreme nonuniform scale, squashing the gentle curve into a nearly flattened form, with high curvature. Unlike the simple cusp case, there are generally two cusps.
 
 A few more observations. The line is not necessarily (nearly) parallel with the chord, as the chord may be very short.
 
 Mitigating this case may require a different approach than for the other cusp cases. Moving the control points along the tangent (preserving G1 continuity) may not resolve the cusp. For stroking, it is possibly best to divide the cubic at the (near) cusps and stroke each as a line, using round end caps.
 
-![Vector image](/cubic_robust_colinear.svg)
+![Vector image](/cubic_robust_collinear.svg)
 
 ## Bézier classification
 
