@@ -13,4 +13,4 @@ The steps you need to get building the website locally are:
 
 # Deployment
 
-This website is automatically deployed every time a PR is merged using Github actions.
+This website is automatically deployed every time a PR is merged using GitHub Actions.

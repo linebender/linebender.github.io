@@ -53,7 +53,7 @@ Vello is our GPU vector renderer.
 - [Vello 0.2.1](https://github.com/linebender/vello/releases/tag/v0.2.1) has been released.
   This patch version resolves a longstanding crash around empty scenes.
 - [vello#643][], [vello#647][] switch to Git LFS for storing snapshot test files.
-  Git LFS is an open-source Git extension supported by Github, that lets users commit large files to a repository without permanently bloating it.
+  Git LFS is an open-source Git extension supported by GitHub, that lets users commit large files to a repository without permanently bloating it.
   Using it has trade-offs around bandwidth usage in CI, but otherwise matches our use-case perfectly.
 
 <figure>
