@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v3.0.0
+        uses: actions/checkout@v4
       - name: build_and_deploy
         # Also update in README.md and ./main.yml
-        uses: shalzz/zola-deploy-action@v0.19.2
+        uses: shalzz/zola-deploy-action@v0.20.0
         env:
           BUILD_ONLY: true
