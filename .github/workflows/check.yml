@@ -17,3 +17,12 @@ jobs:
         uses: shalzz/zola-deploy-action@v0.20.0
         env:
           BUILD_ONLY: true
+
+  # If this fails, consider changing your text or adding something to .typos.toml.
+  typos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: check typos
+        uses: crate-ci/typos@v1.30.1
