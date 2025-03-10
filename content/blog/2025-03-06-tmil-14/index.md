@@ -22,7 +22,7 @@ It provides a non-opinionated retained widget tree, designed as a base layer for
 
 There is some important work upcoming:
 
-- [xilem#873][]: Olivier started to develop their "arbitrary properties" feature, which is intended for styling.
+- [xilem#873][]: Olivier started to develop his "arbitrary properties" feature, which is intended for styling.
 - [xilem#875][]: Adds an image widget containing arbitrary vector graphics content, by Richard Dodd.
 
 As Parley has now been released to crates.io (discussed later in this update), we're hoping to release a new alpha of Xilem and Masonry to crates.io in March.
@@ -32,19 +32,38 @@ As Parley has now been released to crates.io (discussed later in this update), w
 Vello is our GPU vector renderer.
 It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.
 
-<!-- TODO: ... -->
+- [vello#803][]: Removed the `render_to_surface` API, as `wgpu`'s new [`TextureBlitter`][] utility makes it unnecessary.
+- [vello#832][] (in review): Jared Moulton added support for font embolden to our text handling.
+
+As mentioned last month, we have started to develop a version of Vello which works on downlevel GPUs without strong support for compute shaders.
+<!-- We can now announce that this will be developed as a collaboration with ... .
+... thinks that this project can ... -->
+
+In February, Raph opened [vello#818][], which provided the first implementation of this hybrid pipeline.
+We are planning to refactor this to share most of its code with an ongoing CPU-only implementation<!-- , which is being developed by Laurenz Stampfl for [his/her/their] ... . -->.
+To that aim, we have landed [vello#826][], which provided the repository-layout scaffolding, in the `sparse_strips` folder.
+This is just a stub, but we are planning on filling these crates out imminently, allowing collaborative work on both pipelines (hybrid and CPU-only).
+You can follow the progress in [#gpu > Vello Hybrid](https://xi.zulipchat.com/#narrow/channel/197075-gpu/topic/Vello.20Hybrid) and other threads in [#gpu](https://xi.zulipchat.com/#narrow/channel/197075-gpu).
 
 ## Parley
 
 Parley is a text layout library.
 It handles text layout, mostly at the level of line breaking and resolving glyph positions.
 
-We released [Parley 0.3][] and [Fontique 0.3][] to crates.io.
-These contain many of the features we have discussed over the previous months, including <!-- TODO -->.
+We released [Parley and Fontique 0.3.0][] to crates.io.
+These contain many of the features we have discussed over the previous months, including significant improvements to `PlainEditor`.
+
+<!-- TODO: If we want to say anything more here, someone else will have to do it. -->
 
 ## Resvg
 
-<!-- TODO: Talk about resvg 0.45 release -->
+We released [Resvg 0.45.0][] in February.
+This is the first release under the stewardship of Linebender.
+We'd like to reiterate our many thanks to Yevhenii Reizner for the years of hard work that he has poured into this and other crates.
+The largest change in this release is the relicense to dual Apache-2.0 MIT.
+It also includes support for the `!important` CSS flag.
+
+<!-- TODO: If we want to say anything more here, someone else will have to do it. -->
 
 ## Kurbo
 
@@ -68,15 +87,14 @@ We released [Velato 0.5.0][], bringing compatibility with Vello 0.4.0.
 ## Kompari
 
 [Kompari][] is a tool for visual inspection of snapshot tests.
-
-<!-- TODO -->
+[parley#272][] (in review) begins the exciting process of integrating Kompari into our existing projects.
 
 ## Research and Future Directions
 
 Linebender has an origin story in being a very research oriented group, looking to break new ground.
 While we are focused on shipping code today, we still have an eye on the future and how to be prepared for the new opportunities and technologies that are coming.
 
-<!-- TODO -->
+<!-- TODO? -->
 
 ## Get Involved
 
