@@ -42,4 +42,3 @@ use_field_init_shorthand = true
 In Markdown files, every paragraph should have one line per sentence.
 This makes git diff easier to read.
 [[1]](https://nick.groenen.me/notes/one-sentence-per-line/) [[2]](https://sive.rs/1s)
-
