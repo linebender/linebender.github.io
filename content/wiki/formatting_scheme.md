@@ -31,8 +31,6 @@ newline_style = "Unix"
 # `Foobar { foo, bar }` is more readable than `Foo { foo: foo, bar: bar }`
 use_field_init_shorthand = true
 
-# Forces let else blocks to always be their own line(s)
-single_line_let_else_max_width = 0
 # Commented out because it is still unstable, but works fine in practice.
 # imports_granularity = "Module"
 
