@@ -44,11 +44,11 @@ single_line_let_else_max_width = 0
 You may also want to occasionnally use this unstable config:
 
 ```toml
-# Groups imports into three big chunks: imports from core/alloc/std, from dependencies, and from the current crate.
+# Groups imports in a predictable way: first core/alloc/std, then other crates, then the current crate.
 group_imports = "StdExternalCrate"
 ```
 
-We don't recommend it as a permanent config value even for nightly projects, because it sometimes reorders imports you don't want reordered.
+We don't recommend it as a permanent config value even for nightly projects, because the way it reorders items [isn't always ideal](https://github.com/linebender/linebender.github.io/issues/87).
 
 ## Markdown
 
