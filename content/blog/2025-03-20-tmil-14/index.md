@@ -41,7 +41,7 @@ There has been a lot of interest from the community, and we are now moving forwa
 We are very excited that Alex Gemberg and Taj Pereira, two engineers from Canva, are joining the collaboration on this renderer.
 
 In February, Raph opened [vello#818][], which provided the first implementation of this hybrid pipeline.
-We are planning to refactor this to share most of its code with an ongoing CPU-only implementation, which is being developed by Laurenz Stampfl as his Masters project.
+We are planning to refactor this to share most of its code with an ongoing CPU-only implementation, which we expect to be extremely competitive in performance.
 To that aim, we have landed [vello#826][], which provided the repository-layout scaffolding, in the `sparse_strips` folder.
 This initial PR is just a stub, but we are planning on filling these crates out imminently, allowing collaborative work on both pipelines (hybrid and CPU-only).
 You can follow the progress in [#gpu > Vello Hybrid](https://xi.zulipchat.com/#narrow/channel/197075-gpu/topic/Vello.20Hybrid) and other threads in [#gpu](https://xi.zulipchat.com/#narrow/channel/197075-gpu).
@@ -54,8 +54,6 @@ It handles text layout, mostly at the level of line breaking and resolving glyph
 We released [Parley and Fontique 0.3.0][] to crates.io.
 These contain many of the features we have discussed over the previous months, including significant improvements to `PlainEditor`.
 
-<!-- TODO: If we want to say anything more here, someone else will have to do it. -->
-
 ## Resvg
 
 We released [Resvg 0.45.0][] in February.
@@ -63,8 +61,6 @@ This is the first release under the stewardship of Linebender.
 We'd like to reiterate our many thanks to Yevhenii Reizner for the years of hard work that he has poured into this and other crates.
 The largest change in this release is the relicense to dual Apache-2.0 MIT.
 It also includes support for the `!important` CSS flag.
-
-<!-- TODO: If we want to say anything more here, someone else will have to do it. -->
 
 ## Kurbo
 
@@ -113,3 +109,30 @@ We've also started a separate office hours time dedicated to the renderer collab
 
 [Color]: https://docs.rs/color/
 [CSS Color Module Level 4]: https://www.w3.org/TR/css-color-4/
+
+[color#137]: https://github.com/linebender/color/pull/137
+[color#139]: https://github.com/linebender/color/pull/139
+
+[kurbo#412]: https://github.com/linebender/kurbo/pull/412
+[kurbo#413]: https://github.com/linebender/kurbo/pull/413
+
+[parley#272]: https://github.com/linebender/parley/pull/272
+
+[vello#803]: https://github.com/linebender/vello/pull/803
+[vello#818]: https://github.com/linebender/vello/pull/818
+[vello#826]: https://github.com/linebender/vello/pull/826
+[vello#832]: https://github.com/linebender/vello/pull/832
+
+[xilem#861]: https://github.com/linebender/xilem/pull/861
+[xilem#872]: https://github.com/linebender/xilem/pull/872
+[xilem#873]: https://github.com/linebender/xilem/pull/873
+[xilem#875]: https://github.com/linebender/xilem/pull/875
+
+[Resvg 0.45.0]: https://github.com/linebender/resvg/releases/tag/0.45.0
+[Parley and Fontique 0.3.0]: https://github.com/linebender/parley/releases/tag/v0.3.0
+[Velato 0.5.0]: https://github.com/linebender/velato/releases/tag/v0.5.0
+
+[Kompari]: https://github.com/linebender/kompari
+[TextureBlitter]: https://docs.rs/wgpu/latest/wgpu/util/struct.TextureBlitter.html
+
+[@nils-mathieu]: https://github.com/nils-mathieu
