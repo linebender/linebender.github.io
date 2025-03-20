@@ -1,6 +1,6 @@
 +++
 title = "Linebender in February 2025"
-authors = ["Daniel McNab"]
+authors = ["Daniel McNab", "Raph Levien"]
 +++
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
@@ -35,14 +35,15 @@ It can draw large 2D scenes with high performance, using GPU compute shaders for
 - [vello#803][]: Removed the `render_to_surface` API, as `wgpu`'s new [`TextureBlitter`][] utility makes it unnecessary.
 - [vello#832][] (in review): Jared Moulton added support for font embolden to our text handling.
 
-As mentioned last month, we have started to develop a version of Vello which works on downlevel GPUs without strong support for compute shaders.
-<!-- We can now announce that this will be developed as a collaboration with ... .
-... thinks that this project can ... -->
+Last month we mentioned a research exploration into a CPU/GPU hybrid 2D rendering mode.
+This hybrid mode works well on downlevel GPUs without strong support for compute shaders, and is also more memory efficient.
+There has been a lot of interest from the community, and we are now moving forward with building out this rendering mode in Vello.
+We are very excited that Alex Gemberg and Taj Pereira, two engineers from Canva, are joining the collaboration on this renderer.
 
 In February, Raph opened [vello#818][], which provided the first implementation of this hybrid pipeline.
-We are planning to refactor this to share most of its code with an ongoing CPU-only implementation<!-- , which is being developed by Laurenz Stampfl for [his/her/their] ... . -->.
+We are planning to refactor this to share most of its code with an ongoing CPU-only implementation, which is being developed by Laurenz Stampfl as his Masters project.
 To that aim, we have landed [vello#826][], which provided the repository-layout scaffolding, in the `sparse_strips` folder.
-This is just a stub, but we are planning on filling these crates out imminently, allowing collaborative work on both pipelines (hybrid and CPU-only).
+This initial PR is just a stub, but we are planning on filling these crates out imminently, allowing collaborative work on both pipelines (hybrid and CPU-only).
 You can follow the progress in [#gpu > Vello Hybrid](https://xi.zulipchat.com/#narrow/channel/197075-gpu/topic/Vello.20Hybrid) and other threads in [#gpu](https://xi.zulipchat.com/#narrow/channel/197075-gpu).
 
 ## Parley
@@ -94,7 +95,8 @@ We released [Velato 0.5.0][], bringing compatibility with Vello 0.4.0.
 Linebender has an origin story in being a very research oriented group, looking to break new ground.
 While we are focused on shipping code today, we still have an eye on the future and how to be prepared for the new opportunities and technologies that are coming.
 
-<!-- TODO? -->
+While we didn't publish much in the way of artifacts in February, there was quite a bit of experimentation with computational geometry ideas related to [#kurbo > Two-point shape control](https://xi.zulipchat.com/#narrow/channel/260979-kurbo/topic/Two.20point.20shape.20control), a technique that holds promise for faster and more accurate stroke expansion of cubic Béziers.
+Stay tuned for more updates.
 
 ## Get Involved
 
@@ -103,7 +105,7 @@ This can include improving the documentation, implementing new features, improvi
 
 We host an hour long office hours meeting each week where we discuss what's going on in our projects.
 See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-office-hours) for details.
-<!-- TODO: Mention renderer office hours? -->
+We've also started a separate office hours time dedicated to the renderer collaboration, details also available at that link.
 
 * Daniel and Olivier's "office hours" appointments can still be booked by anyone for open-ended discussion of the ecosystem.
   * [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
