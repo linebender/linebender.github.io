@@ -44,7 +44,7 @@ In February, Raph opened [vello#818][], which provided the first implementation 
 We are planning to refactor this to share most of its code with an ongoing CPU-only implementation, which we expect to be extremely competitive in performance.
 To that aim, we have landed [vello#826][], which provided the repository-layout scaffolding, in the `sparse_strips` folder.
 This initial PR is just a stub, but we are planning on filling these crates out imminently, allowing collaborative work on both pipelines (hybrid and CPU-only).
-You can follow the progress in [#gpu > Vello Hybrid](https://xi.zulipchat.com/#narrow/channel/197075-gpu/topic/Vello.20Hybrid) and other threads in [#gpu](https://xi.zulipchat.com/#narrow/channel/197075-gpu).
+You can follow the progress in [#vello > Vello Hybrid](https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/Vello.20Hybrid) and other threads in [#vello](https://xi.zulipchat.com/#narrow/channel/197075-vello).
 
 ## Parley
 
