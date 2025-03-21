@@ -133,6 +133,6 @@ We've also started a separate office hours time dedicated to the renderer collab
 [Velato 0.5.0]: https://github.com/linebender/velato/releases/tag/v0.5.0
 
 [Kompari]: https://github.com/linebender/kompari
-[TextureBlitter]: https://docs.rs/wgpu/latest/wgpu/util/struct.TextureBlitter.html
+[`TextureBlitter`]: https://docs.rs/wgpu/latest/wgpu/util/struct.TextureBlitter.html
 
 [@nils-mathieu]: https://github.com/nils-mathieu
