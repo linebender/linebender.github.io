@@ -1,10 +1,10 @@
 +++
-title = "Post-July Linebender roadmap"
+title = "Post-July-2024 Linebender roadmap"
 +++
 
-Unstructured notes from the RustNL roadmap brainstorming that were left out of the May-July roadmap blog post.
+These are unstructured notes from the brainstorming session we had during RustNL 2024, which were left out of the [May-July-2024 roadmap blog post](https://linebender.org/blog/roadmap-may-2024/).
 
-This may become a living document, eg a long-term roadmap for the project. For now it's the post-July roadmap.
+They're likely to become increasingly stale over time, but we keep them for archiving purposes.
 
 ## Vello
 
