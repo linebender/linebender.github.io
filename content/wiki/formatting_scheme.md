@@ -41,7 +41,7 @@ single_line_let_else_max_width = 0
 # END LINEBENDER RUSTFMT CONFIG
 ```
 
-You may also want to occasionnally use this unstable config:
+You may also want to occasionally use this unstable config:
 
 ```toml
 # Groups imports in a predictable way: first core/alloc/std, then other crates, then the current crate.
