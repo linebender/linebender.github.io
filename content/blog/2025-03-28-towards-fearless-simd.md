@@ -28,8 +28,10 @@ For highest performance, it's necessary to compile multiple versions of the code
 This problem was expressed in the original fearless SIMD blog post, and there hasn't been significant advance at the Rust language level since then.
 
 One possible approach is a crate called [multiversion], which uses macros to replicate the code for multiple versions.
+A more recent macro-based approach is [rust-target-feature-dispatch].
+It is generally a similar approach to multiversion, and the specific differences are set out in that crate's [README](https://github.com/a4lg/rust-target-feature-dispatch/blob/main/src/README.md).
 
-Another approach, as I believe first advocated in that blog post, is to write functions polymorphic on a zero-sized type representing the SIMD capabilities, then rely on monomorphization to create the various versions.
+Another approach, as I believe first advocated in my 2018 blog post, is to write functions polymorphic on a zero-sized type representing the SIMD capabilities, then rely on monomorphization to create the various versions.
 One motivation for this approach is to encode safety in Rust's type system.
 Having the zero-sized token is proof of the underlying CPU having a certain level of SIMD capability, so calling those intrinsics is safe.
 A major library that uses this approach is [pulp], which also powers the [faer] linear algebra library.
@@ -90,7 +92,7 @@ A proposal to relax that so that functions already under a target_feature gate c
 Closely related, once inside the suitable target_feature gate, the majority of SIMD intrinsics (broadly, those that don't do memory access through pointers) should be considered safe by the compiler, and that feature (safe intrinsics in core::arch) is also in flight.
 
 There's more that can be done to help the Rust compiler recognize when SIMD use is safe, in particular to allow target_features when a concrete witness to the SIMD level is passed in as a function argument.
-The "struct target_features" proposal ([RFC 3525]) enables target_feature in such cases, and is one of the proposals considerd in the proposed Rust project goal [Nightly support for ergonomic SIMD multiversioning].
+The "struct target_features" proposal ([RFC 3525]) enables target_feature in such cases, and is one of the proposals considered in the proposed Rust project goal [Nightly support for ergonomic SIMD multiversioning].
 
 In general, improving Rust SIMD support will require both libraries and support in the Rust language.
 Different approaches at the library level may indicate different language features to best support them.
@@ -119,3 +121,4 @@ For now, I think it's time to carefully consider the design space and try to com
 [rust#125440]: https://github.com/rust-lang/rust/issues/125440
 [std::simd]: https://doc.rust-lang.org/std/simd/index.html
 [Stack Overflow thread on throttling]: https://stackoverflow.com/questions/56852812/simd-instructions-lowering-cpu-frequency#comment100256395_56852812
+[rust-target-feature-dispatch]: https://github.com/a4lg/rust-target-feature-dispatch
