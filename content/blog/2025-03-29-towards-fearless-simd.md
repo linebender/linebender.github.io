@@ -13,7 +13,7 @@ Up to now, Linebender projects have not used SIMD, but that is changing.
 As we work on CPU/GPU hybrid rendering techniques, it's clear that we need SIMD to get maximal performance of the CPU side.
 We also see opportunities in faster color conversion and accelerated 2D geometry primitives.
 
-This blog post is also a companion to a [podcast] I recorded recently with Andre Popovitch.
+This blog post is also a companion to a [podcast] I recorded recently with André Popovitch.
 That podcast is a good introduction to SIMD concepts, while this blog post focuses more on future directions.
 
 ## A simple example
@@ -79,6 +79,13 @@ But when distributing software more widely, there may be a range of capabilities
 For highest performance, it's necessary to compile multiple versions of the code, and do runtime detection to dispatch to the best SIMD code the hardware can run.
 This problem was expressed in the original fearless SIMD blog post, and there hasn't been significant advance at the Rust language level since then.
 
+In the C++ world, the [Highway] library provides excellent SIMD support for a very wide range of targets, and also solves the multiversioning problem.
+Among other uses are the codecs for the JPEG-XL image format.
+Such codecs are an ideal use case for SIMD programming in general, and shipping them in a browser requires a good solution to multiversioning.
+Highway has a really good explanation of [their approach to multiversioning][The Multi-SIMD-ISA Dilemma].
+It will be useful to study it carefully to see how they've solved various problems.
+And a concise way of saying what I'd like to see is "Highway for Rust."
+
 One possible approach is a crate called [multiversion], which uses macros to replicate the code for multiple versions.
 A more recent macro-based approach is [rust-target-feature-dispatch].
 It is generally a similar approach to multiversion, and the specific differences are set out in that crate's [README](https://github.com/a4lg/rust-target-feature-dispatch/blob/main/src/README.md).
@@ -87,6 +94,11 @@ Another approach, as I believe first advocated in my 2018 blog post, is to write
 One motivation for this approach is to encode safety in Rust's type system.
 Having the zero-sized token is proof of the underlying CPU having a certain level of SIMD capability, so calling those intrinsics is safe.
 A major library that uses this approach is [pulp], which also powers the [faer] linear algebra library.
+
+I started putting together a pulp version of the running example, but ran into the immediate problem that it lacks a `sqrt` intrinsic (this would be easy enough to add, however).
+It also works a bit differently, in that it only supports vectors of the natural width, not ones of a fixed width.
+For general linear algebra, that's fine, but for some other applications it adds friction, for example colors with alpha are naturally chunks of 4 scalars.
+To see an example of pulp code, as well as some discussion, see this [Zulip thread](https://xi.zulipchat.com/#narrow/channel/255911-rust/topic/Rust.20SIMD.20thoughts/near/489370476).
 
 In [fearless_simd#2] I propose a prototype of reasonably-ergonomic SIMD multiversioning.
 Like the original fearless_simd prototype, vector data types are polymorphic on SIMD level.
@@ -111,12 +123,10 @@ Though there are clear advantages, at this point I'm not sure whether this is th
 It would be a lot of work to build out all the needed types and operations, with potentially a large amount of repetitive boilerplate code in the library, which in turn may cause issues with compile time.
 Another possible direction is a smarter, compiler-like proc macro which synthesizes the SIMD intrinsics as needed based on the types and operations in the source program.
 
-In the C++ world, the [Highway] library provides excellent SIMD support for a very wide range of targets, and also solves the multiversioning problem.
-Among other uses are the codecs for the JPEG-XL image format.
-Such codecs are an ideal use case for SIMD programming in general, and shipping them in a browser requires a good solution to multiversioning.
-Highway has a really good explanation of [their approach to multiversioning][The Multi-SIMD-ISA Dilemma].
-It will be useful to study it carefully to see how they've solved various problems.
-And a concise way of saying what I'd like to see is "Highway for Rust."
+One additional consideration for Rust is that the implementation of runtime feature detection is [slower than it should be][slow feature detection].
+Thus, feature detection and dispatch shouldn't be done at every function call.
+A good working solution is to do feature detection once, at the start of the program, then pass that token down through function calls.
+It's workable but definitely an ergonomic paper cut.
 
 ## FP16 and AVX-512
 
@@ -186,6 +196,7 @@ For now, I think it's time to carefully consider the design space and try to com
 [Nightly support for ergonomic SIMD multiversioning]: https://rust-lang.github.io/rust-project-goals/2025h1/simd-multiversioning.html
 [Highway]: https://github.com/google/highway
 [The Multi-SIMD-ISA Dilemma]: https://github.com/kfjahnke/zimt/blob/multi_isa/examples/multi_isa_example/multi_simd_isa.md
+[slow feature detection]: https://internals.rust-lang.org/t/better-codegen-for-cpu-feature-detection/22083
 [target_feature 1.1]: https://rust-lang.github.io/rfcs/2396-target-feature-1.1.html
 [safe intrinsics in core::arch]: https://github.com/rust-lang/libs-team/issues/494
 [RFC 3525]: https://github.com/rust-lang/rfcs/pull/3525
@@ -198,5 +209,4 @@ For now, I think it's time to carefully consider the design space and try to com
 [sigmoid]: https://raphlinus.github.io/audio/2018/09/05/sigmoid.html
 <!-- TODO: not sure if this is the best link, we don't really have a project page for this -->
 [Vello hybrid CPU/GPU renderer]: https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/Potato.20-.20a.20paper.20design.20for.20a.20CPU.2FGPU.20hybrid.20renderer
-<!-- TODO: might need to update the URL -->
-[podcast]: https://youtu.be/Ehxxxehh7PE
+[podcast]: https://www.youtube.com/watch?v=y0WcCUKxk50
