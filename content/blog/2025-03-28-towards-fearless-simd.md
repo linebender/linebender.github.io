@@ -13,11 +13,63 @@ Up to now, Linebender projects have not used SIMD, but that is changing.
 As we work on CPU/GPU hybrid rendering techniques, it's clear that we need SIMD to get maximal performance of the CPU side.
 We also see opportunities in faster color conversion and accelerated 2D geometry primitives.
 
+This blog post is also a companion to a [podcast] I recorded recently with Andre Popovitch.
+That podcast is a good introduction to SIMD concepts, while this blog post focuses more on future directions.
+
+## A simple example
+
+As a running example, we'll compute a [sigmoid] function for a vector of 4 values.
+The scalar version is as follows:
+
+```rust
+fn sigmoid(x: [f32; 4]) -> [f32; 4] {
+    x.map(|y| y / (1.0 + y * y).sqrt())
+}
+```
+
+I don't see any reason why this shouldn't autovectorize, but according to [Godbolt](https://rust.godbolt.org/z/GoTEK3KT3) it's poorly optimized scalar code.
+
 ## Safety
 
 One of the biggest problems with writing SIMD in Rust is that all exposed SIMD intrinsics are marked as `unsafe`, even in cases where they can be used safely.
 The reason is that support for SIMD features varies widely, and executing a SIMD instruction on a CPU that does not support it is undefined behavior – the chip can crash, ignore the instruction, or do something unexpected.
 To be used safely, there must be some other mechanism to establish that the CPU does support the feature.
+
+Here's the running example in hand-written intrinsic code, showing the need to write `unsafe` to access SIMD intrinsics at all:
+
+```rust
+#[cfg(target_arch = "aarch64")]
+fn sigmoid_neon(x: [f32; 4]) -> [f32; 4] {
+    use core::arch::aarch64::*;
+    unsafe {
+        let x_simd = core::mem::transmute(x);
+        let x_squared = vmulq_f32(x_simd, x_simd);
+        let ones = vdupq_n_f32(1.0);
+        let sum = vaddq_f32(ones, x_squared);
+        let sqrt = vsqrtq_f32(sum);
+        let ratio = vdivq_f32(x_simd, sqrt);
+        core::mem::transmute(ratio)
+    }
+}
+
+#[cfg(target_arch = "x86_64")]
+fn sigmoid_sse2(x: [f32; 4]) -> [f32; 4] {
+    use core::arch::x86_64::*;
+    unsafe {
+        let x_simd = core::mem::transmute(x);
+        let x_squared = _mm_mul_ps(x_simd, x_simd);
+        let ones = _mm_set1_ps(1.0);
+        let sum = _mm_add_ps(ones, x_squared);
+        let sqrt = _mm_sqrt_ps(sum);
+        let ratio = _mm_div_ps(x_simd, sqrt);
+        core::mem::transmute(ratio)
+    }
+}
+```
+
+This is quite a simplified example.
+For one, the SIMD width is fixed at 4 lanes (128 bits).
+Most likely, in practice you'd iterate over a larger slice, taking chunks equal to the natural SIMD width.
 
 ## Multiversioning
 
@@ -41,16 +93,35 @@ Like the original fearless_simd prototype, vector data types are polymorphic on 
 The new prototype goes beyond that in several important ways.
 For one, arithmetic traits in std::ops are implemented for vector types, so it's possible to add two vectors together, multiply vectors by scalars, etc.
 
+Here's what the running example looks like in that prototype:
+
+```rust
+#[inline(always)]
+fn sigmoid_impl<S: Simd>(simd: S, x: [f32; 4]) -> [f32; 4] {
+    let x_simd: f32x4<S> = x.simd_into(simd);
+    (x_simd / (1.0 + x_simd * x_simd).sqrt()).into()
+}
+
+simd_dispatch!(sigmoid(level, rgba: [f32; 4]) -> [f32; 4] = sigmoid_impl);
+```
+
+An advantage of the fearless_simd#2 prototype over pulp is a feature for downcasting based on SIMD level, so it's possible to write different code optimized for different chips.
+See the [srgb example] in that pull request for more detail.
+Though there are clear advantages, at this point I'm not sure whether this is the direction to go.
+It would be a lot of work to build out all the needed types and operations, with potentially a large amount of repetitive boilerplate code in the library, which in turn may cause issues with compile time.
+Another possible direction is a smarter, compiler-like proc macro which synthesizes the SIMD intrinsics as needed based on the types and operations in the source program.
+
 In the C++ world, the [Highway] library provides excellent SIMD support for a very wide range of targets, and also solves the multiversioning problem.
 Among other uses are the codecs for the JPEG-XL image format.
 Such codecs are an ideal use case for SIMD programming in general, and shipping them in a browser requires a good solution to multiversioning.
+Highway has a really good explanation of [their approach to multiversioning][The Multi-SIMD-ISA Dilemma].
 It will be useful to study it carefully to see how they've solved various problems.
 And a concise way of saying what I'd like to see is "Highway for Rust."
 
 ## FP16 and AVX-512
 
 A general trend in parallel computation, really fueled by AI workloads, is smaller scalars with higher throughputs.
-While not yet common on Intel, the FP16 extension is supported on all Apple Silicon desktop CPUs and most recent high-ish end ARM-based phones.
+While not yet common on x86_64, the FP16 extension is supported on all Apple Silicon desktop CPUs and most recent high-ish end ARM-based phones.
 Since Neon is only 128 bits wide, having 8 lanes is welcome.
 I find the f16 format to be especially useful for pixel values, as it can encode color values with more than enough precision to avoid visual artifacts (8 bits is not quite enough, though it is good enough for some applications, as long as you're not trying to do HDR).
 
@@ -61,7 +132,7 @@ When true f16 support lands, it will be possible to switch over to intrinsics, w
 AVX-512 is a somewhat controversial SIMD capability.
 It first appeared in the ill-fated Larrabee project, which shipped in limited numbers as the Xeon Phi starting in 2010, and has since appeared in scattered Intel CPUs, but with compromises.
 In particular, sprinkling even a small amount of AVX-512 code into a program could result in downclocking, reducing performance for all workloads (see [Stack Overflow thread on throttling] for more details).
-These days, the most likely way to get a CPU with AVX-512 is an AMD Zen 4 or Zen 5; it is on their strength that AVX-512 makes up about 14% of computers in the Steam hardware survey.
+These days, the most likely way to get a CPU with AVX-512 is an AMD Zen 4 or Zen 5; it is on their strength that AVX-512 makes up about 16% of computers in the Steam hardware survey.
 
 The increased width is not the main reason to be enthusiastic about AVX-512.
 Indeed, on Zen 4 and most Zen 5 chips, the datapath is 256 bits so full 512 bit instructions are "double pumped." The most exciting aspect is predication based on masks, a common implementation technique on GPUs.
@@ -70,7 +141,7 @@ Without predication, a common technique is to write two loops, the first handlin
 There are lots of problems with this - code bloat, worse branch prediction, inability to exploit SIMD for chunks slightly less than the natural SIMD width (which gets worse as SIMD grows wider), and risks that the two loops don't have exactly the same behavior.
 
 Going forward, Intel has proposed AVX10, and will hopefully ship AVX 10.2 chips in the next few years.
-This extension has pretty much all of the features of AVX-512, and can also be configured for 256-bit SIMD width, which is likely to be more power-efficient than full 512 bits (in particular, the register file has half the number of bits).
+This extension has pretty much all of the features of AVX-512, with some cleanups and new features (until recently, AVX10 was defined has having a 256 bit base width and optionally 512, but 512 is now the baseline).
 In addition, AVX10.2 will include 16-bit floats (currently available only in the Sapphire Rapids high-end server and workstation chips).
 
 ## About std::simd
@@ -102,7 +173,7 @@ Different approaches at the library level may indicate different language featur
 My main goal in putting these prototypes forward, as well as writing these blog posts, is to spark conversation on how best to support SIMD programming in Rust.
 If done well, it is a great opportunity for the language, and fits in with its focus on performance and portability.
 
-As we build out the Vello hybrid CPU/GPU renderer (TODO best link?), performance of the CPU components will rely heavily on SIMD, so we need to invest in writing a lot of SIMD code.
+As we build out the [Vello hybrid CPU/GPU renderer], performance of the CPU components will rely heavily on SIMD, so we need to invest in writing a lot of SIMD code.
 The most conservative approach would be hand-writing unsafe intrinsics-based code for all targets, but that's a lot of work and the use of unsafe is unappealing.
 I'd love for the Rust ecosystem can come together and build good infrastructure, competitive with Highway.
 For now, I think it's time to carefully consider the design space and try to come to consensus on what that should look like.
@@ -114,11 +185,18 @@ For now, I think it's time to carefully consider the design space and try to com
 [half]: https://docs.rs/half/latest/half/
 [Nightly support for ergonomic SIMD multiversioning]: https://rust-lang.github.io/rust-project-goals/2025h1/simd-multiversioning.html
 [Highway]: https://github.com/google/highway
+[The Multi-SIMD-ISA Dilemma]: https://github.com/kfjahnke/zimt/blob/multi_isa/examples/multi_isa_example/multi_simd_isa.md
 [target_feature 1.1]: https://rust-lang.github.io/rfcs/2396-target-feature-1.1.html
 [safe intrinsics in core::arch]: https://github.com/rust-lang/libs-team/issues/494
 [RFC 3525]: https://github.com/rust-lang/rfcs/pull/3525
 [fearless_simd#2]: https://github.com/raphlinus/fearless_simd/pull/2
+[srgb example]: https://github.com/raphlinus/fearless_simd/pull/2/files#diff-be8aece917a9235076ff8ec42749b1f1a803d2a3cbc2ccdd5425b405c74f7436
 [rust#125440]: https://github.com/rust-lang/rust/issues/125440
 [std::simd]: https://doc.rust-lang.org/std/simd/index.html
 [Stack Overflow thread on throttling]: https://stackoverflow.com/questions/56852812/simd-instructions-lowering-cpu-frequency#comment100256395_56852812
 [rust-target-feature-dispatch]: https://github.com/a4lg/rust-target-feature-dispatch
+[sigmoid]: https://raphlinus.github.io/audio/2018/09/05/sigmoid.html
+<!-- TODO: not sure if this is the best link, we don't really have a project page for this -->
+[Vello hybrid CPU/GPU renderer]: https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/Potato.20-.20a.20paper.20design.20for.20a.20CPU.2FGPU.20hybrid.20renderer
+<!-- TODO: might need to update the URL -->
+[podcast]: https://youtu.be/Ehxxxehh7PE
