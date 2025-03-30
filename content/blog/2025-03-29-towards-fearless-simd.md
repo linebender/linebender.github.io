@@ -27,7 +27,8 @@ fn sigmoid(x: [f32; 4]) -> [f32; 4] {
 }
 ```
 
-I don't see any reason why this shouldn't autovectorize, but according to [Godbolt](https://rust.godbolt.org/z/GoTEK3KT3) it's poorly optimized scalar code.
+This particular simple code autovectorizes nicely ([Godbolt link](https://rust.godbolt.org/z/TfThE5r33)), but more complex examples often fail to autovectorize, often because of subtle differences in floating point semantics.
+(Editorial note: a previous version of this post didn't autovectorize ([Godbolt](https://rust.godbolt.org/z/GoTEK3KT3)) because optimization level was set at `-O`, which is less aggressive than `-C opt-level=3`, the latter of which is the default for release builds)
 
 ## Safety
 
