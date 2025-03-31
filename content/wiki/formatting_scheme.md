@@ -24,18 +24,31 @@ For those files, the formatting produced by `rustfmt` is required.
 The following rustfmt config is recommended:
 
 ```toml
-# LINEBENDER RUSTFMT CONFIG - v1
+# LINEBENDER RUSTFMT CONFIG - v2
 # Ensure lines end with \n even if the git configuration core.autocrlf is not set to true
 newline_style = "Unix"
 
 # `Foobar { foo, bar }` is more readable than `Foo { foo: foo, bar: bar }`
 use_field_init_shorthand = true
 
+# Forces let else blocks to always be their own line(s).
+# Enforcing this helps readers scan all early returns of a function at a glance.
+single_line_let_else_max_width = 0
+
 # Commented out because it is still unstable, but works fine in practice.
 # imports_granularity = "Module"
 
 # END LINEBENDER RUSTFMT CONFIG
 ```
+
+You may also want to occasionally use this unstable config:
+
+```toml
+# Groups imports in a predictable way: first core/alloc/std, then other crates, then the current crate.
+group_imports = "StdExternalCrate"
+```
+
+We don't recommend it as a permanent config value even for nightly projects, because the way it reorders items [isn't always ideal](https://github.com/linebender/linebender.github.io/issues/87).
 
 ## Markdown
 
