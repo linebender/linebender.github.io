@@ -23,18 +23,18 @@ Development continues on the properties feature we mentioned last month:
 - [xilem#873][], implementing properties, was merged.
 - [xilem#892][]
 
-We have also made a major change to the internal design of Masonry, in [xilem#910][] and [xilem#914][], along with a few other PRs.
-This reduces change splits Masonry into two packages, `masonry_core` and `masonry`.
+We have also made a major change to the internal design of Masonry, in [xilem#910][] and [xilem#914][].
+This change splits Masonry into two packages, `masonry_core` and `masonry`.
 The Masonry crate provides a runner for Masonry core using Winit, and should be used for an integrated app development experience.
-Masonry Core contains the implementation of Masonry's widgets and passes, and is intended to be be embedded into existing apps using wgpu.
+Masonry Core contains the implementation of Masonry's widgets and passes, and is intended to be be embedded into existing apps which use wgpu.
 This should be transparent to existing Masonry users.
 
-We have also made significant progress outside of these highlighed areas:
+We have also made significant progress outside of these highlighted areas:
 
 - [xilem#882][] ... <!-- Screenshot? -->
 - [xilem#897][] ... (includes optimisation?)
 - [xilem#904][] ...
-- [xilem#899][] 
+- [xilem#899][]
 
 We hoped to release a new alpha of Xilem and Masonry to crates.io in March.
 However, this was put on hold whilst the Properties experiment continues.
@@ -85,6 +85,14 @@ It closely follows the [CSS Color Module Level 4][] draft spec.
 
 Linebender has an origin story in being a very research oriented group, looking to break new ground.
 While we are focused on shipping code today, we still have an eye on the future and how to be prepared for the new opportunities and technologies that are coming.
+
+## Rustweek
+
+Many members of the Linebender community will be attending the [Rustweek 2025](https://rustweek.org/) conference, in Utrecht in May.
+At the time of writing, there are still tickets available.
+Raph will be giving a talk, titled [*Faster, easier 2D vector rendering*](https://rustweek.org/talks/raph/).
+This will be covering a lot of the sparse strips work discussed in [the Vello section](#vello).
+<!-- TODO: Write something here -->
 
 ## Get Involved
 
