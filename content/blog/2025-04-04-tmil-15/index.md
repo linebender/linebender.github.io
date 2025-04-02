@@ -30,6 +30,8 @@ However, this was put on hold whilst the Properties experiment we mentioned last
 - [xilem#873][]: Implements properties, which is additional data attached to each widget in a uniform way, intended to enable styling.
 - [xilem#892][]: Uses properties for styling the built-in `Button` widget.
 
+<!-- TODO: Screenshot of new capability from button styling. Deferred to Olivier. Non-blocking -->
+
 We have also made significant progress outside of these highlighted areas:
 
 - [xilem#897][]: Reduced the size of many of our screenshot tests, to better.
@@ -40,31 +42,47 @@ We have also made significant progress outside of these highlighted areas:
 
  <!-- TODO: Screenshot of virtual scrolling? -->
 
-<!-- TODO: Screenshot of new capability from button styling. Deferred to Olivier. Non-blocking -->
-
 ## Vello
 
 Vello is our GPU vector renderer.
 It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.
 
-Progress on the sparse strips renderer has been continuing at pace:
+- [vello#841][]: Fixed incorrect COLR Emoi rendering, which especially impacted users on Windows.
+  We backported this to create [Vello 0.4.1](https://github.com/linebender/vello/releases/tag/v0.4.1).
+- [vello#817][], [vello#877][]: Updates some of our GPU encoding code to not assume that allocators will give over-aligned allocations.
 
-<!-- TODO: Whittle down the most important changes -->
-<!-- - [xilem#879][]: TODO: Do we want to "announce" Android View yet? -->
+We have also renamed the #gpu channel on Zulip to [#vello](https://xi.zulipchat.com/#narrow/channel/197075-vello), which better reflects the purpose of the channel.
+Progress on the sparse strips renderer has also been continuing at pace:
+
+- [vello#827][]: Added some core API types.
+- [vello#828][]: Imported the implementation of sparse strip production, without rasterisation (Vello Common).
+- [vello#830][], [vello#832][]: Added on CPU rasterisation of sparse strips, with integration tests (Vello CPU).
+- [vello#834][]: Added a tool (Vello Toy) for visualising different stages of the new pipeline.
+- [vello#831][]: Added the fragment shader based GPU rasteriser for sparse strips (Vello Hybrid).
+- [vello#872][]: Enable running Vello Hybrid using WebGL2.
+- [vello#867][]: Benchmarking harness for Vello Common and Vello CPU.
 
 <!-- TODO: Screenshot of WebGL example, in e.g. Firefox on Linux? -->
 
-You can follow the progress in [#vello > Vello Hybrid](https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/Vello.20Hybrid) and other threads in [#vello](https://xi.zulipchat.com/#narrow/channel/197075-vello).
-<!-- We also are hosting weekly renderer office hours specifically aimed at developing this (? - do we want this) -->
+The current state of the sparse strip renderers is that they can reliably render scenes where all elements are a solid colour.
 <!-- TODO: Mention new mini roadmap? -->
+There are some PRs where you can track ongoing work:
 
-We have also renamed the #gpu channel in Zulip to #vello, to better reflect the realities of what is discussed there.
+- [vello#878][]: Add clipping to Vello CPU.
+- [vello#883][]: Implements text/glyph rendering.
+- [vello#879][]: Runs Vello Hybrid on Android. <!-- Is now the time to announce Android View? In what form? -->
+
+<!-- Maybe? Screenshot relevant for clipping? -->
+
+You can also follow the progress in [#vello > Vello Hybrid](https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/Vello.20Hybrid) and other threads in [#vello](https://xi.zulipchat.com/#narrow/channel/197075-vello).
+We also are hosting weekly renderer office hours specifically aimed at developing this collaboration.
+Information about how to join these, follow [#office hours](https://xi.zulipchat.com/#narrow/channel/359642-office-hours).
 
 ## Parley
 
 Parley is a text layout library.
 It handles text layout, mostly at the level of line breaking and resolving glyph positions.
-The biggest news in March was that an egui community member has opened [a PR][egui#TODO] to replace egui's bespoke text handling with Parley, with buy-in from egui's maintainer.
+The biggest news in March was that an egui community member has opened [a PR][egui#5784] to replace egui's bespoke text handling with Parley, with buy-in from egui's maintainer.
 The author of that change, valadaptive, has been doing extraordinarily good work improving Parley, to enable this work to continue.
 
 <!-- TODO: Classify the most important changes -->
@@ -112,3 +130,5 @@ We've also started a separate office hours time dedicated to the renderer collab
 [CSS Color Module Level 4]: https://www.w3.org/TR/css-color-4/
 
 [Kompari]: https://github.com/linebender/kompari
+
+[egui#5784]: https://github.com/emilk/egui/pull/5784
