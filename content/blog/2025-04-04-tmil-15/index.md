@@ -83,9 +83,16 @@ Information about how to join these, follow [#office hours](https://xi.zulipchat
 Parley is a text layout library.
 It handles text layout, mostly at the level of line breaking and resolving glyph positions.
 The biggest news in March was that an egui community member has opened [a PR][egui#5784] to replace egui's bespoke text handling with Parley, with buy-in from egui's maintainer.
-The author of that change, valadaptive, has been doing extraordinarily good work improving Parley, to enable this work to continue.
+The author of that change, valadaptive, has been doing fantastic work improving Parley, and has authored many of these changes.
 
-<!-- TODO: Classify the most important changes -->
+- [parley#306][]: Updated `register_fonts` to take a `Blob`, which allows more efficient memory usage.
+- [parley#312][]: Allows customising how registered fonts are matched, useful for implementing web fonts.
+- [parley#296][]: Makes selected newline characters visible.
+- [parley#316][], [parley#317][]: Provides greater access to the internals of `PlainEditor`.
+- [parley#318][]: `is_done` method on `BreakLines`, for detecting whether linebreaking is finished.
+- [parley#299][]: Fixed text editing for layouts containing inline boxes.
+
+<!-- TODO: Screenshot of egui using Parley? -->
 
 ## Kurbo
 
@@ -99,6 +106,10 @@ It closely follows the [CSS Color Module Level 4][] draft spec.
 ## Kompari
 
 [Kompari][] is a tool for visual inspection of snapshot tests.
+
+- [kompari#26][]: Added support for optimising screenshots using `oxipng`.
+- [kompari#27][]: Support detecting unoptimised screenshots (useful for CI).
+- [kompari#34][]: Added parallel processing of compute intensive tasks.
 
 ## Research and Future Directions
 
