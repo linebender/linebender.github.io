@@ -1,6 +1,6 @@
 +++
 title = "Linebender in March 2025"
-authors = ["Daniel McNab", "Bruce Mitchener"]
+authors = ["Daniel McNab", "Bruce Mitchener", "Raph Levien"]
 +++
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
@@ -30,7 +30,8 @@ We have also made significant progress outside of these highlighted areas:
 - [xilem#904][]: Implemented a new algorithm for screenshot testing, which better reflects the aspects of the screenshots we wish to test.
   It also implements automatic compression of blessed screenshots using the excellent [oxipng][] library.
 - [xilem#899][]: Added documentation for lots of items and methods which were missing documentation.
-- [xilem#882][]: Adds the core of a virtual scrolling widget, to be used with medium or large scroll areas.
+- [xilem#882][]: Adds the core of a virtual scrolling widget, a scroll area which loads its child widgets only when they would be visible to the user.
+  This allows it to be used for extremely large datasets.
 
 <figure>
 <img style="height: auto" src="virtual-scroll.png" alt="A screenshot of a desktop window, showing a list of numbers around 999900. Every number divisible by 3 has been replaced with the word 'Fizz', 'Buzz' for 5, and 'FizzBuzz' for numbers divisible by both. The 'FizzBuzz' which would be item 999900 is twice as large as the other items." width="458" height="509">
@@ -79,16 +80,15 @@ Paris-30k rendered using Vello's new hybrid renderer in Firefox on Linux, a brow
 </figure>
 
 The current state of the sparse strip renderers is that they can reliably render scenes where all elements are a solid colour.
+Laurenz Stampfl started their master's project working on the CPU-only renderer full-time at the end of March, working towards this roadmap and on a write-up.
 The planned ordering of next steps is laid out in [our loose roadmap](https://docs.google.com/document/d/1L0Ji44GiFMygK_6h6_TP0Id8ghTMxUirgrM_5nb5zyQ/edit?tab=t.0#heading=h.atiojofshbyp).
-There are some PRs where you can track ongoing work:
+You can also follow the progress in [#vello > Vello Hybrid](https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/Vello.20Hybrid) and other threads in [#vello](https://xi.zulipchat.com/#narrow/channel/197075-vello).
+Our weekly renderer office hours specifically aimed at furthering this collaboration are public - for more information about how to join these, follow [#office hours](https://xi.zulipchat.com/#narrow/channel/359642-office-hours).
+Work on the renderers is continuing at pace, most recently in these open PRs:
 
 - [vello#878][]: Add clipping to Vello CPU.
 - [vello#883][]: Implements text/glyph rendering.
 - [vello#879][]: Experimentally runs Vello Hybrid on Android, using the new Android View work, discussed [below](#research-and-future-directions).
-
-You can also follow the progress in [#vello > Vello Hybrid](https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/Vello.20Hybrid) and other threads in [#vello](https://xi.zulipchat.com/#narrow/channel/197075-vello).
-We also are hosting weekly renderer office hours specifically aimed at developing this collaboration.
-For information about how to join these, follow [#office hours](https://xi.zulipchat.com/#narrow/channel/359642-office-hours).
 
 ## Parley
 
@@ -150,6 +150,9 @@ Matt Campbell has started work on a new platform integration for Rust code in An
 This is designed to work around several issues from  the activities available when using Winit, which use either `NativeActivity` or `GameActivity`.
 Both of these do not integrate well with text input, and struggle to interoperate inside existing apps.
 This work is in an early stage, and is taking inspiration from several existing solutions to these problems, with a special focus on getting accessibility integration correct.
+
+We have also started work on a [Styled Text](https://github.com/linebender/styled_text) library, which is designed to allow sharing rich text functionality between Rust libraries.
+This is in the very early stages - if you're working on a project which can use this, then input on your requirements will be welcome.
 
 ## RustWeek
 
