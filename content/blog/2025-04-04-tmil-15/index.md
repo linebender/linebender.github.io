@@ -171,5 +171,42 @@ We've also started a separate office hours time dedicated to the renderer collab
 [CSS Color Module Level 4]: https://www.w3.org/TR/css-color-4/
 
 [Kompari]: https://github.com/linebender/kompari
+[oxipng]: https://github.com/shssoichiro/oxipng
 
+[color#144]: https://github.com/linebender/color/pull/144
 [egui#5784]: https://github.com/emilk/egui/pull/5784
+[kompari#26]: https://github.com/linebender/kompari/pull/26
+[kompari#27]: https://github.com/linebender/kompari/pull/27
+[kompari#34]: https://github.com/linebender/kompari/pull/34
+[kurbo#428]: https://github.com/linebender/kurbo/pull/428
+[kurbo#429]: https://github.com/linebender/kurbo/pull/429
+[parley#296]: https://github.com/linebender/parley/pull/296
+[parley#299]: https://github.com/linebender/parley/pull/299
+[parley#306]: https://github.com/linebender/parley/pull/306
+[parley#312]: https://github.com/linebender/parley/pull/312
+[parley#316]: https://github.com/linebender/parley/pull/316
+[parley#317]: https://github.com/linebender/parley/pull/317
+[parley#318]: https://github.com/linebender/parley/pull/318
+[vello#817]: https://github.com/linebender/vello/pull/817
+[vello#827]: https://github.com/linebender/vello/pull/827
+[vello#828]: https://github.com/linebender/vello/pull/828
+[vello#830]: https://github.com/linebender/vello/pull/830
+[vello#831]: https://github.com/linebender/vello/pull/831
+[vello#832]: https://github.com/linebender/vello/pull/832
+[vello#834]: https://github.com/linebender/vello/pull/834
+[vello#841]: https://github.com/linebender/vello/pull/841
+[vello#867]: https://github.com/linebender/vello/pull/867
+[vello#872]: https://github.com/linebender/vello/pull/872
+[vello#877]: https://github.com/linebender/vello/pull/877
+[vello#878]: https://github.com/linebender/vello/pull/878
+[vello#879]: https://github.com/linebender/vello/pull/879
+[vello#883]: https://github.com/linebender/vello/pull/883
+[xilem#873]: https://github.com/linebender/xilem/pull/873
+[xilem#882]: https://github.com/linebender/xilem/pull/882
+[xilem#887]: https://github.com/linebender/xilem/pull/887
+[xilem#892]: https://github.com/linebender/xilem/pull/892
+[xilem#897]: https://github.com/linebender/xilem/pull/897
+[xilem#899]: https://github.com/linebender/xilem/pull/899
+[xilem#904]: https://github.com/linebender/xilem/pull/904
+[xilem#910]: https://github.com/linebender/xilem/pull/910
+[xilem#914]: https://github.com/linebender/xilem/pull/914
