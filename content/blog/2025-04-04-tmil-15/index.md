@@ -92,7 +92,12 @@ The author of that change, valadaptive, has been doing fantastic work improving 
 - [parley#318][]: `is_done` method on `BreakLines`, for detecting whether linebreaking is finished.
 - [parley#299][]: Fixed text editing for layouts containing inline boxes.
 
-<!-- TODO: Screenshot of egui using Parley? -->
+<figure>
+<img style="height: auto" src="egui-with-parley.png" alt="A screenshot of an egui widget, titled 'Complex text 🔡'. It also contains emoji support, arabic text (which is partially selected across the left-to-right to right-to-left boundary, giving a logically contiguous but visually split selection), and a properly typeset fraction 37 over 54. The final line has the the text 'plus variable fonts', where the font weight is increasing smoothly from left to right." width="549" height="178">
+<figcaption>
+Some new capabilities provided for egui in [egui#5784][].
+</figcaption>
+</figure>
 
 ## Kurbo
 
