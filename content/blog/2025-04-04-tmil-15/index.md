@@ -40,7 +40,14 @@ We have also made significant progress outside of these highlighted areas:
 - [xilem#899][]: Added documentation for lots of items and methods which were missing documentation.
 - [xilem#882][]: Adds the core of a virtual scrolling widget, to be used with medium or large scroll areas.
 
- <!-- TODO: Screenshot of virtual scrolling? -->
+<figure>
+<img style="height: auto" src="virtual-scroll.png" alt="A screenshot of a desktop window, showing a list of numbers around 999900. Every number divisible by 3 has been replaced with the word 'Fizz', 'Buzz' for 5, and 'FizzBuzz' for numbers divisible by both. The 'FizzBuzz' which would be item 999900 is twice as large as the other items." width="458" height="509">
+<figcaption>
+
+[xilem#882][] added a virtual scrolling widget. This is the 'Infinite FizzBuzz' example, which also shows how the virtual scrolling can support items with arbitrary heights.
+
+</figcaption>
+</figure>
 
 ## Vello
 
@@ -62,17 +69,24 @@ Progress on the sparse strips renderer has also been continuing at pace:
 - [vello#872][]: Enable running Vello Hybrid using WebGL2.
 - [vello#867][]: Benchmarking harness for Vello Common and Vello CPU.
 
-<!-- TODO: Screenshot of WebGL example, in e.g. Firefox on Linux? -->
+![alt text](paris-30k-webgl.png)
+
+<figure>
+<img style="height: auto" src="paris-30k-webgl.png" alt="A browser window showing a partial map of the center of Paris, France." width="2256" height="752">
+<figcaption>
+
+Paris-30k rendered using Vello's new hybrid renderer in Firefox on Linux, a browser which does not yet support WebGPU.
+
+</figcaption>
+</figure>
 
 The current state of the sparse strip renderers is that they can reliably render scenes where all elements are a solid colour.
-<!-- TODO: Mention new mini roadmap? -->
+The planned ordering of next steps is laid out in [our loose roadmap](https://docs.google.com/document/d/1L0Ji44GiFMygK_6h6_TP0Id8ghTMxUirgrM_5nb5zyQ/edit?tab=t.0#heading=h.atiojofshbyp).
 There are some PRs where you can track ongoing work:
 
 - [vello#878][]: Add clipping to Vello CPU.
 - [vello#883][]: Implements text/glyph rendering.
-- [vello#879][]: Runs Vello Hybrid on Android. <!-- Is now the time to announce Android View? In what form? -->
-
-<!-- Maybe? Screenshot relevant for clipping? -->
+- [vello#879][]: Experimentally runs Vello Hybrid on Android, using the new Android View work, discussed [below](#research-and-future-directions).
 
 You can also follow the progress in [#vello > Vello Hybrid](https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/Vello.20Hybrid) and other threads in [#vello](https://xi.zulipchat.com/#narrow/channel/197075-vello).
 We also are hosting weekly renderer office hours specifically aimed at developing this collaboration.
@@ -95,7 +109,9 @@ The author of that change, valadaptive, has been doing fantastic work improving 
 <figure>
 <img style="height: auto" src="egui-with-parley.png" alt="A screenshot of an egui widget, titled 'Complex text 🔡'. It also contains emoji support, arabic text (which is partially selected across the left-to-right to right-to-left boundary, giving a logically contiguous but visually split selection), and a properly typeset fraction 37 over 54. The final line has the the text 'plus variable fonts', where the font weight is increasing smoothly from left to right." width="549" height="178">
 <figcaption>
+
 Some new capabilities provided for egui in [egui#5784][].
+
 </figcaption>
 </figure>
 
@@ -120,6 +136,8 @@ It closely follows the [CSS Color Module Level 4][] draft spec.
 
 Linebender has an origin story in being a very research oriented group, looking to break new ground.
 While we are focused on shipping code today, we still have an eye on the future and how to be prepared for the new opportunities and technologies that are coming.
+
+<!-- TODO: Talk about Android View here -->
 
 ## Rustweek
 
