@@ -1,6 +1,6 @@
 +++
 title = "Linebender in March 2025"
-authors = ["Daniel McNab"]
+authors = ["Daniel McNab", "Bruce Mitchener"]
 +++
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
@@ -117,10 +117,15 @@ The author of that change, valadaptive, has been doing fantastic work improving 
 
 Kurbo provides data structures and algorithms for curves and vector paths.
 
+- [kurbo#428][]: Improve performance of debug builds by more aggressively enabling inlining.
+- [kurbo#429][]: Add `Affine::scale_about`. This makes implementing zoom in a user interface more concise.
+
 ## Color
 
 [Color][] provides functionality for representing, converting, parsing, serializing, and manipulating colors in a variety of color spaces.
 It closely follows the [CSS Color Module Level 4][] draft spec.
+
+- [color#144][]: Improves correctness when interpolating a color with missing components in the ACES 2065-1 colorspace.
 
 ## Kompari
 
