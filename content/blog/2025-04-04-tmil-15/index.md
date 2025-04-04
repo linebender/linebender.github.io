@@ -79,6 +79,7 @@ Paris-30k rendered using Vello's new hybrid renderer in Firefox on Linux, a brow
 </figure>
 
 The current state of the sparse strip renderers is that they can reliably render scenes where all elements are a solid colour.
+Laurenz'
 The planned ordering of next steps is laid out in [our loose roadmap](https://docs.google.com/document/d/1L0Ji44GiFMygK_6h6_TP0Id8ghTMxUirgrM_5nb5zyQ/edit?tab=t.0#heading=h.atiojofshbyp).
 There are some PRs where you can track ongoing work:
 
@@ -88,7 +89,7 @@ There are some PRs where you can track ongoing work:
 
 You can also follow the progress in [#vello > Vello Hybrid](https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/Vello.20Hybrid) and other threads in [#vello](https://xi.zulipchat.com/#narrow/channel/197075-vello).
 We also are hosting weekly renderer office hours specifically aimed at developing this collaboration.
-Information about how to join these, follow [#office hours](https://xi.zulipchat.com/#narrow/channel/359642-office-hours).
+For information about how to join these, follow [#office hours](https://xi.zulipchat.com/#narrow/channel/359642-office-hours).
 
 ## Parley
 
@@ -140,7 +141,10 @@ It closely follows the [CSS Color Module Level 4][] draft spec.
 Linebender has an origin story in being a very research oriented group, looking to break new ground.
 While we are focused on shipping code today, we still have an eye on the future and how to be prepared for the new opportunities and technologies that are coming.
 
-<!-- TODO: Talk about Android View here -->
+Matt Campbell has started work on a new platform integration for Rust code in Android, called [Android View](https://github.com/mwcampbell/android-view).
+This is designed to work around several issues from  the activities available when using Winit, which use either `NativeActivity` or `GameActivity`.
+Both of these do not integrate well with text input, and struggle to interoperate inside existing apps.
+This work is in an early stage, and is taking inspiration from several existing solutions to these problems, with a special focus on getting accessibility integration correct.
 
 ## Rustweek
 
