@@ -79,7 +79,6 @@ Paris-30k rendered using Vello's new hybrid renderer in Firefox on Linux, a brow
 </figure>
 
 The current state of the sparse strip renderers is that they can reliably render scenes where all elements are a solid colour.
-Laurenz'
 The planned ordering of next steps is laid out in [our loose roadmap](https://docs.google.com/document/d/1L0Ji44GiFMygK_6h6_TP0Id8ghTMxUirgrM_5nb5zyQ/edit?tab=t.0#heading=h.atiojofshbyp).
 There are some PRs where you can track ongoing work:
 
@@ -118,8 +117,14 @@ The author of that change, valadaptive, has been doing fantastic work improving 
 
 Kurbo provides data structures and algorithms for curves and vector paths.
 
+- [kurbo#427][]: First cut at least-squares offset curves.
 - [kurbo#428][]: Improve performance of debug builds by more aggressively enabling inlining.
 - [kurbo#429][]: Add `Affine::scale_about`. This makes implementing zoom in a user interface more concise.
+
+One of the core features in kurbo is expanding a stroked outline to a filled path, which is based on computing accurate approximations to offset curves, a difficult problem in computational geometry.
+As tracked in [kurbo#317][], our existing solution, based on quartic solving, produced good results but was slow.
+We've been doing research into much faster techniques based on least-squares error minimization and accelerated Newton techniques, and [kurbo#427][] is the first step in landing that work.
+Over the coming months, we plan to refine robustness and performance of the stroke expansion algorithm, and will also explore generalizing it to variable width strokes, an often-requested feature.
 
 ## Color
 
@@ -146,13 +151,14 @@ This is designed to work around several issues from  the activities available wh
 Both of these do not integrate well with text input, and struggle to interoperate inside existing apps.
 This work is in an early stage, and is taking inspiration from several existing solutions to these problems, with a special focus on getting accessibility integration correct.
 
-## Rustweek
+## RustWeek
 
-Many members of the Linebender community will be attending the [Rustweek 2025](https://rustweek.org/) conference, in Utrecht in May.
+Many members of the Linebender community will be attending the [RustWeek 2025](https://rustweek.org/) conference, in Utrecht in May.
 At the time of writing, there are still tickets available.
-Raph will be giving a talk, titled [*Faster, easier 2D vector rendering*](https://rustweek.org/talks/raph/).
+Raph Levien will be giving a talk, titled [*Faster, easier 2D vector rendering*](https://rustweek.org/talks/raph/).
 This will be covering a lot of the sparse strips work discussed in [the Vello section](#vello).
-<!-- TODO: Anything more to say here? Do we want to announce the Linebender time/day, or should it be kept to Zulip and office hours? -->
+
+Matt Campbell will give a talk, titled [*AccessKit: reusable UI accessibility*](https://rustweek.org/talks/matt/).
 
 ## Get Involved
 
@@ -178,6 +184,8 @@ We've also started a separate office hours time dedicated to the renderer collab
 [kompari#26]: https://github.com/linebender/kompari/pull/26
 [kompari#27]: https://github.com/linebender/kompari/pull/27
 [kompari#34]: https://github.com/linebender/kompari/pull/34
+[kurbo#317]: https://github.com/linebender/kurbo/issues/317
+[kurbo#427]: https://github.com/linebender/kurbo/pull/427
 [kurbo#428]: https://github.com/linebender/kurbo/pull/428
 [kurbo#429]: https://github.com/linebender/kurbo/pull/429
 [parley#296]: https://github.com/linebender/parley/pull/296
