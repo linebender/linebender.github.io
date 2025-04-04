@@ -5,17 +5,9 @@ authors = ["Daniel McNab"]
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
 
-## Xilem
-
-Xilem is our flagship GUI project, inspired by SwiftUI.
-It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
-
-- [xilem#887][]: Added a View for the already existing Split widget.
-- [xilem#899][]: Added some more documentation.
-
 ## Masonry
 
-Masonry is the widget system used by Xilem.
+Masonry is the widget system developed by Linebender.
 It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
 
 We have made a major change to the internal design of Masonry, in [xilem#910][] and [xilem#914][].
@@ -49,6 +41,14 @@ We have also made significant progress outside of these highlighted areas:
 </figcaption>
 </figure>
 
+## Xilem
+
+Xilem is our flagship GUI project, inspired by SwiftUI, which uses Masonry for its widgets.
+It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
+
+- [xilem#887][]: Added a View for the already existing Split widget.
+- [xilem#899][]: Added some more documentation.
+
 ## Vello
 
 Vello is our GPU vector renderer.
@@ -68,8 +68,6 @@ Progress on the sparse strips renderer has also been continuing at pace:
 - [vello#831][]: Added the fragment shader based GPU rasteriser for sparse strips (Vello Hybrid).
 - [vello#872][]: Enable running Vello Hybrid using WebGL2.
 - [vello#867][]: Benchmarking harness for Vello Common and Vello CPU.
-
-![alt text](paris-30k-webgl.png)
 
 <figure>
 <img style="height: auto" src="paris-30k-webgl.png" alt="A browser window showing a partial map of the center of Paris, France." width="2256" height="752">
@@ -110,7 +108,7 @@ The author of that change, valadaptive, has been doing fantastic work improving 
 <img style="height: auto" src="egui-with-parley.png" alt="A screenshot of an egui widget, titled 'Complex text 🔡'. It also contains emoji support, arabic text (which is partially selected across the left-to-right to right-to-left boundary, giving a logically contiguous but visually split selection), and a properly typeset fraction 37 over 54. The final line has the the text 'plus variable fonts', where the font weight is increasing smoothly from left to right." width="549" height="178">
 <figcaption>
 
-Some new capabilities provided for egui in [egui#5784][].
+[egui#5784][] significantly improves egui's text rendering by using Parley.
 
 </figcaption>
 </figure>
