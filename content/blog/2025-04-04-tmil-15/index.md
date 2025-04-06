@@ -22,7 +22,14 @@ However, this was put on hold whilst the Properties experiment we mentioned last
 - [xilem#873][]: Implements properties, which is additional data attached to each widget in a uniform way, intended to enable styling.
 - [xilem#892][]: Uses properties for styling the built-in `Button` widget.
 
-<!-- TODO: Screenshot of new capability from button styling. Deferred to Olivier. Non-blocking -->
+<figure>
+<img style="height: auto" src="styled-button.png" alt="A button with a red border, a red font, and placeholder text" width="200" height="80">
+<figcaption>
+
+An example of a styled button.
+
+</figcaption>
+</figure>
 
 We have also made significant progress outside of these highlighted areas:
 
