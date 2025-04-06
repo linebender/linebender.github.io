@@ -33,7 +33,7 @@ An example of a styled button.
 
 We have also made significant progress outside of these highlighted areas:
 
-- [xilem#897][]: Reduced the size of many of our screenshot tests, to better.
+- [xilem#897][]: Reduced the size of many of our screenshot tests.
 - [xilem#904][]: Implemented a new algorithm for screenshot testing, which better reflects the aspects of the screenshots we wish to test.
   It also implements automatic compression of blessed screenshots using the excellent [oxipng][] library.
 - [xilem#899][]: Added documentation for lots of items and methods which were missing documentation.
