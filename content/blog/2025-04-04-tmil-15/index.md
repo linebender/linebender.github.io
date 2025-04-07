@@ -23,7 +23,7 @@ However, this was put on hold whilst the Properties experiment we mentioned last
 - [xilem#892][]: Uses properties for styling the built-in `Button` widget.
 
 <figure>
-<img style="height: auto" src="styled-button.png" alt="A button with a red border, a red font, and placeholder text" width="200" height="80">
+<img style="height: auto" src="styled-button.png" alt="A button with a red border, a red font, and placeholder text." width="200" height="80">
 <figcaption>
 
 An example of a styled button.
