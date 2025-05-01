@@ -158,8 +158,9 @@ This is designed to work around several issues from  the activities available wh
 Both of these do not integrate well with text input, and struggle to interoperate inside existing apps.
 This work is in an early stage, and is taking inspiration from several existing solutions to these problems, with a special focus on getting accessibility integration correct.
 
-We have also started work on a [Styled Text](https://github.com/linebender/styled_text) library, which is designed to allow sharing rich text functionality between Rust libraries.
+We have also started work on a Styled Text library, which is designed to allow sharing rich text functionality between Rust libraries.
 This is in the very early stages - if you're working on a project which can use this, then input on your requirements will be welcome.
+These can be added in [#linebender > Styled Text repo](https://xi.zulipchat.com/#narrow/channel/419691-linebender/topic/Styled.20Text.20repo/with/512864431).
 
 ## RustWeek
 
