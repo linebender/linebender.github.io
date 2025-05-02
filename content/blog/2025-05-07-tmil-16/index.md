@@ -10,7 +10,9 @@ Linebender is an informal open-source organization working on various projects t
 Masonry is the widget system developed by Linebender.
 It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
 
-<!-- Properties cont., Virtual Scroll -->
+- [xilem#913][], [xilem#938][]: Ongoing work on properties, in preparation for adding more styling options.
+
+<!-- Virtual Scroll -->
 
 ## Xilem
 
@@ -99,3 +101,6 @@ We've also started a separate office hours time dedicated to the renderer collab
 [CSS Color Module Level 4]: https://www.w3.org/TR/css-color-4/
 
 [Kompari]: https://github.com/linebender/kompari
+
+[xilem#913]: https://github.com/linebender/xilem/pull/913
+[xilem#938]: https://github.com/linebender/xilem/pull/938
