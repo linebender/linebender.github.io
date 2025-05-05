@@ -11,24 +11,28 @@ Masonry is the widget system developed by Linebender.
 It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
 
 - [xilem#913][], [xilem#938][]: Ongoing work on properties, in preparation for adding more styling options.
-
-<!-- Virtual Scroll -->
+- [xilem#906][]: Improves Virtual Scrolling to support non-infinite use cases.
+- [xilem#922][]: Adds support for multiline text input, by alexjg.
+- [xilem#925][], [xilem#927][]: Update "line" scrolling to have a more correct speed, by Aaron Muir Hamilton and Alix Bott.
+- [xilem#929][]: Used trait upcasting to simplify how widgets use `Any`.
+- [xilem#937][]: Unifies test screenshots into a single folder, making it clearer which widget they relate to.
 
 ## Xilem
 
 Xilem is our flagship GUI project, inspired by SwiftUI, which uses Masonry for its widgets.
 It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
 
-<!-- Virtual Scroll, again -->
+- [xilem#920][]: Slightly improves the handling of messages, using trait upcasting.
+- [xilem#921][]: Supports Masonry's virtual scrolling in Xilem.
 
 ## Vello
 
 Vello is our GPU vector renderer.
 It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.
 
-<!-- 0.5.0, with wgpu 24 -->
+- [vello#886][], [vello#887][]: Update the SDL2 example to SDL3.
+- [vello#892][]: Improved how our snapshot tests are handled in preparation for Kompari integration.
 
-We have also renamed the #gpu channel on Zulip to [#vello](https://xi.zulipchat.com/#narrow/channel/197075-vello), which better reflects the purpose of the channel.
 Progress on the sparse strips renderer has also been continuing at pace:
 
 <!-- Need a lot more plans -->
