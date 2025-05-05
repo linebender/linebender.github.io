@@ -43,7 +43,9 @@ Progress on the sparse strips renderer has also been continuing at pace:
 Parley is a text layout library.
 It handles text layout, mostly at the level of line breaking and resolving glyph positions.
 
-<!-- TODO -->
+- [parley#272][]: Added Kompari integration for testing into Parley.
+- [parley#315][]: Implemented properties based on CSS's `word-break` and `overflow-wrap`.
+- [parley#342][]: Fixes a bug in `align` where the offset wasn't being reset between calls.
 
 ## Kurbo
 
@@ -57,12 +59,6 @@ Kurbo provides data structures and algorithms for curves and vector paths.
 It closely follows the [CSS Color Module Level 4][] draft spec.
 
 <!-- Color release, other details -->
-
-## Kompari
-
-[Kompari][] is a tool for visual inspection of snapshot tests.
-
-<!-- TODO -->
 
 ## Android View
 
@@ -103,8 +99,6 @@ We've also started a separate office hours time dedicated to the renderer collab
 
 [Color]: https://docs.rs/color/
 [CSS Color Module Level 4]: https://www.w3.org/TR/css-color-4/
-
-[Kompari]: https://github.com/linebender/kompari
 
 [xilem#913]: https://github.com/linebender/xilem/pull/913
 [xilem#938]: https://github.com/linebender/xilem/pull/938
