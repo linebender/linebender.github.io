@@ -79,7 +79,6 @@ See the [changelog][Kurbo 0.11.2] for a full overview.
 
 Multiple improvements to Kurbo are on the roadmap, such as improved stroke expansion in [kurbo#427][].
 
-
 ## Color
 
 [Color][] provides functionality for representing, converting, parsing, serializing, and manipulating colors in a variety of color spaces.
