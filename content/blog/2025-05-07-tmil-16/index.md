@@ -139,8 +139,10 @@ We've also started a separate office hours time dedicated to the renderer collab
   - [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
 
 [Kurbo]: https://docs.rs/kurbo/
-[Kurbo 0.11.2]: https://github.com/linebender/kurbo/releases/tag/v0.11.2
 [kurbo-triangle]: https://docs.rs/kurbo/0.11.2/kurbo/struct.Triangle.html
+
+[Kurbo 0.11.2]: https://github.com/linebender/kurbo/releases/tag/v0.11.2
+
 [kurbo#350]: https://github.com/linebender/kurbo/pull/350
 [kurbo#379]: https://github.com/linebender/kurbo/pull/379
 [kurbo#383]: https://github.com/linebender/kurbo/pull/383
