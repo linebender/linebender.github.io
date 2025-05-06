@@ -134,6 +134,7 @@ We've also started a separate office hours time dedicated to the renderer collab
 [color#158]: https://github.com/linebender/color/pull/158
 [color#159]: https://github.com/linebender/color/pull/159
 [color#164]: https://github.com/linebender/color/pull/164
+[color#166]: https://github.com/linebender/color/pull/166
 [color-alphacolor-to-rgba8]: https://docs.rs/color/0.3.0/color/struct.AlphaColor.html#method.to_rgba8
 
 [xilem#913]: https://github.com/linebender/xilem/pull/913
