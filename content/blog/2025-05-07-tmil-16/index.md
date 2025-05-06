@@ -152,6 +152,7 @@ We've also started a separate office hours time dedicated to the renderer collab
 [kurbo#412]: https://github.com/linebender/kurbo/pull/412
 [kurbo#413]: https://github.com/linebender/kurbo/pull/413
 [kurbo#418]: https://github.com/linebender/kurbo/pull/418
+[kurbo#427]: https://github.com/linebender/kurbo/pull/427
 [kurbo#428]: https://github.com/linebender/kurbo/pull/428
 [kurbo#429]: https://github.com/linebender/kurbo/pull/429
 
