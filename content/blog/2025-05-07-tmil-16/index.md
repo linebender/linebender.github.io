@@ -142,20 +142,6 @@ We've also started a separate office hours time dedicated to the renderer collab
 
 [Kurbo 0.11.2]: https://github.com/linebender/kurbo/releases/tag/v0.11.2
 
-[kurbo#350]: https://github.com/linebender/kurbo/pull/350
-[kurbo#379]: https://github.com/linebender/kurbo/pull/379
-[kurbo#383]: https://github.com/linebender/kurbo/pull/383
-[kurbo#384]: https://github.com/linebender/kurbo/pull/384
-[kurbo#390]: https://github.com/linebender/kurbo/pull/390
-[kurbo#399]: https://github.com/linebender/kurbo/pull/399
-[kurbo#409]: https://github.com/linebender/kurbo/pull/409
-[kurbo#412]: https://github.com/linebender/kurbo/pull/412
-[kurbo#413]: https://github.com/linebender/kurbo/pull/413
-[kurbo#418]: https://github.com/linebender/kurbo/pull/418
-[kurbo#427]: https://github.com/linebender/kurbo/pull/427
-[kurbo#428]: https://github.com/linebender/kurbo/pull/428
-[kurbo#429]: https://github.com/linebender/kurbo/pull/429
-
 [Color]: https://docs.rs/color/
 [CSS Color Module Level 4]: https://www.w3.org/TR/css-color-4/
 [color-alphacolor-to-rgba8]: https://docs.rs/color/0.3.0/color/struct.AlphaColor.html#method.to_rgba8
@@ -173,6 +159,19 @@ We've also started a separate office hours time dedicated to the renderer collab
 [color#164]: https://github.com/linebender/color/pull/164
 [color#165]: https://github.com/linebender/color/pull/165
 [color#166]: https://github.com/linebender/color/pull/166
+[kurbo#350]: https://github.com/linebender/kurbo/pull/350
+[kurbo#379]: https://github.com/linebender/kurbo/pull/379
+[kurbo#383]: https://github.com/linebender/kurbo/pull/383
+[kurbo#384]: https://github.com/linebender/kurbo/pull/384
+[kurbo#390]: https://github.com/linebender/kurbo/pull/390
+[kurbo#399]: https://github.com/linebender/kurbo/pull/399
+[kurbo#409]: https://github.com/linebender/kurbo/pull/409
+[kurbo#412]: https://github.com/linebender/kurbo/pull/412
+[kurbo#413]: https://github.com/linebender/kurbo/pull/413
+[kurbo#418]: https://github.com/linebender/kurbo/pull/418
+[kurbo#427]: https://github.com/linebender/kurbo/pull/427
+[kurbo#428]: https://github.com/linebender/kurbo/pull/428
+[kurbo#429]: https://github.com/linebender/kurbo/pull/429
 [parley#272]: https://github.com/linebender/parley/pull/272
 [parley#315]: https://github.com/linebender/parley/pull/315
 [parley#342]: https://github.com/linebender/parley/pull/342
