@@ -61,9 +61,25 @@ It handles text layout, mostly at the level of line breaking and resolving glyph
 
 ## Kurbo
 
-Kurbo provides data structures and algorithms for curves and vector paths.
+[Kurbo][] provides data structures and algorithms for curves and vector paths.
 
-<!-- Kurbo 0.11.2 -->
+We released [Kurbo 0.11.2][], adding the [`Triangle`][kurbo-triangle] shape, providing more ergomic methods on various shapes, and improving performance.
+The following are some highlights of this release.
+See the [changelog][Kurbo 0.11.2] for a full overview.
+
+- [kurbo#350][]: Adds the [`Triangle`][kurbo-triangle] shape.
+- [kurbo#383][]: Adds an efficient numerical method for approximating ellipse perimeters.
+  The method was originally described by Kummer (1837) and rediscovered by Linderholm and Segal (1995).
+- [kurbo#418][]: Adds `BezPath::with_capacity` to allow more efficient allocation if the size of the bezier path is known beforehand.
+- [kurbo#379][]: Adds some common derives to `Stroke` and `StrokeOpts`.
+- [kurbo#384][]: Implements `Div<f64>` and `Mul<f64>` for `Insets`.
+- [kurbo#399][], [kurbo#409][]: Implement `Sum` for `Vec2`, add `Vec2::turn_90` and `Vec2::rotate_scale`.
+- [kurbo#412][], [kurbo#413][]: Add `Size::{min,max}` and `Size::INFINITY`.
+- [kurbo#429][]: Adds `Affine::scale_about` and `Affine::then_scale_about`.
+- [kurbo#390][], [kurbo#428][]: Improve performance by reducing the number of operations in `Triangle::circumscribed_circle` and improving inlining.
+
+Multiple improvements to Kurbo are on the roadmap, such as improved stroke expansion in [kurbo#427][].
+
 
 ## Color
 
@@ -74,7 +90,7 @@ We released [Color 0.3.0][], featuring the addition of manual chromatic adaptati
 This month saw the following changes, all included in the 0.3.0 release.
 See the [changelog][Color 0.3.0] for a full overview.
 
-- [color#156][], [color#164][], [color#165][]: Adds specialized absolute color conversion methods for ProPhoto RGB, ACES2065-1 and ACEScg.
+- [color#156][], [color#164][], [color#165][]: Add specialized absolute color conversion methods for ProPhoto RGB, ACES2065-1 and ACEScg.
   While `ColorSpace` includes default implementations for absolute color conversions, having these specializations improves computational efficiency.
 - [color#166][]: Uses faster (and [almost-correct][color-alphacolor-to-rgba8]) rounding for conversion from double precision floating point to 8-bit integer RGBA formats.
   This works around slow x86 rounding behavior.
@@ -121,6 +137,20 @@ We've also started a separate office hours time dedicated to the renderer collab
 - Daniel and Olivier's "office hours" appointments can still be booked by anyone for open-ended discussion of the ecosystem.
   - [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
   - [See Olivier's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM).
+
+[Kurbo]: https://docs.rs/kurbo/
+[Kurbo 0.11.2]: https://github.com/linebender/kurbo/releases/tag/v0.11.2
+[kurbo-triangle]: https://docs.rs/kurbo/0.11.2/kurbo/struct.Triangle.html
+[kurbo#350]: https://github.com/linebender/kurbo/pull/350
+[kurbo#379]: https://github.com/linebender/kurbo/pull/379
+[kurbo#383]: https://github.com/linebender/kurbo/pull/383
+[kurbo#384]: https://github.com/linebender/kurbo/pull/384
+[kurbo#390]: https://github.com/linebender/kurbo/pull/390
+[kurbo#399]: https://github.com/linebender/kurbo/pull/399
+[kurbo#412]: https://github.com/linebender/kurbo/pull/412
+[kurbo#418]: https://github.com/linebender/kurbo/pull/418
+[kurbo#428]: https://github.com/linebender/kurbo/pull/428
+[kurbo#429]: https://github.com/linebender/kurbo/pull/429
 
 [Color]: https://docs.rs/color/
 [CSS Color Module Level 4]: https://www.w3.org/TR/css-color-4/
