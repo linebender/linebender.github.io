@@ -33,26 +33,22 @@ It can draw large 2D scenes with high performance, using GPU compute shaders for
 - [vello#886][], [vello#887][]: Update the SDL2 example to SDL3.
 - [vello#892][]: Improved how our snapshot tests are handled in preparation for Kompari integration.
 
-Progress on the sparse strips renderer has also been continuing at pace:
-
+Progress on the sparse strips renderers has also been continuing at pace.
 The big standout this month is the significant leap in Vello CPU functionality:
 
-- [vello#923][]: Blending, compositing, and layers
-- [vello#893][]: Linear, radial and sweep gradients
-- [vello#878][]: Clipping
-- [vello#919][]: Image rendering
+- [vello#923][]: Blending, compositing, and layers.
+- [vello#893][]: Linear, radial and sweep gradients.
+- [vello#878][]: Clipping.
+- [vello#919][]: Image rendering.
 
 The above PRs set the foundation for introducing these features into Vello Hybrid over the coming months.
+Another notable released feature is text outline rendering, which allows both renderers to draw text (emoji are not yet supported).
 
-Another notable released feature is text outline rendering and getting hinting "just right":
+- [vello#883][]: Text outline rendering for Vello CPU and Hybrid.
+- [vello#896][], [vello#897][]: Make the hinting robust, allowing clearer drawing in more cases.
 
-- [vello#883][]: Text outline rendering
-- [vello#897][],[vello#886][]: Getting text hinting "just right"
-
-A working document of our plan can be found [here](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94). This roadmap outlines our plans for pre-alpha, alpha, beta, and version 1.0 and 1.1 releases.
-
-<!-- Need a lot more plans -->
-<!-- Link to the new renderer roadmap document  -->
+Our working roadmap can be found [here](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94).
+This roadmap outlines our planned timeline for work on the renderers over the next year.
 
 ## Parley
 
