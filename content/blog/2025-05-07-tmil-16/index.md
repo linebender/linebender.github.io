@@ -35,6 +35,22 @@ It can draw large 2D scenes with high performance, using GPU compute shaders for
 
 Progress on the sparse strips renderer has also been continuing at pace:
 
+The big standout this month is the significant leap in Vello CPU functionality:
+
+- [vello#923][]: Blending, compositing, and layers
+- [vello#893][]: Linear, radial and sweep gradients
+- [vello#878][]: Clipping
+- [vello#919][]: Image rendering
+
+The above PRs set the foundation for introducing these features into Vello Hybrid over the coming months.
+
+Another notable released feature is text outline rendering and getting hinting "just right":
+
+- [vello#883][]: Text outline rendering
+- [vello#897][],[vello#886][]: Getting text hinting "just right"
+
+A working document of our plan can be found [here](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94). This roadmap outlines our plans for pre-alpha, alpha, beta, and version 1.0 and 1.1 releases.
+
 <!-- Need a lot more plans -->
 <!-- Link to the new renderer roadmap document  -->
 
