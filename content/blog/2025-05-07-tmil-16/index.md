@@ -1,6 +1,6 @@
 +++
 title = "Linebender in April 2025"
-authors = ["Daniel McNab"]
+authors = ["Daniel McNab", "Taj Pereira"]
 +++
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
@@ -75,8 +75,7 @@ It closely follows the [CSS Color Module Level 4][] draft spec.
 ## Android View
 
 [Android View](https://github.com/mwcampbell/android-view) is a platform integration for Rust code in Android apps.
-
-<!-- TODO: Text, etc. -->
+In April, Android View gained support for text input using the software keyboard, with accessibility support.
 
 ## Research and Future Directions
 
@@ -87,13 +86,15 @@ While we are focused on shipping code today, we still have an eye on the future 
 
 ## RustWeek
 
-Many members of the Linebender community will be attending the [RustWeek 2025](https://rustweek.org/) conference, in Utrecht in May.
-<!-- TODO: check this At the time of writing, there are still tickets available. -->
+Many members of the Linebender community will be attending the [RustWeek 2025](https://rustweek.org/) conference, in Utrecht next month.
+At the time of writing, there are no longer tickets available, although there is a waitlist.
 Raph Levien will be giving a talk, titled [*Faster, easier 2D vector rendering*](https://rustweek.org/talks/raph/).
 This will be covering a lot of the sparse strips work discussed in [the Vello section](#vello).
 
 Matt Campbell will give a talk, titled [*AccessKit: reusable UI accessibility*](https://rustweek.org/talks/matt/).
 
+We will also be attending the [unconference](https://rustweek.org/unconf-intro/), as part of the "UI, App dev & Browser Summit" group.
+We're looking forward to working with other teams in the Rust UI ecosystem there.
 <!-- Mention unconf? It's a ticketed and published event, so should be reasonably safe -->
 
 ## Get Involved
