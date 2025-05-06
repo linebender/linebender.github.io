@@ -68,8 +68,7 @@ The following are some highlights of this release.
 See the [changelog][Kurbo 0.11.2] for a full overview.
 
 - [kurbo#350][]: Adds the [`Triangle`][kurbo-triangle] shape.
-- [kurbo#383][]: Adds an efficient numerical method for approximating ellipse perimeters.
-  The method was originally described by Kummer (1837) and rediscovered by Linderholm and Segal (1995).
+- [kurbo#383][]: Adds an efficient numerical method for approximating ellipse perimeters, originally described by Kummer (1837) and rediscovered by Linderholm and Segal (1995).
 - [kurbo#418][]: Adds `BezPath::with_capacity` to allow more efficient allocation if the size of the bezier path is known beforehand.
 - [kurbo#379][]: Adds some common derives to `Stroke` and `StrokeOpts`.
 - [kurbo#384][]: Implements `Div<f64>` and `Mul<f64>` for `Insets`.
