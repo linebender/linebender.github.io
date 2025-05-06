@@ -70,7 +70,19 @@ Kurbo provides data structures and algorithms for curves and vector paths.
 [Color][] provides functionality for representing, converting, parsing, serializing, and manipulating colors in a variety of color spaces.
 It closely follows the [CSS Color Module Level 4][] draft spec.
 
-<!-- Color release, other details -->
+We released [Color 0.3.0][], featuring the addition of manual chromatic adaptation and absolute color conversions, improved type conversion ergonomics, and more.
+This month saw the following changes, all included in the 0.3.0 release.
+See the [changelog][Color 0.3.0] for a full overview.
+
+- [color#156][], [color#164][], [color#165][]: Adds specialized absolute color conversion methods for ProPhoto RGB, ACES2065-1 and ACEScg.
+  While `ColorSpace` includes default implementations for absolute color conversions, having these specializations improves computational efficiency.
+- [color#166][]: Uses faster (and [almost-correct][color-alphacolor-to-rgba8]) rounding for conversion from double precision floating point to 8-bit integer RGBA formats.
+  This works around slow x86 rounding behavior.
+- [color#155][]: Improves ergonomics by implementing `From<AlphaColor<_>> for DynamicColor` for all color spaces that have a `DynamicColor` counterpart.
+- [color#157][]: Removes the deprecated `From<Rgba8> for PremulColor<Srgb>` implementation.
+- [color#145][]: Fixes handling of powerless/missing components of the HWB color space, which is necessary for correct color interpolation when components are missing.
+- [color#158][], [color#159][]: Improve documentation for `DynamicColor::interpolate` and `gradient`, including usage examples.
+- [color#149][], [color#150][]: Improve constructing constant `Missing` flags and `Missing` documentation.
 
 ## Android View
 
@@ -112,6 +124,17 @@ We've also started a separate office hours time dedicated to the renderer collab
 
 [Color]: https://docs.rs/color/
 [CSS Color Module Level 4]: https://www.w3.org/TR/css-color-4/
+[Color 0.3.0]: https://github.com/linebender/color/releases/tag/v0.3.0
+[color#145]: https://github.com/linebender/color/pull/145
+[color#149]: https://github.com/linebender/color/pull/149
+[color#150]: https://github.com/linebender/color/pull/150
+[color#155]: https://github.com/linebender/color/pull/155
+[color#156]: https://github.com/linebender/color/pull/156
+[color#157]: https://github.com/linebender/color/pull/157
+[color#158]: https://github.com/linebender/color/pull/158
+[color#159]: https://github.com/linebender/color/pull/159
+[color#164]: https://github.com/linebender/color/pull/164
+[color-alphacolor-to-rgba8]: https://docs.rs/color/0.3.0/color/struct.AlphaColor.html#method.to_rgba8
 
 [xilem#913]: https://github.com/linebender/xilem/pull/913
 [xilem#938]: https://github.com/linebender/xilem/pull/938
