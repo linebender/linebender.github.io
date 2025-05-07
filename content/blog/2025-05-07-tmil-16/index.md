@@ -1,6 +1,6 @@
 +++
 title = "Linebender in April 2025"
-authors = ["Daniel McNab", "Taj Pereira"]
+authors = ["Daniel McNab", "Taj Pereira", "Tom Churchman"]
 +++
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
@@ -108,7 +108,9 @@ In April, Android View gained support for text input using the software keyboard
 Linebender has an origin story in being a very research oriented group, looking to break new ground.
 While we are focused on shipping code today, we still have an eye on the future and how to be prepared for the new opportunities and technologies that are coming.
 
-<!-- UI Events -->
+Towards the end of April, some members of Linebender started working on ecosystem standardisation of input events, based on the web input events specification.
+This work is happening in the [UI Events](https://github.com/endoli/ui-events) repository.
+This is not a Linebender project, but we're watching it with great interest.
 
 ## RustWeek
 
