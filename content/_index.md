@@ -29,14 +29,13 @@ Below is a list of the main Linebender projects, and a short description of each
 
    Vello is a 2D graphics rendering engine written in Rust, with a focus on GPU compute.
    It can draw large 2D scenes with interactive or near-interactive performance, using [`wgpu`][wgpu] for GPU access.
+   The Vello project includes two additional in-progress renderers.
 
  - [`kurbo`][kurbo] - Create, manipulate, and interrogate 2D curve shapes.
 
    At its core, Kurbo is a library for constructing paths and splines out of straight lines and Bézier curves up to order 3 (known as cubic Béziers).
    It turns out that a series of cubic Bézier curves can be used to approximate any smooth curve with a very high degree of accuracy, compared to the number of curves required.
    They are also relatively easy to work with, and form the basis of the approach to curve rendering used in Vello.
-   The key abstraction is [`kurbo::Shape`](https://docs.rs/kurbo/latest/kurbo/trait.Shape.html), which provides the `path_elements` method.
-   This method returns an iterator over Bézier curves that approximate the type implementing the `Shape` trait, which Vello can then draw.
 
  - [`color`][color] - Manipulate and represent colors.
 
@@ -65,7 +64,7 @@ Below is a list of the main Linebender projects, and a short description of each
 
    Druid's main goal was to offer a polished user experience.
    There were many factors to this goal, including performance, a rich palette of interactions, and playing well with the native platform.
-   
+
    Druid is reasonably usable for [some subset of applications](https://github.com/linebender/druid/issues/1360) and has a significant testing history, which ensures some stability and correctness.
    However, there will not be any new features or bug fixes coming to Druid.
    As such we don't recommend using Druid for brand new applications.
@@ -107,7 +106,7 @@ Below is a list of the main Linebender projects, and a short description of each
    The goal is to cover topics like color, shapes/curves, 2D GPU rendering, text, etc.
 
  - [`linebender.github.io`][linebender.github.io] - This website.
- 
+
    If you see anything that looks incorrect, please submit a PR to [its repo][linebender.github.io].
 
 ## Archived repos
