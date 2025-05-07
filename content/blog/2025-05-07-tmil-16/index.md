@@ -5,6 +5,18 @@ authors = ["Daniel McNab", "Taj Pereira", "Tom Churchman"]
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
 
+## RustWeek
+
+Many members of the Linebender community will be attending the [RustWeek 2025](https://rustweek.org/) conference, in Utrecht next month.
+At the time of writing, there are no longer tickets available, although there is a waitlist.
+Raph Levien will be giving a talk, titled [*Faster, easier 2D vector rendering*](https://rustweek.org/talks/raph/).
+This will be covering a lot of the sparse strips work discussed in [the Vello section](#vello).
+
+Matt Campbell will give a talk, titled [*AccessKit: reusable UI accessibility*](https://rustweek.org/talks/matt/).
+
+We will also be attending the [unconference](https://rustweek.org/unconf-intro/), as part of the "UI, App dev & Browser Summit" group.
+We're looking forward to working with other teams in the Rust UI ecosystem there.
+
 ## Masonry
 
 Masonry is the widget system developed by Linebender.
@@ -16,6 +28,15 @@ It provides a non-opinionated retained widget tree, designed as a base layer for
 - [xilem#925][], [xilem#927][]: Update "line" scrolling to have a more correct speed, by Aaron Muir Hamilton and Alix Bott.
 - [xilem#929][]: Used trait upcasting to simplify how widgets use `Any`.
 - [xilem#937][]: Unifies test screenshots into a single folder, making it clearer which widget they relate to.
+
+<figure>
+<img style="height: auto" src="multiline_textbox.png" alt="To do list app, where the next item input says turn off the newline factory, with newlines before newline and factory. The final item also contains a newline." width="600" height="252">
+<figcaption>
+
+Masonry now has support for multi-line text inputs.
+
+</figcaption>
+</figure>
 
 ## Xilem
 
@@ -41,6 +62,15 @@ The big standout this month is the significant leap in Vello CPU functionality:
 - [vello#878][]: Clipping.
 - [vello#919][]: Image rendering.
 
+<figure>
+<img style="height: auto" src="cowboy.png" alt="Cowboy emoji, with a rainbox gradient mixed on top." width="300" height="300">
+<figcaption>
+
+An adapted version of Vello CPU's tests, showing support for blending, gradients and image rendering.
+
+</figcaption>
+</figure>
+
 The above PRs set the foundation for introducing these features into Vello Hybrid over the coming months.
 Another notable released feature is text outline rendering, which allows both renderers to draw text (emoji are not yet supported).
 
@@ -58,6 +88,15 @@ It handles text layout, mostly at the level of line breaking and resolving glyph
 - [parley#272][]: Added Kompari integration for testing into Parley.
 - [parley#315][]: Implemented properties based on CSS's `word-break` and `overflow-wrap`.
 - [parley#342][]: Fixes a bug in `align` where the offset wasn't being reset between calls.
+
+<figure>
+<img style="height: auto" src="break_all_second_half.png" alt="Text with a line break halfway through the word Antidisestablishmentarianism. The first characters after this break are underlined (indicating that those have the WordBreak property set)." width="626" height="408">
+<figcaption>
+
+[parley#315][] added the `WordBreak` style property, which is set to `BreakAll` on 'anism' in this screenshot.
+
+</figcaption>
+</figure>
 
 ## Kurbo
 
@@ -103,6 +142,8 @@ See the [changelog][Color 0.3.0] for a full overview.
 [Android View](https://github.com/mwcampbell/android-view) is a platform integration for Rust code in Android apps.
 In April, Android View gained support for text input using the software keyboard, with accessibility support.
 
+<!-- Text input, partway through a complex word -->
+
 ## Research and Future Directions
 
 Linebender has an origin story in being a very research oriented group, looking to break new ground.
@@ -112,18 +153,11 @@ Towards the end of April, some members of Linebender started working on ecosyste
 This work is happening in the [UI Events](https://github.com/endoli/ui-events) repository.
 This is not a Linebender project, but we're watching it with great interest.
 
-## RustWeek
-
-Many members of the Linebender community will be attending the [RustWeek 2025](https://rustweek.org/) conference, in Utrecht next month.
-At the time of writing, there are no longer tickets available, although there is a waitlist.
-Raph Levien will be giving a talk, titled [*Faster, easier 2D vector rendering*](https://rustweek.org/talks/raph/).
-This will be covering a lot of the sparse strips work discussed in [the Vello section](#vello).
-
-Matt Campbell will give a talk, titled [*AccessKit: reusable UI accessibility*](https://rustweek.org/talks/matt/).
-
-We will also be attending the [unconference](https://rustweek.org/unconf-intro/), as part of the "UI, App dev & Browser Summit" group.
-We're looking forward to working with other teams in the Rust UI ecosystem there.
-<!-- Mention unconf? It's a ticketed and published event, so should be reasonably safe -->
+We've also started thinking about how to make a renderer abstraction, allowing APIs which can use any of Vello's backends.
+The largest difficulty there is related to resources such as images.
+For example Vello Hybrid's image type would be a `wgpu` Texture, whereas Vello CPU should just use a heap-allocated buffer.
+We have some existing prototypes, see [#vello > Rendering abstraction prototype](https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/Rendering.20abstraction.20prototype/with/516197002) for example.
+This work is likely to now continue after RustWeek.
 
 ## Get Involved
 
