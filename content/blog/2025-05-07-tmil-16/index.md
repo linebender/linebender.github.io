@@ -142,7 +142,16 @@ See the [changelog][Color 0.3.0] for a full overview.
 [Android View](https://github.com/mwcampbell/android-view) is a platform integration for Rust code in Android apps.
 In April, Android View gained support for text input using the software keyboard, with accessibility support.
 
-<!-- Text input, partway through a complex word -->
+<figure>
+<img style="height: auto" src="android_view_voice_input.png" alt="Android Screen, with text on the top half, and a keyboard visible with the word listening, followed by an ellipsis." width="252" height="257">
+<figcaption>
+
+Android View now allows many input methods on Android.
+This screenshot shows voice to text working in an app using Linebender libraries.
+This image has been edited to remove blank areas.
+
+</figcaption>
+</figure>
 
 ## Research and Future Directions
 
