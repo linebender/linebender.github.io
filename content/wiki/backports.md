@@ -69,13 +69,6 @@ Plus the *Unreleased* link in the footer must compare this specific backport bra
 + [Unreleased]: https://github.com/linebender/color/compare/v0.2.4...v0.2.x
 ```
 
-Note that the `v0.3.0` link definition must not be changed.
-`v0.2.3` continues to be the valid starting point because it was the last release in `main` before `v0.3.0`.
-
-```md
-[0.3.0]: https://github.com/linebender/color/compare/v0.2.3...v0.3.0
-```
-
 ## Forward-porting the changelog
 
 After a backport release has been published, its changelog section must be added to the `main` changelog.
