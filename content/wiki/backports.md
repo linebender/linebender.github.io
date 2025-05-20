@@ -73,3 +73,10 @@ Plus the *Unreleased* link in the footer must compare this specific backport bra
 
 After a backport release has been published, its changelog section must be added to the `main` changelog.
 Insert it into the correct middle spot, ordered based on the version number.
+
+## Branch lifecycle
+
+Due to resource constraints we want to promote development in `main`.
+We only want to do backporting in exceptional circumstances.
+This means that once a backport release has been made and the correct git tag has been created, we will delete the backport branch.
+If another backport release needs to happen in the same series, then the branch must be re-created from the aforementioned tag.
