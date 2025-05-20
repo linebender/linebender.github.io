@@ -42,7 +42,7 @@ Then make your actual changes and open a pull request which targets the backport
 ## Cherry picking vs. new changes
 
 If the desired changes already exist in `main` or another backport branch, then those commits should be cherry picked.
-The changelog entries should go into the *Unreleased* section of the backport branch's `CHANGELOG.md`.
+The changelog entries must go into the *Unreleased* section of the backport branch's `CHANGELOG.md`.
 Open a pull request targeting the backport branch with one or more cherry picked commits, their changelog entries, and no other changes.
 Once the pull request has been approved, it must be merged using the **Rebase and merge** option on GitHub.
 
@@ -51,7 +51,7 @@ Once these pull requests have been approved, they must be merged using the **Squ
 
 ## Changelog modifications
 
-In addition to the usual changes, the changelog header section should be updated as follows:
+In addition to the usual changes, the changelog header section must be updated as follows:
 
 ```diff
 - The latest published Color release is [0.2.3](#023-2025-01-20) which was released on 2025-01-20.
@@ -62,14 +62,21 @@ In addition to the usual changes, the changelog header section should be updated
 + You can find its changes [documented below](#024-2025-05-19).
 ```
 
-Plus the *Unreleased* link in the footer should compare this specific backport branch:
+Plus the *Unreleased* link in the footer must compare this specific backport branch:
 
 ```diff
 - [Unreleased]: https://github.com/linebender/color/compare/v0.2.4...HEAD
 + [Unreleased]: https://github.com/linebender/color/compare/v0.2.4...v0.2.x
 ```
 
+Note that the `v0.3.0` link definition must not be changed.
+`v0.2.3` continues to be the valid starting point because it was the last release in `main` before `v0.3.0`.
+
+```md
+[0.3.0]: https://github.com/linebender/color/compare/v0.2.3...v0.3.0
+```
+
 ## Forward-porting the changelog
 
-After a backport release has been published, its changelog section should be added to the `main` changelog.
+After a backport release has been published, its changelog section must be added to the `main` changelog.
 Insert it into the correct middle spot, ordered based on the version number.
