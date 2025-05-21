@@ -78,5 +78,5 @@ Insert it into the correct middle spot, ordered based on the version number.
 
 Due to resource constraints we want to promote development in `main`.
 We only want to do backporting in exceptional circumstances.
-This means that once a backport release has been made and the correct git tag has been created, we will delete the backport branch.
-If another backport release needs to happen in the same series, then the branch must be re-created from the aforementioned tag.
+This means that once a backport release has been made and the correct git tag has been created, we might delete the backport branch.
+If another backport release needs to happen in the same series, then the branch may have to be re-created from the aforementioned tag.
