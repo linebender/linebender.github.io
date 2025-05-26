@@ -1,0 +1,7 @@
+{
+    "files.insertFinalNewline": true,
+    "html.format.indentInnerHtml": true,
+    "[css]": {
+        "editor.tabSize": 2,
+    },
+}
