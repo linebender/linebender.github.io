@@ -26,7 +26,7 @@ The talk also came with a cool demo, showcasing AccessKit's Android integration.
 
 ### The Anniversary
 
-RustWeek also [the release of Rust 1.87](https://blog.rust-lang.org/2025/05/15/Rust-1.87.0/), which also fell exactly on the 10 year anniversay for Rust 1.0!
+RustWeek also [the release of Rust 1.87](https://blog.rust-lang.org/2025/05/15/Rust-1.87.0/), which also fell exactly on the 10 year anniversary for Rust 1.0!
 
 (If you're like me and you're wondering how that works: Rust has one release every six weeks. `87 * 6 * 7 == 3654` and `3654 == 365 * 10 + 4`. Between 2015 and 2025, there have been four bissextile years: 2016, 2020, 2024, and... wait a minute. Well, turns out Rust 1.1 came out one day earlier than the 6-weeks schedule implies, June 25 2015 instead of June 26 2015. There may have been other discrepancies, I haven't checked all the dates.)
 
