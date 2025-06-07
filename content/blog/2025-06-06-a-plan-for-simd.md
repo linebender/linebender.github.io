@@ -14,6 +14,11 @@ There's also a companion PR, [fearless_simd#3], which moves this proposal forwar
 ## Goals
 
 The main goals are spelled out in the above-linked blog.
+SIMD results in massive speedups for workloads operating on bulk data, especially image processing, media codec, audio.
+It is also possible to exploit SIMD for speedups in other applications such as string processing.
+The primary goal of this library is to make SIMD programming ergonomic and safe for Rust programmers, making it as easy as possible to achieve near-peak performance across a wide variety of CPUs.
+These goals are very similar to those of [Highway], a mature and capable SIMD library for C++.
+
 After some more experimentation and reflection, I’d like to explicitly add the following goals:
 
 * Lightweight dependency.
@@ -28,8 +33,28 @@ I’ve spent more time looking at CPU stats, and it’s clear there is value in 
 
 We build in the direction of [fearless_simd#2], but with a few course corrections.
 In particular, instead of manually curating the library and using (declarative) macros to try to reduce repetition and boilerplate, we rely heavily on code generation.
+For example, here is the current way to express dispatch:
 
-While the current fearless\_simd\#2 prototype implements a handful of types, the goal is to support a full cross-product of SIMD width 64 to 512, signed and unsigned integer types from 8 to 32 (possibly 64), f32 (possibly f64), and f16 where available (primarily newer ARM chips, though Sapphire Rapids does support it).
+```rust
+#[inline(always)]
+fn to_srgb_impl<S: Simd>(simd: S, rgba: [f32; 4]) -> [f32; 4] {
+    ...
+}
+
+simd_dispatch!(to_srgb(level, rgba: [f32; 4]) -> [f32; 4] = to_srgb_impl);
+```
+
+But with an attribute, it could be simplified to something like this (exact syntax may vary):
+
+```rust
+#[simd_dispatch]
+fn to_srgb<S: Simd>(level: Level, rgba: [f32; 4]) -> [f32; 4] {
+    let simd: S = level.get_simd();
+    ...
+}
+```
+
+While the current fearless\_simd\#2 prototype implements a handful of types, the goal is to support a full cartesian product of SIMD width 64 to 512, signed and unsigned integer types from 8 to 32 (possibly 64), f32 (possibly f64), and f16 where available (primarily newer ARM chips, though Sapphire Rapids does support it).
 For widths greater than native, the library will polyfill with arrays of the native SIMD width.
 
 Note: since that blog post, f16 and Neon f16 instructions are supported in Rust nightly.
@@ -40,47 +65,76 @@ With luck, these will stabilize soon (and obviously that’s one of our big asks
 ## Explicit vs variable width
 
 One of the big decisions in writing SIMD code is whether to write code with types of explicit width, or to use associated types in a trait which have chip-dependent widths.
-The design of pulp strongly favors the latter; the [Simd](https://docs.rs/pulp/latest/pulp/trait.Simd.html) trait has only “natural width” types, and, in particular, there is no implementation of, for example, 256 bit wide operations on Neon.
+The design of [pulp] strongly favors the latter; the [Simd](https://docs.rs/pulp/latest/pulp/trait.Simd.html) trait has only “natural width” types, and, in particular, there is no implementation of, for example, 256 bit wide operations on Neon.
 A key departure from pulp, then, is support for portable explicit width programming.
 
 For Linebender work, I expect 256 bits to be a sweet spot.
 Obviously, it’s the natural width of AVX-2, which is a pretty big majority of x86\_64 chips.
-On Neon, code written for 256 will be unrolled somewhat, but there are 32 registers (as opposed to 16 for AVX-2), so register pressure should not be a problem, and high end chips (such as Apple Silicon) have very wide issue.
+On Neon, code written for 256 bits will be unrolled somewhat, but there are 32 registers (as opposed to 16 for AVX-2), so register pressure should not be a problem, and high end chips (such as Apple Silicon) have very wide issue, meaning that the number of elements that can be processed in a single clock cycle is similar to other chips with 256 bit vectors but narrower issue.
 The main reason to go smaller is when the loop has a high probability of consuming less than 256 bits of input.
 
-In the other direction, the majority of shipping AVX-512 chips are double-pumped, so code written to use 512 bits is not significantly faster (I assert this based on some serious experimentation on a Zen 5 laptop).
+In the other direction, the majority of shipping AVX-512 chips are double-pumped, meaning that a 512 bit vector is processed in two clock cycles (see [mersenneforum post] for more details), each handling 256 bits, so code written to use 512 bits is not significantly faster (I assert this based on some serious experimentation on a Zen 5 laptop).
 I also expect this state of affairs to continue for a while; AMD won this design war and Intel is struggling to catch up after flailing for many years.
-If and when a significant number of true 512 bit chips ship, that would justify more work to write 512-optimized variants.
+If and when a significant number of true 512 bit chips ship, that would justify more work to write variants optimized for 512 bits.
 
-For map-like workloads, I propose adding pulp-like associated natural-width types and methods to the Simd trait.
-Following Highway, I think it also makes sense to have some more methods that work in 128 bit blocks.
+For simpler (map-like) workloads performing the same scalar computation for each element separately, I propose adding pulp-like associated natural-width types and operations to the `Simd` trait.
+Following Highway, I think it also makes sense to have some more operations that work in 128 bit blocks.
 A motivating use case is f32 color space conversion, where the alpha channel is passed through unmodified; a very reasonable implementation strategy is to do the nonlinear conversion for all channels, then do a blend operation on lane 3 of 128 bit blocks.
 (Additional note: in experiments, trying to do this absolutely broke autovectorization).
 
 ## Light use of macros
 
 I am quite concerned about the compile time.
-Cold build of fearless\_simd\#2 on an M1 Max is 3.25s.
-Considering that building out the full cross-product of sizes and types will cause about an order of magnitude increase in size, it’s clear that the library has the potential for major impact on compile times.
+A cold build of fearless\_simd\#2 on an M1 Max is 3.25s.
+Considering that building out the full cartesian product of sizes and types will cause about an order of magnitude increase in size, it’s clear that the library has the potential for major impact on compile times.
 
-Using \-Z self-profile to investigate, 87.6% of the time is in expand\_crate, which I believe is primarily macro expansion \[an expert in rustc can confirm or clarify\].
+Using `-Z self-profile` to investigate, 87.6% of the time is in expand\_crate, which I believe is primarily macro expansion \[an expert in rustc can confirm or clarify\].
 This is not hugely surprising, as (following the example of pulp), declarative macros are used very heavily.
 A large fraction of that is the safe wrappers for intrinsics (corresponding to [core\_arch](https://docs.rs/pulp/latest/pulp/core_arch/x86/index.html) in pulp).
 
 I believe that using codegen to expand out the macros before crate publish time will help greatly with compile times, but this needs to be experimentally validated.
 A possible downside is the size of the crate (especially uncompressed), but I expect zlib compression to be very effective given the repetitive, boilerplate nature of the contents.
 
-One use of macros will remain: simd\_dispatch as a declarative macro to generate the dispatch wrappers.
+One use of macros will remain: `simd_dispatch` as a declarative macro to generate the dispatch wrappers.
 Likely the proposed [declarative macro improvements](https://rust-lang.github.io/rust-project-goals/2025h1/macro-improvements.html) could help a lot here.
 I’m especially positive about the ability to write attributes as a declarative macro, as that would reduce the stuttering in the existing syntax.
 
 ## Topics discussed in the blog
 
-Some of these may be expanded, but I’ll list them as they’re relevant:
+These topics are discussed in the [towards fearless SIMD, 7 years later] blog, but I'll touch on them here as they are quite important.
 
-* dispatch done by passing around \`Level\` enum; minimize cost of detection  
-* downcasting to access chip-specific capabilities  
-* ergonomic std::ops, including implicit splat
+Dispatch is done by doing runtime detection once at the beginning of the application, resulting in a `Level` enum, each variant of which is a zero-sized token type representing CPU capability.
+This choice (same as pulp) minimizes cost of runtime detection.
+
+It is possible to write code in a generic SIMD style, and this will work well in some use cases, but we also support downcasting the generic `Simd` bound to a specific level, at which point that level's chip-specific capabilities are available.
+
+Here's an example of downcasting:
+
+```rust
+#[inline(always)]
+fn copy_alpha<S: Simd>(a: f32x4<S>, b: f32x4<S>) -> f32x4<S> {
+    #[cfg(target_arch = "x86_64")]
+    if let Some(avx2) = a.simd.level().as_avx2() {
+        return avx2
+            .sse4_1
+            ._mm_blend_ps::<8>(a.into(), b.into())
+            .simd_into(a.simd);
+    }
+    #[cfg(target_arch = "aarch64")]
+    if let Some(neon) = a.simd.level().as_neon() {
+        return neon
+            .neon
+            .vcopyq_laneq_f32::<3, 3>(a.into(), b.into())
+            .simd_into(a.simd);
+    }
+    let mut result = a;
+    result[3] = b[3];
+    result
+}
+```
+
+In addition, the SIMD types all support `core::ops`, including implicit splat so it is easy to, say, multiply a vector by a scalar.
+This ergonomic feature is present in [simdeez] and [std::simd], but not [pulp].
 
 ## Alternatives considered
 
@@ -92,7 +146,7 @@ At some point I'll post the prototype, as I think it's worthy of being considere
 While I think this approach has some advantages, it approaches the cost of building a real programming language, with associated needs for tooling etc.
 In addition, the proc macro approach really shows seams when it comes to cross-module interactions.
 
-Another possibility is to evolve pulp in the direction we need.
+Another possibility is to evolve [pulp] in the direction we need.
 That’s still not out of the question, but the changes proposed are quite extensive, and this could be disruptive to the existing user base, particularly faer.
 One goal in publishing this plan is to gather feedback from the pulp community about what they’d like to see happen.
 
@@ -115,7 +169,9 @@ See also the paper [SIMD Everywhere Optimization from ARM NEON to RISC-V Vector 
 
 There’s a [Zulip thread](https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/WASM.20SIMD) on this.
 One tricky bit is that WASM doesn’t have runtime feature detection, rather they expect feature detection to be done as part of the negotiation for deciding which WASM blob to serve.
-In some ways, this makes sense, as it avoids pretty much all of the difficulties of multiversioning (including potential binary size impact), but on the other hand it’s a pain, as it complicates build and deployment.
+In some ways, this makes sense, as it avoids pretty much all of the difficulties of multiversioning (including potential binary size impact), but it does require attention to build and deployment, especially as the number of cases will grow as [relaxed-simd] and other extensions ship.
+In WASM, since SIMD capabilities are determined at compile time, the `Level` enum will compile to nothing.
+When writing code portable to other targets that require runtime detection, it still makes sense to write code using the `Level` enum, but on WASM it has zero runtime cost.
 
 ## Very small SIMD
 
@@ -134,9 +190,19 @@ I’ve also opened a [thread](https://rust-lang.zulipchat.com/#narrow/channel/21
 I'm posting this now to the Linebender blog to encourage more discussion in the Rust community.
 The best place for serious technical discussion is the Zulip thread.
 We expect development to continue in the [fearless_simd repo].
+The library is not yet usable for broad applications, but it might be possible to start implementing SIMD speedups.
+We will be implementing speedups in Vello's CPU and hybrid renderers in the coming weeks, and that will guide our priorities.
+We are very interested in feedback about which features are missing, or any other friction; these can be filed as issues against the repo, or raised on the Zulip thread.
 
 [Towards fearless SIMD, 7 years later]: https://linebender.org/blog/towards-fearless-simd/
 [fearless_simd#2]: https://github.com/raphlinus/fearless_simd/pull/2
 [fearless_simd#3]: https://github.com/raphlinus/fearless_simd/pull/3
 [fearless_simd repo]: https://github.com/raphlinus/fearless_simd
 [Firefox hardware survey]: https://firefoxgraphics.github.io/telemetry/#view=system
+[simdeez]: https://docs.rs/simdeez/latest/simdeez/
+[pulp]: https://docs.rs/pulp/latest/pulp/
+[std::simd]: https://doc.rust-lang.org/std/simd/index.html
+[relaxed-simd]: https://github.com/WebAssembly/relaxed-simd
+[Highway]: https://github.com/google/highway
+[mersenneforum post]: https://web.archive.org/web/20250526102842/https://www.mersenneforum.org/node/21615#post614191
+[Vello]: https://github.com/linebender/vello
