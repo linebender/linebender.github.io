@@ -147,7 +147,7 @@ While I think this approach has some advantages, it approaches the cost of build
 In addition, the proc macro approach really shows seams when it comes to cross-module interactions.
 
 Another possibility is to evolve [pulp] in the direction we need.
-That’s still not out of the question, but the changes proposed are quite extensive, and this could be disruptive to the existing user base, particularly faer.
+That’s still not out of the question, but the changes proposed are quite extensive, and this could be disruptive to the existing user base, particularly [faer].
 One goal in publishing this plan is to gather feedback from the pulp community about what they’d like to see happen.
 
 ## On RVV and SVE
@@ -206,3 +206,4 @@ We are very interested in feedback about which features are missing, or any othe
 [Highway]: https://github.com/google/highway
 [mersenneforum post]: https://web.archive.org/web/20250526102842/https://www.mersenneforum.org/node/21615#post614191
 [Vello]: https://github.com/linebender/vello
+[faer]: https://docs.rs/faer/latest/faer/
