@@ -154,6 +154,7 @@ One goal in publishing this plan is to gather feedback from the pulp community a
 
 One topic I didn’t cover in my blog post is RVV and SVE, which are pretty marginal these days but will become more important.
 There are some pretty big challenges, and for the most part we’re blocked on Rust support for the intrinsics.
+There is work in this direction, including a [project goal](https://rust-lang.github.io/rust-project-goals/2025h1/arm-sve-sme.html) and an [RFC for sized traits](https://github.com/rust-lang/rfcs/pull/3729).
 
 Taking a longer view, I think there are two modes for “scalable vector” SIMD.
 One is to generate asm which operates correctly no matter the SIMD width.
@@ -186,6 +187,7 @@ At this point, probably best to consider it an open question and potential futur
 
 There’s a [discussion thread](https://xi.zulipchat.com/#narrow/channel/255911-rust/topic/A.20plan.20for.20SIMD/with/520769933) on Linebender Zulip.
 I’ve also opened a [thread](https://rust-lang.zulipchat.com/#narrow/channel/219381-t-libs/topic/is.20.60arch.3A.3Aaarch64.3A.3Afloat16x8_t.60.20supposed.20to.20be.20stable.3F/with/520762685) on Rust Zulip with some gnarly details about stabilizing fp16 on Neon.
+There's also a post on [/r/rust](https://www.reddit.com/r/rust/comments/1l5yf3b/a_plan_for_simd/) open for discussion.
 
 I'm posting this now to the Linebender blog to encourage more discussion in the Rust community.
 The best place for serious technical discussion is the Zulip thread.
