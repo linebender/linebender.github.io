@@ -24,7 +24,7 @@ For those files, the formatting produced by `rustfmt` is required.
 The following rustfmt config is recommended:
 
 ```toml
-# LINEBENDER RUSTFMT CONFIG - v2
+# LINEBENDER RUSTFMT CONFIG - v1
 # Ensure lines end with \n even if the git configuration core.autocrlf is not set to true
 newline_style = "Unix"
 
