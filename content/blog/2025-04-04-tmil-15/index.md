@@ -62,7 +62,7 @@ It lets you build user interfaces declaratively by composing lightweight views t
 Vello is our GPU vector renderer.
 It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.
 
-- [vello#841][]: Fixed incorrect COLR Emoi rendering, which especially impacted users on Windows.
+- [vello#841][]: Fixed incorrect COLR Emoji rendering, which especially impacted users on Windows.
   We backported this to create [Vello 0.4.1](https://github.com/linebender/vello/releases/tag/v0.4.1).
 - [vello#817][], [vello#877][]: Updates some of our GPU encoding code to not assume that allocators will give over-aligned allocations.
 
