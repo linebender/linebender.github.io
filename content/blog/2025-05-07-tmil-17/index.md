@@ -37,7 +37,9 @@ Some members of Linebender were at the party, which was a great experience. See 
 
 ### The Unconference
 
-<!-- TODO: What the heck did we even do during the unconference? -->
+The Linebender team also went to the UI Unconference, a roundtable where various subjects were broached (accessibility, platform integrations, SVG rendering, etc).
+
+Overall it felt like various project leaders were increasingly interested in pooling resources and using common libraries, but there is still a long way to go on that front.
 
 
 ## Masonry
