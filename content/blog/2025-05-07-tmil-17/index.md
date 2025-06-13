@@ -17,6 +17,8 @@ A lot of things happened!
 Raph Levien gave a talk titled *Faster, easier 2D vector rendering*, about Vello's new architecture.
 The talk had some nice visuals and a pretty cool demo!
 
+<img style="height: auto" width="991" height="626" src="sparse-strips.png" alt="Image from the sparse strips demo">
+
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/_sv8K190Zps?si=s-NdOxRPaBmS9FdQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Matt Campbell gave a talk titled *AccessKit: reusable UI accessibility*, showing off AccessKit and its API and architecture.
@@ -26,18 +28,12 @@ The talk also came with a cool demo, showcasing AccessKit's Android integration.
 
 ### The Anniversary
 
-RustWeek also saw [the release of Rust 1.87](https://blog.rust-lang.org/2025/05/15/Rust-1.87.0/), which also fell exactly on the 10 year anniversary for Rust 1.0!
+RustWeek also saw [the release of Rust 1.87](https://blog.rust-lang.org/2025/05/15/Rust-1.87.0/), which coincided ([to the day!](https://poignardazur.github.io/2025/06/13/anniversary-trivia/)) with the "10 years of Rust" party.
 
-(If you're like me and you're wondering how that works: Rust has one release every six weeks. `87 * 6 * 7 == 3654` and `3654 == 365 * 10 + 4`. Between 2015 and 2025, there have been four bissextile years: 2016, 2020, 2024, and... wait a minute. Well, turns out Rust 1.1 came out one day earlier than the six-weeks schedule implies, June 25 2015 instead of June 26 2015. There may have been other discrepancies, I haven't checked all the dates.)
+Some members of Linebender were at the party, which was a great experience. See who you can spot on the group photo!
 
-Anyway, there was a nice release party, where various Rust maintainers talked about what the language meant to them, and showed us the release process live.
+<img style="height: auto" width="1752" height="996" src="party.jpg" alt="Rust Anniversary group photo">
 
-There was also a group photo.
-
-![](party.jpg "Rust Anniversary group photo")
-
-
-Look closely and you may see some cameos from the Linebender team!
 
 ### The Unconference
 
@@ -51,8 +47,19 @@ It provides a non-opinionated retained widget tree, designed as a base layer for
 
 - [xilem#950][]: Adds support for [`ui-events`][] crate.
 - [xilem#961][]: Adds default property values and a default theme.
-- [xilem#960][]: Adds shadow property.
-- [xilem#973][]: Release Masonry 0.3.
+- [xilem#973][]: Releases Masonry [0.3.0](https://github.com/linebender/xilem/releases/tag/v0.3.0).
+
+<figure>
+
+<img style="height: auto" width="300" height="300" src="button-shadows.png" alt="Screenshot of the new shadows.">
+
+<figcaption>
+
+[xilem#960][]: Adds new shadow property to buttons.
+
+</figcaption>
+</figure>
+
 
 
 ## Xilem
@@ -61,7 +68,7 @@ Xilem is our flagship GUI project, inspired by SwiftUI, which uses Masonry for i
 It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
 
 - [xilem#964][]: Handles Masonry properties for more styling options.
-- [xilem#973][]: Release Xilem 0.3.
+- [xilem#973][]: Release Xilem [0.3.0](https://github.com/linebender/xilem/releases/tag/v0.3.0).
 
 
 ## Vello
@@ -71,7 +78,7 @@ It can draw large 2D scenes with high performance, using GPU compute shaders for
 
 - [vello#524][]: Implements pipeline caching, drastically improving Android startup times.
 - [vello#963][]: Rounds vertical hinting offsets.
-- [vello#966][]: Releases Vello 0.5.0.
+- [vello#966][]: Releases Vello [0.5.0](https://github.com/linebender/vello/releases/tag/v0.5.0).
 
 This month we continued seeing a massive amount of activity on Vello's sparse strips renderers (see Raph's video above for details), thanks in part to the tireless contributions of Canva developers Alex Gemberg, Taj Pereira and Andrew Jakubowicz, and to the continued work of Laurenz Stampfl as part of his master's project.
 
@@ -81,8 +88,10 @@ This month we continued seeing a massive amount of activity on Vello's sparse st
 - [vello#1011][]: Adds native WebGL backend for vello_hybrid.
 - [vello#1008][]: Makes vello_common and vello_cpu no_std.
 
-This month also saw the first release of vello_cpu!
-It's still very experimental (version 0.0.1) and likely to see all sorts of breaking changes, and performance isn't great, but if you want to experiment with it, you can run `cargo add vello_cpu` in your terminal and start hacking away.
+This month also saw the first release of [vello_cpu](https://crates.io/crates/vello_cpu)!
+
+As the name implies, vello_cpu is a CPU-only renderer for vector graphics using Vello's tech stack.
+It's still very experimental (version [0.0.1](https://github.com/linebender/vello/releases/tag/sparse-strips-v0.0.1)) and likely to see all sorts of breaking changes, and performance isn't great, but if you want to experiment with it, you can run `cargo add vello_cpu` in your terminal and start hacking away.
 
 
 ## Parley
@@ -94,7 +103,7 @@ It handles text layout, mostly at the level of line breaking and resolving glyph
 - [parley#334][]: Adds editor features required for Android IME.
 - [parley#344][]: Adds option to quantize vertical layout metrics.
 - [parley#346][]: Enables Parley/Fontique to compile to wasm with default features enabled, for better discoverability of the wasm target.
-- [parley#349][]: Releases Parley 0.4.0. 
+- [parley#349][]: Releases Parley [0.4.0](https://github.com/linebender/parley/releases/tag/v0.4.0).
 - [parley#362][]: Adds absolute and metrics-relative line height styles.
 
 
