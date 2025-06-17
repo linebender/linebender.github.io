@@ -4,12 +4,13 @@
 <h1>{{ section.title }}</h1>
 {{ section.content | safe }}
 <ul>
-{% for subpath in section.subsections %}
-{% set subsection = get_section(path=subpath, metadata_only=true) %}
-<li><a href="{{ subsection.permalink | safe }}">{{ subsection.title }}</a></li>
-{% endfor %}
-{% for page in section.pages %}
-<li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
-{% endfor %}
+  {% for subpath in section.subsections %}
+  {% set subsection = get_section(path=subpath, metadata_only=true) %}
+  <li><a href="{{ subsection.permalink | safe }}">{{ subsection.title }}</a></li>
+  {% endfor %}
+
+  {% for page in section.pages %}
+  <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+  {% endfor %}
 </ul>
 {% endblock content %}
