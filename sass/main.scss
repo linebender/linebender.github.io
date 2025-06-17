@@ -39,6 +39,16 @@ h2,
 h3,
 h4,
 h5,
+h6 {
+  margin-top:20px
+}
+iframe,
+img,
+h1,
+h2,
+h3,
+h4,
+h5,
 h6,
 p,
 blockquote,
@@ -53,14 +63,22 @@ figure,
 main {
   display:block
 }
+iframe {
+  display:block;
+  margin-right:auto;
+  margin-left:auto;
+}
 img {
+  margin-right:auto;
+  margin-left:auto;
   max-width:100%;
-  vertical-align:middle
+  vertical-align:middle;
 }
 figure>img {
   display:block
 }
 figcaption {
+  text-align: center;
   font-size:14px
 }
 ul,
