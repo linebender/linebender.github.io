@@ -51,7 +51,8 @@
                             </svg>
                         </span>
                     </label>
-                    <div class="trigger">{% block navlinks %}
+                    <div class="trigger">
+                        {% block navlinks %}
                         <a class="page-link" href="/about">About</a>
                         <a class="page-link" href="/blog">Blog</a>
                         <a class="page-link" href="/wiki">Wiki</a>
@@ -63,7 +64,8 @@
         </header>
         <main class="page-content" aria-label="Content">
             <div class="wrapper">
-                {% block content %}{% endblock content %}
+                {% block content %}
+                {% endblock content %}
             </div>
         </main>
         <footer class="site-footer h-card">
