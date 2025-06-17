@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{config.default_language}}">
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +11,8 @@
         <meta property="og:title" content="{% if page.title %}{{page.title}}{% else %}{{config.title}}{% endif %}">
         <meta property="og:locale" content="en_US">
         <meta name="description" content="{% if page.title %}{{page.title}}{% else %}{{config.description}}{% endif %}">
-        <meta property="og:description" content="{% if page.title %}{{page.title}}{% else %}{{config.description}}{% endif %}">
+        <meta property="og:description"
+            content="{% if page.title %}{{page.title}}{% else %}{{config.description}}{% endif %}">
         <meta property="og:site_name" content="{{config.title}}">
         <meta property="og:type" content="website">
         <meta name="twitter:card" content="summary">
@@ -22,16 +24,17 @@
         <link type="application/atom+xml" rel="alternate" href="/{{feed_filename}}" title="{{config.title}}">
         {% endfor %}
         {% endif %}
-    <!-- mathjax support -->
-    <script>
-        MathJax = {
-          tex: {
-            inlineMath: [['$', '$']]
-          }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </head>
+
     <body cz-shortcut-listen="true">
         <header class="site-header" role="banner">
             <div class="wrapper">
@@ -42,7 +45,9 @@
                     <label for="nav-trigger">
                         <span class="menu-icon">
                             <svg viewBox="0 0 18 15" width="18px" height="15px">
-                                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
                             </svg>
                         </span>
                     </label>
@@ -50,7 +55,8 @@
                         <a class="page-link" href="/about">About</a>
                         <a class="page-link" href="/blog">Blog</a>
                         <a class="page-link" href="/wiki">Wiki</a>
-                    {% endblock navlinks %}</div>
+                        {% endblock navlinks %}
+                    </div>
                 </nav>
                 {% endblock header %}
             </div>
@@ -74,13 +80,28 @@
 
                     <div class="footer-col footer-col-2">
                         <ul class="social-media-list">
-                            <li><a href="https://github.com/linebender"><svg class="svg-icon"><use xlink:href="/minima-social-icons.svg#github"></use></svg> <span class="username">linebender</span></a></li>
+                            <li><a href="https://github.com/linebender">
+                                    <svg class="svg-icon">
+                                        <use xlink:href="/minima-social-icons.svg#github"></use>
+                                    </svg>
+                                    <span class="username">linebender</span>
+                                </a></li>
                         </ul>
                     </div>
 
                     <div class="footer-col footer-col-3">
                         <p>&copy; 2023 The Linebender Authors.</p>
-                        <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This website's content is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
                         <p>All code used in this website is available under the Apache-2.0 license.</p>
                     </div>
                 </div>
@@ -88,4 +109,5 @@
             </div>
         </footer>
     </body>
+
 </html>

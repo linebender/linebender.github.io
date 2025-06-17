@@ -1,0 +1,16 @@
+{
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features",
+        "editor.tabSize": 2,
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "vscode.css-language-features",
+        "editor.tabSize": 2,
+    },
+    "[css]": {
+        "editor.tabSize": 2,
+    },
+    "files.insertFinalNewline": true,
+    "html.format.indentInnerHtml": true,
+    "css.format.spaceAroundSelectorSeparator": true,
+}
