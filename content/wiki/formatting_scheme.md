@@ -37,6 +37,15 @@ use_field_init_shorthand = true
 # END LINEBENDER RUSTFMT CONFIG
 ```
 
+You may also want to occasionally use this unstable config:
+
+```toml
+# Groups imports in a predictable way: first core/alloc/std, then other crates, then the current crate.
+group_imports = "StdExternalCrate"
+```
+
+We don't recommend it as a permanent config value even for nightly projects, because the way it reorders items [isn't always ideal](https://github.com/linebender/linebender.github.io/issues/87).
+
 ## Markdown
 
 In Markdown files, every paragraph should have one line per sentence.
