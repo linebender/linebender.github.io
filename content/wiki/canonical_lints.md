@@ -11,7 +11,7 @@ All Linebender projects should include the following set of lints:
 # This one may vary depending on the project.
 rust.unsafe_code = "forbid"
 
-# LINEBENDER LINT SET - Cargo.toml - v6
+# LINEBENDER LINT SET - Cargo.toml - v6.1
 # See https://linebender.org/wiki/canonical-lints/
 rust.keyword_idents_2024 = "forbid"
 rust.non_ascii_idents = "forbid"
@@ -22,7 +22,6 @@ rust.elided_lifetimes_in_paths = "warn"
 rust.missing_debug_implementations = "warn"
 rust.missing_docs = "warn"
 rust.trivial_numeric_casts = "warn"
-rust.unexpected_cfgs = "warn"
 rust.unnameable_types = "warn"
 rust.unreachable_pub = "warn"
 rust.unused_import_braces = "warn"
