@@ -15,14 +15,23 @@ It can draw large 2D scenes with high performance, using GPU compute shaders for
 <!-- ... Sparse strips -->
 This month we continued seeing a massive amount of activity on Vello's sparse strips renderers (see Raph's video above for details), thanks in part to the tireless contributions of Canva developers Alex Gemberg, Taj Pereira and Andrew Jakubowicz, and to the continued work of Laurenz Stampfl as part of his master's project.
 
-- [vello#...][]: Adds support for rendering bitmap and COLR glyphs.
+- [vello#...][]: ...
 
 ## Masonry
 
 Masonry is the widget system developed by Linebender.
 It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
 
-- [xilem#...][]: ...
+- [xilem#987][]: Route text events to the root widget if there is no focused widget.
+- [xilem#1038][]: Support multiple (top-level) desktop windows in Masonry, by Martin Fischer.
+- [xilem#1009][]: Add properties which only take effect when a widget is hovered/disabled/active.
+- [xilem#1043][], [xilem#1044][]: Split out a Masonry Core crate, which can increase parallelism in compilation.
+- [xilem#1048][]: Split testing into a Masonry Testing crate, allowing certainty that test code isn't inadvertently included in release binaries.
+- [xilem#1053][], [xilem#1054][], [xilem#1055][], [xilem#1056][]: Add properties to `Textbox`, `Checkbox`, `Flex`, `Grid`, and `SizedBox`.
+- [xilem#1086][]: Validate accessibility tree updates in tests.
+
+
+<!-- TODO: Image for multiple windows? -->
 
 <!-- 
 <figure>
@@ -41,7 +50,26 @@ It provides a non-opinionated retained widget tree, designed as a base layer for
 Xilem is our flagship GUI project, inspired by SwiftUI, which uses Masonry for its widgets.
 It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
 
-- [xilem#...][]: ...
+- [xilem#608][]: A `ViewSequence` called `WithoutElements`, to allow including side-effects in lists of element children.
+- [xilem#992][]: Add support for multiple (top-level) desktop windows in Xilem, by Martin Fischer.
+- [xilem#1071][]: Split Xilem into modules.
+- [xilem#1079][], [xilem#1085][]: Provide the app's state to each `View` during more phases. This will allow many future architecture explorations.
+- [xilem#1078][]: Allow accessing the channel of new requests for a `worker` directly.
+- [xilem#1094][]: Refactor `lens` into its own view so that the state doesn't need to passed when constructing the view.
+- [xilem#1097][]: Small example to teach variable length lists, by Nils Martel.
+- [xilem#1102][]: Add a helper for flex rows, to improve readability of layout code.
+
+In June, we started a new initiative for Xilem, which is a "hero" application.
+That is, an application which we are developing alongside Xilem to focus its development.
+
+- [xilem#1087][]: Display a single scrollable timeline.
+- [xilem#1089][], [xilem#1116][]: Add simple HTML processing to make posts more readable.
+- [xilem#1091][]: Load and display the avatar of post authors.
+- [xilem#1092][]: Improve the styling of posts.
+- [xilem#1108][]: Correctly display boosted posts.
+- [xilem#1114][]: Allow viewing replies to a post.
+
+<!-- TODO: Image of Placehero -->
 
 ## Parley
 
