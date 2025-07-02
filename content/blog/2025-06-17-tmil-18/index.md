@@ -82,15 +82,16 @@ This is being developed alongside Xilem to focus its development.
 Parley is a text layout library.
 It handles text layout, mostly at the level of line breaking and resolving glyph positions.
 
-- [parley#334][]: Add editor features required by Android IME.
-- [parley#334][]: 
-- [parley#334][]: 
-- [parley#334][]: 
+In June, we released Parley [0.5.0](https://github.com/linebender/parley/releases/tag/v0.5.0).
+This includes features we talked about in previous months, including restoring `Layout: Sync`, and improvements to line height handling.
+
+- [parley#376][]: An initial version of `AttributedText`.
+- [parley#381][]: Select "hard lines" rather than soft lines when triple clicking.
+- [parley#382][]: Use ui-events-winit in the Vello Editor example.
 
 ## Android View
 
-Andrdoid View was handed over to the Rust Mobile organisation.
-<!-- TODO: Help wanted? Any actual updates? -->
+[Andrdoid View](https://github.com/rust-mobile/android-view) was handed over to the Rust Mobile organisation.
 
 ## Get Involved
 
