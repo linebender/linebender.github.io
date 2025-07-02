@@ -24,7 +24,6 @@ This month we continued seeing a massive amount of activity on the sparse strips
 
 This [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94) outlines the planned timeline for work on the renderers over the next year.
 
-
 ## Masonry
 
 Masonry is the widget system developed by Linebender.
@@ -66,8 +65,8 @@ It lets you build user interfaces declaratively by composing lightweight views t
 - [xilem#1097][]: Small example to teach variable length lists, by Nils Martel.
 - [xilem#1102][]: Add a helper for flex rows, to improve readability of layout code.
 
-In June, we started a new initiative for Xilem, which is a "hero" application.
-That is, an application which we are developing alongside Xilem to focus its development.
+In June, we started a new initiative for Xilem, a Mastodon client example.
+This is being developed alongside Xilem to focus its development.
 
 - [xilem#1087][]: Display a single scrollable timeline.
 - [xilem#1089][], [xilem#1116][]: Add simple HTML processing to make posts more readable.
