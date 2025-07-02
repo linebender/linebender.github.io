@@ -10,12 +10,20 @@ Linebender is an informal open-source organization working on various projects t
 Vello is our GPU vector renderer.
 It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.
 
-- [vello#...][]: ...
+- [vello#1062][]: Add smoke test for layer size, by sagudev.
+- [vello#1019][]: Add Kompari support.
 
 <!-- ... Sparse strips -->
-This month we continued seeing a massive amount of activity on Vello's sparse strips renderers (see Raph's video above for details), thanks in part to the tireless contributions of Canva developers Alex Gemberg, Taj Pereira and Andrew Jakubowicz, and to the continued work of Laurenz Stampfl as part of his master's project.
+This month we continued seeing a massive amount of activity on the sparse strips renderers, a collaborative evolution of Vello.
 
-- [vello#...][]: ...
+<!-- TODO: Which of these are actually relevant? -->
+- [vello#1023][], [vello#1029][], [vello#1041][] (among others): Optimisations.
+- [vello#1044][], [vello#1047][]: Multithreading support.
+- [vello#1053][], : Add SIMD support (see also our [*A plan for SIMD*](@/blog/2025-06-06-a-plan-for-simd.md) blog post).
+- [vello#1060][]: Make glyph rendering optional in the CPU renderer.
+- [vello#1065][], [vello#1070][]: Improved automated
+
+This [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94) outlines the planned timeline for work on the renderers over the next year.
 
 ## Masonry
 
@@ -29,7 +37,6 @@ It provides a non-opinionated retained widget tree, designed as a base layer for
 - [xilem#1048][]: Split testing into a Masonry Testing crate, allowing certainty that test code isn't inadvertently included in release binaries.
 - [xilem#1053][], [xilem#1054][], [xilem#1055][], [xilem#1056][]: Add properties to `Textbox`, `Checkbox`, `Flex`, `Grid`, and `SizedBox`.
 - [xilem#1086][]: Validate accessibility tree updates in tests.
-
 
 <!-- TODO: Image for multiple windows? -->
 
