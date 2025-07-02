@@ -13,17 +13,17 @@ It can draw large 2D scenes with high performance, using GPU compute shaders for
 - [vello#1062][]: Add smoke test for layer size, by sagudev.
 - [vello#1019][]: Add Kompari support.
 
-<!-- ... Sparse strips -->
 This month we continued seeing a massive amount of activity on the sparse strips renderers, a collaborative evolution of Vello.
 
-<!-- TODO: Which of these are actually relevant? -->
 - [vello#1023][], [vello#1029][], [vello#1041][] (among others): Optimisations.
 - [vello#1044][], [vello#1047][]: Multithreading support.
 - [vello#1053][], : Add SIMD support (see also our [*A plan for SIMD*](@/blog/2025-06-06-a-plan-for-simd.md) blog post).
 - [vello#1060][]: Make glyph rendering optional in the CPU renderer.
 - [vello#1065][], [vello#1070][]: Improved automated
+- [kurbo#427][] (in review): A new stroke expander with significant performance improvements.
 
 This [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94) outlines the planned timeline for work on the renderers over the next year.
+
 
 ## Masonry
 
@@ -83,7 +83,10 @@ That is, an application which we are developing alongside Xilem to focus its dev
 Parley is a text layout library.
 It handles text layout, mostly at the level of line breaking and resolving glyph positions.
 
-- [parley#...][]: ...
+- [parley#334][]: Add editor features required by Android IME.
+- [parley#334][]: 
+- [parley#334][]: 
+- [parley#334][]: 
 
 ## Android View
 
