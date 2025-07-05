@@ -19,7 +19,7 @@ This programmatically fetches a list of recently-changed issues and PRs:
 
 // Create new token at https://github.com/settings/tokens/new
 // The token is necessary because otherwise you're likely to hit rate limits
-const token = "<your-github-token>";
+const github_token = "<your-github-token>";
 
 const repos = [
   "linebender/xilem",
@@ -46,10 +46,17 @@ const since = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
 
 const headers = {
   "User-Agent": "linebender-scrapping-script",
-  "Authorization": `token ${token}`,
+  "Authorization": `token ${github_token}`,
   "X-GitHub-Api-Version": "2022-11-28",
   "Accept": "application/vnd.github+json",
 };
+
+if (github_token == "<your-github-token>") {
+  console.error("===");
+  console.error("You need to set the value of `github_token` in the script!");
+  console.error("===");
+  throw new Error("Invalid token");
+}
 
 for (const repo of repos) {
   let issues = [];
