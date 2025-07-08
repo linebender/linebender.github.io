@@ -17,12 +17,24 @@ This month we continued seeing a massive amount of activity on the sparse strips
 
 - [vello#1023][], [vello#1029][], [vello#1041][] (among others): Optimisations.
 - [vello#1044][], [vello#1047][]: Multithreading support.
-- [vello#1053][]: Add SIMD support (see also our [*A plan for SIMD*](@/blog/2025-06-06-a-plan-for-simd.md) blog post).
+- [vello#1053][]: Add SIMD support (see below).
 - [vello#1060][]: Make glyph rendering optional in the CPU renderer.
 - [vello#1065][], [vello#1070][]: Improved automated testing.
 - [kurbo#427][] (in review): A new stroke expander with significant performance improvements.
 
 This [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94) outlines the planned timeline for work on the renderers over the next year.
+
+### Fearless_simd
+
+Much of the recent work on sparse strip rendering has been SIMD-accelerated implementation of the parts running on CPU.
+Here, [vello#1053][] is something of the tip of the iceberg.
+Our [*A plan for SIMD*](@/blog/2025-06-06-a-plan-for-simd.md) blog post sketched out our plans to build an abstraction layer to write SIMD code in a safe, portable way, in contrast to the original prototyping which was all done in unsafe `core::arch` intrinsics.
+Since then, there has been rapid progress on the [fearless_simd] project, focusing on SIMD primitives needed to accelerate rendering.
+Support for WASM is particularly strong.
+
+The crate has been moving fast and there are no stability guarantees yet, but we are very hopeful that it will be a solid foundation for other projects that can benefit from SIMD acceleration.
+We invite projects to start experimenting, and give us feedback.
+Discussion is in the [#simd channel] on the Linebender Zulip.
 
 ## Masonry
 
@@ -156,3 +168,6 @@ It really helps us to learn what aspects our users care about the most.
 [xilem#1108]: https://github.com/linebender/xilem/pull/1108
 [xilem#1114]: https://github.com/linebender/xilem/pull/1114
 [xilem#1116]: https://github.com/linebender/xilem/pull/1116
+
+[fearless_simd]: https://github.com/raphlinus/fearless_simd
+[#simd channel]: https://xi.zulipchat.com/#narrow/channel/514230-simd
