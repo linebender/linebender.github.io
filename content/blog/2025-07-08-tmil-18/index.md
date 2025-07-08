@@ -39,17 +39,16 @@ It provides a non-opinionated retained widget tree, designed as a base layer for
 
 <!-- TODO: Image for multiple windows? -->
 
-<!-- 
 <figure>
 
-<img style="height: auto" width="300" height="300" src="button-shadows.png" alt="Screenshot of the new shadows.">
+<img style="height: auto" width="1464" height="955" src="multiple_windows.png" alt="Three overlapping windows on a black background. The frontmost window is titled Second Window, has text displaying a count of 11, a plus button, and a minus button, stacked vertically. Behind it is First Window, which is the same with a count of 13. At the back is a window titled Multiple Windows, which shows a map from the aforementioned windows to their values above a textbox and Add button. The textbox contains the text Next Window.">
 
 <figcaption>
 
-[xilem#960][]: Adds new shadow property to buttons.
+As of [xilem#1038][] Masonry (and Xilem) support multiple windows.
 
 </figcaption>
-</figure> -->
+</figure>
 
 ## Xilem
 
@@ -75,7 +74,16 @@ This is being developed alongside Xilem to focus its development.
 - [xilem#1108][]: Correctly display boosted posts.
 - [xilem#1114][]: Allow viewing replies to a post.
 
-<!-- TODO: Image of Placehero -->
+<figure>
+
+<img style="height: auto" width="802" height="609" src="placehero.png" alt="A window vertically split into two panes, where the left pane is empty except for the text Connected to Mastodon. Two Mastodon Posts are visible in the right pane, each showing their author's avatar and name, the post's time and contents, and the number of interactions the post has had. Each post also has a button labelled View Replies.">
+
+<figcaption>
+
+The Hero app is currently hardcoded to show a subset of [Raph's timeline](https://mastodon.online/@raph).
+
+</figcaption>
+</figure>
 
 ## Parley
 
