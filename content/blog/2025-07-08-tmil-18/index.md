@@ -37,8 +37,6 @@ It provides a non-opinionated retained widget tree, designed as a base layer for
 - [xilem#1053][], [xilem#1054][], [xilem#1055][], [xilem#1056][]: Add properties to `Textbox`, `Checkbox`, `Flex`, `Grid`, and `SizedBox`.
 - [xilem#1086][]: Validate accessibility tree updates in tests.
 
-<!-- TODO: Image for multiple windows? -->
-
 <figure>
 
 <img style="height: auto" width="1464" height="955" src="multiple_windows.png" alt="Three overlapping windows on a black background. The frontmost window is titled Second Window, has text displaying a count of 11, a plus button, and a minus button, stacked vertically. Behind it is First Window, which is the same with a count of 13. At the back is a window titled Multiple Windows, which shows a map from the aforementioned windows to their values above a textbox and Add button. The textbox contains the text Next Window.">
@@ -112,3 +110,49 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 
 If you wish to discuss the Linebender project individually, Daniel is offering ["office hours" appointments](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2), which are free to book.
 It really helps us to learn what aspects our users care about the most.
+
+[kurbo#427]: https://github.com/linebender/kurbo/pull/427
+
+[parley#376]: https://github.com/linebender/parley/pull/376
+[parley#381]: https://github.com/linebender/parley/pull/381
+[parley#382]: https://github.com/linebender/parley/pull/382
+
+[vello#1019]: https://github.com/linebender/vello/pull/1019
+[vello#1023]: https://github.com/linebender/vello/pull/1023
+[vello#1029]: https://github.com/linebender/vello/pull/1029
+[vello#1041]: https://github.com/linebender/vello/pull/1041
+[vello#1044]: https://github.com/linebender/vello/pull/1044
+[vello#1047]: https://github.com/linebender/vello/pull/1047
+[vello#1053]: https://github.com/linebender/vello/pull/1053
+[vello#1060]: https://github.com/linebender/vello/pull/1060
+[vello#1062]: https://github.com/linebender/vello/pull/1062
+[vello#1065]: https://github.com/linebender/vello/pull/1065
+[vello#1070]: https://github.com/linebender/vello/pull/1070
+
+[xilem#608]: https://github.com/linebender/xilem/pull/608
+[xilem#987]: https://github.com/linebender/xilem/pull/987
+[xilem#992]: https://github.com/linebender/xilem/pull/992
+[xilem#1009]: https://github.com/linebender/xilem/pull/1009
+[xilem#1038]: https://github.com/linebender/xilem/pull/1038
+[xilem#1043]: https://github.com/linebender/xilem/pull/1043
+[xilem#1044]: https://github.com/linebender/xilem/pull/1044
+[xilem#1048]: https://github.com/linebender/xilem/pull/1048
+[xilem#1053]: https://github.com/linebender/xilem/pull/1053
+[xilem#1054]: https://github.com/linebender/xilem/pull/1054
+[xilem#1055]: https://github.com/linebender/xilem/pull/1055
+[xilem#1056]: https://github.com/linebender/xilem/pull/1056
+[xilem#1071]: https://github.com/linebender/xilem/pull/1071
+[xilem#1078]: https://github.com/linebender/xilem/pull/1078
+[xilem#1079]: https://github.com/linebender/xilem/pull/1079
+[xilem#1085]: https://github.com/linebender/xilem/pull/1085
+[xilem#1086]: https://github.com/linebender/xilem/pull/1086
+[xilem#1087]: https://github.com/linebender/xilem/pull/1087
+[xilem#1089]: https://github.com/linebender/xilem/pull/1089
+[xilem#1091]: https://github.com/linebender/xilem/pull/1091
+[xilem#1092]: https://github.com/linebender/xilem/pull/1092
+[xilem#1094]: https://github.com/linebender/xilem/pull/1094
+[xilem#1097]: https://github.com/linebender/xilem/pull/1097
+[xilem#1102]: https://github.com/linebender/xilem/pull/1102
+[xilem#1108]: https://github.com/linebender/xilem/pull/1108
+[xilem#1114]: https://github.com/linebender/xilem/pull/1114
+[xilem#1116]: https://github.com/linebender/xilem/pull/1116
