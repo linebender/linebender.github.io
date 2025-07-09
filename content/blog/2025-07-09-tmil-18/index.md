@@ -1,6 +1,6 @@
 +++
 title = "Linebender in June 2025"
-authors = ["Daniel McNab"]
+authors = ["Daniel McNab", "Raph Levien"]
 +++
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
@@ -24,12 +24,12 @@ This month we continued seeing a massive amount of activity on the sparse strips
 
 This [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94) outlines the planned timeline for work on the renderers over the next year.
 
-### Fearless_simd
+### Fearless SIMD
 
 Much of the recent work on sparse strip rendering has been SIMD-accelerated implementation of the parts running on CPU.
 Here, [vello#1053][] is something of the tip of the iceberg.
 Our [*A plan for SIMD*](@/blog/2025-06-06-a-plan-for-simd.md) blog post sketched out our plans to build an abstraction layer to write SIMD code in a safe, portable way, in contrast to the original prototyping which was all done in unsafe `core::arch` intrinsics.
-Since then, there has been rapid progress on the [fearless_simd] project, focusing on SIMD primitives needed to accelerate rendering.
+Since then, there has been rapid progress on the [Fearless SIMD] project, focusing on SIMD primitives needed to accelerate rendering.
 Support for WASM is particularly strong.
 
 The crate has been moving fast and there are no stability guarantees yet, but we are very hopeful that it will be a solid foundation for other projects that can benefit from SIMD acceleration.
@@ -169,5 +169,5 @@ It really helps us to learn what aspects our users care about the most.
 [xilem#1114]: https://github.com/linebender/xilem/pull/1114
 [xilem#1116]: https://github.com/linebender/xilem/pull/1116
 
-[fearless_simd]: https://github.com/raphlinus/fearless_simd
+[Fearless SIMD]: https://github.com/raphlinus/fearless_simd
 [#simd channel]: https://xi.zulipchat.com/#narrow/channel/514230-simd
