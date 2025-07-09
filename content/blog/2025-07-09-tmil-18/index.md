@@ -169,5 +169,5 @@ It really helps us to learn what aspects our users care about the most.
 [xilem#1114]: https://github.com/linebender/xilem/pull/1114
 [xilem#1116]: https://github.com/linebender/xilem/pull/1116
 
-[Fearless SIMD]: https://github.com/raphlinus/fearless_simd
+[Fearless SIMD]: https://github.com/linebender/fearless_simd
 [#simd channel]: https://xi.zulipchat.com/#narrow/channel/514230-simd
