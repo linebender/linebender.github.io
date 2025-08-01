@@ -15,18 +15,23 @@ It can draw large 2D scenes with high performance, using GPU compute shaders for
 
 This month's progress on the sparse strips renderers, a collaborative evolution of Vello, has been centered around adding support for NEON and WASM SIMD, as well as making further improvements to multi-threaded rendering.
 
-In order to get a better understanding of where we lie performance-wise, we included `tiny-skia` and `vello-cpu` in the [Blend2D benchmark harness](https://blend2d.com/performance.html), a comprehensive benchmarking tool that tests the performance of different parts of a 2D renderer and compares it against other renderers. In order to do so, a [fork](https://github.com/LaurenzV/blend2d-apps/tree/benching) of the benchmark harness was created that uses C bindings to both libraries to include them in the harness. To visualize the results, we created a chart, similar to how it is available on the official Blend2D website. We do want to emphasize again that full credit for building this benchmark tool goes to the Blend2D team, and we merely extended it to also include `tiny-skia` and `vello-cpu`.
+<!-- TODO -->
+- [vello#...][]:
+
+In order to get a better understanding of where we lie performance-wise, we included `tiny-skia` and `vello-cpu` in the [Blend2D benchmark harness](https://blend2d.com/performance.html), a comprehensive benchmarking tool that tests the performance of different parts of a 2D renderer and compares it against other renderers.
+In order to do so, a [fork](https://github.com/LaurenzV/blend2d-apps/tree/benching) of the benchmark harness was created that uses C bindings to both libraries to include them in the harness.
+To visualize the results, we created a chart, similar to how it is available on the official Blend2D website.
+We do want to emphasize again that full credit for building this benchmark tool goes to the Blend2D team, and we merely extended it to also include `tiny-skia` and `vello-cpu`.
 
 The results can be viewed [here](https://laurenzv.github.io/vello_chart/), the source code for generating the charts is available [here](https://github.com/LaurenzV/vello_chart).
 
 Some things that should be noted here:
+
 - Note that these are only preliminary results, and there are plans for making further improvements, especially for multi-threading.
-- We currently do not support x86 SIMD, which is why they are currently not included in the chart. It should be noted that the [README](https://github.com/linebender/tiny-skia?tab=readme-ov-file#performance) of `tiny-skia` explicitly mentions that performance on ARM is worse than on x86, so we expect the performance gap to be smaller on x86.
+- We currently do not support x86 SIMD, which is why they are currently not included in the chart.
+  It should be noted that the [README](https://github.com/linebender/tiny-skia?tab=readme-ov-file#performance) of `tiny-skia` explicitly mentions that performance on ARM is worse than on x86, so we expect the performance gap to be smaller on x86.
 
 Nevertheless, by looking at this chart, it is clear that `vello-cpu` has very impressive performance and on track to become the fastest CPU-based renderer in the Rust ecosystem! When taking all renderers into consideration, Blend2D is still the clear winner in terms of raw performance, but `vello-cpu` does end up taking the second place in many of the benchmarks and beating other renderers such as Skia and Cairo, especially as the size of the geometry gets larger. Similarly to Blend2D, `vello-cpu` also offers a multi-threaded rendering mode, which is especially effective when drawing larger geometries with curves or when using complex paints such as gradients or patterns.
-
-<!-- TODO -->
-- [vello#...][]:
 
 Our [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94) outlines the planned timeline for work on the renderers into next year.
 
