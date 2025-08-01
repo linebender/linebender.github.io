@@ -84,10 +84,15 @@ Our work on Placehero, which is the working name for our Mastodon client example
 - [xilem#...][]:
 <!-- TODO -->
 
+<!-- Image of Xilem Chess GUI, if we have permission. -->
+
 ## Anymore
 
-We have factored a shared utility for use in both Xilem and Masonry...
-<!-- TODO -->
+You might have noticed mentions of [Anymore](https://github.com/linebender/anymore) in both the Xilem and Masonry sections.
+This is a new crate which we've created for the `AnyDebug` trait.
+This allows creating dynamically typed values which can be inspected, making debugging downcasting failures much easier.
+This crate is designed for stability, so that it can be used for interoperability between projects (without allocation).
+We plan to release version 1.0 in early August.
 
 ## Parley
 
