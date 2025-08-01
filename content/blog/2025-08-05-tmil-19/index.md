@@ -45,11 +45,16 @@ Our [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKT
 
 An integration of Vello as the backend for Servo's canvas rendering has landed in [servo#36821][] (and also Vello CPU in [servo#38282][]).
 
-<!-- TODO: Image of Canvas drawn with Vello? -->
+<!-- TODO: Screenshot of chart, maybe? -->
 
 ### Fearless SIMD
 
-TODO: A new blurb here?
+<!-- TODO: Clean up this blurb -->
+<!-- TODO: Do we need to say "experimental" for literally everything? -->
+Fearless SIMD is our experimental SIMD infrastructure library, developed for Vello sparse strips.
+
+- [fearless_simd#24][], [fearless_simd#26][], [fearless_simd#27][]: Implement all WASM SIMD methods.
+<!-- TODO: Any others which are relevant? -->
 
 ## Masonry
 
