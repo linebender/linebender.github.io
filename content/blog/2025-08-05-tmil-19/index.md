@@ -10,14 +10,22 @@ Linebender is an informal open-source organization working on various projects t
 Vello is our GPU vector renderer.
 It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.
 
-<!-- TODO -->
-- [vello#...][]:
+- [vello#785][]: Strokes with a width of zero are no longer treated as fills.
+- [vello#908][]: Updates to wgpu 25 release.
+- [vello#1093][]: Disabled runtime checks in shaders using wgpu's new `create_shader_module_trusted` API, by sagudev.
 
 This month's progress on the sparse strips renderers, a collaborative evolution of Vello, has been centered around adding support for NEON and WASM SIMD, as well as making further improvements to multi-threaded rendering.
 
-<!-- TODO -->
-- [vello#...][]:
+- [vello#1064][], [vello#1086][]: Image rendering in Vello Hybrid.
+- [vello#1078][]: Rewrote Vello CPU to be more SIMD-friendly.
+- [vello#1092][]: Adds support for SIMD flattening.
+- [vello#1103][]: Optimises alpha coverage calculation in strip rendering.
+- [vello#1105][]: Ignores paths containing NaN points, giving a warning.
+- [vello#1122][]: Adds opacity layers to Vello Hybrid.
+- [vello#1134][]: Reuses FlattenCtx for paths.
+- [kurbo#427][]: Contains a new stroke expander with significant performance improvements.
 
+<!-- TODO: Clean up long sentences, hedge, ensure link text is meaningfuly, etc. -->
 In order to get a better understanding of where we lie performance-wise, we included `tiny-skia` and `vello-cpu` in the [Blend2D benchmark harness](https://blend2d.com/performance.html), a comprehensive benchmarking tool that tests the performance of different parts of a 2D renderer and compares it against other renderers.
 In order to do so, a [fork](https://github.com/LaurenzV/blend2d-apps/tree/benching) of the benchmark harness was created that uses C bindings to both libraries to include them in the harness.
 To visualize the results, we created a chart, similar to how it is available on the official Blend2D website.
@@ -35,7 +43,7 @@ Nevertheless, by looking at this chart, it is clear that `vello-cpu` has very im
 
 Our [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94) outlines the planned timeline for work on the renderers into next year.
 
-An integration of Vello as the backend for Servo's canvas rendering has landed in <!-- TODO --> (and also Vello CPU in <!-- TODO -->).
+An integration of Vello as the backend for Servo's canvas rendering has landed in [servo#36821][] (and also Vello CPU in [servo#38282][]).
 
 <!-- TODO: Image of Canvas drawn with Vello? -->
 
