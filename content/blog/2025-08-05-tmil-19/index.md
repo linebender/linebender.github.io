@@ -99,7 +99,10 @@ We plan to release version 1.0 in early August.
 Parley is a text layout library.
 It handles text layout, mostly at the level of line breaking and resolving glyph positions.
 
-- [parley#...][]:
+- [parley#378][]: Reimplements the fontconfig backend using FFI, improving font matching.
+- [parley#378][]: Implements shift-click selection extension, by kekelp.
+- [parley#389][]: Renames variants to more closely match CSS.
+- [parley#395][]: Adds a method to unregister a loaded font.
 
 <!-- ## TODO: The other project news items? -->
 
