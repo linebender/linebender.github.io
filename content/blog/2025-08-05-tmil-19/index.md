@@ -128,6 +128,16 @@ It handles text layout, mostly at the level of line breaking and resolving glyph
 
 <!-- ## TODO: The other project news items? -->
 
+## Raph's job change
+
+Raph Levien has decided to take a voluntary exit offer from Google.
+He is very grateful for the opportunity and the support from Google Fonts of Linebender and Rust UI projects.
+His last day there will be October 12.
+He has a new gig lined up, as well – he plans to join Canva in January, working on rendering and Rust.
+That also involves a move to Australia, an exciting new adventure.
+Through all the changes, he intends to continue his work on Linebender and Rust UI, though towards the end of the year he will be taking things a bit easy.
+The timing of office hours will also need to change, to accommodate the time zone; more updates will be forthcoming.
+
 ## Get Involved
 
 We welcome collaboration on any of our crates.
