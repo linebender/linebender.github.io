@@ -50,12 +50,15 @@ You can follow this work at [servo#38345][].
 
 ### Fearless SIMD
 
-<!-- TODO: Clean up this blurb -->
-<!-- TODO: Do we need to say "experimental" for literally everything? -->
-Fearless SIMD is our experimental SIMD infrastructure library, developed for Vello sparse strips.
+Fearless SIMD is our SIMD infrastructure library.
+We are developing it in concert with the Vello sparse strips renderers, particularly `vello_cpu`.
+
+To support the significant Vello CPU refactor using SIMD, this month saw the addition of more methods implemented in both Neon and WebAssembly.
+Thanks to new contributions from Benjamin Saunders we've started on SSE 4.2 support for `x86` architectures.
 
 - [fearless_simd#24][], [fearless_simd#26][], [fearless_simd#27][]: Implement all WASM SIMD methods.
-<!-- TODO: Any others which are relevant? -->
+- [fearless_simd#31][]: Introduce semantic conversion traits, by Benjamin Saunders.
+- [fearless_simd#42][] (not yet merged): SSE 4.2 support, by Benjamin Saunders.
 
 ## Masonry
 
