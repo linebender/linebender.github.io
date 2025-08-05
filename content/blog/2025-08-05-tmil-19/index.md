@@ -32,21 +32,61 @@ You can follow this work at [servo#38345][].
 
 ### Benchmarking
 
-<!-- TODO: Clean up long sentences, hedge, ensure link text is meaningfuly, etc. -->
-In order to get a better understanding of where we lie performance-wise, we included `tiny-skia` and `vello-cpu` in the [Blend2D benchmark harness](https://blend2d.com/performance.html), a comprehensive benchmarking tool that tests the performance of different parts of a 2D renderer and compares it against other renderers.
-In order to do so, a [fork](https://github.com/LaurenzV/blend2d-apps/tree/benching) of the benchmark harness was created that uses C bindings to both libraries to include them in the harness.
-To visualize the results, we created a chart, similar to how it is available on the official Blend2D website.
-We do want to emphasize again that full credit for building this benchmark tool goes to the Blend2D team, and we merely extended it to also include `tiny-skia` and `vello-cpu`.
+We have performed some benchmarking to understand where Vello CPU's performance lies in the available 2d renderers.
+We did this by creating [a fork of the Blend2D benchmark harness](https://github.com/LaurenzV/blend2d-apps/tree/benching) with the addition of Vello CPU.
+We also added Tiny Skia, which is also stewarded by Linebender and is another popular renderer written in Rust.
+You can read more about the benchmark methodology on [Blend2D's performance page](https://blend2d.com/performance.html).
+We wish to thank the Blend2D team for creating this excellent suite of tests.
 
-The results can be viewed [here](https://laurenzv.github.io/vello_chart/), the source code for generating the charts is available [here](https://github.com/LaurenzV/vello_chart).
+<!-- We did try embedding the results here, but it doesn't really work nicely -->
+<!-- <details>
+
+<style>
+@media screen and (max-width: 800px) {
+  #tmil19-vello-charts-frame {
+    width: 800px;
+    position: relative;
+    left: -15px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  #tmil19-vello-charts-frame {
+  width: 800px;
+  position: relative;
+  left: -30px;
+  /* min-height: 65vh */
+}
+  }
+#tmil19-vello-charts-frame {
+  width: 1000px;
+  position: relative;
+  left: -80px;
+  height: 65vh;
+  max-height: content;
+}
+</style>
+
+<iframe src="https://laurenzv.github.io/vello_chart/" id="tmil19-vello-charts-frame"></iframe>
+
+</details> -->
+
+The [benchmark results page](https://laurenzv.github.io/vello_chart/) shows the results of running this suite on an Apple M1 Pro.
+This shows the results for Blend2D, Agg, Tiny Skia, Vello CPU, Cairo, Skia, and JUCE.
+The source for this results page is available on GitHub at <https://github.com/LaurenzV/vello_chart>.
 
 Some things that should be noted here:
 
-- Note that these are only preliminary results, and there are plans for making further improvements, especially for multi-threading.
-- We currently do not support x86 SIMD, which is why they are currently not included in the chart.
-  It should be noted that the [README](https://github.com/linebender/tiny-skia?tab=readme-ov-file#performance) of `tiny-skia` explicitly mentions that performance on ARM is worse than on x86, so we expect the performance gap to be smaller on x86.
+- Vello CPU is still under active development, so these are only preliminary results.
+- We currently do not support x86-64 SIMD, which is why these charts currently only show an ARM machine.
+  As noted below, we're actively working on x86-64 support.
+- Tiny Skia's relative performance [is documented](https://github.com/linebender/tiny-skia?tab=readme-ov-file#performance) to be worse on ARM than on x86-64.
+  We therefore expect the performance gap between Vello CPU and Tiny Skia to be smaller on x86-64.
 
-Nevertheless, by looking at this chart, it is clear that `vello-cpu` has very impressive performance and on track to become the fastest CPU-based renderer in the Rust ecosystem! When taking all renderers into consideration, Blend2D is still the clear winner in terms of raw performance, but `vello-cpu` does end up taking the second place in many of the benchmarks and beating other renderers such as Skia and Cairo, especially as the size of the geometry gets larger. Similarly to Blend2D, `vello-cpu` also offers a multi-threaded rendering mode, which is especially effective when drawing larger geometries with curves or when using complex paints such as gradients or patterns.
+It is clear that `vello-cpu` has very impressive performance and on track to become the fastest CPU-only renderer in the Rust ecosystem!
+Blend2D is still the clear winner in these tests, but `vello-cpu` takes second place in many of the benchmarks, beating other mature renderers such as Skia and Cairo.
+This is especially the case as the size of the geometry gets larger.
+Blend2D and `vello-cpu` both offer multi-threaded rendering modes (marked by the 2T/4T/8T suffices, as opposed to ST for single threaded).
+Vello CPU's multithreading is especially effective when drawing larger geometries with curves or when using complex paints such as gradients or patterns.
 
 ### Fearless SIMD
 
@@ -65,7 +105,7 @@ Thanks to new contributions from Benjamin Saunders we've started on SSE 4.2 supp
 Masonry is the widget system developed by Linebender.
 It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
 
-<!-- TODO: Trim again? -->
+<!-- TODO: Maybe trim again? -->
 - [xilem#1077][]: Added the accessibility integration for VirtualScroll.
 - [xilem#1096][]: Improved the default styles in Masonry, by Marco Melorio.
 - [xilem#1124][]: Make Checkbox support keyboard interaction, by tannal.
@@ -84,8 +124,6 @@ It provides a non-opinionated retained widget tree, designed as a base layer for
 - [xilem#1246][]: Use properties in `ProgressBar`, by Pufferfish.
 - [xilem#1248][]: Make all widget associated properties be stored in the same arena.
 - [xilem#1253][]: Let Masonry's button have any, by Nixon.
-
-<!-- TODO: Screenshot for xilem#1096? -->
 
 <figure>
 
@@ -111,7 +149,18 @@ Our work on Placehero, which is the working name for our Mastodon client example
 - [xilem#1220][], [xilem#1256][]: Use the environment system for avatars in Placehero.
 - [xilem#1257][]: Avoid per-frame potential  allocations in views with multiple children (i.e. Flex, Grid).
 
-<!-- Image of Xilem Chess GUI, if we have permission. -->
+<figure>
+
+<!-- TODO: Correct image, once we have it. -->
+<!-- <img style="height: auto" width="521" height="420" src="masonry_new_style.png" alt="A todo list app, with items referring to aspects of the new design language, namely 'New Colours', 'Increased Consistency', and 'More Rounded Corners'. The item labelled 'A full design system' is unchecked."> -->
+
+<figcaption>
+
+For July, we would like to showcase this Chess GUI developed using Xilem by Dr. Salewski.
+It can be found in its repository at <https://github.com/StefanSalewski/xilem-chess>.
+
+</figcaption>
+</figure>
 
 ## Anymore
 
