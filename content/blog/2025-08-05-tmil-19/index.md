@@ -201,5 +201,56 @@ See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-off
 If you wish to discuss the Linebender project individually, Daniel is offering ["office hours" appointments](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2), which are free to book.
 It really helps us to learn what aspects our users care about the most.
 
-<!-- [Fearless SIMD]: https://github.com/linebender/fearless_simd
-[#simd channel]: https://xi.zulipchat.com/#narrow/channel/514230-simd -->
+[vello#1064]: https://github.com/linebender/vello/pull/1064
+[vello#1078]: https://github.com/linebender/vello/pull/1078
+[vello#1086]: https://github.com/linebender/vello/pull/1086
+[vello#1092]: https://github.com/linebender/vello/pull/1092
+[vello#1093]: https://github.com/linebender/vello/pull/1093
+[vello#1103]: https://github.com/linebender/vello/pull/1103
+[vello#1105]: https://github.com/linebender/vello/pull/1105
+[vello#1122]: https://github.com/linebender/vello/pull/1122
+[vello#1134]: https://github.com/linebender/vello/pull/1134
+[vello#785]: https://github.com/linebender/vello/pull/785
+[vello#908]: https://github.com/linebender/vello/pull/908
+
+[kurbo#427]: https://github.com/linebender/kurbo/pull/427
+
+[servo#36821]: https://github.com/servo/servo/pull/36821
+[servo#38282]: https://github.com/servo/servo/pull/38282
+[servo#38345]: https://github.com/servo/servo/pull/38345
+
+[fearless_simd#24]: https://github.com/linebender/fearless_simd/pull/24
+[fearless_simd#26]: https://github.com/linebender/fearless_simd/pull/26
+[fearless_simd#27]: https://github.com/linebender/fearless_simd/pull/27
+[fearless_simd#31]: https://github.com/linebender/fearless_simd/pull/31
+[fearless_simd#42]: https://github.com/linebender/fearless_simd/pull/42
+
+[parley#378]: https://github.com/linebender/parley/pull/378
+[parley#389]: https://github.com/linebender/parley/pull/389
+[parley#395]: https://github.com/linebender/parley/pull/395
+
+[xilem#1077]: https://github.com/linebender/xilem/pull/1077
+[xilem#1096]: https://github.com/linebender/xilem/pull/1096
+[xilem#1117]: https://github.com/linebender/xilem/pull/1117
+[xilem#1122]: https://github.com/linebender/xilem/pull/1122
+[xilem#1124]: https://github.com/linebender/xilem/pull/1124
+[xilem#1130]: https://github.com/linebender/xilem/pull/1130
+[xilem#1142]: https://github.com/linebender/xilem/pull/1142
+[xilem#1163]: https://github.com/linebender/xilem/pull/1163
+[xilem#1168]: https://github.com/linebender/xilem/pull/1168
+[xilem#1170]: https://github.com/linebender/xilem/pull/1170
+[xilem#1178]: https://github.com/linebender/xilem/pull/1178
+[xilem#1189]: https://github.com/linebender/xilem/pull/1189
+[xilem#1200]: https://github.com/linebender/xilem/pull/1200
+[xilem#1212]: https://github.com/linebender/xilem/pull/1212
+[xilem#1213]: https://github.com/linebender/xilem/pull/1213
+[xilem#1215]: https://github.com/linebender/xilem/pull/1215
+[xilem#1220]: https://github.com/linebender/xilem/pull/1220
+[xilem#1223]: https://github.com/linebender/xilem/pull/1223
+[xilem#1237]: https://github.com/linebender/xilem/pull/1237
+[xilem#1239]: https://github.com/linebender/xilem/pull/1239
+[xilem#1246]: https://github.com/linebender/xilem/pull/1246
+[xilem#1248]: https://github.com/linebender/xilem/pull/1248
+[xilem#1253]: https://github.com/linebender/xilem/pull/1253
+[xilem#1256]: https://github.com/linebender/xilem/pull/1256
+[xilem#1257]: https://github.com/linebender/xilem/pull/1257
