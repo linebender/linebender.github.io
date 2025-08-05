@@ -83,7 +83,7 @@ Some things that should be noted here:
   We therefore expect the performance gap between Vello CPU and Tiny Skia to be smaller on x86-64.
 
 It is clear that `vello-cpu` has very impressive performance and on track to become the fastest CPU-only renderer in the Rust ecosystem!
-Blend2D is still the clear winner in these tests, but `vello-cpu` takes second place in many of the benchmarks, beating other mature renderers such as Skia and Cairo.
+Blend2D is still the clear winner in these tests, but `vello-cpu` takes second place in many of the benchmarks, often beating other mature renderers such as Skia and Cairo.
 This is especially the case as the size of the geometry gets larger.
 Blend2D and `vello-cpu` both offer multi-threaded rendering modes (marked by the 2T/4T/8T suffices, as opposed to ST for single threaded).
 Vello CPU's multithreading is especially effective when drawing larger geometries with curves or when using complex paints such as gradients or patterns.
@@ -151,8 +151,7 @@ Our work on Placehero, which is the working name for our Mastodon client example
 
 <figure>
 
-<!-- TODO: Correct image, once we have it. -->
-<!-- <img style="height: auto" width="521" height="420" src="masonry_new_style.png" alt="A todo list app, with items referring to aspects of the new design language, namely 'New Colours', 'Increased Consistency', and 'More Rounded Corners'. The item labelled 'A full design system' is unchecked."> -->
+<img style="height: auto" width="1202" height="1029" src="xilem_chess.png" alt="A chess board, with several controls to the left. The white queen is highlighted, and all its valid moves are also highlighted.">
 
 <figcaption>
 
