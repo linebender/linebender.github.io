@@ -1,6 +1,6 @@
 +++
 title = "Linebender in July 2025"
-authors = ["Daniel McNab"]
+authors = ["Daniel McNab", " Laurenz Stampfl"]
 +++
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
@@ -129,8 +129,6 @@ It handles text layout, mostly at the level of line breaking and resolving glyph
 - [parley#378][]: Implements shift-click selection extension, by kekelp.
 - [parley#389][]: Renames variants to more closely match CSS.
 - [parley#395][]: Adds a method to unregister a loaded font.
-
-<!-- ## TODO: The other project news items? -->
 
 ## Raph's job change
 
