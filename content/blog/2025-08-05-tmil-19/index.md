@@ -10,8 +10,8 @@ Linebender is an informal open-source organization working on various projects t
 Vello is our GPU vector renderer.
 It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.
 
-- [vello#785][]: Strokes with a width of zero are no longer treated as fills.
-- [vello#908][]: Updates to wgpu 25 release.
+- [vello#785][]: Fixed strokes with a width of zero being treated as fills.
+- [vello#908][]: Updated to wgpu version 25.
 - [vello#1093][]: Disabled runtime checks in shaders using wgpu's new `create_shader_module_trusted` API, by sagudev.
 
 This month's progress on the sparse strips renderers, a collaborative evolution of Vello, has been centered around adding support for NEON and WASM SIMD, as well as making further improvements to multi-threaded rendering.
@@ -24,6 +24,13 @@ This month's progress on the sparse strips renderers, a collaborative evolution 
 - [vello#1122][]: Adds opacity layers to Vello Hybrid.
 - [vello#1134][]: Reuses FlattenCtx for paths.
 - [kurbo#427][]: Contains a new stroke expander with significant performance improvements.
+
+Our [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94) outlines the planned timeline for work on the renderers into next year.
+
+An integration of Vello as the backend for Servo's canvas rendering has landed in [servo#36821][] (and also Vello CPU in [servo#38282][]).
+You can follow this work at [servo#38345][].
+
+### Benchmarking
 
 <!-- TODO: Clean up long sentences, hedge, ensure link text is meaningfuly, etc. -->
 In order to get a better understanding of where we lie performance-wise, we included `tiny-skia` and `vello-cpu` in the [Blend2D benchmark harness](https://blend2d.com/performance.html), a comprehensive benchmarking tool that tests the performance of different parts of a 2D renderer and compares it against other renderers.
@@ -40,13 +47,6 @@ Some things that should be noted here:
   It should be noted that the [README](https://github.com/linebender/tiny-skia?tab=readme-ov-file#performance) of `tiny-skia` explicitly mentions that performance on ARM is worse than on x86, so we expect the performance gap to be smaller on x86.
 
 Nevertheless, by looking at this chart, it is clear that `vello-cpu` has very impressive performance and on track to become the fastest CPU-based renderer in the Rust ecosystem! When taking all renderers into consideration, Blend2D is still the clear winner in terms of raw performance, but `vello-cpu` does end up taking the second place in many of the benchmarks and beating other renderers such as Skia and Cairo, especially as the size of the geometry gets larger. Similarly to Blend2D, `vello-cpu` also offers a multi-threaded rendering mode, which is especially effective when drawing larger geometries with curves or when using complex paints such as gradients or patterns.
-
-Our [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94) outlines the planned timeline for work on the renderers into next year.
-
-An integration of Vello as the backend for Servo's canvas rendering has landed in [servo#36821][] (and also Vello CPU in [servo#38282][]).
-You can follow this work at [servo#38345][].
-
-<!-- TODO: Screenshot of chart, maybe? -->
 
 ### Fearless SIMD
 
@@ -87,16 +87,17 @@ It provides a non-opinionated retained widget tree, designed as a base layer for
 
 <!-- TODO: Screenshot for xilem#1096? -->
 
-<!-- <figure>
+<figure>
 
-<img style="height: auto" width="1464" height="955" src="multiple_windows.png" alt="Three overlapping windows on a black background. The frontmost window is titled Second Window, has text displaying a count of 11, a plus button, and a minus button, stacked vertically. Behind it is First Window, which is the same with a count of 13. At the back is a window titled Multiple Windows, which shows a map from the aforementioned windows to their values above a textbox and Add button. The textbox contains the text Next Window.">
+<img style="height: auto" width="521" height="420" src="masonry_new_style.png" alt="A todo list app, with items referring to aspects of the new design language, namely 'New Colours', 'Increased Consistency', and 'More Rounded Corners'. The item labelled 'A full design system' is unchecked.">
 
 <figcaption>
 
-As of [xilem#1038][] Masonry (and Xilem) support multiple windows.
+As of [xilem#1096][] Masonry's default styles have been improved.
+This is not a full design system, but is a piecewise improvement.
 
 </figcaption>
-</figure> -->
+</figure>
 
 ## Xilem
 
