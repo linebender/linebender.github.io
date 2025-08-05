@@ -44,6 +44,7 @@ Nevertheless, by looking at this chart, it is clear that `vello-cpu` has very im
 Our [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94) outlines the planned timeline for work on the renderers into next year.
 
 An integration of Vello as the backend for Servo's canvas rendering has landed in [servo#36821][] (and also Vello CPU in [servo#38282][]).
+You can follow this work at [servo#38345][].
 
 <!-- TODO: Screenshot of chart, maybe? -->
 
