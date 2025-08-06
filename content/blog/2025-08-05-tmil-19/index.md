@@ -179,6 +179,13 @@ It handles text layout, mostly at the level of line breaking and resolving glyph
 - [parley#389][]: Renames variants to more closely match CSS.
 - [parley#395][]: Adds a method to unregister a loaded font.
 
+## Kurbo
+
+We released [Kurbo 0.11.3][], with some ergonomics and performance improvements, calculation of moments using Green's theorem, and other methods.
+
+As mentioned in teh Vello section, the new, faster stroke expansion logic ([kurbo#427][]) has landed in main.
+This will be in the upcoming 0.12 release, which is semver-breaking because of changes to the API to reduce memory allocation.
+
 ## Raph's job change
 
 Raph Levien has decided to take a voluntary exit offer from Google.
@@ -254,3 +261,5 @@ It really helps us to learn what aspects our users care about the most.
 [xilem#1253]: https://github.com/linebender/xilem/pull/1253
 [xilem#1256]: https://github.com/linebender/xilem/pull/1256
 [xilem#1257]: https://github.com/linebender/xilem/pull/1257
+
+[Kurbo 0.11.3]: https://github.com/linebender/kurbo/releases/tag/v0.11.3
