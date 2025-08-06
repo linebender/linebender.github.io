@@ -85,7 +85,7 @@ Some things that should be noted here:
 It is clear that `vello-cpu` has very impressive performance and on track to become the fastest CPU-only renderer in the Rust ecosystem!
 Blend2D is still the clear winner in these tests, but `vello-cpu` takes second place in many of the benchmarks, often beating other mature renderers such as Skia and Cairo.
 This is especially the case as the size of the geometry gets larger.
-Blend2D and `vello-cpu` both offer multi-threaded rendering modes (marked by the 2T/4T/8T suffices, as opposed to ST for single threaded).
+Blend2D and `vello-cpu` both offer multi-threaded rendering modes (marked by the 2T/4T/8T suffixes, as opposed to ST for single threaded).
 Vello CPU's multithreading is especially effective when drawing larger geometries with curves or when using complex paints such as gradients or patterns.
 
 ### Fearless SIMD
