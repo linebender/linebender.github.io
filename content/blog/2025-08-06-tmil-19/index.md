@@ -183,7 +183,7 @@ It handles text layout, mostly at the level of line breaking and resolving glyph
 
 We released [Kurbo 0.11.3][], with some ergonomics and performance improvements, calculation of moments using Green's theorem, and other methods.
 
-As mentioned in teh Vello section, the new, faster stroke expansion logic ([kurbo#427][]) has landed in main.
+As mentioned in the Vello section, the new, faster stroke expansion logic ([kurbo#427][]) has landed in main.
 This will be in the upcoming 0.12 release, which is semver-breaking because of changes to the API to reduce memory allocation.
 
 ## Raph's job change
