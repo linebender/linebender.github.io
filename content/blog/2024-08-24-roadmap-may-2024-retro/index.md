@@ -5,32 +5,32 @@ authors = ["Daniel McNab"]
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
 
-At the start of May, we created a [roadmap](@/blog/2024-06-17-roadmap-may-2024.md) for the following three months.
+At the start of May, we created a [roadmap](@/blog/2024-06-17-roadmap-may-2024/index.md) for the following three months.
 We recently went through a process of analysing how well our progress was guided by the roadmap; this report summarises those results.
 
-## Vello [(original)](@/blog/2024-06-17-roadmap-may-2024.md#vello)
+## Vello [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#vello)
 
-### Robust dynamic memory [(original)](@/blog/2024-06-17-roadmap-may-2024.md#robust-dynamic-memory)
+### Robust dynamic memory [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#robust-dynamic-memory)
 
 - **Priority:** Highest.
 - **Status**: Experimental PR ([vello#606](https://github.com/linebender/vello/pull/606)), but hasn’t landed.
   Work required on the CPU side API, but the GPU operations are well-understood.
   This PR could not be released in its current form.
 
-### Reliable snapshot tests [(original)](@/blog/2024-06-17-roadmap-may-2024.md#reliable-snapshot-tests)
+### Reliable snapshot tests [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#reliable-snapshot-tests)
 
 - **Priority:** High.
 - **Status**: This was implemented in [vello#610](https://github.com/linebender/vello/pull/610).
   This has already been extremely useful in our review process, as it allows changes to be validated in the files changed view.
   We also implemented an experiment to use [Git LFS](https://git-lfs.com/), which has been working really well to avoid increasing repository size.
 
-### Sparse strips [(original)](@/blog/2024-06-17-roadmap-may-2024.md#sparse-strips)
+### Sparse strips [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#sparse-strips)
 
 - **Priority:** High.
 - **Status**: We are continuing this work, but there is no code currently available.
   See [#gpu > Sparse strip path rendering](https://xi.zulipchat.com/#narrow/stream/197075-gpu/topic/Sparse.20strip.20path.20rendering) for details.
 
-### Add tests [(original)](@/blog/2024-06-17-roadmap-may-2024.md#add-tests)
+### Add tests [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#add-tests)
 
 - **Priority:** Medium
 - **Status**: This item had already been completed at the time the roadmap was written.
@@ -53,54 +53,54 @@ These include:
 The [stroke expansion paper](https://linebender.org/gpu-stroke-expansion-paper/) documents a key part of Vello's pipeline.
 This was presented at ACM High Performance Graphics (HPG) 2024, placing 3rd Place in the Best Paper Award.
 
-## Masonry [(original)](@/blog/2024-06-17-roadmap-may-2024.md#masonry)
+## Masonry [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#masonry)
 
-### Complete text input [(original)](@/blog/2024-06-17-roadmap-may-2024.md#complete-text-input)
+### Complete text input [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#complete-text-input)
 
 - **Priority**: Highest
 - **Status**: Not that much progress.
   This work is being continued, and indeed there has been significant progress as of the time of writing.
   This is tracked in [parley#52](https://github.com/linebender/parley/issues/52).
 
-### Better tracing for debugging [(original)](@/blog/2024-06-17-roadmap-may-2024.md#better-tracing-for-debugging)
+### Better tracing for debugging [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#better-tracing-for-debugging)
 
 - **Priority**: High
 - **Status**: [xilem#384](https://github.com/linebender/xilem/pull/384) implements most of this, the rest is deferred.
   There are known issues with the size of the log files created by default in very large apps.
 
-### Fix glaring documentation problems [(original)](@/blog/2024-06-17-roadmap-may-2024.md#fix-glaring-documentation-problems)
+### Fix glaring documentation problems [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#fix-glaring-documentation-problems)
 
 - **Priority**: High
 - **Status**: The issues mentioned in this item were addressed in [xilem#329](https://github.com/linebender/xilem/pull/329) and [xilem#503](https://github.com/linebender/xilem/pull/503).
 
-### Finish repository port [(original)](@/blog/2024-06-17-roadmap-may-2024.md#fix-glaring-documentation-problems)
+### Finish repository port [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#fix-glaring-documentation-problems)
 
 - **Priority**: High
 - **Status**: This was completed.
   We moved all Masonry issues into the Xilem repository, and updated all references in code to use full links.
   This move was coordinated in [#linebender > Moving Masonry into Xilem](https://xi.zulipchat.com/#narrow/stream/419691-linebender/topic/Moving.20Masonry.20into.20Xilem).
 
-### Write “widgets in arena” RFC [(original)](@/blog/2024-06-17-roadmap-may-2024.md#write-widgets-in-arena-rfc)
+### Write “widgets in arena” RFC [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#write-widgets-in-arena-rfc)
 
 - **Priority**: High
 - **Status**: The RFC was [rfcs#6](https://github.com/linebender/rfcs/pull/6), which was mostly implemented in [xilem#396](https://github.com/linebender/xilem/pull/396).
 
-### Write “pass order” RFC [(original)](@/blog/2024-06-17-roadmap-may-2024.md#write-pass-order-rfc)
+### Write “pass order” RFC [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#write-pass-order-rfc)
 
 - **Priority**: High
 - **Status**: [rfcs#7](https://github.com/linebender/rfcs/pull/7) is in draft, and several important parts of the RFC have been completed.
 
-### Rewrite documentation [(original)](@/blog/2024-06-17-roadmap-may-2024.md#rewrite-documentation)
+### Rewrite documentation [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#rewrite-documentation)
 
 - **Priority**: Medium
 - **Status**: This work has been deferred until the "pass order" refactor is complete, as we expect Masonry's core to be quite stable at that point.
 
-### Improve focus handling [(original)](@/blog/2024-06-17-roadmap-may-2024.md#improve-focus-handling)
+### Improve focus handling [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#improve-focus-handling)
 
 - **Priority**: Medium
 - **Status**: Not done.
 
-### Improve pointer status handling [(original)](@/blog/2024-06-17-roadmap-may-2024.md#improve-pointer-status-handling)
+### Improve pointer status handling [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#improve-pointer-status-handling)
 
 - **Priority**: Medium
 - **Status**: Basic translation of touch events was added in ([xilem#313](https://github.com/linebender/xilem/pull/313)).
@@ -117,28 +117,28 @@ To unblock these users, some additional important features were added outside of
 - Fixes on iOS, including [xilem#418](https://github.com/linebender/xilem/pull/418) and [xilem#421](https://github.com/linebender/xilem/pull/421).
 - [xilem#233](https://github.com/linebender/xilem/pull/233) allowed our tests to be run on CI in a consistent manner.
 
-## Parley [(original)](@/blog/2024-06-17-roadmap-may-2024.md#parley)
+## Parley [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#parley)
 
-### Create abstractions for text selection and editing [(original)](@/blog/2024-06-17-roadmap-may-2024.md#write-pass-order-rfc#create-abstractions-for-text-selection-and-editing) ?
+### Create abstractions for text selection and editing [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#write-pass-order-rfc#create-abstractions-for-text-selection-and-editing) ?
 
 - **Priority**: Highest
 - **Status**: There have been useful discussions in [parley#52](https://github.com/linebender/parley/issues/52).
   Work has started on this in [parley#106](https://github.com/linebender/parley/pull/106) in response to this retrospective.
 
-### Inline block layout [(original)](@/blog/2024-06-17-roadmap-may-2024.md#inline-block-layout)
+### Inline block layout [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#inline-block-layout)
 
 - **Priority**: High
 - **Status**: A first cut of this feature was added by Nico Burns in ([parley#67](https://github.com/linebender/parley/pull/67)).
   [parley#76](https://github.com/linebender/parley/pull/76) expands upon this, and has been approved in principle, but is awaiting thorough review.
 
-### Write adequate documentation [(original)](@/blog/2024-06-17-roadmap-may-2024.md#write-adequate-documentation)
+### Write adequate documentation [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#write-adequate-documentation)
 
 - **Priority**: High
 - **Status**: Some work was done towards this in [parley#26](https://github.com/linebender/parley/pull/26), which unfortunately could not be merged.
   [parley#97](https://github.com/linebender/parley/pull/97) added some documentation to Fontique.
   Further documentation work from Nico is currently blocked on the tree-like styles PR [parley#76](https://github.com/linebender/parley/pull/76) being merged (to avoid conflicts).
 
-### Software renderer [(original)](@/blog/2024-06-17-roadmap-may-2024.md#software-renderer)
+### Software renderer [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#software-renderer)
 
 - **Priority**: Low
 - **Status**: This was not completed in the form envisioned.
@@ -151,9 +151,9 @@ To unblock these users, some additional important features were added outside of
 
 Recently the [harfruzz](https://github.com/harfbuzz/harfruzz) project, a fork of rustybuzz to be integrated fully with fontations, has emerged as an extremely promising direction for text shaping for the Rust ecosystem. We plan to use it as the basis for text layout.
 
-## Xilem [(original)](@/blog/2024-06-17-roadmap-may-2024.md#xilem) {#xilem}
+## Xilem [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#xilem) {#xilem}
 
-### Android bringup [(original)](@/blog/2024-06-17-roadmap-may-2024.md#android-bringup)
+### Android bringup [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#android-bringup)
 
 - **Priority**: Highest
 - **Status**: Android is supported in several of our examples, with the primary work required for support completed in [xilem#309](https://github.com/linebender/xilem/pull/309).
@@ -161,37 +161,37 @@ Recently the [harfruzz](https://github.com/harfbuzz/harfruzz) project, a fork of
   Some compromises were made, in particular cargo gives an un-silencable warning for each example which supports Android and cross-platform backends.
   We did reach out to the Cargo team about this use case, but did not get a positive response.
 
-### Update repository layout [(original)](@/blog/2024-06-17-roadmap-may-2024.md#update-repository-layout)
+### Update repository layout [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#update-repository-layout)
 
 - **Priority**: High
 - **Status**: This was completed in [xilem#302](https://github.com/linebender/xilem/pull/302).
   Kaur applied the same change to Vello in [vello#590](https://github.com/linebender/vello/pull/590).
 
-### Rework xilem_core to be compatible with Masonry backend [(original)](@/blog/2024-06-17-roadmap-may-2024.md#rework-xilem-core-to-be-compatible-with-masonry-backend) {#rework-core}
+### Rework xilem_core to be compatible with Masonry backend [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#rework-xilem-core-to-be-compatible-with-masonry-backend) {#rework-core}
 
 - **Priority**: High
 - **Status**: This was completed in [xilem#310](https://github.com/linebender/xilem/pull/310).
   Philipp then applied this to Xilem Web in [xilem#403](https://github.com/linebender/xilem/pull/403).
 
-### Write documentation [(original)](@/blog/2024-06-17-roadmap-may-2024.md#write-documentation)
+### Write documentation [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#write-documentation)
 
 - **Priority**: High
 - **Status**: This was not completed.
   The work in [xilem#310](https://github.com/linebender/xilem/pull/310) did document some of the core, but there is very little user-facing documentation of the Xilem level.
 
-### Re-implement async integration [(original)](@/blog/2024-06-17-roadmap-may-2024.md#re-implement-async-integration)
+### Re-implement async integration [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#re-implement-async-integration)
 
 - **Priority**: Medium
 - **Status**: The core of this task was completed in [xilem#423](https://github.com/linebender/xilem/pull/423) was the main implementation.
   Two-way communication with the async tasks is not yet implemented
 
-### Add unit tests [(original)](@/blog/2024-06-17-roadmap-may-2024.md#add-unit-tests)
+### Add unit tests [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#add-unit-tests)
 
 - **Priority**: Low
 - **Status**: This was not prioritised.
   We have raised the priority of this item in our next roadmap.
 
-### Add basic benchmarks [(original)](@/blog/2024-06-17-roadmap-may-2024.md#add-basic-benchmarks)
+### Add basic benchmarks [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#add-basic-benchmarks)
 
 - **Priority**: Low
 - **Status**: There has been no progress on this item.
@@ -209,15 +209,15 @@ Some highlights of these contributions are:
 
 There has also been lots of really good progress on Xilem Web, but we do not roadmap Xilem Web and so we do not cover that progress here.
 
-## AccessKit [(original)](@/blog/2024-06-17-roadmap-may-2024.md#accesskit)
+## AccessKit [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#accesskit)
 
 Matt Campbell's work on AccessKit has begun, and a proof-of-concept Android adapter is in progress.
 <!-- TODO: Can we point to a PR instead? -->
 At the time of writing there is not a permanent link to this work, but it can be seen in the [android-basics](https://github.com/AccessKit/accesskit/tree/android-basics) branch.
 
-## Android specific work [(original)](@/blog/2024-06-17-roadmap-may-2024.md#android-specific-work)
+## Android specific work [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#android-specific-work)
 
-### Subclassing View/Application/Activity [(original)](@/blog/2024-06-17-roadmap-may-2024.md#subclassing-view-application-activity) {#subclassing}
+### Subclassing View/Application/Activity [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#subclassing-view-application-activity) {#subclassing}
 
 - **Priority**: Highest
 - **Status**: This work is in progress, and unfortunately has required more research than expected.
@@ -225,14 +225,14 @@ At the time of writing there is not a permanent link to this work, but it can be
   However, it’s now looking like a custom Activity and View is the way forward, which requires close collaboration with upstream tools.
   We are continuing to prioritise this highly.
 
-### Handling IME [(original)](@/blog/2024-06-17-roadmap-may-2024.md#handling-ime)
+### Handling IME [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#handling-ime)
 
 - **Priority**: Highest
 - **Status**: This work is ongoing.
   [winit#3787](https://github.com/rust-windowing/winit/pull/3787) allows opening a virtual keyboard, however this does not integrate with full IME (so for example, it is incompatible with autocorrect).
   Real IME requires the Activity to support it directly and therefore involves [content view subclassing](#subclassing).
 
-### Gesture recognition [(original)](@/blog/2024-06-17-roadmap-may-2024.md#gesture-recognition)
+### Gesture recognition [(original)](@/blog/2024-06-17-roadmap-may-2024/index.md#gesture-recognition)
 
 - **Priority**: Low
 - **Status**: [xilem#313](https://github.com/linebender/xilem/pull/313) added emulated mouse press and move from touches.

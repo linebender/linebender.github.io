@@ -80,7 +80,7 @@ Nico Burns contributed quite a few improvements to Parley this month:
 
 - [The Glazier repository](https://github.com/linebender/glazier/) has been archived.
   This is in continuity with our direction so far, as we've dropped support for it and committed to building our crates on top of Winit.
-- We are at the end of our documented [May-July 2024 roadmap](@/blog/2024-06-17-roadmap-may-2024.md).
+- We are at the end of our documented [May-July 2024 roadmap](@/blog/2024-06-17-roadmap-may-2024/index.md).
   We expect to do a full retrospective on it soon, including the items we shipped and those that slipped.
 - Daniel and Olivier are now accepting "office hours" style appointments, for open-ended discussion of the ecosystem.
   - [See Daniel's schedule here](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2).
