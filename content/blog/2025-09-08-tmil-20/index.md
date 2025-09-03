@@ -68,7 +68,52 @@ This included the following changes from August:
 Masonry is the widget system developed by Linebender.
 It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
 
+- [xilem#1207][]: Make `ObjectFit`, `Linebreaking` and `SpinnerColor` properties.
+- [xilem#1212][]: Add `Widget::Action`, which indicates the action type widgets return.
+- [xilem#1226][]: Refactor tab focus.
+- [xilem#1228][]: Add placeholder text to text input.
+- [xilem#1250][]: Move widgets to use a `Length` type, which represents a number of logical pixels.
+- [xilem#1269][]: Introduce "focus fallback" mechanism.
+- [xilem#1273][]: Update to Anymore v1.0.
+- [xilem#1282][], many others: Add unit tests for passes.
+- [xilem#1295][]: Merge `TextColor` and `SpinnerColor` into `ContentColor`.
+- [xilem#1310][]: Cleans up how the event loop handles being suspended, by Nixon.
+- [xilem#1312][]: Remove the generic on VirtualScroll.
+- [xilem#1314][]: Makes the focused indicator for checkboxes larger, by tannal.
+- [xilem#1320][]: Add `NewWindow` struct to encapsulate attributes needed to create a window.
+- [xilem#1321][]: When a new font is loaded, relayout everything.
+- [xilem#1332][]: Restore base colour customisation.
+- [xilem#1349][]: Move Masonry's examples from "Masonry Winit" to "Masonry".
+- [xilem#1353][]: Limit the size of screenshot tests to 8KiB by default.
+- [xilem#1366][]: Make the `Checkbox`'s checked state be controlled only by the driver.
+- [xilem#1371][]: Fix and optimise window resizing and minimising.
+
+## Xilem
+
+Xilem is our flagship GUI project, inspired by SwiftUI, which uses Masonry for its widgets.
+It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
+
+- [xilem#1260][]: Make the virtual scroll implementation much saner.
+- [xilem#1273][]: Update to Anymore v1.0.
+- [xilem#1363][]: Fix the `declare_property_tuple` macro, by Alex Moon.
+- [xilem#1278][]: Add `Prop`, which changes how Masonry `Properties` are applied to more closely match Xilem Web.
+- [xilem#1318][]: Fix initial font loading in easy cases.
+- [xilem#1333][]: Add docs about precise capturing, by Nils Martel.
+- [xilem#1348][]: Add `flex_row` and `flex_col` as convenience functions, by Paul Xu.
+- [xilem#1352][]: Add error handling to virtual cats example, by Nils Martel.
+- [xilem#1357][]: Fix how the `disabled` property is handled for text input.
+- [xilem#1364][]: Remove the `app_state` parameter from teardown, by Alex Moon.
+
+Placehero:
+
+- [xilem#1323][]: Use an Action for navigation (rather than directly setting fields on the app state).
+- [xilem#1337][]: Use virtual scrolling for timelines.
+- [xilem#1370][]: Show the blurhash of media attachements.
+
+
 <!-- <figure>
+
+TODO: Screenshot for blurhashes and virtual scrolling in Placehero?
 
 <img style="height: auto" width="521" height="420" src="masonry_new_style.png" alt="A todo list app, with items referring to aspects of the new design language, namely 'New Colours', 'Increased Consistency', and 'More Rounded Corners'. The item labelled 'A full design system' is unchecked.">
 
@@ -80,12 +125,6 @@ This is not a full design system, but is a piecewise improvement.
 </figcaption>
 </figure> -->
 
-## Xilem
-
-Xilem is our flagship GUI project, inspired by SwiftUI, which uses Masonry for its widgets.
-It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
-
-Placehero:
 
 ## Anymore
 
@@ -93,7 +132,7 @@ Placehero:
 
 ## Kurbo
 
-<!-- TODO -->
+<!-- TODO: -->
 
 ## Get Involved
 
