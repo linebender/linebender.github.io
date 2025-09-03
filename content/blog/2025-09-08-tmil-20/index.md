@@ -63,6 +63,9 @@ This included the following changes from August:
 - [fearless_simd#61][]: Removes `f16` support to prepare for release.
 - [fearless_simd#69][]: Fixes a soundness issue with unsafe SIMD functions.
 
+<!-- TODO: With this release, Fearless SIMD is now ready for experimentation by other users.
+We do have further planned architectural changes, so... -->
+
 ## Masonry
 
 Masonry is the widget system developed by Linebender.
