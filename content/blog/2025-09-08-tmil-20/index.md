@@ -54,6 +54,14 @@ As of [servo#38962][], Vello and Vello CPU are the only canvas backends used in 
 
 Fearless SIMD is our SIMD infrastructure library.
 We are developing it in concert with the Vello sparse strips renderers, particularly `vello_cpu`.
+We released version [v0.2.0](https://github.com/linebender/fearless_simd/releases/tag/v0.2.0), the first Fearless SIMD release since 2018.
+This included the following changes from August:
+
+- [fearless_simd#50][], [fearless_simd#52][]: Add SSE4.2 support.
+- [fearless_simd#58][]: Add some initial docs.
+- [fearless_simd#59][]: Add basic AVX2 support.
+- [fearless_simd#61][]: Removes `f16` support to prepare for release.
+- [fearless_simd#69][]: Fixes a soundness issue with unsafe SIMD functions.
 
 ## Masonry
 
