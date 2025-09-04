@@ -136,7 +136,16 @@ We recommend considering it for use cases where you would otherwise be returning
 
 ## Kurbo
 
-<!-- TODO: -->
+Kurbo provides data structures and algorithms for curves and vector paths.
+We've been preparing for the 0.12 release:
+
+- [kurbo#476][]: Adds an `Axis` type taken from Masonry.
+- [kurbo#483][]: Document Kurbo's feature flags.
+- [kurbo#485][]: Better handle edge cases in cubic_to_quadratic, by Cosimo Lupo.
+- [kurbo#486][]: Deprecate and replace existing `aspect_ratio` methods, which used a non-standard definition of aspect ratio.
+- [kurbo#487][], [kurbo#488][], [kurbo#489][]: Remove many long-deprecated items.
+- [kurbo#490][]: Fix miter join in dashed strokes.
+- [kurbo#493][] (in progress): Convert `CubicBez::nearest` to the `poly-cool` quintic solver.
 
 ## Get Involved
 
