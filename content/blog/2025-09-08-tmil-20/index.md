@@ -21,7 +21,7 @@ It can draw large 2D scenes with high performance, using GPU compute shaders for
 
 - [vello#1096][]: Updated to Wgpu version 26.
 - [vello#1161][]: Simplifies the API for rendering a wgpu `Texture` into a Vello `Scene`.
-- [vello#1169][]: Increased the Skrifa version to v0.35.0. This was backported as the [v0.5.1](https://github.com/linebender/vello/releases/tag/v0.5.1) release.
+- [vello#1169][]: Increased the Skrifa version to v0.35.0. This was backported as [Vello v0.5.1](https://github.com/linebender/vello/releases/tag/v0.5.1).
 - [vello#1182][]: Fixed a longstanding issue with our examples, where they would crash if the window was minimised on windows.
 
 The biggest updates to the sparse strip renderers this month are the support for blending and caching in Vello Hybrid.
@@ -54,7 +54,7 @@ As of [servo#38962][], Vello and Vello CPU are the only canvas backends used in 
 
 Fearless SIMD is our SIMD infrastructure library.
 We are developing it in concert with the Vello sparse strips renderers, particularly `vello_cpu`.
-We released version [v0.2.0](https://github.com/linebender/fearless_simd/releases/tag/v0.2.0), the first Fearless SIMD release since 2018.
+We released [Fearless SIMD v0.2.0](https://github.com/linebender/fearless_simd/releases/tag/v0.2.0), the first Fearless SIMD release since 2018.
 This included the following changes from August:
 
 - [fearless_simd#50][], [fearless_simd#52][]: Add SSE4.2 support.
@@ -111,8 +111,7 @@ Placehero:
 
 - [xilem#1323][]: Use an Action for navigation (rather than directly setting fields on the app state).
 - [xilem#1337][]: Use virtual scrolling for timelines.
-- [xilem#1370][]: Show the blurhash of media attachements.
-
+- [xilem#1370][]: Show the blurhash of media attachments.
 
 <!-- <figure>
 
@@ -127,7 +126,6 @@ This is not a full design system, but is a piecewise improvement.
 
 </figcaption>
 </figure> -->
-
 
 ## Anymore
 
