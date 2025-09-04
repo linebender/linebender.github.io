@@ -129,7 +129,10 @@ This is not a full design system, but is a piecewise improvement.
 
 ## Anymore
 
-<!-- We released version 1.0. -->
+On 4 August, we released [Anymore v1.0.0](https://github.com/linebender/anymore/releases/tag/v1.0.0).
+This is our crate for the fundamental `AnyDebug` trait, which greatly aids debugging when using dynamically typed values.
+Anymore is designed to be used in public APIs; it has a minimal API surface so that it can be extremely stable.
+We recommend considering it for use cases where you would otherwise be returning (potentially wrapped) `Box<dyn Any>` values from your libraries.
 
 ## Kurbo
 
@@ -149,4 +152,4 @@ It really helps us to learn what aspects our users care about the most.
 
 [vello#1064]: https://github.com/linebender/vello/pull/1064
 
-[Kurbo 0.11.3]: https://github.com/linebender/kurbo/releases/tag/v0.11.3
+[servo#38962]: https://github.com/servo/servo/pull/38962
