@@ -37,6 +37,15 @@ We have also had continued SIMD improvements, including x86 support.
 <!-- TODO: This roadmap is a bit out of date.
 Our [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94) outlines the planned timeline for work on the renderers into next year. -->
 
+<img style="height: auto; width: 50%; margin-left: 25%;" width="666" height="673" src="hybrid-blending.png" alt="A series of overlapping shapes of various colours, variously composited.">
+
+<figcaption>
+
+Blending is now supported by Vello Hybrid.
+
+</figcaption>
+</figure>
+
 We have additionally been doing further work on Vello's imaging model.
 This is partly in service of the integrations of Vello in [Graphite](https://graphite.rs/) and [Servo](https://servo.org/).
 
@@ -47,8 +56,6 @@ This is partly in service of the integrations of Vello in [Graphite](https://gra
 - [vello#1183][] (in progress): Support luminance masks.
 
 As of [servo#38962][], Vello and Vello CPU are the only canvas backends used in Servo.
-
-<!-- TODO: Image for blending in Vello Hybrid? -->
 
 ### Fearless SIMD
 
@@ -113,21 +120,20 @@ Placehero:
 
 - [xilem#1323][]: Use an Action for navigation (rather than directly setting fields on the app state).
 - [xilem#1337][]: Use virtual scrolling for timelines.
-- [xilem#1370][]: Show the blurhash of media attachments.
+- [xilem#1370][]: Show the blurhash based preview of media attachments.
 
-<!-- <figure>
+<figure>
 
-TODO: Screenshot for blurhashes and virtual scrolling in Placehero?
-
-<img style="height: auto" width="521" height="420" src="masonry_new_style.png" alt="A todo list app, with items referring to aspects of the new design language, namely 'New Colours', 'Increased Consistency', and 'More Rounded Corners'. The item labelled 'A full design system' is unchecked.">
+<img style="height: auto" width="1991" height="891" src="placehero-progress.png" alt="Two screenshots of a Mastodon app. Left shows the post announcing Matt Campbell's RustWeek 2025 talk, including a very low detail image with alt text shown below. The right screen shows posts from googlefonts@typo.social, which was entered in a box in the left sidebar of the app.">
 
 <figcaption>
 
-As of [xilem#1096][] Masonry's default styles have been improved.
-This is not a full design system, but is a piecewise improvement.
+Placehero can now load content from anywhere in a user's timeline, and preview images (left).
+It can also jump directly to a specific user's timeline by username (right).
+Note that full image loading is not yet supported, only the preview based on the blurhash.
 
 </figcaption>
-</figure> -->
+</figure>
 
 ## Anymore
 
