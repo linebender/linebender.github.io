@@ -63,8 +63,10 @@ This included the following changes from August:
 - [fearless_simd#61][]: Removes `f16` support to prepare for release.
 - [fearless_simd#69][]: Fixes a soundness issue with unsafe SIMD functions.
 
-<!-- TODO: With this release, Fearless SIMD is now ready for experimentation by other users.
-We do have further planned architectural changes, so... -->
+With this release, Fearless SIMD is now ready for experimental use outside of Linebender.
+It now provides a solid way for writing portable SIMD operations across WASM, Aarch64, x86, and x86_64.
+Note however that the library is still in a quite early state - in particular, our documentation is currently only cursory.
+Contributions to improve this would be welcome!
 
 ## Masonry
 
