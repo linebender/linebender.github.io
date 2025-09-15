@@ -11,7 +11,7 @@ All Linebender projects should include the following set of lints:
 # This one may vary depending on the project.
 rust.unsafe_code = "forbid"
 
-# LINEBENDER LINT SET - Cargo.toml - v6.1
+# LINEBENDER LINT SET - Cargo.toml - v7
 # See https://linebender.org/wiki/canonical-lints/
 rust.keyword_idents_2024 = "forbid"
 rust.non_ascii_idents = "forbid"
@@ -33,6 +33,7 @@ clippy.too_many_arguments = "allow"
 clippy.allow_attributes_without_reason = "warn"
 clippy.cast_possible_truncation = "warn"
 clippy.collection_is_never_read = "warn"
+clippy.default_trait_access = "warn"
 clippy.dbg_macro = "warn"
 clippy.debug_assert_with_mut_call = "warn"
 clippy.doc_markdown = "warn"
@@ -111,7 +112,6 @@ clippy::allow_attributes
 clippy::large_include_file
 clippy::match_same_arms
 clippy::partial_pub_fields
-clippy::default_trait_access
 clippy::return_self_not_must_use
 clippy::shadow_unrelated
 ```
@@ -119,14 +119,14 @@ clippy::shadow_unrelated
 As a runnable command, there are:
 
 ```sh
-cargo clippy -- -W let_underscore_drop -W single_use_lifetimes -W unit_bindings -W unused_qualifications -W variant_size_differences -W clippy::large_include_file -W clippy::match_same_arms -W clippy::partial_pub_fields -W clippy::default_trait_access -W clippy::return_self_not_must_use -W clippy::shadow_unrelated
+cargo clippy -- -W let_underscore_drop -W single_use_lifetimes -W unit_bindings -W unused_qualifications -W variant_size_differences -W clippy::large_include_file -W clippy::match_same_arms -W clippy::partial_pub_fields -W clippy::return_self_not_must_use -W clippy::shadow_unrelated
 ```
 
 You may also wish to enable some of these lints specifically in your editor, to improve as you go.
 The ones which are trivial to do this for are below (as the changes it will propose are always very small):
 
 ```sh
-cargo clippy -- -W single_use_lifetimes -W unit_bindings -W unused_qualifications -W clippy::allow_attributes -W clippy::default_trait_access
+cargo clippy -- -W single_use_lifetimes -W unit_bindings -W clippy::allow_attributes 
 ```
 
 If there are many failures of one of these lints across the project, a separate PR would be recommended.
