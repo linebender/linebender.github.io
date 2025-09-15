@@ -122,16 +122,6 @@ As a runnable command, there are:
 cargo clippy -- -W let_underscore_drop -W single_use_lifetimes -W unit_bindings -W variant_size_differences -W clippy::large_include_file -W clippy::match_same_arms -W clippy::partial_pub_fields -W clippy::return_self_not_must_use -W clippy::shadow_unrelated
 ```
 
-You may also wish to enable some of these lints specifically in your editor, to improve as you go.
-The ones which are trivial to do this for are below (as the changes it will propose are always very small):
-
-```sh
-cargo clippy -- -W single_use_lifetimes -W unit_bindings -W clippy::allow_attributes
-```
-
-If there are many failures of one of these lints across the project, a separate PR would be recommended.
-Otherwise, resolving these in a drive-by manner is fine.
-
 ### Pedantic
 
 You may occasionally want to run `cargo clippy` with `clippy::pedantic` on the codebase, which will cast a very wide net and catch a lot of very minor issues.
