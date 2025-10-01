@@ -59,7 +59,7 @@ clippy.wildcard_dependencies = "warn"
 ## `lib.rs`
 
 ```rust
-// LINEBENDER LINT SET - lib.rs - v3
+// LINEBENDER LINT SET - lib.rs - v4
 // See https://linebender.org/wiki/canonical-lints/
 // These lints shouldn't apply to examples or tests.
 #![cfg_attr(not(test), warn(unused_crate_dependencies))]
@@ -68,7 +68,7 @@ clippy.wildcard_dependencies = "warn"
 // Targeting e.g. 32-bit means structs containing usize can give false positives for 64-bit.
 #![cfg_attr(target_pointer_width = "64", warn(clippy::trivially_copy_pass_by_ref))]
 // END LINEBENDER LINT SET
-#![cfg_attr(docsrs, feature(doc_auto_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 ```
 
 ## `.clippy.toml`
