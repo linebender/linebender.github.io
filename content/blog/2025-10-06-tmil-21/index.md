@@ -5,14 +5,6 @@ authors = ["Daniel McNab"]
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
 
-## Parley
-
-Parley is a text layout library.
-It handles text layout, mostly at the level of line breaking and resolving glyph positions.
-
-<!-- TODO -->
-- [][]:
-
 ## Vello
 
 Vello is our GPU vector renderer.
@@ -103,6 +95,16 @@ It lets you build user interfaces declaratively by composing lightweight views t
 <!-- TODO: If there were Placehero updates, they go here. -->
 
 <!-- TODO: Add screenshot. -->
+
+## Parley
+
+Parley is a text layout library.
+It handles text layout, mostly at the level of line breaking and resolving glyph positions.
+
+- [parley#410][]: Fix the last line of justified text.
+- [parley#414][]: Remove Kurbo and Peniko dependencies by using [Linebender Resource Handle](#linebender-resource-handle).
+- [parley#418][]: Upgrade to icu4x 2.0.
+- [parley#421][] (draft): Enable floats and other advanced layouts.
 
 ## Kurbo
 
