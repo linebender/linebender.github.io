@@ -37,6 +37,8 @@ We have also had continued SIMD improvements, including x86 support.
 <!-- TODO: This roadmap is a bit out of date.
 Our [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94) outlines the planned timeline for work on the renderers into next year. -->
 
+<figure>
+
 <img style="height: auto; width: 50%; margin-left: 25%;" width="666" height="673" src="hybrid-blending.png" alt="A series of overlapping shapes of various colours, variously composited.">
 
 <figcaption>
