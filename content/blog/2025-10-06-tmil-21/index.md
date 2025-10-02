@@ -39,8 +39,7 @@ In September, we have had some improvements in Vello Hybrid's capabilities, and 
 
 We're planning to make the beta release of Vello CPU in early October.
 <!-- TODO: What to say exactly here? -->
-Its performance is now extremely competitive, and according to our benchmarking is likely the fastest CPU-only renderer in Rust.
-<https://laurenzv.github.io/vello_chart/>
+Its performance is now extremely competitive - according to [our benchmarking](https://laurenzv.github.io/vello_chart/) is likely the fastest CPU-only renderer in Rust.
 <!-- TODO: We'd like to thank Laurenz, something about Master's project, etc. -->
 
 <!-- TODO: This roadmap is a bit out of date.
@@ -51,7 +50,7 @@ Our [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKT
 
 <figcaption>
 
-<!-- TODO: Gradients in Vello Hybrid? Performance improvements since July? -->
+<!-- TODO: What Image? Gradients in Vello Hybrid? Performance improvements since July? -->
 
 </figcaption>
 </figure>
