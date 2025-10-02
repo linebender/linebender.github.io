@@ -55,16 +55,34 @@ Our [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKT
 </figcaption>
 </figure>
 
-We expect to have Linebender represented at the Graphite Community Meetup, details of which can be found in [their post](https://graphite.rs/blog/graphite-community-meetup-in-germany/).
-
-### Peniko
-
-<!-- TODO: Add screenshot. -->
+Linebender will be represented at the Graphite Community Meetup, details of which can be found in [their post](https://graphite.rs/blog/graphite-community-meetup-in-germany/).
 
 ### Linebender Resource Handle
 
-<!-- Linebender -->
-Talk about previous state, dependencies on Peniko, Cosmic text, etc.
+Peniko's `Font` (and therefore also `Blob`) are used as vocabulary types for font resources between crates (such as Vello and Parley).
+However, this meant that when Peniko made semver-incompatible releases, those crates could no longer (easily) interoperate.
+Additionally, some crates (notably both Parley and Cosmic Text) only depended on Peniko for these interoperability types.
+
+To resolve this, `Font`, `Blob`, and `WeakBlob` in Peniko are now re-exports from a new crate called [Linebender Resource Handle](https://crates.io/crates/linebender_resource_handle).
+These types have identical API as in previous releases, but will now be the same type across Peniko versions.
+We have made this migration in such a way that these types are also used in the minor releases of Peniko since `v0.3.x`.
+This means that all releases of Parley and Vello from 2025 are entirely cross-compatible.
+
+Additionally, in future releases, Parley will only depend on Linebender Resource Handle instead of Peniko, improving its compilation time for users who use Parley without Vello.
+
+### Peniko
+
+In addition to the migration to Linebender Resource Handle, we have made small but important improvements in Peniko, our crate for shared 2d rendering types.
+
+- [peniko#115][]: Add an `InterpolationAlphaSpace` to gradients. This is helpful for implementing web specs, and should otherwise be ignored by most users.
+- [peniko#123][]: Rename `ImageRenderParams` to `ImageSampler`.
+- [peniko#126][]: Migrated to Linebender Resource Handle.
+- [peniko#130][]: Clarify Sweep Gradient Angle rotation and unit. This now is defined to match how Vello was interpreting it.
+- [peniko#139][]: Better document `Mix`, `Compose` and `Fill`.
+- [peniko#144][]: Deprecate `Mix::Clip` and make it no longer the default blend mode.
+
+Release [v0.4.1](https://github.com/linebender/peniko/releases/tag/v0.4.1) is a backport release for the Linebender Resource Handle migration.
+We expect to release Peniko v0.5.0 very early in October.
 
 ## Masonry
 
