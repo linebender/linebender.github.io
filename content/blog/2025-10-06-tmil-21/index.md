@@ -18,12 +18,30 @@ It handles text layout, mostly at the level of line breaking and resolving glyph
 Vello is our GPU vector renderer.
 It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.
 
-<!-- TODO -->
-- [][]:
+- [vello#1183][]: Support for luminance masks.
+- [vello#1187][]: Fix flattening tolerance calculation.
+- [vello#1192][]: Add `push_clip_layer`, in preparation for removing `Mix::Clip`.
+- [vello#1224][]: Update to the latest Peniko main.
+- [vello#1229][]: Put wgpu's default features behind a `wgpu_default` feature flag, by Stefan Tammer.
 
-<!-- TODO: Intro for Sparse Strips -->
+We're planning to make a Vello release early in October for compatibility with Bevy v0.17.
 
-- [][]:
+Our sparse strip renderers are moving towards maturity.
+In September, we have had some improvements in Vello Hybrid's capabilities, and further performance optimisation.
+
+- [vello#1188][]: Make the aliasing threshold configurable.
+- [vello#1196][]: Gradient rendering in Vello Hybrid.
+- [vello#1206][]: Store data about filled areas in a strip.
+- [vello#1209][]: Optimise the `estimate_num_squads` method.
+- [vello#1215][]: Glyph caching for hinting instances and outline paths.
+- [vello#1221][]: Unify our sweep gradient handling.
+- [vello#1239][]: Release [Vello CPU v0.2.0](https://github.com/linebender/vello/releases/tag/sparse-stips-v0.0.2). This release was a final release for Peniko v0.4.x compatibility, and we are planning to release Vello CPU v0.1.0 within the first half of October.
+
+We're planning to make the beta release of Vello CPU in early October.
+<!-- TODO: What to say exactly here? -->
+Its performance is now extremely competitive, and according to our benchmarking is likely the fastest CPU-only renderer in Rust.
+<https://laurenzv.github.io/vello_chart/>
+<!-- TODO: We'd like to thank Laurenz, something about Master's project, etc. -->
 
 <!-- TODO: This roadmap is a bit out of date.
 Our [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94) outlines the planned timeline for work on the renderers into next year. -->
@@ -33,12 +51,12 @@ Our [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKT
 
 <figcaption>
 
-<!-- TODO -->
+<!-- TODO: Gradients in Vello Hybrid? Performance improvements since July? -->
 
 </figcaption>
 </figure>
 
-<!-- TODO: Graphite community meetup? -->
+We expect to have Linebender represented at the Graphite Community Meetup, details of which can be found in [their post](https://graphite.rs/blog/graphite-community-meetup-in-germany/).
 
 ### Peniko
 
@@ -46,7 +64,7 @@ Our [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKT
 
 ### Linebender Resource Handle
 
-<!-- Linebender  -->
+<!-- Linebender -->
 Talk about previous state, dependencies on Peniko, Cosmic text, etc.
 
 ## Masonry
@@ -98,78 +116,3 @@ We're also running a separate office hours time dedicated to the renderer collab
 
 If you wish to discuss the Linebender project individually, Daniel is offering ["office hours" appointments](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2), which are free to book.
 It really helps us to learn what aspects our users care about the most.
-
-[servo#38962]: https://github.com/servo/servo/pull/38962
-
-[color#191]: https://github.com/linebender/color/pull/191
-
-[fearless_simd#50]: https://github.com/linebender/fearless_simd/pull/50
-[fearless_simd#52]: https://github.com/linebender/fearless_simd/pull/52
-[fearless_simd#58]: https://github.com/linebender/fearless_simd/pull/58
-[fearless_simd#59]: https://github.com/linebender/fearless_simd/pull/59
-[fearless_simd#61]: https://github.com/linebender/fearless_simd/pull/61
-[fearless_simd#69]: https://github.com/linebender/fearless_simd/pull/69
-
-[kurbo#476]: https://github.com/linebender/kurbo/pull/476
-[kurbo#483]: https://github.com/linebender/kurbo/pull/483
-[kurbo#485]: https://github.com/linebender/kurbo/pull/485
-[kurbo#486]: https://github.com/linebender/kurbo/pull/486
-[kurbo#487]: https://github.com/linebender/kurbo/pull/487
-[kurbo#488]: https://github.com/linebender/kurbo/pull/488
-[kurbo#489]: https://github.com/linebender/kurbo/pull/489
-[kurbo#490]: https://github.com/linebender/kurbo/pull/490
-[kurbo#493]: https://github.com/linebender/kurbo/pull/493
-
-[parley#400]: https://github.com/linebender/parley/pull/400
-[parley#405]: https://github.com/linebender/parley/pull/405
-[parley#406]: https://github.com/linebender/parley/pull/406
-[parley#413]: https://github.com/linebender/parley/pull/413
-[peniko#115]: https://github.com/linebender/peniko/pull/115
-[peniko#117]: https://github.com/linebender/peniko/pull/117
-[peniko#120]: https://github.com/linebender/peniko/pull/120
-[peniko#121]: https://github.com/linebender/peniko/pull/121
-
-[vello#1096]: https://github.com/linebender/vello/pull/1096
-[vello#1136]: https://github.com/linebender/vello/pull/1136
-[vello#1137]: https://github.com/linebender/vello/pull/1137
-[vello#1149]: https://github.com/linebender/vello/pull/1149
-[vello#1153]: https://github.com/linebender/vello/pull/1153
-[vello#1155]: https://github.com/linebender/vello/pull/1155
-[vello#1161]: https://github.com/linebender/vello/pull/1161
-[vello#1169]: https://github.com/linebender/vello/pull/1169
-[vello#1177]: https://github.com/linebender/vello/pull/1177
-[vello#1178]: https://github.com/linebender/vello/pull/1178
-[vello#1182]: https://github.com/linebender/vello/pull/1182
-[vello#1183]: https://github.com/linebender/vello/pull/1183
-
-[xilem#1207]: https://github.com/linebender/xilem/pull/1207
-[xilem#1212]: https://github.com/linebender/xilem/pull/1212
-[xilem#1226]: https://github.com/linebender/xilem/pull/1226
-[xilem#1228]: https://github.com/linebender/xilem/pull/1228
-[xilem#1250]: https://github.com/linebender/xilem/pull/1250
-[xilem#1260]: https://github.com/linebender/xilem/pull/1260
-[xilem#1269]: https://github.com/linebender/xilem/pull/1269
-[xilem#1273]: https://github.com/linebender/xilem/pull/1273
-[xilem#1278]: https://github.com/linebender/xilem/pull/1278
-[xilem#1282]: https://github.com/linebender/xilem/pull/1282
-[xilem#1295]: https://github.com/linebender/xilem/pull/1295
-[xilem#1310]: https://github.com/linebender/xilem/pull/1310
-[xilem#1312]: https://github.com/linebender/xilem/pull/1312
-[xilem#1314]: https://github.com/linebender/xilem/pull/1314
-[xilem#1318]: https://github.com/linebender/xilem/pull/1318
-[xilem#1320]: https://github.com/linebender/xilem/pull/1320
-[xilem#1321]: https://github.com/linebender/xilem/pull/1321
-[xilem#1323]: https://github.com/linebender/xilem/pull/1323
-[xilem#1332]: https://github.com/linebender/xilem/pull/1332
-[xilem#1333]: https://github.com/linebender/xilem/pull/1333
-[xilem#1337]: https://github.com/linebender/xilem/pull/1337
-[xilem#1348]: https://github.com/linebender/xilem/pull/1348
-[xilem#1349]: https://github.com/linebender/xilem/pull/1349
-[xilem#1352]: https://github.com/linebender/xilem/pull/1352
-[xilem#1353]: https://github.com/linebender/xilem/pull/1353
-[xilem#1357]: https://github.com/linebender/xilem/pull/1357
-[xilem#1363]: https://github.com/linebender/xilem/pull/1363
-[xilem#1364]: https://github.com/linebender/xilem/pull/1364
-[xilem#1366]: https://github.com/linebender/xilem/pull/1366
-[xilem#1370]: https://github.com/linebender/xilem/pull/1370
-[xilem#1371]: https://github.com/linebender/xilem/pull/1371
