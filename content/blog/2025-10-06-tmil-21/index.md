@@ -109,10 +109,8 @@ It handles text layout, mostly at the level of line breaking and resolving glyph
 ## Kurbo
 
 Kurbo provides data structures and algorithms for curves and vector paths.
-<!-- TODO: We released v0.12 -->
-
-<!-- TODO -->
-- [][]:
+We released [v0.12](https://github.com/linebender/kurbo/releases/tag/v0.12.0) at the start of September, primarily including the new stroking work.
+In addition to the changes in that release, we also performed various optimisations.
 
 ## Fearless SIMD
 
