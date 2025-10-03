@@ -120,9 +120,15 @@ Fearless SIMD is our SIMD infrastructure library.
 It provides a solid way for writing SIMD operations portably across WASM, Aarch64, x86, and x86_64.
 The improvements we made in September include:
 
-- [][]:
+- [fearless_simd##75][]: Introduce int-from-mask conversion.
+- [fearless_simd#76][]: Add `SimdBase::witness`, allowing access to the `Simd` implementation from vector types.
+- [fearless_simd#79][],[fearless_simd#86][]: Improved bitshifting support.
+- [fearless_simd#80][]: Implement assignment operators (`+=`, etc.).
+- [fearless_simd#88][]: Adopt FMA semantics to match `std`.
+- [fearless_simd#91][]: Unary integer negation.
+- [fearless_simd#96][]: Expression-oriented dispatch macro.
 
-We look forward to seeing ecosystem use cases develop alongside our maturing.
+We look forward to seeing ecosystem use cases develop.
 
 ## Get Involved
 
