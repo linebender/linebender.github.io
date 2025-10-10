@@ -1,6 +1,6 @@
 +++
 title = "Linebender in September 2025"
-authors = ["Daniel McNab"]
+authors = ["Daniel McNab", "Raph Levien"]
 +++
 
 Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for [the Rust programming language](https://rust-lang.org).
@@ -20,6 +20,7 @@ We're planning to make a Vello release early in October for compatibility with B
 
 Our sparse strip renderers are moving towards maturity.
 In September, we have had some improvements in Vello Hybrid's capabilities, and further performance optimisation.
+We're planning on making an alpha release of Vello Hybrid in October.
 
 - [vello#1188][]: Make the aliasing threshold configurable.
 - [vello#1196][]: Gradient rendering in Vello Hybrid.
@@ -34,15 +35,18 @@ We're planning to make the beta release of Vello CPU in early October.
 Its performance is now extremely competitive - according to [our benchmarking](https://laurenzv.github.io/vello_chart/) is likely the fastest CPU-only renderer in Rust.
 <!-- TODO: We'd like to thank Laurenz, something about Master's project, etc. -->
 
+
 <!-- TODO: This roadmap is a bit out of date.
 Our [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94) outlines the planned timeline for work on the renderers into next year. -->
 <figure>
+
+<img style="height: auto" width="2048" height="1480" src="vello_hybrid_gradients.png" alt="A grid of different gradient types. The top row is linear gradients, the middle row is radial, and the bottom row is sweep. The left column is extend, the middle column is reflect, and the right column is repeat.">
 
 <!-- <img style="height: auto; width: 50%; margin-left: 25%;" width="666" height="673" src="hybrid-blending.png" alt="A series of overlapping shapes of various colours, variously composited."> -->
 
 <figcaption>
 
-<!-- TODO: What Image? Gradients in Vello Hybrid? Performance improvements since July? -->
+Vello Hybrid now fully supports gradient paint types.
 
 </figcaption>
 </figure>
@@ -76,23 +80,23 @@ In addition to the migration to Linebender Resource Handle, we have made small b
 Release [v0.4.1](https://github.com/linebender/peniko/releases/tag/v0.4.1) is a backport release for the Linebender Resource Handle migration.
 We expect to release Peniko v0.5.0 very early in October.
 
-## Masonry
+## Masonry and Xilem
 
 Masonry is the widget system developed by Linebender.
 It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.
 
-<!-- TODO -->
--[][]:
-
-## Xilem
 
 Xilem is our flagship GUI project, inspired by SwiftUI, which uses Masonry for its widgets.
 It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
 
-<!-- TODO -->
-- [][]:
+- [xilem#1383][]: Add more window options
+- [xilem#1378][]: Add Slider widget and demo
+- [xilem#1386][]: Text area improvements 
+- [xilem#1388][]: Simplify multi-window code
+- [xilem#1393][]: Fix blitting on a transparent window
 
-<!-- TODO: If there were Placehero updates, they go here. -->
+
+There was some work in Placehero, the Mastodon client which serves as the flagship Xilem application, to support login, but not yet wired up to the UI.
 
 <!-- TODO: Add screenshot. -->
 
@@ -109,7 +113,7 @@ It handles text layout, mostly at the level of line breaking and resolving glyph
 ## Kurbo
 
 Kurbo provides data structures and algorithms for curves and vector paths.
-We released [v0.12](https://github.com/linebender/kurbo/releases/tag/v0.12.0) at the start of September, primarily including the new stroking work.
+We released [v0.12](https://github.com/linebender/kurbo/releases/tag/v0.12.0) at the start of September, primarily including the new stroking work, which improves performance considerably over the previous version.
 In addition to the changes in that release, we also performed various optimisations.
 
 ## Fearless SIMD
@@ -118,9 +122,9 @@ Fearless SIMD is our SIMD infrastructure library.
 It provides a solid way for writing SIMD operations portably across WASM, Aarch64, x86, and x86_64.
 The improvements we made in September include:
 
-- [fearless_simd##75][]: Introduce int-from-mask conversion.
+- [fearless_simd#75][]: Introduce int-from-mask conversion.
 - [fearless_simd#76][]: Add `SimdBase::witness`, allowing access to the `Simd` implementation from vector types.
-- [fearless_simd#79][],[fearless_simd#86][]: Improved bitshifting support.
+- [fearless_simd#79][], [fearless_simd#86][]: Improved bitshifting support.
 - [fearless_simd#80][]: Implement assignment operators (`+=`, etc.).
 - [fearless_simd#88][]: Adopt FMA semantics to match `std`.
 - [fearless_simd#91][]: Unary integer negation.
@@ -139,3 +143,45 @@ We're also running a separate office hours time dedicated to the renderer collab
 
 If you wish to discuss the Linebender project individually, Daniel is offering ["office hours" appointments](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2), which are free to book.
 It really helps us to learn what aspects our users care about the most.
+
+[vello#1183]: https://github.com/linebender/vello/pull/1183
+[vello#1187]: https://github.com/linebender/vello/pull/1187
+[vello#1192]: https://github.com/linebender/vello/pull/1192
+[vello#1224]: https://github.com/linebender/vello/pull/1224
+[vello#1229]: https://github.com/linebender/vello/pull/1229
+[vello#1188]: https://github.com/linebender/vello/pull/1188
+[vello#1196]: https://github.com/linebender/vello/pull/1196
+[vello#1206]: https://github.com/linebender/vello/pull/1206
+[vello#1209]: https://github.com/linebender/vello/pull/1209
+[vello#1215]: https://github.com/linebender/vello/pull/1215
+[vello#1221]: https://github.com/linebender/vello/pull/1221
+[vello#1239]: https://github.com/linebender/vello/pull/1239
+
+[peniko#115]: https://github.com/linebender/peniko/pull/115
+[peniko#123]: https://github.com/linebender/peniko/pull/123
+[peniko#126]: https://github.com/linebender/peniko/pull/126
+[peniko#130]: https://github.com/linebender/peniko/pull/130
+[peniko#139]: https://github.com/linebender/peniko/pull/139
+[peniko#144]: https://github.com/linebender/peniko/pull/144
+
+[xilem#1383]: https://github.com/linebender/xilem/pull/1383
+[xilem#1378]: https://github.com/linebender/xilem/pull/1378
+[xilem#1386]: https://github.com/linebender/xilem/pull/1386
+[xilem#1388]: https://github.com/linebender/xilem/pull/1388
+[xilem#1393]: https://github.com/linebender/xilem/pull/1393
+
+[fearless_simd#75]: https://github.com/linebender/fearless_simd/pull/75
+[fearless_simd#76]: https://github.com/linebender/fearless_simd/pull/76
+[fearless_simd#79]: https://github.com/linebender/fearless_simd/pull/79
+[fearless_simd#80]: https://github.com/linebender/fearless_simd/pull/80
+[fearless_simd#86]: https://github.com/linebender/fearless_simd/pull/86
+[fearless_simd#88]: https://github.com/linebender/fearless_simd/pull/88
+[fearless_simd#91]: https://github.com/linebender/fearless_simd/pull/91
+[fearless_simd#96]: https://github.com/linebender/fearless_simd/pull/96
+
+[parley#410]: https://github.com/linebender/parley/pull/410
+[parley#414]: https://github.com/linebender/parley/pull/414
+[parley#418]: https://github.com/linebender/parley/pull/418
+[parley#421]: https://github.com/linebender/parley/pull/421
+
+
