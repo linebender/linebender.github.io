@@ -28,7 +28,7 @@ This [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBK
 
 Much of the recent work on sparse strip rendering has been SIMD-accelerated implementation of the parts running on CPU.
 Here, [vello#1053][] is something of the tip of the iceberg.
-Our [*A plan for SIMD*](@/blog/2025-06-06-a-plan-for-simd.md) blog post sketched out our plans to build an abstraction layer to write SIMD code in a safe, portable way, in contrast to the original prototyping which was all done in unsafe `core::arch` intrinsics.
+Our [*A plan for SIMD*](@/blog/2025-06-06-a-plan-for-simd/index.md) blog post sketched out our plans to build an abstraction layer to write SIMD code in a safe, portable way, in contrast to the original prototyping which was all done in unsafe `core::arch` intrinsics.
 Since then, there has been rapid progress on the [Fearless SIMD] project, focusing on SIMD primitives needed to accelerate rendering.
 Support for WASM is particularly strong.
 

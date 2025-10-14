@@ -44,9 +44,9 @@ Screenshot by Veniamin Ilmer of their Minesweeper game, used under the [Apache 2
 </figcaption>
 </figure>
 
-Following on from May, Olivier wrote and published a [report](@/blog/2024-06-15-rustnl-2024-unconference.md) on our experience of the RustNL unconference.
+Following on from May, Olivier wrote and published a [report](@/blog/2024-06-15-rustnl-2024-unconference/index.md) on our experience of the RustNL unconference.
 This led to some useful discussion online - see [the zulip thread](https://xi.zulipchat.com/#narrow/stream/181284-blogging/topic/Draft.20-.20Report.20on.20the.20RustNL.202024.20Conference/near/444974910) corresponding with that post for links.
-We are now in the final month of the [May-July 2024 roadmap](@/blog/2024-06-17-roadmap-may-2024.md).
+We are now in the final month of the [May-July 2024 roadmap](@/blog/2024-06-17-roadmap-may-2024/index.md).
 In the intervening time much of the work has been started or completed, although there have been some changes of priorities.
 I expect that we will soon be looking at prioritising items on our [long-term roadmap](@/wiki/long-term-roadmap.md).
 
