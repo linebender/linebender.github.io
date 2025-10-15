@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>This Month in Xilem, August 2024 - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="This Month in Xilem, August 2024">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="This Month in Xilem, August 2024">
+        <meta property="og:description"
+            content="This Month in Xilem, August 2024">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="This Month in Xilem, August 2024">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>This Month in Xilem, August 2024</h1>
+<h3>Daniel McNab, September 11, 2024</h3>
+<p>Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for <a href="https://rust-lang.org">the Rust programming language</a>.</p>
+<figure>
+<img style="height: auto; margin: 0 auto" src="../../linebender.svg" alt="Linebender logo; smoothly stroked overlapping lowercase letters, an l and a b." height="200" width = "200">
+<figcaption>
+<p>Linebender has a new logo, which was contributed by <a href="https://github.com/msiglreith">Markus Siglreithmaier</a>.
+We're seeking feedback on Zulip in <a href="https://xi.zulipchat.com/#narrow/stream/419691-linebender/topic/logo">#linebender&gt;logo</a>.</p>
+</figcaption>
+</figure>
+<h2 id="xilem">Xilem</h2>
+<p>Xilem is our flagship GUI project, inspired by SwiftUI.</p>
+<ul>
+<li>We integrated basic animated variable font rendering (<a href="https://github.com/linebender/xilem/pull/507">xilem#507</a>).</li>
+<li>Philipp Mildenberger moved us back to using <code>ViewMarker</code> in <a href="https://github.com/linebender/xilem/pull/472">xilem#472</a>.
+This restores the ability to return <code>ViewSequence</code>s, by making a tradeoff to work around Rust's faulty trait ambiguity rules.</li>
+<li>We added Views for some existing and new widgets:
+<ul>
+<li>spinners, useful for showing indetermine progress (<a href="https://github.com/linebender/xilem/pull/497">xilem#497</a>);</li>
+<li>progress bars (<a href="https://github.com/linebender/xilem/pull/513">xilem#513</a>); and</li>
+<li>the <code>Portal</code> widget, which brings support for scroll areas to Xilem (<a href="https://github.com/linebender/xilem/pull/561">xilem#561</a>).</li>
+</ul>
+</li>
+</ul>
+<p>Xilem Web is a community managed experimental DOM implementation of the Xilem pattern.
+This month, the updates include:</p>
+<ul>
+<li>Support for returning multiple views from the main logic (<a href="https://github.com/linebender/xilem/pull/482">xilem#482</a>).</li>
+<li>Support for DOM templating, for efficient repeated creation of similar views (<a href="https://github.com/linebender/xilem/pull/495">xilem#495</a>).</li>
+</ul>
+<figure>
+<img style="height: auto" src="stopwatch.png" alt="A timer with the value '0:00:26.4' (26.4 seconds) above two buttons, reset and start. Below these are 5 laps, labelled 'lap 5' to 'lap 1', each with a lap time of approximately 5 seconds and a corresponding elapsed time. This is all contained in an OS window titled 'Stopwatch'." height="388" width = "559">
+<figcaption>
+<p>Jared O'Connell additionally contributed a stopwatch example in <a href="https://github.com/linebender/xilem/pull/492">xilem#492</a>.</p>
+</figcaption>
+</figure>
+<h2 id="masonry">Masonry</h2>
+<p>Masonry is the widget system used by Xilem.
+This month has been dominated by Olivier's implementation of pass specification (<a href="https://github.com/linebender/rfcs/pull/7">rfcs#7</a>):</p>
+<ul>
+<li><a href="https://github.com/linebender/xilem/pull/512">xilem#512</a>: The new compose pass, which is used to minimise redraw when scrolling.</li>
+<li><a href="https://github.com/linebender/xilem/pull/510">xilem#510</a>: Adds the mutate pass, which allows later passes to assume the tree structure is stable by limiting when tree mutation can occur.</li>
+<li><a href="https://github.com/linebender/xilem/pull/522">xilem#522</a>: Implements paint and accessibility as passes, with follow-up by Tom Churchman in <a href="https://github.com/linebender/xilem/pull/557">xilem#557</a>.</li>
+<li><a href="https://github.com/linebender/xilem/pull/488">xilem#488</a> and <a href="https://github.com/linebender/xilem/pull/540">xilem#540</a>: updated event and pointer handling, and disabled handling respectively.</li>
+<li>In progress work includes layout in <a href="https://github.com/linebender/xilem/pull/529">xilem#529</a>, focus in <a href="https://github.com/linebender/xilem/pull/538">xilem#538</a>, animation in <a href="https://github.com/linebender/xilem/pull/539">xilem#539</a> and scroll requests in <a href="https://github.com/linebender/xilem/pull/550">xilem#550</a>.</li>
+</ul>
+<p>We also had some great community contributions, such as:</p>
+<ul>
+<li>Richard Dodd added a new progress Bar widget (<a href="https://github.com/linebender/xilem/pull/513">xilem#513</a>).</li>
+<li>Fixes for Portal scrolling, by Tom Churchman (<a href="https://github.com/linebender/xilem/pull/563">xilem#563</a>).</li>
+</ul>
+<figure>
+<img style="height: auto" src="progress_bar.png" alt="A horizontal progress bar which is 70% filled with blue, with white text overlaid saying 70%. Below this is a checkbox labelled 'set indetermine progress', and a button labelled 'change progress'." height="129" width = "431">
+<figcaption>
+<p>The progress bar widget was contributed by Richard Dodd in <a href="https://github.com/linebender/xilem/pull/513">xilem#513</a>.</p>
+</figcaption>
+</figure>
+<p>We continue to make progress on other key features.</p>
+<ul>
+<li>Snapshot tests now are cross-platform and run in CI (<a href="https://github.com/linebender/xilem/pull/233">xilem#233</a>).</li>
+<li>Pan/flick gestures are being developed in <a href="https://github.com/linebender/xilem/pull/562">xilem#562</a>.</li>
+<li>Progress continues on text input for Android. This involves creating our own <code>Activity</code>, with support for both text input and accessibility.
+This new <code>Activity</code> will use <code>SurfaceView</code> like other modern native code based activities (<code>GameActivity</code>, <code>MakepadActivity</code>, etc.), and our aim is that it won't require a Java toolchain to build a simple application.</li>
+<li>Progress continues on the Accessibility integration for Android. You can try this in <a href="https://github.com/linebender/xilem/pull/575">xilem#575</a>, or see it in the below video.</li>
+</ul>
+<figure>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/IObBk40MdJs?si=GXDNRNelhVz4nTjU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<figcaption>
+<p>The Xilem <code>to_do_mvc</code> example running with <a href="https://en.wikipedia.org/wiki/Google_TalkBack">TalkBack</a> integration.
+Video provided by Matt Campbell.</p>
+</figcaption>
+</figure>
+<h2 id="vello">Vello</h2>
+<p>Vello is our GPU vector renderer.
+We have made some really great progress in August<!-- , TODO: and are actively planning a 0.3.0 release? -->.</p>
+<ul>
+<li>We now support blurred rounded rectangles, contributed by Markus Siglreithmaier (<a href="https://github.com/linebender/vello/pull/665">vello#665</a>)</li>
+<li>Blend stack spilling was implemented, which allows blends more than four layers deep (<a href="https://github.com/linebender/vello/pull/661">vello#661</a>).</li>
+<li>Fixes for some visual artifacts in <a href="https://github.com/linebender/vello/pull/651">vello#651</a>, <a href="https://github.com/linebender/vello/pull/659">vello#659</a> and <a href="https://github.com/linebender/vello/pull/673">vello#673</a>.</li>
+<li>Embedding existing wgpu textures is now supported (<a href="https://github.com/linebender/vello/pull/636">vello#636</a>).</li>
+<li>We now support bitmap glyphs (i.e. emoji), in addition to our previous COLR support (<a href="https://github.com/linebender/vello/pull/641">vello#641</a>).</li>
+<li>Work has begun on sparse strips, which is tracked in <a href="https://github.com/linebender/vello/pull/670">vello#670</a>.</li>
+<li>Frame pacing for Android is being investigated and developed in <a href="https://github.com/linebender/vello/pull/674">vello#674</a>.</li>
+<li>Thomas Smith has been doing some deep-dives into parallel scan, which is the core operation in Vello.
+This work can be found in <a href="https://xi.zulipchat.com/#narrow/stream/197075-gpu/topic/Progress.20for.20GPU&#x27;s.20Without.20Forward.20Progress.20Guarantees">#gpu&gt;Progress for GPU's Without Forward Progress Guarantees</a>.</li>
+</ul>
+<figure>
+<img style="height: auto" src="rounded_rectangles.png" alt="A vertically split image. On the left are three blurred shapes: a blue rectangle with rounded corners, and two black ellipses. The ellipses are partially occluded by the boundaries of the image. On the right is a web page, showing three blog post titles and summaries, each in a box with a black box shadow." height="644" width = "944">
+<figcaption>
+<p>Vello now supports blurred rounded rectangles, based on the maths from <a href="https://raphlinus.github.io/graphics/2020/04/21/blurred-rounded-rects.html">Raph's blog</a>.
+Left: Vello's blurred rounded rectangles test scene.
+Right: <a href="https://github.com/DioxusLabs/blitz/">Blitz</a>'s <code>servo</code> example which renders box shadows using this feature.</p>
+</figcaption>
+</figure>
+<h2 id="parley">Parley</h2>
+<p>Parley is a text layout library.</p>
+<ul>
+<li>Primitives required for robust text editing were added in <a href="https://github.com/linebender/parley/pull/106">parley#106</a>.</li>
+</ul>
+<h2 id="others">Others</h2>
+<ul>
+<li>Bruce Mitchener has started work on <a href="https://github.com/linebender/interpoli/">Interpoli</a>, an animation support library.</li>
+<li>We have performed a <a href="https://linebender.org/blog/roadmap-may-2024-retro/">retrospective</a> on our last roadmap.</li>
+<li>Daniel and Olivier's "office hours" appointments can still be booked by anyone for open-ended time-limited discussion of the ecosystem.
+<ul>
+<li><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2">See Daniel's schedule here</a>.</li>
+<li><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM">See Olivier's schedule here</a>.</li>
+</ul>
+</li>
+</ul>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

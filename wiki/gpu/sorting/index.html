@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Sorting - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Sorting">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Sorting">
+        <meta property="og:description"
+            content="Sorting">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Sorting">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Sorting</h1>
+<p>Many rendering algorithms (including a proposed sparse strip technique for path rendering, and also Gaussian Splatting) rely on sorting.
+Because the GPU has a different architecture to the CPU, programs running on the GPU have different performance characteristics, and this changes which sorting algorithms are optimal for a particular context.
+In particular, sorting algorithms that exploit parallelism tend to be more suited to the GPU.
+The literature on parallel sorting algorithms is extremely well developed, and there are many excellent implementations for CUDA.
+In WebGPU, the situation is still evolving.
+This page has pointers to the potentially useful resources for understanding existing implementations and developing new ones.</p>
+<h2 id="classes-of-sorting-algorithms">Classes of sorting algorithms</h2>
+<p>The most promising sorting algorithms for GPU are merge sort and radix sort.
+Within radix sort there are further distinctions, most notably least significant digit (LSD) vs most significant digit.</p>
+<h2 id="key-size-and-segmentation">Key size and segmentation</h2>
+<p>GPU sorting works best when the key is small and fixed-size.
+For many rendering applications, this is a reasonable assumption.</p>
+<p>In some cases (especially path rendering), a <em>segmented</em> sort may be a better choice than one that sorts the entire buffer.
+An especially good writeup is <a href="https://moderngpu.github.io/segsort.html">segmented sort</a> from Modern GPU, which builds on their <a href="https://moderngpu.github.io/mergesort.html">mergesort</a>.</p>
+<h2 id="lsd-implementations">LSD implementations</h2>
+<p>The LSD sort algorithm with the strongest claims to being fastest is <a href="https://arxiv.org/abs/2206.01784">Onesweep</a>.
+This has an authoritative implementation in <a href="https://nvlabs.github.io/cub/">CUB</a>, for which a good starting point is <a href="https://github.com/NVIDIA/cub/blob/0fc3c3701632a4be906765b73be20a9ad0da603d/cub/agent/agent_radix_sort_onesweep.cuh">agent_radix_sort_onesweep</a>.</p>
+<p>A very popular sorting algorithm in gamedev circles is <a href="https://gpuopen.com/fidelityfx-parallel-sort/">FidelityFX sort</a> from AMD, for which the original source is HLSL.
+This is has enough similarity to Onesweep that it is worth considering the differences.</p>
+<ul>
+<li>Onesweep uses a single pass scan for the digit histograms, while FidelityFX uses a traditional multi-dispatch tree reduction approach.</li>
+<li>Onesweep uses 8 bit digits (so 4 passes for a 32 bit key), while FidelityFX uses 4.</li>
+<li>Onesweep uses <a href="https://arxiv.org/pdf/1701.01189.pdf">warp-level multi-split</a> for ranking, while FidelityFX uses two 2-bit LSD passes.</li>
+</ul>
+<p>Both original code bases use subgroups extensively.
+The FidelityFX implementation works with a subgroup size of 16 or greater, and will produce incorrect results if deployed for a smaller subgroup size.
+Onesweep depends on a hardcoded subgroup (warp) size of 32 and is difficult to make portable to GPUs with other subgroup sizes.</p>
+<h3 id="webgpu-experiment">WebGPU experiment</h3>
+<p>Raph did an <a href="https://github.com/googlefonts/compute-shader-101/pull/31">experiment</a> of a hybrid algorithm largely based on FidelityFX, but adapted to WebGPU, and with a version of warp-level multi-split.
+It achieves approximately 1G elements/s on M1 Max.
+For radix sorts, element/s on large arrays (16M elements) is meaningful, as the algorithm scales linearly with the array size and is usually insensitive to the distribution of keys.</p>
+<p>Like FidelityFX, it uses 4 bit digits and a tree reduction approach to histogram scan.
+It's also basically patterned after FidelityFX in the structure of dispatches.</p>
+<p>Because WebGPU doesn't have subgroups (yet), the warp-level multi-split algorithm fakes it using workgroup shared memory.
+The terms "warp" and "lane" are borrowed from CUDA but in this case represent a more or less arbitrary partitioning.
+A "warp" size of 16 was found to outperform 32, which is not surprising because the fake "ballot" operation to determine which neighbors in the warp hold the same key does linear iteration proportional to warp size.</p>
+<p>Raph has also done experiments (code not yet published) porting this to Metal and using actual subgroup ballot operations.
+That results in ~3G el/s, though some of the speedup is vanilla wgpu inefficiency.
+Also note that to implement this algorithm correctly requires a subgroup barrier (<code>simdgroup_barrier</code> in Metal Shading Language), and that this primitive is not in the WebGPU subgroup proposal (see <a href="https://github.com/gpuweb/gpuweb/issues/4437">gpuweb#4437</a>).
+However, on M1 Max, placing a stronger threadgroup barrier is only a 2% slowdown, so this matter is not urgent.</p>
+<p>Attempts to push this experiment to 8 bits per digit have not yet yielded sustainable performance improvement.</p>
+<p>Several people have pointed out the Onesweep inspired sort from Lichtso, part of the <a href="https://github.com/Lichtso/splatter">splatter</a> Gaussian Splat implementation.
+However, as discussed in <a href="https://github.com/Lichtso/splatter/issues/2">splatter#2</a>, it is an approximate sort only, and may rely on luck that the particular GPU will process atomics within a subgroup in order.
+In addition, because it is one-pass, on GPUs without a forward progress guarantee (of which Apple Silicon is especially noticeable), the algorithm may deadlock or experience extended stalls.
+The experiment mentioned above has neither of these shortcomings.
+Note that it <em>does</em> achieve 8 bits per pass; it is entirely likely that a high performance implementation could draw inspiration from it, more so after subgroups land in WebGPU and thus real warp-level multi-split is possible.</p>
+<h3 id="deviceradixsort">DeviceRadixSort</h3>
+<p>Aras Pranckevičius has been doing lots of experiments with sorting in his <a href="https://github.com/aras-p/UnityGaussianSplatting">UnityGaussianSplatting</a> implementation, all written in the Unity flavor of HLSL.
+<a href="https://github.com/aras-p/UnityGaussianSplatting/pull/82">UnityGaussianSplatting#82</a> adds something called DeviceRadixSort which shows a modest performance improvement (the discussion thread also speaks to the difficulty of implementing such things portably).
+It uses 8 bit digits, and a subgroup implementation of warp-local multi-split.
+This implementation is attempting to be portable to a range of subgroup sizes, but is untested on wave sizes other than 32 and is still under development.</p>
+<p>The author, <a href="https://github.com/b0nes164/">Thomas Smith</a>, has done experiments comparing reduce-then-scan against a chained single-pass approach for the global histogram scan, which suggest that the latter has approximately a 10% performance gain on Nvidia hardware, but pose considerable challenges for portability.
+Single-pass approaches will not perform well on devices without a forward progress guarantee.</p>
+<h2 id="hybrid-radix-sort">Hybrid Radix Sort</h2>
+<p><a href="https://arxiv.org/abs/1611.01137">Hybrid Radix sort</a> is another strong contender, fundamentally based on an MSD approach but with additional mechanisms to reduce memory bandwidth.
+It has better performance in some cases than Onesweep.
+Like Onesweep, it manages 8 bits per pass.
+That said, it is considerably more complicated, and it's also not clear how easily it would translate to WebGPU.</p>
+<h2 id="merge-sort">Merge sort</h2>
+<p>Modern GPU has a well documented <a href="https://moderngpu.github.io/mergesort.html">mergesort</a>, also readily adapted to <a href="https://moderngpu.github.io/segsort.html">segmented sort</a>.
+It is older, and performance numbers from newer papers suggest that it has been surpassed.
+That said, the segmented sort capability may be valuable.</p>
+<p><a href="https://github.com/google/forma">Forma</a> has a sorting implementation called <a href="https://github.com/google/forma/tree/main/forma/src/gpu/conveyor_sort">conveyor_sort</a>.
+This is a merge sort and is in vanilla WebGPU.
+Performance has not been characterized yet.</p>
+<h2 id="bitonic-sort">Bitonic sort</h2>
+<p><a href="https://en.wikipedia.org/wiki/Bitonic_sorter">Bitonic sort</a> is often proposed as it is conceptually fairly simple and the parallelism is easy to exploit, but when applied to large problems it is clear that the number of passes is unacceptably large; typically in the dozens where a radix sort would have 4 or 8.</p>
+<h2 id="discussion">Discussion</h2>
+<p>There is active discussion of this issue in the <a href="https://xi.zulipchat.com/#narrow/stream/197075-gpu/topic/Sorting.20revisited">Sorting revisited</a> Zulip thread.
+Resources and measurements from implementations can be discussed there, then hopefully added to this wiki page.</p>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>
