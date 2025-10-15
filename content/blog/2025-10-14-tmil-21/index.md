@@ -28,7 +28,7 @@ We're planning on making an alpha release of Vello Hybrid in October.
 - [vello#1209][]: Optimise the `estimate_num_squads` method.
 - [vello#1215][]: Glyph caching for hinting instances and outline paths.
 - [vello#1221][]: Unify our sweep gradient handling.
-- [vello#1239][]: Release [Vello CPU v0.2.0](https://github.com/linebender/vello/releases/tag/sparse-stips-v0.0.2). This release was a final release for Peniko v0.4.x compatibility, and we are planning to release Vello CPU v0.1.0 within the first half of October.
+- [vello#1239][]: Release [Vello CPU v0.0.2](https://github.com/linebender/vello/releases/tag/sparse-stips-v0.0.2). This release was a final release for Peniko v0.4.x compatibility, and we are planning to release Vello CPU v0.1.0 within the first half of October.
 
 We're planning to make the beta release of Vello CPU in early October.
 <!-- TODO: What to say exactly here? -->
@@ -91,7 +91,7 @@ It lets you build user interfaces declaratively by composing lightweight views t
 
 - [xilem#1383][]: Add more window options
 - [xilem#1378][]: Add Slider widget and demo
-- [xilem#1386][]: Text area improvements 
+- [xilem#1386][]: Text area improvements
 - [xilem#1388][]: Simplify multi-window code
 - [xilem#1393][]: Fix blitting on a transparent window
 
@@ -183,5 +183,3 @@ It really helps us to learn what aspects our users care about the most.
 [parley#414]: https://github.com/linebender/parley/pull/414
 [parley#418]: https://github.com/linebender/parley/pull/418
 [parley#421]: https://github.com/linebender/parley/pull/421
-
-
