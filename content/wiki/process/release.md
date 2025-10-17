@@ -245,7 +245,3 @@ We also occasionally share releases on Mastodon.
 </div>
 
 </fieldset>
-
-### Making the release
-
-<input type="checkbox">Permissions</input>
