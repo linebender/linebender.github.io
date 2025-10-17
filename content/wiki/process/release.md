@@ -241,7 +241,7 @@ We also occasionally share releases on Mastodon.
 </div>
 
 <div>
-<input type="checkbox" id="during-zulip"></input><label for="during-zulip">Anncouncement message sent to the Zulip for the release.</label>
+<input type="checkbox" id="during-zulip"></input><label for="during-zulip">Announcement message sent to the Zulip for the release.</label>
 </div>
 
 </fieldset>
