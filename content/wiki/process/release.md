@@ -18,6 +18,8 @@ For backports, see the [Backports in Linebender Projects](@/wiki/process/backpor
 We should make sure that the changelog accurately reflects all important changes since the previous release.
 It's especially important that we capture all breaking changes.
 This happens as a normal PR, following normal processes.
+We want to have any updates to the changelog content happen before the release PR itself (see [Preparing the release](#preparing-the-release)).
+This is primarily because changelog content updates are more likely to run into merge conflicts.
 
 ### Dependencies
 
@@ -42,7 +44,7 @@ See [rfcs#5](https://github.com/linebender/rfcs/blob/main/rfcs/0005-version-matr
 ### Preparing the release
 
 Anyone can prepare the release PR (although it should be an organisation member).
-The PR which makes a release should *only* bump version numbers in Cargo.toml (and Cargo.lock) files, and update the changelog.
+The PR which makes a release should *only* bump version numbers in Cargo.toml (and Cargo.lock) files, and update the changelog as described below.
 
 To validate the release, you can run: `cargo publish -p {crate1} -p {crate2} --dry-run`.
 At this stage, you should *only* be doing a dry run.
@@ -176,7 +178,7 @@ The format for this message is:
 
 - [GitHub Release](URL of the release on GitHub)
 - [Crates.io](https://crates.io/crates/{package_name}/{x.x.x})
-- [Docs](https://doc.rs/{package_name}/{x.x.x})
+- [Docs](https://docs.rs/{package_name}/{x.x.x})
 ```
 
 The format can be slightly different if the release involves multiple packages.
