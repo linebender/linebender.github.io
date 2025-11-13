@@ -11,7 +11,7 @@ October saw steady progress on our core crates, including a number of releases.
 Vello is our GPU vector renderer.
 It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.
 
-Laurenz Stampl has done his Masters degree at ETH Zurich on high performance CPU rendering of 2D graphics, particularly the techniques used in vello_cpu.
+Laurenz Stampl has done his Masters degree at ETH Zurich on high performance CPU rendering of 2D graphics, particularly the techniques used in Vello CPU.
 The [masters thesis] is now published.
 It contains up-to-date background on 2D rendering, which is not well represented in the literature, as well as an explanation of the sparse strip method, and benchmarks.
 
@@ -30,7 +30,7 @@ An illustration from Laurenz Stampfl's Masters Thesis, showing the effect of til
 
 We released version [0.0.4 of the sparse strips][sparse strips 0.0.4] versions of the renderer.
 It should be a solid version of [Vello CPU](https://crates.io/crates/vello_cpu), suitable for a wider range of applications where CPU-only rendering is appropriate.
-In addition, it is the initial release of vello_hybrid, a newer approach that uses the GPU to do pixel compositing, but SIMD-accelerated geometry processing on the CPU.
+In addition, it is the initial release of Vello Hybrid, a newer approach that uses the GPU to do pixel compositing, but SIMD-accelerated geometry processing on the CPU.
 
 Vello CPU now supports non-isolated blending ([vello#1159][] among others), which is important for HTML5 canvas compatibility.
 SVG and COLRv1 emoji, by contrast, which has set priorities for Vello in the past, only support isolated blending.
@@ -44,7 +44,7 @@ You can follow the progress in [#vello >  Thoughts on GPU sparse strips].
 
 Work on Vello Classic focused on support for web standard compatibility, motivated by Servo integration.
 Those features include support for non-premultiplied alpha ([vello#1173][], [vello#1262][], [vello#1145][]).
-This has been released in Vello v0.6.0, which also upgraded to wgpu v26 for compatibility with Bevy v0.17.
+This has been released in [Vello v0.6.0], which also upgraded to wgpu v26 for compatibility with Bevy v0.17.
 
 
 ## Masonry and Xilem
@@ -73,7 +73,7 @@ Much of the development work on Parley is directed toward supporting HTML floats
 [parley#421][] is the main PR tracking this work, and references several other PRs.
 
 There has also been some performance work, which especially impacts larger paragraphs.
-This work continues, and we hope to publish quantitative benchmark results in November.
+This work continues, and we hope to publish quantitative benchmark results (based on the benchmark suite in Cosmic Text) in November.
 
 We're also in the process of migrating to ICU4X for Unicode primitives, replacing our own hand-rolled implementations ([parley#436][]).
 This change should improve maintainability.
@@ -88,7 +88,7 @@ This release contains improvements in integer operations, particularly variable 
 
 As development work, we are pursuing a new approach to using intrinsics safely inside `#[target_feature]` blocks: [fearless_simd#108].
 [Safe SIMD intrinsics](https://blog.rust-lang.org/2025/05/15/Rust-1.87.0/#safe-architecture-intrinsics) were added in Rust 1.87, and we encourage using them when writing architecture-specific code.
-An explicit design goal of fearless_simd is to allow portable code in cases where the functionality is reasonably common across architectures, but also facilitate "downcasting" to a specific SIMD level when those intrinsics offer higher performance than the portable choice.
+An explicit design goal of Fearless SIMD is to allow portable code in cases where the functionality is reasonably common across architectures, but also facilitate "downcasting" to a specific SIMD level when those intrinsics offer higher performance than the portable choice.
 For more details on downcasting, see the [A plan for SIMD] blog post.
 
 
@@ -105,6 +105,8 @@ If you wish to discuss the Linebender project individually, Daniel is offering [
 It really helps us to learn what aspects our users care about the most.
 
 [Xilem 0.4.0]: https://github.com/linebender/xilem/releases/tag/v0.4.0
+
+[Vello v0.6.0]: https://github.com/linebender/vello/releases/tag/v0.6.0
 
 [sparse strips 0.0.4]: https://github.com/linebender/vello/releases/tag/sparse-strips-v0.0.4
 
