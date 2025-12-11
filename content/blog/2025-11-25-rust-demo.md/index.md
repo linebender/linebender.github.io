@@ -8,6 +8,12 @@ Can we run some Rust code in here?
 <div id="wasm-demo-container">
 </div>
 
+<style>
+    input {
+        width: 100%;
+    }
+</style>
+
 <script type="module">
     // Adjust the path to your static Wasm files
     import init, { start } from '/rust/rust_demo.js'; 
