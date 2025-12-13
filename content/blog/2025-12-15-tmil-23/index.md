@@ -112,7 +112,7 @@ The goal of this crate is to provide coverage of the large Lottie spec, up to wh
 - [velato#80][]: Replace keyframe with kurbo for tweening because of multiple reasons
 - [velato#81][]: Actually tween with a cubic bezier curve
 - [velato#82][]: Fixes flickering issues for certain lottie configuration
-- [velato#83][]: Adds support for trimed paths
+- [velato#83][]: Adds support for trimmed paths
 - [velato#84][]: Fixes matte layers
 - [velato#85][]: Just grab the x and y coordinates of the easing handles
 
@@ -123,7 +123,7 @@ An assortment of fixes and improvements to Velato's Lottie support to render mor
 bevy_vello is our Bevy integration for Vello.
 The goal is to provide support for rendering scenes, text, svgs, and lotties in the bevy game engine.
 
-- [bevy_vello#180][]: Update to Bevy 0.17 (plus other dependancy updates)
+- [bevy_vello#180][]: Update to Bevy 0.17 (plus other dependency updates)
 - [bevy_vello#182][]: fix: resize render targets on camera viewport change
 - [bevy_vello#184][]: Change bevy version to 0.17 in changelog #184
 
