@@ -105,29 +105,28 @@ It provides a solid way for writing SIMD operations portably across WASM, Aarch6
 ## Velato
 
 Velato is our Lottie render library.
-The goal of this crate is to provide coverage of the large Lottie spec, up to what vello can render, for use in interactive graphics.
-
-- [velato#78][]: Restructure schema to reflect the specification types
-- [velato#79][]: Allow any skew value
-- [velato#80][]: Replace keyframe with kurbo for tweening because of multiple reasons
-- [velato#81][]: Actually tween with a cubic bezier curve
-- [velato#82][]: Fixes flickering issues for certain lottie configuration
-- [velato#83][]: Adds support for trimmed paths
-- [velato#84][]: Fixes matte layers
-- [velato#85][]: Just grab the x and y coordinates of the easing handles
+The goal is to provide coverage of the large Lottie spec, up to what Vello can render, for use in interactive graphics.
 
 An assortment of fixes and improvements to Velato's Lottie support to render more complex animations correctly, see the linked PRs for details.
 
+- [velato#78][]: Restructured schema to reflect the specification types.
+- [velato#79][]: Now allowing any skew value.
+- [velato#80][]: Replaced `keyframe` with `kurbo` for tweening.
+- [velato#81][]: Now tweening with a cubic bezier curve.
+- [velato#82][]: Fixed flickering issues for certain Lottie configurations.
+- [velato#83][]: Added support for trimmed paths.
+- [velato#84][]: Fixed matte layers.
+- [velato#85][]: Fixed easing handles, by only use the first two components.
+
 ## Bevy Vello
 
-bevy_vello is our Bevy integration for Vello.
-The goal is to provide support for rendering scenes, text, svgs, and lotties in the bevy game engine.
+Bevy Vello is our Bevy integration for Vello.
+The goal is to provide support for rendering scenes, text, SVGs, and Lotties in the Bevy game engine.
 
-- [bevy_vello#180][]: Update to Bevy 0.17 (plus other dependency updates)
-- [bevy_vello#182][]: fix: resize render targets on camera viewport change
-- [bevy_vello#184][]: Change bevy version to 0.17 in changelog #184
+A lot of work was done to update Bevy Vello for Bevy 0.17.
 
-A lot of work was done to update bevy_vello for bevy 0.17.
+- [bevy_vello#180][]: Updated to Bevy 0.17, plus other dependency updates.
+- [bevy_vello#182][]: Fixed resize render targets on camera viewport change.
 
 ## Get Involved
 
@@ -198,14 +197,15 @@ It really helps us to learn what aspects our users care about the most.
 [fearless_simd#140]: https://github.com/linebender/fearless_simd/pull/140
 [fearless_simd#143]: https://github.com/linebender/fearless_simd/pull/143
 [fearless_simd#145]: https://github.com/linebender/fearless_simd/pull/145
+
 [velato#78]: https://github.com/linebender/velato/pull/78
 [velato#79]: https://github.com/linebender/velato/pull/79
 [velato#80]: https://github.com/linebender/velato/pull/80
 [velato#81]: https://github.com/linebender/velato/pull/81
 [velato#82]: https://github.com/linebender/velato/pull/82
 [velato#83]: https://github.com/linebender/velato/pull/83
-[velato#84]: https://github.com/linebender/velato/pull/82
+[velato#84]: https://github.com/linebender/velato/pull/84
 [velato#85]: https://github.com/linebender/velato/pull/85
+
 [bevy_vello#180]: https://github.com/linebender/bevy_vello/pull/180
 [bevy_vello#182]: https://github.com/linebender/bevy_vello/pull/182
-[bevy_vello#184]: https://github.com/linebender/bevy_vello/pull/184
