@@ -136,6 +136,8 @@ This can include improving the documentation, implementing new features, improvi
 We host an hour long office hours meeting each week where we discuss what's going on in our projects.
 See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-office-hours) for details.
 We're also running a separate office hours time dedicated to the renderer collaboration, details also available at that link.
+Note that office hours are on a break for the remainder of the year.
+They are expected to continue in January, keep an eye on Zulip for details.
 
 If you wish to discuss the Linebender project individually, Daniel is offering ["office hours" appointments](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2), which are free to book.
 It really helps us to learn what aspects our users care about the most.
