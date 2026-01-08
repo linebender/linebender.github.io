@@ -13,13 +13,13 @@ For backports, see the [Backports in Linebender Projects](@/wiki/process/backpor
 
 ## Before the release
 
-### Preparing for a release
+### Updating the changelog
 
 We should make sure that the changelog accurately reflects all important changes since the previous release.
 It's especially important that we capture all breaking changes.
 This happens as a normal PR, following normal processes.
-We want to have any updates to the changelog content happen before the release PR itself (see [Preparing the release](#preparing-the-release)).
-This is primarily because changelog content updates are more likely to run into merge conflicts.
+We want to have any updates to the changelog content happen before the release PR itself (see [Updating version numbers](#updating-version-numbers)).
+This is primarily because changelog content updates are more likely to run into merge conflicts, and require more thorough review.
 
 ### Dependencies
 
@@ -34,6 +34,8 @@ cargo upgrade --ignore-rust-version
 cargo update --ignore-rust-version
 ```
 
+The `cargo upgrade` command is part of the [`cargo-edit`](https://github.com/killercup/cargo-edit/blob/master/README.md#cargo-upgrade) project.
+
 You should also check that the `cargo upgrade` output doesn't list any breaking releases of our dependencies.
 Note that we have a public dependency on some crates (especially wgpu), which we want to keep synchronised across our projects.
 
@@ -41,14 +43,27 @@ This will be submitted as a PR, following normal processes.
 
 See [rfcs#5](https://github.com/linebender/rfcs/blob/main/rfcs/0005-version-matrix.md#cargolock-is-updated-regularly) for motivation of this strategy.
 
-### Preparing the release
+### Updating version numbers
+
+Once the above steps are done, we will be ready to create the release PR.
+This PR should only:
+
+- update version numbers in `Cargo.toml` files (and therefore also `Cargo.lock`) files; AND
+- rename the "unreleased" section of the changelog to the version number of the new release.
 
 Anyone can prepare the release PR (although it should be an organisation member).
 The PR which makes a release should *only* bump version numbers in Cargo.toml (and Cargo.lock) files, and update the changelog as described below.
 
-To validate the release, you can run: `cargo publish -p {crate1} -p {crate2} --dry-run`.
+#### Updating package versions
+
+The version field in the Cargo.toml file of each package to be published (or the workspace version number) should be increased.
+The version specification for each package to be released in the `[workspace.dependencies]` section of the workspace root `Cargo.toml` will also need to be updated (if present).
+
+Once the Cargo.toml files are updated, to validate the release, you can run: `cargo publish -p {crate1} -p {crate2} --dry-run`.
 At this stage, you should *only* be doing a dry run.
-Cargo should probably not be logged into crates.io at this stage.
+We recommend not having Cargo logged into crates.io at all times, to avoid accidentally publishing at this time, as well as for security in general.
+
+#### Announcing release in the changelog
 
 The updates required in the changelog are as follows:
 
@@ -87,8 +102,8 @@ In the evening in America this might be the next day than the one in your calend
 
 ## Releasing
 
-Release pull requests are an exception to our "author merges" policy.
-Instead release PRs can only be merged by someone who has release permissions, and who will then perform the release once the PR is merged.
+The following steps are to be performed by the person who will perform the release (i.e. run `cargo publish`).
+These all happen in sequence, once the release PR has been approved and everything else is in order.
 
 ### Checking permissions
 
@@ -115,6 +130,10 @@ The release PR should be merged, after it has been approved.
 This will use our standard merge queue.
 The merge will be queued by the person performing the release.
 
+Note that release pull requests are an exception to our "author merges" policy.
+Instead release PRs can only be merged by the person who is performing the release.
+This ensures that proper ownership of the release process is maintained.
+
 ### Validating correct commit
 
 Once the release PR has been merged, you should check out the main branch, and pull from it.
@@ -130,8 +149,11 @@ Note that we don't enforce this.
 If you're publishing multiple crates at once, you should publish using `cargo publish -p {crate1} -p {crate2}`.
 This ensures that each of the crates will compile successfully.
 
+### Adding owners (new crates only)
+
 For new crates, we make sure that at least three Linebender organisation members have publish permissions.
-This should include Raph, and at least one organisation admin.
+This should always include Raph, and at least one other organisation admin.
+Note that this includes yourself, as the person who released the new crate.
 Ask on Zulip if you're unsure about this step.
 
 ### GitHub release
@@ -193,19 +215,23 @@ We also occasionally share releases on Mastodon.
 <legend>Before Release</legend>
 
 <div>
-<input type="checkbox" id="before-dependencies"></input><label for="before-dependencies">Dependencies up-to-date.</label>
-</div>
-
-<div>
 <input type="checkbox" id="before-changelog"></input><label for="before-changelog">Changelog up-to-date.</label>
+<a href="#updating-the-changelog" aria-label="Section on updating the changelog">↩︎</a>
 </div>
 
 <div>
-<input type="checkbox" id="before-version-number"></input><label for="before-version-number">Version numbers bumped in Cargo.toml. Publish <b>dry run</b> performed.</label>
+<input type="checkbox" id="before-dependencies"></input><label for="before-dependencies">Dependencies up-to-date.</label>
+<a href="#dependencies" aria-label="Section on updating dependencies">↩︎</a>
 </div>
 
 <div>
-<input type="checkbox" id="before-changelog-links"></input><label for="before-changelog-links">All parts of the changelog updated, and markdownlint ran.</label>
+<input type="checkbox" id="before-version-number"></input><label for="before-version-number">Version numbers bumped in Cargo.toml. <b>Dry run</b> of the publish performed.</label>
+<a href="#updating-package-versions" aria-label="Section on increasing Cargo version numbers">↩︎</a>
+</div>
+
+<div>
+<input type="checkbox" id="before-changelog-links"></input><label for="before-changelog-links">All parts of the changelog reflect the new release, and markdownlint ran.</label>
+<a href="#announcing-release-in-the-changelog" aria-label="Section on showing the release in the changelog">↩︎</a>
 </div>
 
 </fieldset>
@@ -216,34 +242,42 @@ We also occasionally share releases on Mastodon.
 
 <div>
 <input type="checkbox" id="during-permissions"></input><label for="during-permissions">Correct permissions validated.</label>
+<a href="#checking-permissions" aria-label="Section on validating permissions">↩︎</a>
 </div>
 
 <div>
 <input type="checkbox" id="during-date"></input><label for="during-date">Release date in changelog updated to today's date (in UTC). markdownlint executed.</label>
+<a href="#checking-the-dates" aria-label="Section on updating the date">↩︎</a>
 </div>
 
 <div>
 <input type="checkbox" id="during-merged"></input><label for="during-merged">Release PR merged by person who will do the release.</label>
+<a href="#merging-the-release-pr" aria-label="Section on merging the release PR">↩︎</a>
 </div>
 
 <div>
 <input type="checkbox" id="during-checkout"></input><label for="during-checkout">Checked out (and validated) the merged commit on main.</label>
+<a href="#validating-correct-commit" aria-label="Section on checking the commit">↩︎</a>
 </div>
 
 <div>
 <input type="checkbox" id="during-published"></input><label for="during-published">Published to crates.io.</label>
+<a href="#publishing" aria-label="Section on publishing">↩︎</a>
 </div>
 
 <div>
 <input type="checkbox" id="during-added-owners"></input><label for="during-added-owners">For new crates only: Additional owners added on crates.io.</label>
+<a href="#adding-owners-new-crates-only" aria-label="Section on adding new owners">↩︎</a>
 </div>
 
 <div>
 <input type="checkbox" id="during-github-release"></input><label for="during-github-release">Release on GitHub made.</label>
+<a href="#github-release" aria-label="Section on making a GitHub release">↩︎</a>
 </div>
 
 <div>
 <input type="checkbox" id="during-zulip"></input><label for="during-zulip">Announcement message sent to the Zulip for the release.</label>
+<a href="#zulip-message" aria-label="Section on announcing on Zulip">↩︎</a>
 </div>
 
 </fieldset>
