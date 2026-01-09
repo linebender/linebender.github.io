@@ -12,6 +12,23 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
+      - name: install stable toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - name: install wasm-bindgen
+        uses: taiki-e/install-action@v2
+        with:
+          tool: wasm-bindgen@0.2.106
+      - name: build (wasm)
+        working-directory: ./rust
+        run: cargo build --release --target wasm32-unknown-unknown
+      - name: package wasm
+        working-directory: ./rust
+        run: |
+          mkdir ../static/rust
+          wasm-bindgen --target web --out-dir ../static/rust target/wasm32-unknown-unknown/rust_demo.wasm --no-typescript
+
       - name: build_and_deploy
         # Also update in README.md and ./check.yml
         uses: shalzz/zola-deploy-action@v0.20.0
