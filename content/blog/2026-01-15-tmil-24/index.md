@@ -11,16 +11,12 @@ Vello is our vector renderer with three different implementations.
 There is the fully GPU compute based Vello, the fully CPU based Vello CPU, and the hybrid GPU/CPU one called Vello Hybrid.
 They can draw large 2D scenes with high performance.
 
-- [vello#1293][]: Added tile intersection checking.
 - [vello#1294][]: Added features to Vello CPU to switch between `u8` and `f32` pipelines.
 - [vello#1327][]: Eliminated overdraw for opaque image fills.
 - [vello#1325][]: Reduced the memory usage of wide tile commands.
 - [vello#1303][]: Fixed filter expansion logic for transforms with scale/skew and for clipped layers.
 - [vello#1313][]: Fixed gradients within a clip layer in Vello Hybrid.
 - [vello#1323][]: Fixed non-deterministic GPU stroke artifacts.
-- [vello#1336][]: Now using SIMD dispatch for flattening.
-- [vello#1320][]: Made changes in preparation for `fearless_simd`.
-- [vello#1315][]: Use `naga` from wgpu 27.
 
 <figure>
 <img style="height: auto;" width="1280" height="960" src="image_overdraw.jpg" alt="A photo of a flower being layered on top of itself at decreasing size.">
@@ -28,6 +24,9 @@ They can draw large 2D scenes with high performance.
 30% performance improvement in this flower's case with the new overdraw handling in Vello CPU / Vello Hybrid.
 </figcaption>
 </figure>
+
+The work on rendering sparse strip alpha values in GPU compute shaders continued in [vello#1293][], which added tile intersection checking.
+You can follow the progress in [#vello > Thoughts on GPU sparse strips](https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/Thoughts.20on.20GPU.20sparse.20strips/with/567687539).
 
 ## Masonry and Xilem
 
@@ -37,21 +36,17 @@ It provides a non-opinionated retained widget tree, designed as a base layer for
 Xilem is our flagship GUI project, inspired by SwiftUI, which uses Masonry for its widgets.
 It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
 
-- [xilem#1519][]: Added `Canvas` widget.
+- [xilem#1519][]: Added `Canvas` widget, for 2d vector drawing.
 - [xilem#1510][]: Added a new `CollectionWidget` trait to unify collection widget method naming.
 - [xilem#1527][]: Added `Gap` property to `Flex` and `Grid`.
 - [xilem#1528][]: Added alternative text to `Image` widget.
-- [xilem#1513][]: Added `WidgetMut::id`.
-- [xilem#1529][]: Added `WidgetTag::unique`.
 - [xilem#1526][]: Implemented `Into<BrushRef>` for `BorderColor`.
 - [xilem#1534][]: Migrated to Kurbo's `Axis`.
 - [xilem#1488][]: Renamed `map_message` to `map_message_result`.
 - [xilem#1533][]: Renamed `Grid` attributes from `width` / `height` to `row_count`, `column_count`.
 - [xilem#1484][]: Split Android examples into separate files.
 - [xilem#1503][]: Split some Xilem code into new a new `xilem_masonry` package.
-- [xilem#1500][]: Removed `ViewCtx::state_changed`.
 - [xilem#1504][]: Fixed `TextInput` placeholder alignment.
-- [xilem#1520][]: Fixed `Portal` view.
 - [xilem#1537][]: Fixed `ScrollBar` behavior with large content sizes.
 - [xilem#1540][]: Improved `Flex` child constraint accuracy.
 - [xilem#1507][]: Wrote guidelines for writing Xilem doc examples.
@@ -64,10 +59,10 @@ Parley is a text layout library.
 It handles text layout, mostly at the level of line breaking and resolving glyph positions.
 
 - [parley#436][]: Migrated text analysis and internationalization to ICU4X.
-- [parley#479][], [parley#481]: Started work on a dedicated glyph rendering crate.
+- [parley#479][], [parley#481]: Started work on a dedicated glyph rendering crate, Parley Draw.
 - [parley#475][]: Now using ICU4X `Script` type in `fontique`.
-- [parley#473][]: Now baking composite properties data.
-- [parley#487][]: Exposed `Tag`.
+- [parley#473][]: We now bake composite properties data.
+- [parley#487][]: Export `Tag` from HarfRust, to allow users to use it directly.
 - [parley#490][]: Fixed bidi state leaking across layouts.
 - [parley#493][]: Fixed crash with empty layout.
 - [parley#498][]: Updated to `ui-events` 0.2.
@@ -156,27 +151,20 @@ It really helps us to learn what aspects our users care about the most.
 [vello#1294]: https://github.com/linebender/vello/pull/1294
 [vello#1303]: https://github.com/linebender/vello/pull/1303
 [vello#1313]: https://github.com/linebender/vello/pull/1313
-[vello#1315]: https://github.com/linebender/vello/pull/1315
-[vello#1320]: https://github.com/linebender/vello/pull/1320
 [vello#1323]: https://github.com/linebender/vello/pull/1323
 [vello#1325]: https://github.com/linebender/vello/pull/1325
 [vello#1327]: https://github.com/linebender/vello/pull/1327
-[vello#1336]: https://github.com/linebender/vello/pull/1336
 
 [xilem#1484]: https://github.com/linebender/xilem/pull/1484
 [xilem#1488]: https://github.com/linebender/xilem/pull/1488
-[xilem#1500]: https://github.com/linebender/xilem/pull/1500
 [xilem#1503]: https://github.com/linebender/xilem/pull/1503
 [xilem#1504]: https://github.com/linebender/xilem/pull/1504
 [xilem#1507]: https://github.com/linebender/xilem/pull/1507
 [xilem#1510]: https://github.com/linebender/xilem/pull/1510
-[xilem#1513]: https://github.com/linebender/xilem/pull/1513
 [xilem#1519]: https://github.com/linebender/xilem/pull/1519
-[xilem#1520]: https://github.com/linebender/xilem/pull/1520
 [xilem#1526]: https://github.com/linebender/xilem/pull/1526
 [xilem#1527]: https://github.com/linebender/xilem/pull/1527
 [xilem#1528]: https://github.com/linebender/xilem/pull/1528
-[xilem#1529]: https://github.com/linebender/xilem/pull/1529
 [xilem#1533]: https://github.com/linebender/xilem/pull/1533
 [xilem#1534]: https://github.com/linebender/xilem/pull/1534
 [xilem#1537]: https://github.com/linebender/xilem/pull/1537
