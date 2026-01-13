@@ -13,14 +13,14 @@ They can draw large 2D scenes with high performance.
 
 - [vello#1293][]: Added tile intersection checking.
 - [vello#1294][]: Added features to Vello CPU to switch between `u8` and `f32` pipelines.
+- [vello#1327][]: Eliminated overdraw for opaque image fills.
+- [vello#1325][]: Reduced the memory usage of wide tile commands.
 - [vello#1303][]: Fixed filter expansion logic for transforms with scale/skew and for clipped layers.
 - [vello#1313][]: Fixed gradients within a clip layer in Vello Hybrid.
-- [vello#1315][]: Use `naga` from wgpu 27.
-- [vello#1320][]: Made changes in preparation for `fearless_simd`.
 - [vello#1323][]: Fixed non-deterministic GPU stroke artifacts.
-- [vello#1325][]: Reduced the memory usage of wide tile commands.
-- [vello#1327][]: Eliminated overdraw for opaque image fills.
 - [vello#1336][]: Now using SIMD dispatch for flattening.
+- [vello#1320][]: Made changes in preparation for `fearless_simd`.
+- [vello#1315][]: Use `naga` from wgpu 27.
 
 <figure>
 <img style="height: auto;" width="1280" height="960" src="image_overdraw.jpg" alt="A photo of a flower being layered on top of itself at decreasing size.">
@@ -37,24 +37,24 @@ It provides a non-opinionated retained widget tree, designed as a base layer for
 Xilem is our flagship GUI project, inspired by SwiftUI, which uses Masonry for its widgets.
 It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.
 
-- [xilem#1484][]: Split Android examples into separate files.
-- [xilem#1488][]: Renamed `map_message` to `map_message_result`.
-- [xilem#1500][]: Removed `ViewCtx::state_changed`.
-- [xilem#1503][]: Split some Xilem code into new a new `xilem_masonry` package.
-- [xilem#1504][]: Fixed `TextInput` placeholder alignment.
-- [xilem#1507][]: Wrote guidelines for writing Xilem doc examples.
-- [xilem#1510][]: Added a new `CollectionWidget` trait to unify collection widget method naming.
-- [xilem#1513][]: Added `WidgetMut::id`.
 - [xilem#1519][]: Added `Canvas` widget.
-- [xilem#1520][]: Fixed `Portal` view.
-- [xilem#1526][]: Implemented `Into<BrushRef>` for `BorderColor`.
+- [xilem#1510][]: Added a new `CollectionWidget` trait to unify collection widget method naming.
 - [xilem#1527][]: Added `Gap` property to `Flex` and `Grid`.
 - [xilem#1528][]: Added alternative text to `Image` widget.
+- [xilem#1513][]: Added `WidgetMut::id`.
 - [xilem#1529][]: Added `WidgetTag::unique`.
-- [xilem#1533][]: Renamed `Grid` attributes from `width` / `height` to `row_count`, `column_count`.
+- [xilem#1526][]: Implemented `Into<BrushRef>` for `BorderColor`.
 - [xilem#1534][]: Migrated to Kurbo's `Axis`.
+- [xilem#1488][]: Renamed `map_message` to `map_message_result`.
+- [xilem#1533][]: Renamed `Grid` attributes from `width` / `height` to `row_count`, `column_count`.
+- [xilem#1484][]: Split Android examples into separate files.
+- [xilem#1503][]: Split some Xilem code into new a new `xilem_masonry` package.
+- [xilem#1500][]: Removed `ViewCtx::state_changed`.
+- [xilem#1504][]: Fixed `TextInput` placeholder alignment.
+- [xilem#1520][]: Fixed `Portal` view.
 - [xilem#1537][]: Fixed `ScrollBar` behavior with large content sizes.
 - [xilem#1540][]: Improved `Flex` child constraint accuracy.
+- [xilem#1507][]: Wrote guidelines for writing Xilem doc examples.
 - [xilem#1544][]: Documented node non-persistence in accessibility method.
 - [xilem#1545][]: Now using third person more consistently in docs.
 
@@ -64,9 +64,9 @@ Parley is a text layout library.
 It handles text layout, mostly at the level of line breaking and resolving glyph positions.
 
 - [parley#436][]: Migrated text analysis and internationalization to ICU4X.
-- [parley#473][]: Now baking composite properties data.
-- [parley#475][]: Now using ICU4X `Script` type in `fontique`.
 - [parley#479][], [parley#481]: Started work on a dedicated glyph rendering crate.
+- [parley#475][]: Now using ICU4X `Script` type in `fontique`.
+- [parley#473][]: Now baking composite properties data.
 - [parley#487][]: Exposed `Tag`.
 - [parley#490][]: Fixed bidi state leaking across layouts.
 - [parley#493][]: Fixed crash with empty layout.
@@ -76,8 +76,8 @@ It handles text layout, mostly at the level of line breaking and resolving glyph
 
 Kurbo provides data structures and algorithms for curves and vector paths.
 
-- [kurbo#533][]: Clarified the order of `PathEl` points.
 - [kurbo#534][]: Optimized `RoundedRect::winding`.
+- [kurbo#533][]: Clarified the order of `PathEl` points.
 
 ## Peniko
 
@@ -91,13 +91,13 @@ Fearless SIMD is our SIMD infrastructure library.
 It provides a solid way for writing SIMD operations portably across Wasm, AArch64, x86, and x86_64.
 
 - [fearless_simd#141][]: Added `any_true`, `all_true`, `any_false`, and `all_false` methods for mask types.
-- [fearless_simd#149][]: Reworked the API.
-- [fearless_simd#154][]: Added documentation for operations and vector types.
-- [fearless_simd#155][]: Added a vectored shift left operation.
-- [fearless_simd#158][]: Renamed `madd` / `msub` to `mul_add` / `mul_sub` for consistency with `std`.
-- [fearless_simd#159][]: Now using native vector types to back SIMD types.
 - [fearless_simd#167][]: Added precise float-to-integer conversions, which saturate out-of-bounds results and convert `NaN` to `0` on all platforms.
 - [fearless_simd#168][]: Added `Level::is_fallback`, which states whether the current SIMD level is the scalar fallback.
+- [fearless_simd#155][]: Added a vectored shift left operation.
+- [fearless_simd#154][]: Added documentation for operations and vector types.
+- [fearless_simd#149][]: Reworked the API.
+- [fearless_simd#158][]: Renamed `madd` / `msub` to `mul_add` / `mul_sub` for consistency with `std`.
+- [fearless_simd#159][]: Now using native vector types to back SIMD types.
 - [fearless_simd#170][]: Made `Element` an associated type on `SimdBase`.
 - [fearless_simd#180][]: `SimdFrom::simd_from` now takes the SIMD token as the first argument instead of the second.
 
