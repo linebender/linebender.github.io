@@ -59,7 +59,7 @@ Parley is a text layout library.
 It handles text layout, mostly at the level of line breaking and resolving glyph positions.
 
 - [parley#436][]: Migrated text analysis and internationalization to ICU4X.
-- [parley#479][], [parley#481]: Started work on a dedicated glyph rendering crate, Parley Draw.
+- [parley#479][], [parley#481]: Started work on a dedicated glyph rendering crate.
 - [parley#475][]: Now using ICU4X `Script` type in `fontique`.
 - [parley#473][]: We now bake composite properties data.
 - [parley#487][]: Export `Tag` from HarfRust, to allow users to use it directly.
