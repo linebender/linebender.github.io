@@ -144,9 +144,6 @@ We host an hour long office hours meeting each week where we discuss what's goin
 See [#office hours in Zulip](https://xi.zulipchat.com/#narrow/channel/359642-office-hours) for details.
 We're also running a separate office hours time dedicated to the renderer collaboration, details also available at that link.
 
-If you wish to discuss the Linebender project individually, Daniel is offering ["office hours" appointments](https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2), which are free to book.
-It really helps us to learn what aspects our users care about the most.
-
 [vello#1293]: https://github.com/linebender/vello/pull/1293
 [vello#1294]: https://github.com/linebender/vello/pull/1294
 [vello#1303]: https://github.com/linebender/vello/pull/1303
