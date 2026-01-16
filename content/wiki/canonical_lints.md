@@ -11,7 +11,7 @@ All Linebender projects should include the following set of lints:
 # This one may vary depending on the project.
 rust.unsafe_code = "forbid"
 
-# LINEBENDER LINT SET - Cargo.toml - v7
+# LINEBENDER LINT SET - Cargo.toml - v8
 # See https://linebender.org/wiki/canonical-lints/
 rust.keyword_idents_2024 = "forbid"
 rust.non_ascii_idents = "forbid"
@@ -33,6 +33,7 @@ clippy.too_many_arguments = "allow"
 
 clippy.allow_attributes_without_reason = "warn"
 clippy.cast_possible_truncation = "warn"
+clippy.cast_possible_wrap = "warn"
 clippy.collection_is_never_read = "warn"
 clippy.default_trait_access = "warn"
 clippy.dbg_macro = "warn"
