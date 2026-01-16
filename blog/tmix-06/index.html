@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>This Month in Xilem, June 2024 - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="This Month in Xilem, June 2024">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="This Month in Xilem, June 2024">
+        <meta property="og:description"
+            content="This Month in Xilem, June 2024">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="This Month in Xilem, June 2024">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>This Month in Xilem, June 2024</h1>
+<h3>Daniel McNab, July 3, 2024</h3>
+<p>We released <a href="https://github.com/linebender/vello/releases/tag/v0.2.0">Vello 0.2.0</a> at the start of the month, which included some key improvements discussed in previous months' updates.
+We also merged initial handling of Emoji (<a href="https://github.com/linebender/vello/pull/615">vello#615</a>), which supports glyphs which use the COLR specification (Apple's system emoji font does not use this format and so currently will not render).
+In-flight work includes an enhanced testing setup (<a href="https://github.com/linebender/vello/pull/610">vello#610</a>), GPU memory allocation robustness (<a href="https://github.com/linebender/vello/pull/606">vello#606</a>), and improved correctness for some unusual strokes (<a href="https://github.com/linebender/vello/pull/607">vello#607</a>).
+The <a href="https://github.com/linebender/gpu-stroke-expansion-paper">GPU-Friendly Stroke Expansion</a> paper has been accepted to <a href="https://www.highperformancegraphics.org/2024/index.html">High Performance Graphics 2024</a>, and will be presented in Denver on July 26.
+A revised draft of the paper is published on <a href="https://arxiv.org/abs/2405.00127">arXiv</a>.</p>
+<figure>
+<img src="Xilem Emoji Picker.png" style="height: auto" alt="Screenshot of an app, containing a 4x4 grid of labelled Emoji, zoom in and out buttons and pagination controls. 'cat face with wry smile' is selected" height="1132" width = "863">
+<figcaption>
+<p>A toy Emoji viewer example (<a href="https://github.com/linebender/xilem/pull/420">xilem#420</a>) running on Android.
+This example uses system fonts, so has limited platform support because of the caveat mentioned above.</p>
+</figcaption>
+</figure>
+<p><a href="https://github.com/linebender/xilem/pull/310">xilem#310</a> brought in some new ideas about how Xilem Core can be structured, which enables support for specialised kinds of <code>View</code>, such as for window properties.
+<code>Adapt</code> views built on this were used to create an <a href="https://elm-lang.org/">Elm</a>-inspired example in <a href="https://github.com/linebender/xilem/pull/401">xilem#401</a>, showing the flexibility of the Xilem architecture.
+Philipp Mildenberger has been prolific in his work on Xilem, as a co-author of the new Xilem Core, and in adapting Xilem Web to use it.
+He also worked to bring support for <code>OneOf</code> views to Xilem Core in <a href="https://github.com/linebender/xilem/pull/394">xilem#394</a> - these were previously only supported in Xilem Web.</p>
+<p>Masonry's observability support has also been improved, with automatic tracing to a temporary file in debug builds added in <a href="https://github.com/linebender/xilem/pull/384">xilem#384</a>.
+<a href="https://github.com/linebender/xilem/pull/396">xilem#396</a> implements <a href="https://github.com/linebender/rfcs/pull/6">rfcs#6</a>, changing the architecture of Masonry to make it easier to write new features and tests.</p>
+<p>There was also some excellent community engagement with Xilem in June.
+Veniamin Ilmer has created an open source <a href="https://github.com/veniamin-ilmer/minesweeper_xilem/">Minesweeper game</a> using Xilem.
+The discussion on Zulip (in <a href="https://xi.zulipchat.com/#narrow/stream/354396-xilem/topic/Minesweeper.20converted.20from.20Iced.20to.20Xilem">#xilem &gt; Minesweeper converted from Iced to Xilem</a>) has been very useful in guiding areas for improvement.</p>
+<figure>
+<img style="height: auto" src="Minesweeper.png" alt="A window titled Minesweeper, with text in the top-left 'Mines: 82', a top-center button with a neutral ASCII emoticon, and a board represented by a grid of buttons 30 wide and 16 tall, where some buttons are replaced with colour labels containing digits, and some buttons contain an exclamation mark." height="589" width = "931">
+<figcaption>
+<p>Screenshot by Veniamin Ilmer of their Minesweeper game, used under the <a href="https://github.com/veniamin-ilmer/minesweeper_xilem/blob/main/LICENSE">Apache 2.0</a> license.</p>
+</figcaption>
+</figure>
+<p>Following on from May, Olivier wrote and published a <a href="https://linebender.org/blog/rustnl-2024-unconference/">report</a> on our experience of the RustNL unconference.
+This led to some useful discussion online - see <a href="https://xi.zulipchat.com/#narrow/stream/181284-blogging/topic/Draft.20-.20Report.20on.20the.20RustNL.202024.20Conference/near/444974910">the zulip thread</a> corresponding with that post for links.
+We are now in the final month of the <a href="https://linebender.org/blog/roadmap-may-2024/">May-July 2024 roadmap</a>.
+In the intervening time much of the work has been started or completed, although there have been some changes of priorities.
+I expect that we will soon be looking at prioritising items on our <a href="https://linebender.org/wiki/long-term-roadmap/">long-term roadmap</a>.</p>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

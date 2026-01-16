@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Linebender contributor guidelines - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Linebender contributor guidelines">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Linebender contributor guidelines">
+        <meta property="og:description"
+            content="Linebender contributor guidelines">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Linebender contributor guidelines">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Linebender contributor guidelines</h1>
+<h2 id="about-the-projects">About the projects</h2>
+<p>The Linebender organization is an umbrella for a diverse and ambitious set of project, with the goal of creating high performance, accessible, high quality UI in Rust. An explicit goal is to push the boundary and fill in gaps in our understanding of UI infrastructure, as opposed to implementing existing cookbook techniques.</p>
+<h2 id="discussions-and-community">Discussions and community</h2>
+<p>We use a <a href="https://xi.zulipchat.com/">Zulip instance</a> as the primary place for discussions. All are welcome, and everyone with a GitHub account can sign up. Additional discussion happens in issues in the individual repos, and we also have tracking issues. We don’t use GitHub discussions, preferring the Zulip.</p>
+<p>We also hold weekly <a href="/wiki/office-hours">office hours</a>. This is a chance to give status updates, make decisions, and discuss architectural directions. It is open to all, and there are public notes.</p>
+<p>We have recently re-started a <a href="/wiki">wiki</a>, and eagerly encourage gardening. While the Zulip does have archives, they are not indexed by search engines (though search is available within Zulip), so the wiki represents the definitive place for the results of discussions and resources.</p>
+<p>To propose a nontrivial change, it is better to file an issue first rather than sending a PR. Depending on the scope and disruption of the change, it might make sense to bring it up on Zulip. Especially if a clear consensus doesn’t emerge in a reasonable time, discuss it in office hours.</p>
+<p>While the main focus of the Linebender community infrastructure is to develop Xilem, Vello, and related modules, we also want to help move the entire ecosystem forward. People from other Rust UI efforts are welcome, and discussions about how to join forces and share infrastructure especially so.</p>
+<p>We use the Rust Code of Conduct and hold people to a much higher standard of conduct than is usual on the Internet. Don’t worry if you’re interacting in good faith, though, the moderators will work with you to try to resolve issues.</p>
+<h2 id="code-reviews">Code reviews</h2>
+<p>Here are our policies around code review:</p>
+<ul>
+<li>Every PR must be approved by someone with write access before committing.</li>
+<li>The <a href="/wiki">wiki</a> is an exception; there we optimistically merge without review</li>
+<li>Usually we wait for the original author of the PR to commit if they have write access.</li>
+<li>Both merge and squash commits are fine, it’s up to the committer.</li>
+<li>We give write access to everyone with a good faith intent to improve the code. Usually this is shortly after the first commit.</li>
+<li>There are currently five owners: @raphlinus, @dfrg, @DJMcNab, @xStrom, and @cmyr. They approve new committers and can make changes to the organization.</li>
+</ul>
+<p>We struggle with getting PRs approved and landed quickly. To try to improve that, here are some suggestions.</p>
+<p>First, we encourage everybody to review PRs. It’s a good way for newcomers to get up to speed on the project, and contribute in a meaningful way. There are two goals of the code review process: to improve the quality of the code that lands, and for people to learn something; it’s worthwhile if some knowledge flows in either direction or ideally both.</p>
+<p>If a PR goes unreviewed too long, it’s absolutely a good idea to ping it on Zulip. It’s also fine to ask for reviewers during office hours, especially if there’s a deeper issue to be discussed.</p>
+<h2 id="responsibility">Responsibility</h2>
+<p>Linebender is a collection of open source projects, with a research flavor. We make no guarantees of any of them being suitable for production. We welcome contributions from anybody. Participating should be done out of joy and should not feel like a burden.</p>
+<p>Sometimes PRs stall out, or people have an intent to work on an issue and don’t get to it. In those cases, we encourage others to take them over. We try to discourage “cookie licking” as much as possible.</p>
+<p>Filing an issue does not come with a guarantee it will be worked on. We really value high quality issue reports, but they can be closed if there’s no clear action to be taken, and we encourage everybody in the project to feel empowered to do so, or otherwise garden such as asking for more details.</p>
+<p>Over time, we hope that some of the projects will mature so that they <em>are</em> useful in production (this is already the case for <code>pulldown-cmark</code>, which is not officially part of the Linebender org). We very much welcome collaboration toward that goal, and use of the crates in all kinds of contexts including commercial projects. For such commercial use, we encourage a collaborative approach, where the organization dedicates sufficient staff time and energy to take responsibility for issues and feature requests, working collaboratively with the open source organization.</p>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

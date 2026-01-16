@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Roadmap for the Xilem backend in 2024 - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Roadmap for the Xilem backend in 2024">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Roadmap for the Xilem backend in 2024">
+        <meta property="og:description"
+            content="Roadmap for the Xilem backend in 2024">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Roadmap for the Xilem backend in 2024">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Roadmap for the Xilem backend in 2024</h1>
+<h3>Olivier Faure, January 19, 2024</h3>
+<p>As you may have heard by now, Google Fonts is funding me this year to work on Xilem.</p>
+<p>I'm not alone in that: Aaron Muir Hamilton, Daniel McNab and Matt Campbell were funded as well to work on various parts of the ecosystem. I believe this is Matt's third year getting funding from Google Fonts.</p>
+<p>Now, <em>what</em> I was hired to do might be unclear to you. The scope we agreed on was fairly broad and was stated as "contributing to Xilem's view tree and developer experience", but that could mean a lot of things.</p>
+<p>The first thing I want to do is communicate a clearer picture. I have a a lot of plans for Xilem, and they involve major changes from the current architectures, changes that might be worrying to the community at large or even to Raph Levien. I certainly don't want to give the impression that I'm wresting the project away from the Linebender community for Google's interest, and that means being transparent early and often about the things I want to rework.</p>
+<h2 id="what-i-want-for-xilem">What I want for Xilem</h2>
+<p>Xilem is a research-and-development project, the latest in a series (Xi-Core, Druid, Crochet, Lasagna, Idiopath), that aims to explore how UI development can be made compatible with Rust.</p>
+<p>This might feel a little banal now, because Rust GUI frameworks are popping up everywhere and starting to settle on similar patterns, but those patterns weren't obvious in 2019! Xilem is very different from Druid, and getting to its current architecture has been a process.</p>
+<p>Xilem has been perma-experimental since May 2022. Once it got started, the main Druid maintainers stopped contributing almost entirely with the expectation that Xilem would replace Druid once it was ready. Unfortunately, it still hasn't made enough progress to be on parity with Druid, yet Druid still lies abandoned, which isn't great when people had started relying on it.</p>
+<p>It's debatable how much this could have been avoided. As I've pointed out before, the Rust GUI ecosystem is subject to massive <a href="https://seths.blog/2005/03/dont_shave_that/">yak-shaving</a>: many of us came here because we wanted to build a text editor, and now we're all learning about <a href="https://faultlore.com/blah/text-hates-you/">text rendering</a>, <a href="https://lord.io/text-editing-hates-you-too/">text editing</a>, <a href="https://raphlinus.github.io/ui/graphics/2020/09/13/compositor-is-evil.html">compositing</a><sup class="footnote-reference"><a href="#1">1</a></sup>, <a href="https://accesskit.dev/accesskit-integration-makes-bevy-the-first-general-purpose-game-engine-with-built-in-accessibility-support/">accessibility trees</a>, <a href="https://raphlinus.github.io/gpu/2021/05/13/stack-monoid-revisited.html">using monoids to implement stuff on the GPU</a>, <a href="https://www.leafwing-studios.com/blog/ecs-gui-framework/">ECS</a>, and some concepts that I'm absolutely certain Raph made up like <a href="https://raphlinus.github.io/curves/2023/04/18/bezpath-simplify.html">Bézier paths</a> and <a href="https://raphlinus.github.io/rust/2023/04/01/rust-to-cpp.html">C++</a>.</p>
+<p>And to a certain extent, yak-shaving is good! "I'm going to do better than X without learning how X works" is a child's attitude. It's the attitude we all start with, and it fills us with courage, but that courage is naive. True improvement comes from keeping that courage after spending years learning how immense the problem space is, and keeping faith that it's possible to do better. The Rust community is one that values not just doing things from scratch, but also learning from the past to get them right.</p>
+<p>This is good, but the "get them right" part takes a lot of time, and in the meantime, I'd argue that we've neglected end users a bit. We've abandoned Druid before Xilem was ready as an alternative, and then we worked on foundational and experimental projects that would make Xilem stronger and sounder in the long term, but left the project in an awkward state in the meantime (except for the web backend, which made a lot of progress).</p>
+<p>In the <a href="https://www.leafwing-studios.com/blog/ecs-gui-framework/">ECS-backed GUI framework</a> article I linked, Bevy maintainers have this to say:</p>
+<blockquote>
+<p>Not to be too harsh, but a lot of the existing Rust GUI solutions... just aren't very good. There's a lot of passable options, but they all have non-trivial drawbacks. No one has really risen to the top as a clear winner. [...] Deep down, we all know that we can do better, and we should.</p>
+</blockquote>
+<p>My ambition is to makes this paragraph obsolete before the end of the year. I want Xilem to get back to being suggested to newbies in the same breath as Iced and SlintUI. In the next few years, I want the entire ecosystem to get to a point where people talk about Rust GUI like they talk about ripgrep or rustls.</p>
+<p>To give one specific example: my personal goal is to implement seamless hot reloading for Xilem before the end of 2024. I believe it's feasible, and I believe doing it will radically change the way people think about Rust GUI, along with <a href="https://poignardazur.github.io/2023/02/02/masonry-01-and-my-vision-for-rust-ui/">other improvements I hope to unlock over time</a>.</p>
+<p>In the shorter term, my plan is to focus on basic features, widgets and styling options so people can experiment with Xilem, building on Raph's work on Vello over the past year. <a href="https://gist.github.com/giannissc/172c6c591997ee14f6120134a7990697">John Skottis's Xilem UX Notes</a> give a good picture of the kinds of things I'll be working on.</p>
+<p>The other big short-term priority is going to be documentation. We've seen a lot of people complain that the Linebender project were poorly documented and hard to get into; it was the most popular reaction to our <a href="https://linebender.org/blog/xilem-2024/">2024 announcement</a>, but it echoed sentiments we'd seen before. We're aware of the problem, and we intend to work on it.</p>
+<p>In the medium term, I also plan to work on the performance aspect of Xilem. People from Google Fonts have expressed interest in seeing how much performance we can get from Rust UI. While my mission isn't <em>limited</em> to performance work, it will be an ongoing focus, especially since it's an area where the Rust language brings unique opportunities. I'll go into more details on Rust performance and power efficiency in a later article.</p>
+<h2 id="major-changes-i-want-to-implement-soon">Major changes I want to implement soon</h2>
+<p>These are the big changes I want to work on soon. Realistically, "soon" is going to be relative, because some of these changes are going to be controversial, and part of the work is going to be convincing people of their value.</p>
+<h3 id="switching-to-masonry-as-a-backend">Switching to Masonry as a backend</h3>
+<p>Okay, this one makes me blush a little.</p>
+<p>I'm the only maintainer of Masonry, a GUI crate with barely over 300 stars on GitHub and little outside interest. Can I really justify taking the money Google pays me to improve Xilem and spending my time on Masonry instead?</p>
+<p>That choice isn't random, mind you: Masonry was forked from Druid, Xilem's ancestor, and in fact Xilem and Masonry share a lot of code right now.</p>
+<p>In fact, I'd argue that Masonry's codebase is of better quality than Xilem's current native backend. This isn't meant to be a put-down of the work of Xilem maintainers; rather, it's the outcome of a difference in priorities. Nobody was very interested in Xilem's native backend (though Raph was aware of its importance, hence me getting paid to write this), and lots of people were very interested in the frontend and the web backends, therefore the frontend and web backends saw the most work.</p>
+<p>From our <a href="https://github.com/linebender/rfcs/pull/1">RFC#0001</a>:</p>
+<blockquote>
+<p>As a result, Xilem's native backend is in a poor state:</p>
+<ul>
+<li>There is <a href="https://github.com/linebender/xilem/blob/ea45b9f8c14e3708f0fcbe0a0e1c760f59146323/src/widget/widget.rs#L113-L120">code commented out</a>.</li>
+<li>There are <a href="https://github.com/linebender/xilem/blob/ea45b9f8c14e3708f0fcbe0a0e1c760f59146323/src/widget/mod.rs#L19-L20"><em>entire modules</em> commented out</a>.</li>
+<li>There is <a href="https://github.com/linebender/xilem/blob/ea45b9f8c14e3708f0fcbe0a0e1c760f59146323/src/widget/widget.rs#L51-L71">documentation referring to items from Druid that no longer exist</a>.</li>
+<li>There are <a href="https://github.com/linebender/xilem/blob/ea45b9f8c14e3708f0fcbe0a0e1c760f59146323/src/widget/core.rs#L569C5-L569C66">TODOs without an associated issue</a>.</li>
+</ul>
+</blockquote>
+<p>Masonry's backend codebase is a healthier starting point.  Masonry also comes with some built-in perks, like powerful unit tests and a structured widget graph.</p>
+<p>It's not clear whether we want to import the Masonry codebase, the crate, or the entire repository, and it's not clear what the ultimate branding should be. The RFC lays out the different possibilities, and discussion is still ongoing, so the community can reach a consensus before doing more work (including possibly not using Masonry at all).</p>
+<p>If we do move forward with this, then Masonry will need some porting work:</p>
+<ul>
+<li>Using Vello and Parley instead of Piet.</li>
+<li>Using Glazier instead of druid-shell.</li>
+<li>Integrating AccessKit.</li>
+<li>Removing the dependency on GTK.</li>
+</ul>
+<p>AccessKit support in particular is table stakes, by now. The Rust ecosystem is converging on the idea that accessibility (or at least, screen reader support) should be integrated early on in the design of GUI frameworks, not tacked on at the end.</p>
+<p>There are other things Xilem added over Druid (notably virtual lists and async support), but I believe Masonry doesn't need to implement them right away for parity. Both will be very important for eventual performance work.</p>
+<h3 id="avoiding-custom-widgets">Avoiding custom Widgets</h3>
+<p>I'm told by Raph this is a "molotov cocktail" which, uh, fair.</p>
+<p>We should write Xilem's backend under the assumption that end users of the library (including the Xilem frontend) will very rarely create their own widgets. Instead, they will usually compose the primitives given to them the same way they compose DOM elements in the browser. There will be escape hatches, from a fixed-size canvas surface where end-users can use arbitrary paint primitives to full-on custom widget code, but we should design the framework under the assumption people will almost never <em>need</em> those hatches.</p>
+<p>Clearly, this is a radical move. <strong>There will be a prototyping phase before we choose whether we commit to it</strong>, and RFCs to lay out the details. I'm confident it will pay off.</p>
+<p>Developers of hobby GUI frameworks tend to provide a severely anemic set of primitives, under the assumption that if anyone wants other features in their widgets, they can implement them themselves. Both Druid and Xilem suffer from this.</p>
+<p>On the other end of the spectrum, the web has shown that you can implement complex custom UIs given a rigid but rich set of primitives.</p>
+<p>More importantly, the web is moving towards a powerful paradigm: declarative UI. As time goes on, people are realizing you can get better performance and composition by describing what things should look like and composing them than by imperatively making them do things.</p>
+<p>Part of this is that native code is more performant than JS, but part of it just that declarative code is easier to work around than imperative code: its bounds are better defined, it lets you <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/contain">commit to limitations</a> that make the engine's job easier, and it's easier to analyze.</p>
+<p>A set of proposals called <a href="https://developer.mozilla.org/en-US/docs/Web/API/Houdini">CSS Houdini</a> came out that went in the exact opposite direction: pushing the layout engine towards more customization and JavaScript code. The proposal hasn't seen much movement since 2021, and I don't think it's a coincidence that the part that would have given the most power to imperative code, the Layout API, hasn't been stabilized in any browser.</p>
+<p>The bottom line is that, while implementing custom widgets <em>will always be possible</em>, I want to encourage developers to go as far as they can composing declarative elements instead, and see how far it's possible to go using those building blocks.</p>
+<h4 id="more-opinionated-layout">More opinionated layout</h4>
+<p>One major customization point I want to restrict in Xilem is layout.</p>
+<p>Today all Rust GUI frameworks ship their own layout algorithm, but none of them are <em>competing</em> on their layout algorithm. Often the layout algorithm is just a means to an end; developers that do want to work on a state-of-the-art layout engine will provide it in a modular crate like <a href="https://github.com/vizia/morphorm">Morphorm</a> and <a href="https://github.com/DioxusLabs/taffy">Taffy</a>.</p>
+<p>And here's the thing: realistically, most layout engines aren't that creative. Every Rust framework and every major GUI framework I'm aware of uses layout that boils down to "FlexBox with small variations". The number of meaningfully different ways to do GUI layout can be counted on, generously, two hands.</p>
+<p>I'd argue we only need CSS Flow, FlexBox, CSS Grid, and maybe Morphorm to cover most people's needs. Conveniently, this is what Taffy aims to provide. There's already an experimental Taffy integration in Xilem, and I want to make it deeper.</p>
+<p>That being said, there won't be a hard-coded set of layout algorithms. Rather, layout will rely on a web-inspired protocol between widgets (in other words, trait methods), and that protocol will be strongly opinionated to make implementation of these layout algorithms easier.</p>
+<p>More on this in a latter blog post.</p>
+<h4 id="no-boxing">No boxing</h4>
+<p>Having a semi-fixed set of widgets means you can avoid using <code>Box&lt;dyn Widget&gt;</code>, which has some interesting performance implications.</p>
+<p>It means you can add a lot of methods to the Widget trait without worrying about bloating the vtable. And you can write methods under the assumption that they'll be inlined, which opens up interesting DX improvements.</p>
+<h3 id="using-ecs-maybe-sort-of">Using ECS, maybe, sort of</h3>
+<p>In current Xilem code, if you want your FlexWidget to have children, it must have a <code>Vec&lt;Pod&lt;ChildWidget&gt;&gt;</code> member. Each Pod directly owns a Widget.</p>
+<p>I think this is an interesting quirk of Rust GUI, tying directly to Rust's ownership semantics. Non-Rust frameworks often use pointers to child widgets, true, but they're often shared with the framework, with an understanding that the framework is charged with keeping track of how many widgets there are and which is a child of which. In Qt, for instance, it's preferred (but not mandatory) for parents to call <code>delete_later()</code> on their children instead of <code>delete</code>, because it plays better with event handling.</p>
+<p>Xilem's approach of "you own your children" is a little bespoke. It means the framework has a hard time iterating over the entire widget tree (say, as part of a DOM inspector) unless each Widget specifically implements the iterating method. And it means if you want to target an event at a specific widget (say, the one with keyboard focus), you need to go through the entire ownership chain, using some heuristics to avoid visiting too many widgets.</p>
+<p>I believe Widgets should be owned by the library. If your container has children, then the only thing the container will actually own is keys into a structure (probably a slotmap) where the widget is stored. This makes a lot of things easier, like serialization and debugging, but it has an impact on the entire backend. It's an infrastructure investment.</p>
+<p>Lately, I've seen more and more discussion of implementing GUI through an ECS. A lot of that discussion comes from Bevy, which is natural, since the bevy community <del>is made up of ruthless cultists striving to feed ever more sacrifices to the ECS god until it consumes the Earth</del> is intimately familiar with the ECS pattern and has reached a phase where UI work is getting a lot of attention<sup class="footnote-reference"><a href="#2">2</a></sup>. But I've seen discussions about it in the Linebender community too.</p>
+<p>Whether we actually want to use ECS is something we still need to research.</p>
+<p>The way I understand it, the big draw of ECS is the "S" part, the Systems: it's about handling lots of similar data at once in arbitrary order. Which is why eg archetypes in bevy are useful: you're grouping together entities with the same components, so that you can say "execute this code for all entities with component X and component Y" and have this code be executed on arrays of values with minimal indirection or branching. And the "arbitrary order" part makes them work really well with slotmaps: since you can just read from the beginning of the slotmap, you don't pay the double-indirection penalty.</p>
+<p>In other words, the ideal use case for ECS is code of the type <code>for (entity in entities) entity.position += entity.speed</code>.</p>
+<p>GUI is pretty far from that ideal use-case: updates are sparse and should only run on a small number of changed widgets. Order often matters. And I'm not sure archetypes would work in a framework with a large variety of widgets and different attributes.</p>
+<p>I think there are two things you really want from a Rust ECS library for GUI: slotmaps, and efficient ways to add and remove components from an entity.</p>
+<p>Implementing those is going to be a major undertaking, which we'll have to divide into small experiments, but one I expect to pay many times over.</p>
+<h2 id="community-involvement-and-more-to-come">Community involvement and more to come</h2>
+<p>I want to really put emphasis on something: none of the above is set in stone.</p>
+<p>Part of what Raph wants to achieve this year is to make Xilem more of a community project, and that means running more decisions by the community.</p>
+<p>I've created <a href="https://github.com/linebender/rfcs/">an RFC repository</a> for this, and each of the sections above will get its own RFC, where I'll expand on my rationale in more detail.</p>
+<p>This isn't a rubber-stamping process either: I want to implement those ideas, but if the community<sup class="footnote-reference"><a href="#3">3</a></sup> decides that they are bad, then we'll go another direction.</p>
+<p>There's other ideas I haven't discussed yet that I want to come back to:</p>
+<ul>
+<li><strong>Declarative styling:</strong> Giving Widgets attributes similar to CSS properties, with modifiers for animations, pseudo-classes, media queries and container queries. While inspired by CSS, it wouldn't involve any CSS parsing, selector resolution, specificity resolution, etc.</li>
+<li><strong>Compositing:</strong> Xilem is heading towards a "do everything in the GPU" approach. This is good for performance, but Firefox engineers who have gone down this road before us have warned us of the many perils they faced, especially regarding battery life. In general, after layout and painting, you really want a <code>composite()</code> phase to deal with scrolling and some simple animations without touching the GPU at all if possible. <a href="https://raphlinus.github.io/ui/graphics/2020/09/13/compositor-is-evil.html">This is a complex subject</a>, and it would be nice if we could hide most of that complexity from app developers while still giving them good performance.</li>
+<li><strong>Resource loading:</strong> This is another area where we might want to crib from game engines. At the very least, we want to be able to ask "Load me this texture/shader/font/etc" without having to write disk I/O in user code. Then we can start thinking about progressive loading, fallbacks, sharing, etc.</li>
+</ul>
+<p>These ideas are likely to be the subject of further articles and/or RFCs in the near future.</p>
+<h3 id="relations-with-other-projects">Relations with other projects</h3>
+<p>Presenting the current state of the Rust GUI ecosystem would probably take its own article.</p>
+<p>Things are moving quickly, and anything I write now might not be up to date in two weeks. The projects we're most interested in right now are Winit and Bevy, and there's some potential for cooperation with Servo. The COSMIC ecosystem looks pretty cool, but so far it looks like we have less to share with them.</p>
+<p>People from parallel projects are communicating and exchanging much, <em>much</em> more than they were in 2022. Between Vello, Parley, wgpu, Taffy, COSMIC-Text and others, projects are converging and maintainers are making more effort to reach out and integrate other people's code.</p>
+<p>Stay tuned for more!</p>
+<h2 id="hey-this-is-really-cool">Hey, this is really cool!</h2>
+<p>Something that came up in discussions I've had with Raph is that it's easy to miss the forest for the trees. In the middle of all the paperwork, blog-writing, RFC-writing, we can end up focusing on the process so much that we forget how excited we are.</p>
+<p>So, I'm taking the moment to remind myself: this is really freaking exciting!</p>
+<p>For all my criticisms and caveats and realistic assessments of the problems we need to overcome, I'm still feeling absolutely great about this!</p>
+<p>I'm super thankful to Raph for getting us this far, to Google Fonts for sponsoring us, and to everyone else who contributed to the Linebender ecosystem. I think we can do something amazing and I'm honestly a little startled to be in this position at all.</p>
+<p>To reiterate what I said: in the next few years, I want the entire ecosystem to get to a point where people talk about Rust GUI like they talk about ripgrep or rustls.</p>
+<p>I legitimately think Rust has the potential to get best-in-class GUI frameworks, and now the time has come to prove it.</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>By the way, I love this style of writing where we start humanizing a software process and complaining about how much it wants to kill us. The articles I cited are very high-quality too.</p>
+</div>
+<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
+<p>I'm told the Bevy community found that joke funny, but I was too afraid for my sanity to check on their Discord server.</p>
+</div>
+<div class="footnote-definition" id="3"><sup class="footnote-definition-label">3</sup>
+<p>"The community" is a nebulous concept here. For obvious reason, we'll give more weight to the opinions of people who have already put work into the Linebender ecosystem, but the general hope is to get a consensus from everyone involved. And you're welcome to weigh in even if you haven't contributed before.</p>
+</div>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>
