@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Linebender in December 2024 - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Linebender in December 2024">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Linebender in December 2024">
+        <meta property="og:description"
+            content="Linebender in December 2024">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Linebender in December 2024">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Linebender in December 2024</h1>
+<h3>Bruce Mitchener, Daniel McNab, January 13, 2025</h3>
+<p>Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for <a href="https://rust-lang.org">the Rust programming language</a>.</p>
+<p>We'd like to wish everyone a happy New Year!</p>
+<h2 id="peniko">Peniko</h2>
+<p>Peniko provides a set of shared types for concepts that are important for drawing/stroking paths, but excluding the path geometry itself (which can be found in kurbo).
+It includes types for brush styles (including gradient) and color.</p>
+<p>Last month, we continued down the path to supporting a richer color model and wider gamuts.
+We released <a href="https://github.com/linebender/peniko/releases/tag/v0.3.0">Peniko 0.3.0</a> which replaces the old color code with our new <a href="https://docs.rs/color/">Color</a> crate.</p>
+<ul>
+<li><a href="https://github.com/linebender/peniko/pull/63">peniko#63</a>: Use the Color crate</li>
+<li><a href="https://github.com/linebender/peniko/pull/71">peniko#71</a>: <code>Gradient</code> now tracks a hue direction and interpolation color space</li>
+<li><a href="https://github.com/linebender/peniko/pull/77">peniko#77</a>: Add x/y extend modes and quality hint to images</li>
+</ul>
+<h2 id="color">Color</h2>
+<p>Color provides functionality for representing, converting, parsing, serializing, and manipulating colors in a variety of color spaces.
+It closely follows the <a href="https://www.w3.org/TR/css-color-4/">CSS Color Module Level 4</a> draft spec.</p>
+<p>Last month, we released <a href="https://github.com/linebender/color/releases/tag/v0.2.0">Color 0.2.0</a> and <a href="https://github.com/linebender/color/releases/tag/v0.2.1">Color 0.2.1</a>.</p>
+<p>The release of Color 0.2.0 contained a significant amount of work to enable use with Peniko and the rest of the Linebender stack.</p>
+<p>Color 0.2.1 included improvements to parsing.</p>
+<ul>
+<li><a href="https://github.com/linebender/color/pull/109">color#109</a>: Make color parsing case insensitive</li>
+<li><a href="https://github.com/linebender/color/pull/111">color#111</a>: Add <code>FromStr</code> impl for <code>AlphaColor</code>, <code>DynamicColor</code>, <code>OpaqueColor</code>, and <code>PremulColor</code></li>
+</ul>
+<p>We encourage people to give <a href="https://docs.rs/color/">Color</a> a try and let us know how it goes.</p>
+<h2 id="vello">Vello</h2>
+<p>Vello is our GPU vector renderer.
+It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.</p>
+<p>Vello is now using the new Peniko 0.3 release along with the Color crate.</p>
+<ul>
+<li><a href="https://github.com/linebender/vello/pull/757">vello#757</a>: Remove <code>buffer_labels</code> feature as it is no longer optional</li>
+<li><a href="https://github.com/linebender/vello/pull/761">vello#761</a>: Remove work-around for <code>const</code> / <code>let</code> globals in WGSL</li>
+<li><a href="https://github.com/linebender/vello/pull/768">vello#768</a>: Migrate to notify-debouncer-full</li>
+<li><a href="https://github.com/linebender/vello/pull/774">vello#774</a>: Initialize wgpu <code>InstanceDescriptor</code> from environment</li>
+</ul>
+<h2 id="parley">Parley</h2>
+<p>Parley is a text layout library.
+It handles text layout, mostly at the level of line breaking and resolving glyph positions.</p>
+<ul>
+<li><a href="https://github.com/linebender/parley/pull/193">parley#193</a>: Added snapshot tests for text selection areas and cursor positioning</li>
+<li><a href="https://github.com/linebender/parley/pull/192">parley#192</a>: Changed the <code>PlainEditor</code> abstraction to reduce unneeded work</li>
+<li><a href="https://github.com/linebender/parley/pull/224">parley#224</a>: Exports the text selection area, ensuring that input selection boxes don't overlap content</li>
+<li><a href="https://github.com/linebender/parley/pull/227">parley#227</a>: Adds infrastructure for easy to understand tests for text editing functionality</li>
+</ul>
+<h2 id="kompari">Kompari</h2>
+<p><a href="https://github.com/linebender/kompari">Kompari</a> is a tool for visual inspection of snapshot tests.
+This project is a new addition to Linebender, generously contributed by <a href="https://github.com/spirali">Ada Böhm</a> and is currently in pre-alpha.</p>
+<figure>
+<img style="height: auto" src="kompari.png" alt="A screenshot of a web page, titled 'Kompari Report'. The report has a section called 'test1.png', which shows that two images of the text 'Linebender' have 2482 different pixels. An image displaying which pixels are different is next to these." height="1040" width="2364">
+<figcaption>
+<p>A report for snapshot test, generated by Kompari.</p>
+</figcaption>
+</figure>
+<p>We plan for Kompari to standardise and improve the developer experience of snapshot tests in Linebender (and beyond).
+It can generate reports which summarises failed snapshot tests, and will also contain functionality for interactive blessing of new snapshots.
+This reporting can be integrated into a repository as an xtask:</p>
+<pre data-lang="commandline" style="background-color:#2b303b;color:#c0c5ce;" class="language-commandline "><code class="language-commandline" data-lang="commandline"><span>cargo xtask report
+</span></code></pre>
+<p>Kompari also includes a standalone CLI, for projects which don't use the xtask pattern or are trialling Kompari.</p>
+<p>In December, we added initial functionality and established CI in the repository.
+Ongoing work includes:</p>
+<ul>
+<li><a href="https://github.com/linebender/kompari/pull/12">kompari#12</a>: Refactoring the project to make it more modular</li>
+<li><a href="https://github.com/linebender/kompari/pull/13">kompari#13</a>: Interactive test blessing</li>
+</ul>
+<h2 id="masonry">Masonry</h2>
+<p>Masonry is the widget system used by Xilem.
+It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.</p>
+<p>Updates to Parley integration and usage for IME and text editing:</p>
+<ul>
+<li><a href="https://github.com/linebender/xilem/pull/766">xilem#766</a>: Update to upstream unbatched PlainEditor</li>
+<li><a href="https://github.com/linebender/xilem/pull/767">xilem#767</a>: Stop IME just before shutting down</li>
+<li><a href="https://github.com/linebender/xilem/pull/768">xilem#768</a>: Clear compose in <code>TextArea::reset_text</code></li>
+<li><a href="https://github.com/linebender/xilem/pull/785">xilem#785</a>: Improve IME area reporting and set IME area in <code>TextArea</code></li>
+</ul>
+<p>The new tree arena landed and saw some performance improvements:</p>
+<ul>
+<li><a href="https://github.com/linebender/xilem/pull/752">xilem#752</a>: Tree arena</li>
+<li><a href="https://github.com/linebender/xilem/pull/772">xilem#772</a>: Use hashmap to track tree arena node children</li>
+<li><a href="https://github.com/linebender/xilem/pull/774">xilem#774</a>: Use <code>hashbrown</code> as drop-in replacement to optimize tree access</li>
+</ul>
+<p>We updated to start using the Color crate:</p>
+<ul>
+<li><a href="https://github.com/linebender/xilem/pull/798">xilem#798</a>: Update to git Parley and Vello (uses Color)</li>
+<li><a href="https://github.com/linebender/xilem/pull/800">xilem#800</a>: Use <code>palette</code> and <code>Color</code> from top level Masonry and Xilem</li>
+</ul>
+<p>Miscellaneous:</p>
+<ul>
+<li><a href="https://github.com/linebender/xilem/pull/777">xilem#777</a>: Render one frame before showing the window to avoid flashing</li>
+<li><a href="https://github.com/linebender/xilem/pull/795">xilem#795</a>: Sized Box: Use a brush for the border</li>
+</ul>
+<h2 id="xilem">Xilem</h2>
+<p>Xilem is our flagship GUI project, inspired by SwiftUI.
+It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.</p>
+<ul>
+<li><a href="https://github.com/linebender/xilem/pull/797">xilem#797</a>: The text colour and other properties inside buttons can now be customised</li>
+</ul>
+<h2 id="research-and-future-directions">Research and Future Directions</h2>
+<p>Linebender has an origin story in being a very research oriented group, looking to break new ground.
+While we are focused on shipping code today, we still have an eye on the future and how to be prepared for the new opportunities and technologies that are coming.</p>
+<p>We have a couple of active and ongoing research projects:</p>
+<ul>
+<li>Raph Levien on SIMD, stroke expansion, and new rendering approaches for Vello.</li>
+<li>Joe Neeman on boolean path operations.</li>
+<li>A potential revival of the Piet project, <a href="https://xi.zulipchat.com/#narrow/channel/197075-gpu/topic/Low-level.20Piet">discussed on Zulip</a>.</li>
+</ul>
+<h2 id="get-involved">Get Involved</h2>
+<p>We welcome collaboration on any of our crates.
+This can include improving the documentation, implementing new features, improving our test coverage, or using them within your own code.</p>
+<p>We host an hour long office hours meeting each week where we discuss what's going on in our projects.
+See <a href="https://xi.zulipchat.com/#narrow/channel/359642-office-hours">#office hours in Zulip</a> for details.</p>
+<ul>
+<li>Daniel and Olivier's "office hours" appointments can still be booked by anyone for open-ended discussion of the ecosystem.
+<ul>
+<li><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2">See Daniel's schedule here</a>.</li>
+<li><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM">See Olivier's schedule here</a>.</li>
+</ul>
+</li>
+</ul>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

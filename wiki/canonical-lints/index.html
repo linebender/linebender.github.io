@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Canonical lint set for Linebender projects - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Canonical lint set for Linebender projects">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Canonical lint set for Linebender projects">
+        <meta property="og:description"
+            content="Canonical lint set for Linebender projects">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Canonical lint set for Linebender projects">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Canonical lint set for Linebender projects</h1>
+<p>All Linebender projects should include the following set of lints:</p>
+<h2 id="cargo-toml"><code>Cargo.toml</code></h2>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[lints]
+</span><span style="color:#65737e;"># This one may vary depending on the project.
+</span><span style="color:#bf616a;">rust</span><span>.</span><span style="color:#bf616a;">unsafe_code </span><span>= &quot;</span><span style="color:#a3be8c;">forbid</span><span>&quot;
+</span><span>
+</span><span style="color:#65737e;"># LINEBENDER LINT SET - Cargo.toml - v8
+</span><span style="color:#65737e;"># See https://linebender.org/wiki/canonical-lints/
+</span><span style="color:#bf616a;">rust</span><span>.</span><span style="color:#bf616a;">keyword_idents_2024 </span><span>= &quot;</span><span style="color:#a3be8c;">forbid</span><span>&quot;
+</span><span style="color:#bf616a;">rust</span><span>.</span><span style="color:#bf616a;">non_ascii_idents </span><span>= &quot;</span><span style="color:#a3be8c;">forbid</span><span>&quot;
+</span><span style="color:#bf616a;">rust</span><span>.</span><span style="color:#bf616a;">non_local_definitions </span><span>= &quot;</span><span style="color:#a3be8c;">forbid</span><span>&quot;
+</span><span style="color:#bf616a;">rust</span><span>.</span><span style="color:#bf616a;">unsafe_op_in_unsafe_fn </span><span>= &quot;</span><span style="color:#a3be8c;">forbid</span><span>&quot;
+</span><span>
+</span><span style="color:#bf616a;">rust</span><span>.</span><span style="color:#bf616a;">elided_lifetimes_in_paths </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">rust</span><span>.</span><span style="color:#bf616a;">missing_debug_implementations </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">rust</span><span>.</span><span style="color:#bf616a;">missing_docs </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">rust</span><span>.</span><span style="color:#bf616a;">trivial_numeric_casts </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">rust</span><span>.</span><span style="color:#bf616a;">unnameable_types </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">rust</span><span>.</span><span style="color:#bf616a;">unreachable_pub </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">rust</span><span>.</span><span style="color:#bf616a;">unused_import_braces </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">rust</span><span>.</span><span style="color:#bf616a;">unused_lifetimes </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">rust</span><span>.</span><span style="color:#bf616a;">unused_macro_rules </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">rust</span><span>.</span><span style="color:#bf616a;">unused_qualifications </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span>
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">too_many_arguments </span><span>= &quot;</span><span style="color:#a3be8c;">allow</span><span>&quot;
+</span><span>
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">allow_attributes_without_reason </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">cast_possible_truncation </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">cast_possible_wrap </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">collection_is_never_read </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">default_trait_access </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">dbg_macro </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">debug_assert_with_mut_call </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">doc_markdown </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">fn_to_numeric_cast_any </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">infinite_loop </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">large_stack_arrays </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">mismatching_type_param_order </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">missing_assert_message </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">missing_fields_in_debug </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">same_functions_in_if_condition </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">semicolon_if_nothing_returned </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">should_panic_without_expect </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">todo </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">unseparated_literal_suffix </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">use_self </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span>
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">cargo_common_metadata </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">negative_feature_names </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">redundant_feature_names </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#bf616a;">clippy</span><span>.</span><span style="color:#bf616a;">wildcard_dependencies </span><span>= &quot;</span><span style="color:#a3be8c;">warn</span><span>&quot;
+</span><span style="color:#65737e;"># END LINEBENDER LINT SET
+</span></code></pre>
+<h2 id="lib-rs"><code>lib.rs</code></h2>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">// LINEBENDER LINT SET - lib.rs - v4
+</span><span style="color:#65737e;">// See https://linebender.org/wiki/canonical-lints/
+</span><span style="color:#65737e;">// These lints shouldn&#39;t apply to examples or tests.
+</span><span>#![</span><span style="color:#bf616a;">cfg_attr</span><span>(</span><span style="color:#bf616a;">not</span><span>(test), </span><span style="color:#bf616a;">warn</span><span>(unused_crate_dependencies))]
+</span><span style="color:#65737e;">// These lints shouldn&#39;t apply to examples.
+</span><span>#![</span><span style="color:#bf616a;">warn</span><span>(clippy::print_stdout, clippy::print_stderr)]
+</span><span style="color:#65737e;">// Targeting e.g. 32-bit means structs containing usize can give false positives for 64-bit.
+</span><span>#![</span><span style="color:#bf616a;">cfg_attr</span><span>(target_pointer_width = &quot;</span><span style="color:#a3be8c;">64</span><span>&quot;, </span><span style="color:#bf616a;">warn</span><span>(clippy::trivially_copy_pass_by_ref))]
+</span><span style="color:#65737e;">// END LINEBENDER LINT SET
+</span><span>#![</span><span style="color:#bf616a;">cfg_attr</span><span>(docsrs, </span><span style="color:#bf616a;">feature</span><span>(doc_cfg))]
+</span></code></pre>
+<h2 id="clippy-toml"><code>.clippy.toml</code></h2>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#65737e;"># LINEBENDER LINT SET - .clippy.toml - v1
+</span><span style="color:#65737e;"># See https://linebender.org/wiki/canonical-lints/
+</span><span>
+</span><span style="color:#65737e;"># The default Clippy value is capped at 8 bytes, which was chosen to improve performance on 32-bit.
+</span><span style="color:#65737e;"># Given that we are building for the future and even low-end mobile phones have 64-bit CPUs,
+</span><span style="color:#65737e;"># it makes sense to optimize for 64-bit and accept the performance hits on 32-bit.
+</span><span style="color:#65737e;"># 16 bytes is the number of bytes that fits into two 64-bit CPU registers.
+</span><span style="color:#bf616a;">trivial-copy-size-limit </span><span>= </span><span style="color:#d08770;">16
+</span><span>
+</span><span style="color:#65737e;"># END LINEBENDER LINT SET
+</span></code></pre>
+<p>This is a curated list: Clippy has a <em>lot</em> of lints, and most of them are not included above.</p>
+<p>The list above should be considered canonical.
+If you think a new lint should be added to Linebender projects, add it to this file in alphabetical order, then copy-paste the list across projects.</p>
+<p>To keep this process simple, avoid modifying this list in individual projects.
+If you want to add other per-project lints, add them above the list.
+If you want to remove a lint, <code>#![allow]</code> or <code>#![expect]</code> it at the crate root.</p>
+<h2 id="periodic-passes">Periodic Passes</h2>
+<p>As a lot of our code is research code, there are lints which we believe improve code quality, but don't need to validate in CI.
+These lints can be run occasionally, such as when releases are near, to improve code quality asynchronously:</p>
+<pre data-lang="text" style="background-color:#2b303b;color:#c0c5ce;" class="language-text "><code class="language-text" data-lang="text"><span>let_underscore_drop
+</span><span>single_use_lifetimes
+</span><span>unit_bindings
+</span><span>variant_size_differences
+</span><span>
+</span><span>clippy::allow_attributes
+</span><span>clippy::large_include_file
+</span><span>clippy::match_same_arms
+</span><span>clippy::partial_pub_fields
+</span><span>clippy::return_self_not_must_use
+</span><span>clippy::shadow_unrelated
+</span></code></pre>
+<p>As a runnable command, there are:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">cargo</span><span> clippy -- -W let_underscore_drop -W single_use_lifetimes -W unit_bindings -W variant_size_differences -W clippy::large_include_file -W clippy::match_same_arms -W clippy::partial_pub_fields -W clippy::return_self_not_must_use -W clippy::shadow_unrelated
+</span></code></pre>
+<h3 id="pedantic">Pedantic</h3>
+<p>You may occasionally want to run <code>cargo clippy</code> with <code>clippy::pedantic</code> on the codebase, which will cast a very wide net and catch a lot of very minor issues.
+There are a few lints which are definitely not in scope, such as:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">cargo</span><span> clippy -- -W clippy::pedantic -A clippy::module_name_repetitions
+</span></code></pre>
+<p>A command line which allows certain restriction lints and checks the rest is provided below.
+The vast majority of issues this raise should not be actioned, but for our smaller crates with a high quality bar (such as <a href="https://github.com/linebender/color">Color</a>), this can be worthwhile.</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">cargo</span><span> clippy -- -W clippy::restriction -A clippy::module_name_repetitions -A clippy::pattern_type_mismatch -A clippy::implicit_return -A clippy::missing_inline_in_public_items -A clippy::missing_docs_in_private_items -A clippy::float_arithmetic -A clippy::min_ident_chars -A clippy::impl_trait_in_params -A clippy::exhaustive_structs
+</span></code></pre>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>
