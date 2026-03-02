@@ -28,7 +28,7 @@ The LSD sort algorithm with the strongest claims to being fastest is [Onesweep].
 This has an authoritative implementation in [CUB], for which a good starting point is [agent_radix_sort_onesweep].
 
 A very popular sorting algorithm in gamedev circles is [FidelityFX sort] from AMD, for which the original source is HLSL.
-This is has enough similarity to Onesweep that it is worth considering the differences.
+It has enough similarity to Onesweep that it is worth considering the differences.
 
 * Onesweep uses a single pass scan for the digit histograms, while FidelityFX uses a traditional multi-dispatch tree reduction approach.
 * Onesweep uses 8 bit digits (so 4 passes for a 32 bit key), while FidelityFX uses 4.
