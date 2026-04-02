@@ -4,16 +4,16 @@ title = "LLM contribution policy for Linebender projects"
 
 Open-source projects are facing an increasing amount of submissions generated in whole or in part by LLMs.
 
-Maintainers tend to strongly dislike them: they require very little effort to create (since a machine is doing all the work) but a lot of effort to review (since LLMs make mistakes that are hard to track down). Because LLMs are good at mimmicking high-effort contributors, maintainers often feel pressured to give the benefit of the doubt to the submitter and give a level of feedback that isn't warranted by the effort the submitter made.
+Maintainers tend to strongly dislike them: they require very little effort to create (since a machine is doing all the work) but a lot of effort to review (since LLMs make mistakes that are hard to track down). Because LLMs are good at mimicking high-effort contributors, maintainers often feel pressured to give the benefit of the doubt to the submitter and give a level of feedback that isn't warranted by the effort the submitter made.
 
-Still, LLM agents can produce high-quality code, so we don't want to band them altogether.
+Still, LLM agents can produce high-quality code, so we don't want to ban them altogether.
 
 This document outlines Linebender's official policy for LLM contributions, inspired by [this zulip discussion](https://xi.zulipchat.com/#narrow/channel/419691-linebender/topic/AI.20slop.20policy/near/575407715).
 
 
 ## Disclosure
 
-Contributors should disclose their LLM usage ahead of time. Reviewers will *not* be happy if a contributor only admits to using LLMs after being prodded, and will tend to assume the reviewer is downplaying their level of AI use.
+Contributors should disclose their LLM usage ahead of time. Reviewers will *not* be happy if a contributor only admits to using LLMs after being prodded, and will tend to assume the contributor is downplaying their level of AI use.
 
 This above applies even if the reviewer double-checked everything the LLM wrote. In our experience, people overestimate their level of understanding of agent-produced code when the agent had a high level of initiative. "Code you wrote yourself" and "Code you read after the LLM wrote it" do not warrant the same level of scrutiny.
 
