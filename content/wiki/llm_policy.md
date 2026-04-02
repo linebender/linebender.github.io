@@ -1,4 +1,6 @@
-# LLM contribution policy for Linebender projects
++++
+title = "LLM contribution policy for Linebender projects"
++++
 
 Open-source projects are facing an increasing amount of submissions generated in whole or in part by LLMs.
 
