@@ -38,7 +38,7 @@ To handle these functions, we created a crate called "parley_draw" inside the Pa
 The crate has now been renamed to "Glifo," and has moved into the Vello repo.
 The new location is to reduce the friction to iterate on the implementation of atlas-based glyph caching.
 
-For a more recent discussion of the scope and goals of Glifo, see the thread [Glifo: A seperation of concerns](https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/Glifo.3A.20A.20seperation.20of.20concerns/with/584192738).
+For a more recent discussion of the scope and goals of Glifo, see the thread [Glifo: A seperation of concerns](https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/Glifo.3A.20A.20seperation.20of.20concerns/with/584192738). <!-- typos:disable-line -->
 
 In the longer term, we would like to see Glifo become independent of Vello rendering and be adopted by other projects in the ecosystem, but for the time being it should be considered in development.
 
@@ -47,7 +47,7 @@ In the longer term, we would like to see Glifo become independent of Vello rende
 Parley has seen slow but steady features.
 
  * [parley#536] enumerate system fonts on mac using CoreText
- * [parley#540] Load fonts from syste, and provided paths
+ * [parley#540] Load fonts from system, and provided paths
  * [parley#551] CSS text-indent support
  * [parley#563] Implement all possible AccessKit text properties
 
@@ -97,7 +97,7 @@ A screenshot of Scrolled Quran.
 
 ### Subduction
 
-It's long been clear there is value in more fully exploiting system compositor capabilites, but it's a hard problem and Linebender projects have so far just been using plain windows and swapchains.
+It's long been clear there is value in more fully exploiting system compositor capabilities, but it's a hard problem and Linebender projects have so far just been using plain windows and swapchains.
 I've had a blog post stuck in rough draft for over four years — [How to think about the compositor in 2022](https://github.com/raphlinus/raphlinus.github.io/issues/77).
 Compositor integration is needed for efficient video playback, and is also the best way to stitch native widgets into a GPU-accelerated rendering surface.
 Bruce Mitchener got tired of waiting and has started the [subduction](https://github.com/forest-rs/subduction) crate, with compelling examples.
@@ -116,8 +116,8 @@ A screenshot of the subduction sample app. There are AppKit widgets for text edi
 
 There are two talks from Linebender affiliated people: Nico Burns' [talk on Blitz](https://2026.rustweek.org/talks/nico/), and Taj Pereira and Alex Jakubowicz' [talk on WASM](https://2026.rustweek.org/talks/wasm/). In addition, Linebender is one of the [Unconference](https://2026.rustweek.org/unconf-intro/) tracks. If you are interested in participating in the latter, reach out to me, as I'm the designated community leader.
 
-[xilem#1650]: https://github.com/linebender/parley/pull/1650
-[xilem#1696]: https://github.com/linebender/parley/pull/1696
+[xilem#1560]: https://github.com/linebender/xilem/pull/1560
+[xilem#1696]: https://github.com/linebender/xilem/pull/1696
 
 
 [parley#536]: https://github.com/linebender/parley/pull/536

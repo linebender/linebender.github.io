@@ -2,7 +2,11 @@
 # https://github.com/crate-ci/typos/blob/master/docs/reference.md
 
 [default]
-extend-ignore-re = ["colour-science"]
+extend-ignore-re = [
+    "colour-science",
+    # Ignore lines ending with <!-- typos:disable-line -->
+    "(?Rm)^.*<!--\\s*typos:disable-line\\s*-->\\s*$",
+]
 
 # Corrections take the form of a key/value pair. The key is the incorrect word
 # and the value is the correct word. If the key and value are the same, the
@@ -14,6 +18,7 @@ extend-ignore-re = ["colour-science"]
 LOD = "LOD"
 relm = "relm"
 Stoer = "Stoer"
+Canva = "Canva"
 
 # Match Inside a Word - Case Insensitive
 [default.extend-words]

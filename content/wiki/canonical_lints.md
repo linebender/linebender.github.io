@@ -103,7 +103,7 @@ If you want to remove a lint, `#![allow]` or `#![expect]` it at the crate root.
 As a lot of our code is research code, there are lints which we believe improve code quality, but don't need to validate in CI.
 These lints can be run occasionally, such as when releases are near, to improve code quality asynchronously:
 
-```text
+```txt
 let_underscore_drop
 single_use_lifetimes
 unit_bindings
