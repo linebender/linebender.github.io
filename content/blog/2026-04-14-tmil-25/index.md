@@ -28,7 +28,7 @@ There are two abstraction layers that can be used for a variety of renderers, bo
  * [imaging], which is part of the forest-rs organization.
 
 These two crates are fairly similar in scope, but with different emphasis.
-AnyRender prioritizes ergonomics, while imaging is focused on performance, including handling external GPU-resident textures.
+AnyRender prioritizes ergonomics, in general closely following the traditional canvas API, while imaging is focused on performance and a more complete set of operations.
 
 ### Glifo
 
@@ -116,10 +116,10 @@ To learn more, see the [Subduction: System compositor integration](https://xi.zu
 
 <!-- TODO: better screenshot? The web one may be visually more interesting -->
 <figure>
-<img style="height: auto;" width="912" height="744" src="subduction_screenshot.png" alt="A screenshot of subduction, showing native mac widgets">
+<img style="height: auto;" width="1152" height="864" src="subduction_screenshot.png" alt="A screenshot of subduction, showing native mac widgets">
 <figcaption>
 A screenshot of the subduction sample app.
-There are AppKit widgets for text editing and a button, and geometric shapes.
+There are AppKit widgets including text editing, a wgpu surface running shaders, and other layers.
 </figcaption>
 </figure>
 
