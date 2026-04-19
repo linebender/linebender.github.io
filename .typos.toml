@@ -14,6 +14,7 @@ extend-ignore-re = ["colour-science"]
 LOD = "LOD"
 relm = "relm"
 Stoer = "Stoer"
+Canva = "Canva"
 
 # Match Inside a Word - Case Insensitive
 [default.extend-words]

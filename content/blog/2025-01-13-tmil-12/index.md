@@ -77,7 +77,7 @@ We plan for Kompari to standardise and improve the developer experience of snaps
 It can generate reports which summarises failed snapshot tests, and will also contain functionality for interactive blessing of new snapshots.
 This reporting can be integrated into a repository as an xtask:
 
-```commandline
+```bash
 cargo xtask report
 ```
 
