@@ -58,8 +58,9 @@ Bevy has switched to Parley ([Zulip thread](https://xi.zulipchat.com/#narrow/cha
 CuTTY is a fork of Alacritty (a high performance terminal emulator) that has been ported to Vello and Parley ([Zulip thread](https://xi.zulipchat.com/#narrow/channel/205635-parley/topic/I.20forked.20and.20migrated.20Alacritty.20to.20Vello.2BParley/with/580875316)).
 
 Other projects which now use Parley but have not previously been mentioned are:
- * [Gosub engine](https://gosub.io/)
+ * [Gosub engine](https://gosub.io/) (browser engine)
  * [drafft-ink](https://github.com/PatWie/drafft-ink) (infinite canvas whiteboard)
+ * [Takumi] (renders HTML/JSX/etc into images)
 
 It's gratifying to see all this adoption.
 It seems like recognition that Parley is a viable text layout library for a broad range of applications.
@@ -152,3 +153,7 @@ They are expected to continue in January, keep an eye on Zulip for details.
 
 [imaging]: https://github.com/forest-rs/imaging
 [AnyRender]: https://github.com/dioxuslabs/anyrender
+
+[Gosub engine]: https://gosub.io/
+[drafft-ink]: https://github.com/PatWie/drafft-ink
+[Takumi]: https://github.com/kane50613/takumi
