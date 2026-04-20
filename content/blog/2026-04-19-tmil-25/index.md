@@ -14,11 +14,15 @@ We've made big improvements to Vello Hybrid, both in capabilities and in perform
 
 Several releases, most recently [sparse strips 0.0.7](https://github.com/linebender/vello/releases/tag/sparse-strips-v0.0.7) (encompassing both Vello CPU and Vello Hybrid) and [Vello 0.8.0](https://github.com/linebender/vello/releases/tag/v0.8.0).
 
-Optimizations:
+Optimizations include:
  * Fast paths to bypass full coarse rasterization.
  * Special case drawing rectangles (as opposed to general Bézier paths)
  * First cut at glyph caching – more work is needed.
- * TODO fill out more
+ * Fixed performance issues with heavy gradient use.
+ * Skipping more unneeded work in layer operations.
+ * Optimizations for opaque full-tile images.
+ * Optimized layer blending for src-over compositing.
+ * Improvements to analytic antialiasing performance.
 
 Vello Hybrid is currently at roughly beta quality; there are some rough edges still and performance work to be done, but it should be usable.
 
@@ -115,7 +119,6 @@ Compositor integration is needed for efficient video playback, and is also the b
 Bruce Mitchener got tired of waiting and has started the [subduction](https://github.com/forest-rs/subduction) crate, with compelling examples.
 To learn more, see the [Subduction: System compositor integration](https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/Subduction.3A.20System.20compositor.20integration/with/582293122) Zulip thread.
 
-<!-- TODO: better screenshot? The web one may be visually more interesting -->
 <figure>
 <img style="height: auto;" width="1152" height="864" src="subduction_screenshot.png" alt="A screenshot of subduction, showing native mac widgets">
 <figcaption>
