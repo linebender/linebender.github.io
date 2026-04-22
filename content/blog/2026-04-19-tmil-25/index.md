@@ -107,6 +107,21 @@ A screenshot of Scrolled Quran.
 </figcaption>
 </figure>
 
+## Fearless SIMD
+
+Fearless SIMD is our SIMD infrastructure library.
+It provides a solid, portable way to write SIMD code that compiles to Wasm, AArch64, x86, and x86_64.
+
+We released [fearless_simd 0.4.0], a large step towards the library being generally useful.
+The major improvement is the use of AVX2 intrinsics on supported platforms.
+That fulfills the vision of being able to write code that works efficiently in a variety of SIMD vector widths — 128 bit on Neon, and 256 bits on x86.
+
+We are starting to see adoption outside Linebender, notably [PhastFT], a high performance FFT library.
+Applications that can benefit from SIMD acceleration should consider fearless_simd, and we are open to feedback on how to improve it further.
+
+There will be SIMD discussion at RustWeek, both as part of the Linebender unconference section and hopefully a session in the all-hands.
+Get in touch if you'd be interested.
+
 ## Related ecosystem projects
 
 There's a lot of interesting activity surrounding Linebender, including projects that use Linebender crates, and adjacent bits of infrastructure.
@@ -160,3 +175,6 @@ They are expected to continue in January, keep an eye on Zulip for details.
 [Gosub engine]: https://gosub.io/
 [drafft-ink]: https://github.com/PatWie/drafft-ink
 [Takumi]: https://github.com/kane50613/takumi
+
+[fearless_simd 0.4.0]: https://github.com/linebender/fearless_simd/releases/tag/v0.4.0
+[PhastFT]: https://github.com/QuState/PhastFT
