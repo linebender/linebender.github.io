@@ -61,6 +61,30 @@ They should spend as much effort on this self-review as they would on a human-au
 In discussion spaces like Github comments and the Zulip server, please avoid posting AI-generated analyses, even if you vetted them.
 
 
+## Documentation
+
+In general, avoid generating documentation with AI.
+
+Documentation is most valuable when it is intentional and concise.
+Our users will read our documentation much more often than our code, which means that verbose documentation is much more damaging than verbose code.
+
+Because generating documentation doesn't cost the contributor anything, generated doc mechanically leans towards verbosity, which translates to a worse reading experience.
+
+For these reasons, Linebender projects hold documentation to a higher standard than code.
+
+Two rules of thumb:
+
+- Avoid generating documentation longer than one line with AI.
+- Strongly avoid generating documentation longer than two paragraphs with AI.
+
+If a submitted change requires a large amount of documentation, and you are uncomfortable with your writing skills, we prefer that you reach out to us and ask for advice rather than submit large amounts of LLM-generated docs.
+
+In general, we value the process of communicating about documentation and expressing your intent more than we value the final artifact.
+If you feel apprehensive about the quality of your docs, we'd encourage you to lean towards "ask us about it" rather than "use more AI".
+
+If you still want to generate large amounts of documentation and are satisfied with the output, refer to the above sections about disclosure and effort.
+
+
 ## LLMs and non-English speakers
 
 Most Linebender contributors don't speak English as their first language, and we understand that contributors might struggle with English and feel anxious about it.
