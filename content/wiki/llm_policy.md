@@ -41,7 +41,7 @@ As a rule of thumb, in Rust, by the time Copilot produces completions with multi
 
 ### Non-generation use of LLM
 
-Using LLMs for debugging, exploration, testing (*not* generating test files) is accepted without disclosure.
+Using LLMs for debugging, exploration, testing (*not* generating test files), spell-checking and grammar-checking is accepted without disclosure.
 
 ### Anti-disclosure
 
@@ -61,15 +61,15 @@ They should spend as much effort on this self-review as they would on a human-au
 In discussion spaces like Github comments and the Zulip server, please avoid posting AI-generated analyses, even if you vetted them.
 
 
-## Documentation
+## LLMs and non-English speakers
 
-In general, avoid generating *any* documentation longer than one line with AI.
-*Never* generate documentation longer than two paragraphs with AI.
+Most Linebender contributors don't speak English as their first language, and we understand that contributors might struggle with English and feel anxious about it.
 
-AI-generated documentation tends to be very verbose and redundant.
-Because generating it doesn't cost the contributor anything, they lean towards "more is better", which translates to a worse reading experience.
+As mentioned above, using AI to check your grammar or find ways to reword a sentence is fine and doesn't require disclosure.
 
-If you're not confident in your documentation skills, writing stub documentation with TODO comments is better than verbose-but-meaningless LLM documentation.
+Using AI to translate something you wrote in your native language usually doesn't require disclosure.
+
+We consider these cases meaningfully different from asking AI to generate text for you from a prompt or having AI auto-generate doc for a code item, both of which require disclosure.
 
 
 ## Agent files
