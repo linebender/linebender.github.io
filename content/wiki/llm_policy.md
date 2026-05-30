@@ -77,3 +77,26 @@ We consider these cases meaningfully different from asking AI to generate text f
 We will not merge agentic markdown files.
 
 Some projects may include common agent files in their `.gitignore`.
+
+
+## Repository-level guidance
+
+Linebender repositories should include some guidance on our LLM policy, including links to this article where appropriate.
+
+Repositories usually have a **Contributing** section in the README, which should include a short snippet along those lines:
+
+```md
+Contributors should disclose LLM-generated content ahead of time.
+See [LLM contribution policy for Linebender projects](https://linebender.org/wiki/llm-policy/) for details.
+```
+
+Linebender repositories should have PR and Issue templates with a section along those lines:
+
+```md
+# LLM content
+
+Does this PR/Issue include LLM-generated content?
+
+- If not, remove this section.
+- If so, see Linebender's LLM policy: https://linebender.org/wiki/llm-policy/.
+```
