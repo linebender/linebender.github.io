@@ -18,6 +18,18 @@ jobs:
         env:
           BUILD_ONLY: true
 
+  check-wasm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install stable toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - name: check (wasm)
+        working-directory: ./rust
+        run: cargo check --target wasm32-unknown-unknown
+
   # If this fails, consider changing your text or adding something to .typos.toml.
   typos:
     runs-on: ubuntu-latest
