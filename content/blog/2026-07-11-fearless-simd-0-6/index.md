@@ -15,7 +15,7 @@ The major addition in v0.6 is [AVX-512](https://en.wikipedia.org/wiki/AVX-512) s
 
 AVX-512 is rather poorly named. It would be better to call it AVX3, because extending the vector width to 512 bits is the least interesting addition, and many implementations process 512-bit vectors on 256-bit execution units anyway.
 
-The real meat of AVX-512 is in the new instructions it brings, as well as in extending the number of registers for _all_ vector widths by 2x, or even more if you use masks. So you can see significant peformance gains from AVX-512 without ever touching 512-bit vectors.
+The real meat of AVX-512 is in the new instructions it brings, as well as in extending the number of registers for _all_ vector widths by 2x, or even more if you use masks. So you can see significant performance gains from AVX-512 without ever touching 512-bit vectors.
 
 AVX-512 has a bad rep due to the early implementations from Intel being quite poor. [Intel Skylake](https://en.wikipedia.org/wiki/Skylake_(microarchitecture)) processors would [immediately reduce the frequencies](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions#Downclocking) of all CPU cores upon encountering a single AVX-512 instruction anywhere. This usually hurts performance more than it helps.
 
