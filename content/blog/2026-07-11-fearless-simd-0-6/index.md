@@ -38,7 +38,6 @@ Intel has same scatter/gather performance pothole on AVX2 in Haswell.
 ## Controlling the instruction sets
 
 Since the entire point of SIMD is performance, it is crucial for any SIMD abstraction to provide enough control to work around hardware quirks.
-So `fearless_simd` gives you full control over the instruction sets are used for which function, as you can see in [this example](https://github.com/linebender/fearless_simd/blob/3d10e36bae31987855e784de907de308803f90e5/fearless_simd/examples/disable_avx2_for_one_function.rs).
 
 In addition, every x86 instruction set increases the binary size, because each SIMD function needs to be separately compiled for every instruction set and the final one selected at runtime.
 This can be mitigated by compiling with e.g.
