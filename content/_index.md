@@ -37,6 +37,11 @@ Below is a list of the main Linebender projects, and a short description of each
    It turns out that a series of cubic Bézier curves can be used to approximate any smooth curve with a very high degree of accuracy, compared to the number of curves required.
    They are also relatively easy to work with, and form the basis of the approach to curve rendering used in Vello.
 
+- [`fearless_simd`][fearless_simd] - Safer and easier SIMD.
+
+  fearless_simd provides provides safe APIs for everything you need for SIMD: function multiversioning, portable SIMD abstractions,
+  and safe access to platform-specific intrinsics. It has very little unsafe code under the hood, making fearless_simd easy to audit and adopt.
+
  - [`color`][color] - Manipulate and represent colors.
 
    Color provides functionality for representing, converting, parsing, serializing, and manipulating colors in a variety of color spaces.
@@ -156,3 +161,4 @@ Below is a list of the main Linebender projects, and a short description of each
 [`cosmic-text`]: https://github.com/pop-os/cosmic-text
 [linebender.github.io]: https://github.com/linebender/linebender.github.io
 [CSS Color Level 4]: https://www.w3.org/TR/css-color-4/
+[fearless_simd]: https://github.com/linebender/fearless_simd
