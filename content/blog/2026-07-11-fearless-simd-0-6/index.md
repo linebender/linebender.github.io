@@ -27,9 +27,8 @@ The downclocking issue was fixed by Intel in [Ice Lake](https://en.wikipedia.org
 Because of that `fearless_simd` **only enables AVX-512 on Ice Lake and later** on Intel.
 Using Ice Lake as a baseline also gives us access to more instructions, enabling more efficient implementations of some operations.
 
-We've already seen a [15% end-to-end runtime improvement](https://github.com/linebender/fearless_simd/pull/231#issuecomment-4760357890) in [Vello CPU](https://github.com/linebender/vello/tree/main/sparse_strips/vello_cpu) from enabling AVX-512 compared to the previous AVX2 path.
-This was measured on AMD Zen 4, which only has 256-bit execution units; the gains on CPUs with native 512-bit vectors are likely greater.
-And it was achieved without any code changes, simply by upgrading fearless_simd from v0.5 to v0.6.
+We've already seen a [15% end-to-end runtime improvement](https://github.com/linebender/fearless_simd/pull/231#issuecomment-4760357890) compared to AVX2 in [Vello CPU](https://github.com/linebender/vello/tree/main/sparse_strips/vello_cpu).
+This measurement was performed on an (AMD Zen 4 desktop CPU), which doesn't even have native 512-bit vectors, and didn't require any code changes.
 
 ## Why not AVX-512
 
