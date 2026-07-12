@@ -47,7 +47,7 @@ But such a program will crash on CPUs without AVX2.
 This also would still compile the AVX-512 implementations, but getting rid of them can be desirable if you know the hardware you target doesn't have AVX-512 or doesn't benefit from it for your workload.
 So the `target-cpu` flag is useful but doesn't provide enough flexibility.
 
-That's why fearless_simd now provides controls for disabling certain instruction sets, both [for select functions](https://github.com/linebender/fearless_simd/blob/3d10e36bae31987855e784de907de308803f90e5/fearless_simd/examples/disable_avx2_for_one_function.rs#L1) and [for an entire binary](https://github.com/linebender/fearless_simd/tree/main/fearless_simd#multiversioning-on-x86).
+That's why Fearless SIMD now provides controls for disabling certain instruction sets, both [for select functions](https://github.com/linebender/fearless_simd/blob/3d10e36bae31987855e784de907de308803f90e5/fearless_simd/examples/disable_avx2_for_one_function.rs#L1) and [for an entire binary](https://github.com/linebender/fearless_simd/tree/main/fearless_simd#multiversioning-on-x86).
 The defaults are fine for most users, but the flexibility is there if you need it.
 
 It's also worth noting that if binary size is a concern, you should try setting [`codegen-units=1`](https://nnethercote.github.io/perf-book/build-configuration.html#codegen-units) or [`lto=true`](https://nnethercote.github.io/perf-book/build-configuration.html#link-time-optimization) in your Cargo.toml before resorting to disabling SIMD instruction sets.
@@ -69,7 +69,7 @@ You can also easily combine it with `-C target-cpu` flags, and the configuration
 
 ## Let us know what you think!
 
-This release closes the last major gap in `fearless_simd` in AVX-512 support and expands on the crate's flexibility.
+This release closes the last major gap in Fearless SIMD in AVX-512 support and expands on the crate's flexibility.
 We believe `fearless_simd` can become _the_ foundational SIMD crate for the Rust ecosystem, whether you want [automatic vectorization](https://github.com/linebender/fearless_simd/tree/main/fearless_simd#automatic-vectorization), [portable SIMD](https://github.com/linebender/fearless_simd/tree/main/fearless_simd#portable-simd), [safe access to intrinsics](https://github.com/linebender/fearless_simd/tree/main/fearless_simd#explicit-intrinsics), or all of the above.
 
 Are you building something exciting with it? Is there something `fearless_simd` is missing? Please let us know [on Zulip](https://xi.zulipchat.com/#narrow/channel/514230-simd/topic/v0.2E6.2E0/with/609515457)!
