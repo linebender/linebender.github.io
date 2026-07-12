@@ -58,7 +58,7 @@ Cargo features are a library-level switch, but the decision on which instruction
 (If you are a library author and you really want to get rid of a certain instruction set for parts of the code, you can still [opt out in code rather than config](https://github.com/linebender/fearless_simd/blob/3d10e36bae31987855e784de907de308803f90e5/fearless_simd/examples/disable_avx2_for_one_function.rs)).
 Also, if any dependency anywhere in your tree enables a Cargo feature, you cannot get rid of it without forking and patching the dependency.
 
-But the `cfg` flags turned out to be the perfect fit.
+We instead use `cfg` flags, which turned out to be the perfect fit.
 They can be set by whoever builds the final binary and apply to the entire dependency tree.
 You can run `RUSTFLAGS=--cfg=disable_dispatch_avx512 cargo build --release` for a one-off build without AVX-512, or set the configuration via [`.cargo/config.toml`](https://doc.rust-lang.org/cargo/reference/config.html) if you want to use it for all builds of your project.
 See [the README](https://github.com/linebender/fearless_simd/tree/main/fearless_simd#multiversioning-on-x86) for details.
