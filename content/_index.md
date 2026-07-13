@@ -39,7 +39,7 @@ Below is a list of the main Linebender projects, and a short description of each
 
 - [`fearless_simd`][fearless_simd] - Safer and easier SIMD.
 
-  fearless_simd provides provides safe APIs for everything you need for SIMD: function multiversioning, portable SIMD abstractions, and safe access to platform-specific intrinsics.
+  Fearless SIMD provides provides safe APIs for everything you need for SIMD: function multiversioning, portable SIMD abstractions, and safe access to platform-specific intrinsics.
   It has very little unsafe code under the hood, making fearless_simd easy to audit and adopt.
 
  - [`color`][color] - Manipulate and represent colors.
