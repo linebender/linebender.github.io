@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Mesh shaders - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Mesh shaders">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Mesh shaders">
+        <meta property="og:description"
+            content="Mesh shaders">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Mesh shaders">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Mesh shaders</h1>
+<p>Mesh shaders are a compute-centric approach to producing geometry for rasterization.
+They are significantly more powerful than the traditional vertex shader approach, and also simpler than the complex zoo of shader types (hull, domain, tessellation, geometry) that were originally proposed to overcome the limitations of simple vertex shading.</p>
+<p>They were originally <a href="https://developer.nvidia.com/blog/introduction-turing-mesh-shaders/">introduced</a> by Nvidia in 2018 in the Turing microarchitecture.
+In Vulkan, the capability was originally an Nvidia-specific extension, but is now the cross-platform <a href="https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_mesh_shader.html">VK_EXT_mesh_shader</a> extension.
+As of early 2024, representative lower-bound cards include GTX 1650, AMD Radeon RX 6400 (RDNA 2), and Intel Arc A370.
+It is added to Metal 3 (2022) and hardware support is new in M3 and A17 (though the example project will run on M1 and A14).
+The feature is present in <a href="https://devblogs.microsoft.com/directx/announcing-directx-12-ultimate/">DirectX 12 Ultimate</a>, released in 2020.
+It is not yet available in WebGPU (<a href="https://github.com/gpuweb/gpuweb/issues/3015">gpuweb#3015</a> is the feature request).</p>
+<p>Mesh shaders are a fusion of compute and traditional rasterization.
+They bring three new capabilities to the compute side, and of course the ability to drive the rasterization pipeline.</p>
+<p>The three new compute-only capabilities are:</p>
+<ul>
+<li>Ability to spawn variable amounts of work</li>
+<li>Communication through two shader stages through a queue</li>
+<li>Ordering of elements processed through the shader stages</li>
+</ul>
+<p>These are potentially of interest even with rasterization disabled.
+Mainstream usage includes generating primitives (usually triangles) from the second stage.
+These are then rasterized (in hardware) and shaded using fragment shaders in exactly the same way as the traditional vertex/fragment pipeline.</p>
+<p>The main motivation for mesh shaders is improving the efficiency and flexibility of traditional 3D rasterization, most prominently culling of larger chunks of unneeded geometry, dynamic level-of-detail (LOD) selection, and procedural generation of geometry.
+These uses build on the use of compute shaders for these tasks, advocated in Graham Wihlidal's GDC 2016 talk, <a href="https://www.gdcvault.com/play/1023109/Optimizing-the-Graphics-Pipeline-With">Optimizing the Graphics Pipeline with Compute</a>.
+Mesh shaders have a number of advantages over using a compute shader to fill a vertex buffer: you don't have to allocate the intermediate vertex buffer (which can fail if the size is not estimated correctly), there's less traffic to device memory as the queues mostly live in shared memory, and there's no pipeline barrier between the compute and rasterization stages.</p>
+<h2 id="basic-computational-model">Basic computational model</h2>
+<p>There are two stages, but the first stage is optional.
+Following the GPU ecosystem tradition of diversity of terminology, the first stage is called a "task shader" in Vulkan, an "amplification shader" in DirectX, and an "object shader" in Metal.
+The second stage is called a mesh shader.</p>
+<p>The first stage is dispatched like a compute shader.
+There is an output user-defined "payload" structure (analogous to the interface between vertex and fragment shaders, but can be larger; on DirectX 12 and Metal the limit is 16k), and then each workgroup dispatches a variable number of workgroups of the mesh shader.
+That number can be zero.
+On Metal, it is limited to 1024 workgroups.</p>
+<p>The second stage (the mesh shader) accepts the input from the task shader, and can also access the index of the parent task shader workgroup that spawned it.
+There are two arrays in workgroup shared memory, one for vertices, the other for vertex indices for primitives.
+On output, the vertex and primitive counts are set, up to the maximum allocation of the arrays.
+Nvidia recommends 64 vertices and 126 primitives, though (as is typical in the GPU ecosystem) the exact limits vary.
+On Metal, the limits are 256 vertices and 512 primitives.</p>
+<p>The primitive is usually a triangle, but all implementations support lines, and Vulkan and Metal support points as well.
+For triangles, there are 3 vertex indices per primitive.</p>
+<p>There is a per-vertex user defined struct (essentially the same as the output of a vertex shader) and also a new per-primitive user-defined struct.</p>
+<h3 id="execution-model">Execution model</h3>
+<p>On Nvidia, there is a strong forward progress guarantee, and the workgroups of a mesh shader are launched in order.
+Thus, doing a single-pass scan inside the mesh shader is viable (source: launch ordering is discussed at 24:18 and the single-pass scan is at 43:59 of the <a href="https://www.youtube.com/watch?v=Ge427_2VORo">Turing Mesh Shaders</a> video).</p>
+<p>TODO: find out ordering guarantees on other hardware.
+Presumably it's weak on Apple.</p>
+<h3 id="performance">Performance</h3>
+<p>The <a href="https://www.khronos.org/blog/mesh-shading-for-vulkan">Vulkan blog</a> warns that portability in performance across hardware is difficult.</p>
+<p>The <a href="https://gpuopen.com/learn/mesh_shaders/mesh_shaders-optimization_and_best_practices/">Mesh shaders: Optimization and best practices</a> page from AMD contains recommendations and quantitative measurements of how to tune mesh shader usage.
+In addition, Timur's blog post <a href="https://timur.hu/blog/2022/how-mesh-shaders-are-implemented">How mesh shaders are implemented in an AMD driver</a> gives insight into their implementation (at least on AMD).</p>
+<h2 id="resources">Resources</h2>
+<p>These are authoritative references and particularly helpful documents to explain mesh shaders.</p>
+<ul>
+<li><a href="https://developer.nvidia.com/blog/introduction-turing-mesh-shaders/">Introduction to Turing Mesh Shaders</a> from Nvidia
+<ul>
+<li><a href="https://www.youtube.com/watch?v=Ge427_2VORo">Turing Mesh Shaders</a> at Siggraph 2018 (video)</li>
+</ul>
+</li>
+<li><a href="https://www.khronos.org/blog/mesh-shading-for-vulkan">Mesh Shading for Vulkan</a>, Khronos blog</li>
+<li><a href="https://www.youtube.com/watch?v=CFXKTXtil34">Reinventing the Geometry Pipeline</a>: Mesh Shaders in DirectX 12 (video)</li>
+<li><a href="https://developer.apple.com/videos/play/wwdc2022/10162/">Transform your geometry with Metal mesh shaders</a>, WWDC 2022 (video)</li>
+<li><a href="https://microsoft.github.io/DirectX-Specs/d3d/MeshShader.html">DirectX Mesh Shader</a> spec</li>
+</ul>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

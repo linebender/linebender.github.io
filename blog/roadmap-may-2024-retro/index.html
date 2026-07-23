@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Retrospective on the May-July roadmap - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Retrospective on the May-July roadmap">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Retrospective on the May-July roadmap">
+        <meta property="og:description"
+            content="Retrospective on the May-July roadmap">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Retrospective on the May-July roadmap">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Retrospective on the May-July roadmap</h1>
+<h3>Daniel McNab, August 24, 2024</h3>
+<p>Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for <a href="https://rust-lang.org">the Rust programming language</a>.</p>
+<p>At the start of May, we created a <a href="https://linebender.org/blog/roadmap-may-2024/">roadmap</a> for the following three months.
+We recently went through a process of analysing how well our progress was guided by the roadmap; this report summarises those results.</p>
+<h2 id="vello-original">Vello <a href="https://linebender.org/blog/roadmap-may-2024/#vello">(original)</a></h2>
+<h3 id="robust-dynamic-memory-original">Robust dynamic memory <a href="https://linebender.org/blog/roadmap-may-2024/#robust-dynamic-memory">(original)</a></h3>
+<ul>
+<li><strong>Priority:</strong> Highest.</li>
+<li><strong>Status</strong>: Experimental PR (<a href="https://github.com/linebender/vello/pull/606">vello#606</a>), but hasn’t landed.
+Work required on the CPU side API, but the GPU operations are well-understood.
+This PR could not be released in its current form.</li>
+</ul>
+<h3 id="reliable-snapshot-tests-original">Reliable snapshot tests <a href="https://linebender.org/blog/roadmap-may-2024/#reliable-snapshot-tests">(original)</a></h3>
+<ul>
+<li><strong>Priority:</strong> High.</li>
+<li><strong>Status</strong>: This was implemented in <a href="https://github.com/linebender/vello/pull/610">vello#610</a>.
+This has already been extremely useful in our review process, as it allows changes to be validated in the files changed view.
+We also implemented an experiment to use <a href="https://git-lfs.com/">Git LFS</a>, which has been working really well to avoid increasing repository size.</li>
+</ul>
+<h3 id="sparse-strips-original">Sparse strips <a href="https://linebender.org/blog/roadmap-may-2024/#sparse-strips">(original)</a></h3>
+<ul>
+<li><strong>Priority:</strong> High.</li>
+<li><strong>Status</strong>: We are continuing this work, but there is no code currently available.
+See <a href="https://xi.zulipchat.com/#narrow/stream/197075-gpu/topic/Sparse.20strip.20path.20rendering">#gpu &gt; Sparse strip path rendering</a> for details.</li>
+</ul>
+<h3 id="add-tests-original">Add tests <a href="https://linebender.org/blog/roadmap-may-2024/#add-tests">(original)</a></h3>
+<ul>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Status</strong>: This item had already been completed at the time the roadmap was written.
+This was also expanded upon in.
+During our retrospective meeting, we did determine some potential future expansions to testing, namely:
+<ul>
+<li>Running individual stages in isolation, to enable property testing (TODO: Make Vello issue).</li>
+<li>Testing for additional platforms, such as DirectX on Windows and Android (TODO: Make Vello issue).</li>
+</ul>
+</li>
+</ul>
+<h3 id="vello-extras">Progress beyond roadmap</h3>
+<p>We have also landed several important features which were not part of our planned roadmap.
+These include:</p>
+<ul>
+<li>Blending which uses more than four deep layers (<a href="https://github.com/linebender/vello/pull/657">vello#657</a>).</li>
+<li>Preliminary support for embedding pre-existing <code>wgpu</code> textures (<a href="https://github.com/linebender/vello/pull/636">vello#636</a>).
+This was driven by user needs.
+Further work in this direction is tracked in <a href="https://github.com/linebender/vello/issues/664">vello#664</a>.</li>
+<li>Support for Emoji (COLRv1 in <a href="https://github.com/linebender/vello/pull/615">vello#615</a>, bitmap in <a href="https://github.com/linebender/vello/pull/641">vello#641</a>).</li>
+</ul>
+<p>The <a href="https://linebender.org/gpu-stroke-expansion-paper/">stroke expansion paper</a> documents a key part of Vello's pipeline.
+This was presented at ACM High Performance Graphics (HPG) 2024, placing 3rd Place in the Best Paper Award.</p>
+<h2 id="masonry-original">Masonry <a href="https://linebender.org/blog/roadmap-may-2024/#masonry">(original)</a></h2>
+<h3 id="complete-text-input-original">Complete text input <a href="https://linebender.org/blog/roadmap-may-2024/#complete-text-input">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: Highest</li>
+<li><strong>Status</strong>: Not that much progress.
+This work is being continued, and indeed there has been significant progress as of the time of writing.
+This is tracked in <a href="https://github.com/linebender/parley/issues/52">parley#52</a>.</li>
+</ul>
+<h3 id="better-tracing-for-debugging-original">Better tracing for debugging <a href="https://linebender.org/blog/roadmap-may-2024/#better-tracing-for-debugging">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: High</li>
+<li><strong>Status</strong>: <a href="https://github.com/linebender/xilem/pull/384">xilem#384</a> implements most of this, the rest is deferred.
+There are known issues with the size of the log files created by default in very large apps.</li>
+</ul>
+<h3 id="fix-glaring-documentation-problems-original">Fix glaring documentation problems <a href="https://linebender.org/blog/roadmap-may-2024/#fix-glaring-documentation-problems">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: High</li>
+<li><strong>Status</strong>: The issues mentioned in this item were addressed in <a href="https://github.com/linebender/xilem/pull/329">xilem#329</a> and <a href="https://github.com/linebender/xilem/pull/503">xilem#503</a>.</li>
+</ul>
+<h3 id="finish-repository-port-original">Finish repository port <a href="https://linebender.org/blog/roadmap-may-2024/#fix-glaring-documentation-problems">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: High</li>
+<li><strong>Status</strong>: This was completed.
+We moved all Masonry issues into the Xilem repository, and updated all references in code to use full links.
+This move was coordinated in <a href="https://xi.zulipchat.com/#narrow/stream/419691-linebender/topic/Moving.20Masonry.20into.20Xilem">#linebender &gt; Moving Masonry into Xilem</a>.</li>
+</ul>
+<h3 id="write-widgets-in-arena-rfc-original">Write “widgets in arena” RFC <a href="https://linebender.org/blog/roadmap-may-2024/#write-widgets-in-arena-rfc">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: High</li>
+<li><strong>Status</strong>: The RFC was <a href="https://github.com/linebender/rfcs/pull/6">rfcs#6</a>, which was mostly implemented in <a href="https://github.com/linebender/xilem/pull/396">xilem#396</a>.</li>
+</ul>
+<h3 id="write-pass-order-rfc-original">Write “pass order” RFC <a href="https://linebender.org/blog/roadmap-may-2024/#write-pass-order-rfc">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: High</li>
+<li><strong>Status</strong>: <a href="https://github.com/linebender/rfcs/pull/7">rfcs#7</a> is in draft, and several important parts of the RFC have been completed.</li>
+</ul>
+<h3 id="rewrite-documentation-original">Rewrite documentation <a href="https://linebender.org/blog/roadmap-may-2024/#rewrite-documentation">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: Medium</li>
+<li><strong>Status</strong>: This work has been deferred until the "pass order" refactor is complete, as we expect Masonry's core to be quite stable at that point.</li>
+</ul>
+<h3 id="improve-focus-handling-original">Improve focus handling <a href="https://linebender.org/blog/roadmap-may-2024/#improve-focus-handling">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: Medium</li>
+<li><strong>Status</strong>: Not done.</li>
+</ul>
+<h3 id="improve-pointer-status-handling-original">Improve pointer status handling <a href="https://linebender.org/blog/roadmap-may-2024/#improve-pointer-status-handling">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: Medium</li>
+<li><strong>Status</strong>: Basic translation of touch events was added in (<a href="https://github.com/linebender/xilem/pull/313">xilem#313</a>).
+This unblocked using Masonry on devices where pointer input is not expected (primarily on Android).
+We have split the remainder of this task into two tasks, with a priority placed on completing the parts which unblock other work (such as scrolling on Android).</li>
+</ul>
+<h3 id="masonry-extras">Progress beyond roadmap</h3>
+<p>Masonry is in a state of flux, however is starting to see a few exploratory users.
+To unblock these users, some additional important features were added outside of the roadmap, such as:</p>
+<ul>
+<li>Support for embedding Masonry inside a pre-existing event loop (<a href="https://github.com/linebender/xilem/commit/cf3530097baf0fc5c458593e215a19973572b991">xilem#417</a>).</li>
+<li>Support for a <code>gap</code> property in the flexbox (<a href="https://github.com/linebender/xilem/pull/437">xilem#437</a>).</li>
+<li>Fixes on iOS, including <a href="https://github.com/linebender/xilem/pull/418">xilem#418</a> and <a href="https://github.com/linebender/xilem/pull/421">xilem#421</a>.</li>
+<li><a href="https://github.com/linebender/xilem/pull/233">xilem#233</a> allowed our tests to be run on CI in a consistent manner.</li>
+</ul>
+<h2 id="parley-original">Parley <a href="https://linebender.org/blog/roadmap-may-2024/#parley">(original)</a></h2>
+<h3 id="create-abstractions-for-text-selection-and-editing-original">Create abstractions for text selection and editing <a href="https://linebender.org/blog/roadmap-may-2024/#write-pass-order-rfc">(original)</a> ?</h3>
+<ul>
+<li><strong>Priority</strong>: Highest</li>
+<li><strong>Status</strong>: There have been useful discussions in <a href="https://github.com/linebender/parley/issues/52">parley#52</a>.
+Work has started on this in <a href="https://github.com/linebender/parley/pull/106">parley#106</a> in response to this retrospective.</li>
+</ul>
+<h3 id="inline-block-layout-original">Inline block layout <a href="https://linebender.org/blog/roadmap-may-2024/#inline-block-layout">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: High</li>
+<li><strong>Status</strong>: A first cut of this feature was added by Nico Burns in (<a href="https://github.com/linebender/parley/pull/67">parley#67</a>).
+<a href="https://github.com/linebender/parley/pull/76">parley#76</a> expands upon this, and has been approved in principle, but is awaiting thorough review.</li>
+</ul>
+<h3 id="write-adequate-documentation-original">Write adequate documentation <a href="https://linebender.org/blog/roadmap-may-2024/#write-adequate-documentation">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: High</li>
+<li><strong>Status</strong>: Some work was done towards this in <a href="https://github.com/linebender/parley/pull/26">parley#26</a>, which unfortunately could not be merged.
+<a href="https://github.com/linebender/parley/pull/97">parley#97</a> added some documentation to Fontique.
+Further documentation work from Nico is currently blocked on the tree-like styles PR <a href="https://github.com/linebender/parley/pull/76">parley#76</a> being merged (to avoid conflicts).</li>
+</ul>
+<h3 id="software-renderer-original">Software renderer <a href="https://linebender.org/blog/roadmap-may-2024/#software-renderer">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: Low</li>
+<li><strong>Status</strong>: This was not completed in the form envisioned.
+However, Nico contributed two examples, showing how to use Parley with Swash (<a href="https://github.com/linebender/parley/pull/54">parley#54</a>) and tiny-skia (<a href="https://github.com/linebender/parley/pull/55">parley#55</a>).
+We have decided not to carry this forward into the next roadmap.</li>
+</ul>
+<h3 id="parley-extras">Progress beyond roadmap</h3>
+<p><a href="https://github.com/linebender/parley/pull/56">parley#56</a> added support for Emoji, which is used with the <a href="https://linebender.org/blog/roadmap-may-2024-retro/#vello-extras">Vello PRs</a>.</p>
+<p>Recently the <a href="https://github.com/harfbuzz/harfruzz">harfruzz</a> project, a fork of rustybuzz to be integrated fully with fontations, has emerged as an extremely promising direction for text shaping for the Rust ecosystem. We plan to use it as the basis for text layout.</p>
+<h2 id="xilem">Xilem <a href="https://linebender.org/blog/roadmap-may-2024/#xilem">(original)</a></h2>
+<h3 id="android-bringup-original">Android bringup <a href="https://linebender.org/blog/roadmap-may-2024/#android-bringup">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: Highest</li>
+<li><strong>Status</strong>: Android is supported in several of our examples, with the primary work required for support completed in <a href="https://github.com/linebender/xilem/pull/309">xilem#309</a>.
+No non-boilerplate code changes are required to get a Xilem application running on Android.
+Some compromises were made, in particular cargo gives an un-silencable warning for each example which supports Android and cross-platform backends.
+We did reach out to the Cargo team about this use case, but did not get a positive response.</li>
+</ul>
+<h3 id="update-repository-layout-original">Update repository layout <a href="https://linebender.org/blog/roadmap-may-2024/#update-repository-layout">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: High</li>
+<li><strong>Status</strong>: This was completed in <a href="https://github.com/linebender/xilem/pull/302">xilem#302</a>.
+Kaur applied the same change to Vello in <a href="https://github.com/linebender/vello/pull/590">vello#590</a>.</li>
+</ul>
+<h3 id="rework-core">Rework xilem_core to be compatible with Masonry backend <a href="https://linebender.org/blog/roadmap-may-2024/#rework-xilem-core-to-be-compatible-with-masonry-backend">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: High</li>
+<li><strong>Status</strong>: This was completed in <a href="https://github.com/linebender/xilem/pull/310">xilem#310</a>.
+Philipp then applied this to Xilem Web in <a href="https://github.com/linebender/xilem/pull/403">xilem#403</a>.</li>
+</ul>
+<h3 id="write-documentation-original">Write documentation <a href="https://linebender.org/blog/roadmap-may-2024/#write-documentation">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: High</li>
+<li><strong>Status</strong>: This was not completed.
+The work in <a href="https://github.com/linebender/xilem/pull/310">xilem#310</a> did document some of the core, but there is very little user-facing documentation of the Xilem level.</li>
+</ul>
+<h3 id="re-implement-async-integration-original">Re-implement async integration <a href="https://linebender.org/blog/roadmap-may-2024/#re-implement-async-integration">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: Medium</li>
+<li><strong>Status</strong>: The core of this task was completed in <a href="https://github.com/linebender/xilem/pull/423">xilem#423</a> was the main implementation.
+Two-way communication with the async tasks is not yet implemented</li>
+</ul>
+<h3 id="add-unit-tests-original">Add unit tests <a href="https://linebender.org/blog/roadmap-may-2024/#add-unit-tests">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: Low</li>
+<li><strong>Status</strong>: This was not prioritised.
+We have raised the priority of this item in our next roadmap.</li>
+</ul>
+<h3 id="add-basic-benchmarks-original">Add basic benchmarks <a href="https://linebender.org/blog/roadmap-may-2024/#add-basic-benchmarks">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: Low</li>
+<li><strong>Status</strong>: There has been no progress on this item.
+This will be a "highest" priority item in the next roadmap.</li>
+</ul>
+<h3 id="xilem-extras">Progress beyond roadmap</h3>
+<p>Xilem has also seen some very useful changes not tracked above, including many community contributions.
+Some highlights of these contributions are:</p>
+<ul>
+<li>Philipp Mildenberger contributed heavily to Xilem's core design, such as by restoring the ability to return <code>ViewSequence</code>s by returning to a previous workaround for Rust's overly-cautious trait solver (<a href="https://github.com/linebender/xilem/pull/394">xilem#472</a>).
+He also extended the Xilem API by restoring <code>OneOf</code> (<a href="https://github.com/linebender/xilem/pull/394">xilem#394</a>), and implementing various <code>Adapt</code> nodes (<a href="https://github.com/linebender/xilem/pull/401">xilem#401</a>).
+Additionally, he picked up the work to expand <code>Flex</code> to use the <a href="https://linebender.org/blog/roadmap-may-2024-retro/#rework-core">new Xilem Core</a> in <a href="https://github.com/linebender/xilem/pull/428">xilem#428</a>.</li>
+<li>Jared O'Connell contributed two new examples, a calculator (<a href="https://github.com/linebender/xilem/pull/467">xilem#467</a>), and a stopwatch (<a href="https://github.com/linebender/xilem/pull/492">xilem#492</a>).</li>
+</ul>
+<p>There has also been lots of really good progress on Xilem Web, but we do not roadmap Xilem Web and so we do not cover that progress here.</p>
+<h2 id="accesskit-original">AccessKit <a href="https://linebender.org/blog/roadmap-may-2024/#accesskit">(original)</a></h2>
+<p>Matt Campbell's work on AccessKit has begun, and a proof-of-concept Android adapter is in progress.</p>
+<!-- TODO: Can we point to a PR instead? -->
+<p>At the time of writing there is not a permanent link to this work, but it can be seen in the <a href="https://github.com/AccessKit/accesskit/tree/android-basics">android-basics</a> branch.</p>
+<h2 id="android-specific-work-original">Android specific work <a href="https://linebender.org/blog/roadmap-may-2024/#android-specific-work">(original)</a></h2>
+<h3 id="subclassing">Subclassing View/Application/Activity <a href="https://linebender.org/blog/roadmap-may-2024/#subclassing-view-application-activity">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: Highest</li>
+<li><strong>Status</strong>: This work is in progress, and unfortunately has required more research than expected.
+We spent some time investigating DEX injection, which Matt has got implemented.
+However, it’s now looking like a custom Activity and View is the way forward, which requires close collaboration with upstream tools.
+We are continuing to prioritise this highly.</li>
+</ul>
+<h3 id="handling-ime-original">Handling IME <a href="https://linebender.org/blog/roadmap-may-2024/#handling-ime">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: Highest</li>
+<li><strong>Status</strong>: This work is ongoing.
+<a href="https://github.com/rust-windowing/winit/pull/3787">winit#3787</a> allows opening a virtual keyboard, however this does not integrate with full IME (so for example, it is incompatible with autocorrect).
+Real IME requires the Activity to support it directly and therefore involves <a href="https://linebender.org/blog/roadmap-may-2024-retro/#subclassing">content view subclassing</a>.</li>
+</ul>
+<h3 id="gesture-recognition-original">Gesture recognition <a href="https://linebender.org/blog/roadmap-may-2024/#gesture-recognition">(original)</a></h3>
+<ul>
+<li><strong>Priority</strong>: Low</li>
+<li><strong>Status</strong>: <a href="https://github.com/linebender/xilem/pull/313">xilem#313</a> added emulated mouse press and move from touches.
+This unblocked use of Xilem on Android, but is not the intended final state.
+The priority of detecting a scrolling gesture has been increased slightly.</li>
+</ul>
+<h2 id="conclusions">Conclusions</h2>
+<p>Overall, the roadmap provided a useful guide of what to work on, and we have implemented many of the most important features from it.
+One clear recurring issue is documentation - even where we have chosen to roadmap this, we have made little progress.
+Similar concerns are clear for testing in Xilem, although we have laid some important groundwork there.
+We firmly recognise the role of documentation as an aid to onboarding, which is becoming more important as we work towards alpha releases.
+I believe that we can make good progress in this area before the end of 2024.</p>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

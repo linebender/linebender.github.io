@@ -1,0 +1,5 @@
+<svg width='480' height='300' xmlns='http://www.w3.org/2000/svg'>
+  <line x1='10' y1='280' x2='310' y2='20' stroke="#44f" fill='none'/>
+  <line x1='310' y1='280' x2='10' y2='20' stroke="#44f" fill='none'/>
+  <path d='M10,280 C310,20 10,20 310,280' stroke='#000' fill='none'/>
+</svg>

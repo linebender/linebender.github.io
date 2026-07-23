@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Curve families - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Curve families">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Curve families">
+        <meta property="og:description"
+            content="Curve families">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Curve families">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Curve families</h1>
+<table><thead><tr><th>Curve</th><th>Params</th><th>Subdiv</th><th>Affine</th><th>Inflections</th><th>Superellipse</th></tr></thead><tbody>
+<tr><td>Line</td><td>0</td><td>yes</td><td>yes</td><td>0</td><td>0.5</td></tr>
+<tr><td>Arc</td><td>1</td><td>yes</td><td>no</td><td>0</td><td>0.785</td></tr>
+<tr><td>Parabola</td><td>2</td><td>yes</td><td>yes</td><td>0</td><td>0.833</td></tr>
+<tr><td>Euler spiral</td><td>2</td><td>yes</td><td>no</td><td>1</td><td>0.785</td></tr>
+<tr><td>Rectangular elastica</td><td>2</td><td>yes</td><td>no</td><td>1</td><td>~0.8</td></tr>
+<tr><td>Elastica</td><td>3</td><td>yes</td><td>no</td><td>1*</td><td>0.5..~0.85</td></tr>
+<tr><td>Balanced Bézier</td><td>3</td><td>no</td><td>no</td><td>2</td><td>0.5..0.95</td></tr>
+<tr><td>Euler spiral PC</td><td>3</td><td>yes</td><td>no</td><td>1</td><td>0.785</td></tr>
+<tr><td>Conic</td><td>3</td><td>yes</td><td>yes</td><td>0</td><td>0.5..1</td></tr>
+<tr><td>Cubic Bézier</td><td>4</td><td>yes</td><td>yes</td><td>2</td><td>0.5..0.95</td></tr>
+<tr><td>Spiro</td><td>4</td><td>yes</td><td>no</td><td>3</td><td>TODO</td></tr>
+<tr><td>Hyperbezier</td><td>4</td><td>yes</td><td>no</td><td>1</td><td>0.5..1</td></tr>
+<tr><td>Quintic Bézier</td><td>8</td><td>yes</td><td>yes</td><td>4?</td><td>0.8..0.996</td></tr>
+</tbody></table>
+<h2 id="relationship-graph">Relationship graph</h2>
+<p><img src="/curve_families_graph.svg" alt="graph of relations" /></p>
+<p>This graph has an arrow when one curve family fully includes the parameter space of another. A dotted line represents an approximation which is better than can be expected from scaling based on the number of parameters.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="number-of-parameters">Number of parameters</h3>
+<p>We use the same parameter counting policy as <a href="https://levien.com/phd/phd.html">Raph's thesis</a> (section 2.8). The endpoints are considered to be fixed, so to use in an actual application, there is an additional transform consisting of translation, rotation, and scaling. This additional transformation is the same for all curves.</p>
+<p>The number of parameters is a tradeoff. To represent an arbitrary curve, with a small number of parameters more subdivisions are needed. Increasing the number of parameters has a cost, for representing the parameter values, presenting them in a UI for humans to manipulate, and for doing computations. Generally, higher degrees of continuity requires more parameters.</p>
+<p>In general, the accuracy of curve fitting scales with an exponent equal to the number of parameters plus 2. For example, fitting with a quadratic Bézier or Euler spiral has O(n^4) scaling, meaning that subdivision in half improves accuracy by a factor of 16. That said, actually achieving optimal curve fitting may be challenging; I'm</p>
+<h3 id="closure-under-subdivision">Closure under subdivision</h3>
+<p>If a curve is subdivided at an arbitrary point, will the two subdivisions also be members of the curve family?</p>
+<p>Two-parameter curve families closed under subdivision are all derived by taking a segment of a fixed generating curve (section 4.1 of <a href="https://levien.com/phd/phd.html">Raph's thesis</a>). Thus, such families can be characterized entirely by the generating curve (parabola, Euler spiral, rectangular elastica). More or less any generating curve can work, and the properties of the generating curve (monotone curvature, periodicity, presence of an inflection point) map to the properties of the curve family. Section 4.8 of Raph's thesis explores this space somewhat.</p>
+<h3 id="closure-under-affine-transformation">Closure under affine transformation</h3>
+<p>When an arbitrary affine transformation is applied to a curve, is that a member of the curve family?</p>
+<p>As a general pattern, Bézier curves are closed under affine, including the rational variants, but spirals and curves defined variationally are not. However, it is certainly possible to mix the two. The affine closure of Euler spirals is a potentially interesting curve family.</p>
+<h3 id="inflections">Inflections</h3>
+<p>An S-shaped curve has an inflection point. Some curve families only contain convex curves, while others can represent inflections. Arguably, having too many inflection points is a drawback, as it is not intuitive to control the curve.</p>
+<h3 id="superellipses">Superellipses</h3>
+<p><a href="https://en.wikipedia.org/wiki/Superellipse">Superellipse</a>-like shapes are very important in graphic design. The ability of a curve family to approximate a superellipse varies widely. As a general principle, curves defined variationally do not easily form superellipses, those with a rational polynomial at their core can represent the entire range, and Béziers are in the middle (they're reasonably good at representing arbitrary curves, but have a limit, beyond which the curve develops unwanted additional inflections).</p>
+<p>To quantify this more precisely, we define the <em>superellipticity range</em> of a curve family as follows. Set both endpoint tangents to π/4 (45°), so the curve covers a quarter-circle of arc. Use the curve to define one quadrant of a superellipse shape, with an extent of 1 on both x and y axes. Compute the area of the resulting quadrant. For a circle, it is π/4 (≈0.785), and for a square it is 1. As the remaining parameters are varied, what is the range of areas that can result? The range is further constrained by the curve having no inflection points (though curvature is allowed to reach zero at the endpoints) and being symmetrical, as these are visually important features of a real superellipse.</p>
+<p>Note that a two parameter curve family has a single value, as there are no additional parameters to vary after the endpoint tangents are set.</p>
+<h2 id="the-curves">The curves</h2>
+<p>Here we mostly point to a reference for the curve family. Each section could be expanded greatly, perhaps by giving the curve family its own page.</p>
+<h3 id="line-segment">Line segment</h3>
+<p>A <a href="https://en.wikipedia.org/wiki/Line_segment">line segment</a> has zero curvature. A polyline has G0 continuity only.</p>
+<h3 id="circular-arc">Circular arc</h3>
+<p>A circle has constant curvature. A <a href="https://en.wikipedia.org/wiki/Circular_arc">circular arc</a> is a segment of a circle.</p>
+<p>In general, circular arcs can only achieve G0 continuity, though there are techniques to achieve G1 by applying additional constraints, notably <a href="https://en.wikipedia.org/wiki/Biarc">biarcs</a>.</p>
+<p>They are popular in CAD, partly because they are the only widely implemented curve family in <a href="https://en.wikipedia.org/wiki/G-code">G-code</a>.</p>
+<h3 id="quadratic-bezier-parabola">Quadratic Bézier (parabola)</h3>
+<p>A quadratic Bézier is a segment of a parabola.</p>
+<p>Quadratic Béziers are in widespread use as the curve family of <a href="https://en.wikipedia.org/wiki/TrueType">TrueType</a> fonts (and thus TrueType-flavored OpenType).</p>
+<h3 id="euler-spiral">Euler spiral</h3>
+<p>An <a href="https://en.wikipedia.org/wiki/Euler_spiral">Euler spiral</a> has curvature linear with arc length. It is extensively discussed in section 4.6 of <a href="https://levien.com/phd/phd.html">Raph's thesis</a>. It is an especially good choice for making a G2 continuous interpolating spline (for reasons discussed in the thesis), but a weakness is representing curves with significant curvature variation.</p>
+<p>Another benefit of the Euler spiral is that its parallel curve is mathematically tractable to compute. See <a href="https://raphlinus.github.io/curves/2021/02/19/parallel-curves.html">Cleaner parallel curves with Euler spirals</a>.</p>
+<h3 id="rectangular-elastica">Rectangular elastica</h3>
+<p>The minimum energy curve (MEC) is the curve minimizing the total bending energy when constrained to pass through the given control points, so is a mathematical idealization of a physical spline made out of a thin strip of flexible material. Each segment is a segment of the "rectangular elastica", which is a particular solution of the general elastica. It is extensively discussed in section 4.2 of <a href="https://levien.com/phd/phd.html">Raph's thesis</a>.</p>
+<h3 id="elastica">Elastica</h3>
+<p>The general elastica has an additional parameter, which corresponds to <em>tension,</em> resulting in a three-parameter curve. It has a narrow superelliptical range. In addition, it is symmetrical around the inflection point, which means it cannot model an asymmetrical S-shape. More precisely, when the endpoint tangents are anti-symmetrical, the area is zero for all values of the tension parameter. It is rarely used directly, but because of its physical importance, it is worth evaluating other curve families in their ability to accurately approximate an elastica.</p>
+<p>Probably worth noting here, the SI-MEC is a two parameter curve family which is <em>not</em> closed under subdivision. It is analyzed in section 3.11 of <a href="https://levien.com/phd/phd.html">Raph's thesis</a>, with the conclusion being that the Euler spiral is superior in most cases.</p>
+<p>A definitive treatment of the elastica is in chapter 3 of <a href="https://levien.com/phd/phd.html">Raph's thesis</a>.</p>
+<h3 id="balanced-bezier">Balanced Bézier</h3>
+<p>A "balanced Bézier" is work in progress to restrict the parameter space of cubic Béziers to those with a smooth parametrization. See the <a href="https://xi.zulipchat.com/#narrow/stream/260979-kurbo/topic/Sweet.20B.C3.A9ziers">Sweet Béziers</a> Zulip thread for more information.</p>
+<p>It approximates circular arcs with O(n^6) accuracy.</p>
+<h3 id="rational-quadratic-bezier">Rational quadratic Bézier</h3>
+<p>A rational quadratic Bézier is a segment of a <a href="https://en.wikipedia.org/wiki/Conic_section">conic section</a>. It is fairly widely used in CAD, less so in graphic design applications. It cannot represent an inflection point, but does have the full range of superellipticity.</p>
+<p>An additional superpower is that it is closed under perspective transformation.</p>
+<h3 id="cubic-bezier">Cubic Bézier</h3>
+<p>A cubic Bézier is by far the most common curve representation. It can accurately represent an extremely wide range of curves, and also has a control scheme suitable for direct manipulation in a UI. See <a href="https://pomax.github.io/bezierinfo/">A Primer on Bézier Curves</a> for more information.</p>
+<p>Curve-fitting is challenging; no good general technique was known until Raph's [Bézier curve fitting] blog posts. In general, it requires solution of a quartic equation, and the process is discontinuous; there exist input curves extremely close to each other with very different best fits.</p>
+<h3 id="spiro">Spiro</h3>
+<p>The Spiro curve family was an attempt to create a tool more suitable for interactive curve editing. It is defined as the curvature being a cubic function of arc length. It is the basis of a practical G4-continuous interpolating spline, and is an excellent choice when high degrees of continuity are required. One weakness is the limited superellipticity range. It is discussed in section 7.3 of <a href="https://levien.com/phd/phd.html">Raph's thesis</a>, and has had some limited implementation success.</p>
+<h3 id="hyperbezier">Hyperbezier</h3>
+<p>The hyperbezier is defined as $$\kappa(s) = (as+b)/(cs^2+ds+e)^2$$. There are four parameters as multiplying all five coefficients by a constant does not change the result.</p>
+<p>Development of this curve family is work in progress. Two Zulip threads are <a href="https://xi.zulipchat.com/#narrow/stream/260979-kurbo/topic/Hyperbezier.20progress">Hyperbezier progress</a> and <a href="https://xi.zulipchat.com/#narrow/stream/260979-kurbo/topic/Hyperbezier.20parameter.20mapping">Hyperbezier parameter mapping</a>.</p>
+<p>An earlier draft is presented in <a href="https://www.cmyr.net/blog/hyperbezier.html">The hyperbezier pen tool</a> and is implemented in the <a href="https://github.com/linebender/spline">spline</a> library. That draft had some weaknesses (not closed under subdivision, limited superellipticity range), so will be superseded by the new version.</p>
+<h3 id="quintic-bezier">Quintic Bézier</h3>
+<p>The quintic Bézier pushes the number of parameters into unmanageable territory. It is not clear that there is any practical way to achieve the theoretical O(n^10) curve fitting accuracy; from experience with cubics it is clear that it is a highly nonlinear optimization problem with many local minima. That said, it does have some uses.</p>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

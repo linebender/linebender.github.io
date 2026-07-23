@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>This Month in Xilem, April 2024 - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="This Month in Xilem, April 2024">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="This Month in Xilem, April 2024">
+        <meta property="og:description"
+            content="This Month in Xilem, April 2024">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="This Month in Xilem, April 2024">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>This Month in Xilem, April 2024</h1>
+<h3>Raph Levien, May 1, 2024</h3>
+<p>Again, last month saw a substantial amount of infrastructure work in the development of Xilem.
+The biggest change is landing Masonry as a crate within the Xilem repo (<a href="https://github.com/linebender/xilem/pull/203">xilem#203</a>) and adding a new xilem_masonry front-end.
+The existing xilem widget tree remains in the tree during a transitional period, but the focus of development is now on Masonry.</p>
+<p>Masonry is a principled abstraction layer within the stack.
+While it is designed to work well with the Xilem reactive architecture, it is not dependent on it.
+We'd love to see experimentation with alternative reactive frameworks, and also language bindings.
+A lot more detail about the motivation and design of Masonry is in Olivier's <a href="https://linebender.org/blog/xilem-backend-roadmap/">roadmap blog</a>.</p>
+<p>Two major infrastructural crates have been published.
+<a href="https://crates.io/crates/parley">Parley</a> is our text layout crate, supporting variable fonts and other advanced features.
+Supporting Parley is <a href="https://crates.io/crates/fontique">fontique</a>, a crate for enumerating the system fonts and making them available for itemization (choosing the right font to support a particular script).</p>
+<p>In GPU rendering land, we have written a paper on GPU stroke expansion (<a href="https://arxiv.org/abs/2405.00127">arXiv</a>, <a href="https://github.com/linebender/gpu-stroke-expansion-paper">repo</a>) and submitted it to a conference.
+This paper explains quite a bit of the math behind Vello's path rendering, and explains how we adapted it for high performance on the GPU.
+It's also a good time to note the <a href="https://docs.rs/crate/wgpu/0.20.0">wgpu 0.20</a> release, which contains some work to improve on suboptimal zero initialization that will dramatically improve startup time on many platforms, including Android (<a href="https://github.com/gfx-rs/wgpu/pull/5508">wgpu#5508</a>).
+It also has support for subgroups, which will unblock further performance improvements in Vello.</p>
+<p>We're very much looking forward to participating in RustNL 2024, where Raph will present a talk on Xilem.
+It looks like it will be a great opportunity to meet with other Rust UI ecosystem projects to find common ground and possibilities to collaborate.</p>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

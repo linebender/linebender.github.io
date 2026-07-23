@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Report on the RustNL 2024 Unconference - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Report on the RustNL 2024 Unconference">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Report on the RustNL 2024 Unconference">
+        <meta property="og:description"
+            content="Report on the RustNL 2024 Unconference">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Report on the RustNL 2024 Unconference">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Report on the RustNL 2024 Unconference</h1>
+<h3>Olivier Faure, June 15, 2024</h3>
+<p>On May 7 and 8, 2024, folks from the Linebender team went to <a href="https://2024.rustnl.org/">the RustNL conference</a> in Delft.
+We listened to <a href="https://www.youtube.com/playlist?list=PL8Q1w7Ff68DBZZbJt3ie5MUoJV5v2HeA7">some Rust-related talks</a>, Raph <a href="https://www.youtube.com/watch?v=OvfNipIcRiQ&amp;list=PL8Q1w7Ff68DBZZbJt3ie5MUoJV5v2HeA7&amp;index=15">gave one on Xilem</a>, Rik Arends did the "hot-reload my entire editor live" thing that makes every other Rust GUI developer jealous, it was an all-around great time.</p>
+<p>After RustNL, though, another less-documented event called <a href="https://2024.rustnl.org/unconf/">The Unconference</a>.
+It was from roughly the same organizers and took place in the same city, but the format was fairly different.</p>
+<p>The Unconference wasn't livestreamed, and I haven't found any public discussion of it, so I thought I'd take the time to describe a bit of what was going on.</p>
+<h2 id="the-format">The format</h2>
+<p>The "Unconference" was two days of loosely structured chats between members of various Rust project teams where people talked about ecosystem collaboration, complained to lang team members that their favorite feature wasn't implemented yet, <a href="https://poignardazur.github.io/2024/05/25/report-on-rustnl-variadics/">went to pester everyone else about variadic generics</a>, and other good fun.</p>
+<p>Attendees were split into three teams:</p>
+<ul>
+<li>The Rust project.</li>
+<li>GUI and Applications.</li>
+<li>Embedded development.</li>
+</ul>
+<p>Discussions inside these teams were mostly self-organized, with cross-team discussions mostly taking place during lunch and recess.</p>
+<h3 id="on-the-tyranny-of-structurelessness">On the tyranny of structurelessness</h3>
+<p><em>Note: This section is very much my personal opinion and doesn't represent the Linebender project as a whole.</em></p>
+<p>I'm not sure the self-organized format worked well.</p>
+<p>From what I saw, the Embedded team took well to it, and the Rust team was kept productive thanks to Alice Cecile's efforts in marshaling everyone.</p>
+<p>In the case of the GUI team, people were spread in a very large room, which should have been conducive to small side discussions and people splitting up to talk about the problems that interested them.
+Instead, there was an unspoken accord to progress through agenda items one by one, with a few people dominating the discussions on these items.</p>
+<p>Because those people we spread around a large room, they had to talk loudly to address each other, which left little room for side-discussions.
+Because the people talking were naturally the most confident and extroverted, more introverted people ended up taking a passive role in the discussion.</p>
+<p>To me, this feels like a strategic mistake.
+It was a setup that encouraged bikeshedding and long back-and-forths and discouraged plurality of opinions.
+It's no coincidence that the most interesting conversations of the Unconference happened at lunch: lunch was the point of the Unconference where people were most mixed, had the most spontaneous conversations, and were least constrained by having to follow what someone else was saying.</p>
+<p>Our discussions were still productive, I just feel like the format could have been improved.</p>
+<h2 id="the-gui-team">The GUI team</h2>
+<p>As a member of the Linebender project, I was mostly exposed to the GUI team's proceedings.</p>
+<p>The main topics of interest were:</p>
+<ul>
+<li>Build tooling (especially for Android and other non-desktop platforms).</li>
+<li>Text layout and editing.</li>
+<li>Winit adoption.</li>
+<li>Accessibility.</li>
+<li>Potential for further collaboration.</li>
+<li>Requests for new Rust features.</li>
+</ul>
+<p>Note that I'm skipping a lot of topics from the agenda and other side discussions.
+The topics above were the most prominent during those two days.</p>
+<p>There was also a fair amount of informal chatter around LogLog Games' strongly critical <a href="https://loglog.games/blog/leaving-rust-gamedev/">Leaving Rust gamedev after 3 years</a> article.
+I think those discussions mostly reflected the Bevy community's consensus, that the article had some flaws but overall pointed at very clear weaknesses in the Rust GUI / game engine ecosystem.</p>
+<h3 id="build-tooling">Build tooling</h3>
+<p>Everyone agreed that a better solution was needed to ship non-TUI Rust apps.</p>
+<p>There was discussion about various platforms and build systems, and the difficulty of having to e.g. write Java code for an Android port, and whether anyone wanted to take responsibility for maintaining that glue layer for the rest of the ecosystem.</p>
+<p>No actionable decisions were made, but the consensus seems to be that although integrated build tools are desirable, external build tooling for complex platforms (primarily Apple and Android) is likely to remain necessary.
+Nobody seems to have stepped up to work on multi-target builds in Cargo, and since external build tools are required as it is, most people are okay with building everything several times when they release a multi-target package.
+Most users are comfortable invoking platform-specific tools for bundling, signing, and manifest generation, so there is not much urgency for integrated tooling for these.</p>
+<h3 id="text-layout-and-editing">Text layout and editing</h3>
+<p>There was some widespread interest in the Linebender ecosystem's text-handling crates.
+From what I remember, Rik Arends and others had concerns about whether e.g. Parley and Swash depend on our Vello renderer (they don't).</p>
+<p>Some people also wanted Parley to be decoupled from Swash.</p>
+<p>People were especially interested in the idea of having access to a common text-editing widget, or at least infrastructure for creating one.
+That widget would handle IME, text selection, accessibility actions, etc, in a way that would feel native to different platforms with their own text-editing quirks (mobile, macOS, Linux with vim mode, etc).</p>
+<h3 id="winit">Winit</h3>
+<p>By now all of the Rust ecosystem has firmly converged on <a href="https://github.com/rust-windowing/winit"><code>winit</code></a> as the windowing platform-abstraction solution of choice.</p>
+<p>(Well, not all! <a href="https://github.com/makepad/makepad">One small project</a> with indomitable maintainers still holds out against the invaders.)</p>
+<p>The consensus during this discussion seemed to be that Winit was there to stay.
+<a href="https://github.com/tauri-apps/tao">TAO</a> users present were generally interested in being able to use upstream Winit in the future, if its API adopts or supersedes the improvements made in TAO.
+Most were happy to see Winit becoming more trait-oriented, and to see the <code>dpi</code> crate spun off from Winit.</p>
+<p>Glazier is still shelved and we're planning to port its features to Winit until it reaches feature parity.</p>
+<p>A discussion that came up was the idea of splitting more "vocabulary types" from Winit into standalone crates.
+Vocabulary crates, e.g. crates that only define types and very little code, have a very low cost in memory and build times, while allowing projects to interop with e.g. Winit without actually adding a dependency on Winit.</p>
+<p>This was connected with the discussions about text editing: having a vocabulary crate that would list Winit's events and also Parley's cursor movements would allow for a very low-dependency text editing widget.</p>
+<h3 id="accessibility">Accessibility</h3>
+<p><em>Note: This section is also my personal opinion and doesn't represent the Linebender project either.</em></p>
+<p>The subject of Accessibility came up informally, but I'll claim it was underexplored.</p>
+<p>While the subject was on the agenda, by the time we reached it the Unconference had been running long enough that everyone was tired and ready to leave or get to the catering.
+This is an unfortunate pattern that I think is worth pointing out: if projects don't make a deliberate effort to prioritize discussions of accessibility, the subject will be left out.</p>
+<p>Matt Campbell, the maintainer of AccessKit, could not attend the Unconference.
+I'm concerned that, in his absence, other maintainers might have felt a dilution of responsibility: since the accessibility guy wasn't there, nobody felt empowered to bring up accessibility.</p>
+<p>(This might sound like it contradicts my section about structurelessness above.
+It doesn't.
+I'm not saying organizers should have pushed harder for accessibility - they did try - I'm saying that we should strive for a culture where framework developers think about accessibility without waiting for someone to tell them to.)</p>
+<p>One point did come up during the discussion which I'd like to hammer in: the Rust ecosystem should adopt a holistic view of accessibility.
+Accessibility isn't just about screen readers, and making a framework accessible doesn't stop at adding AccessKit as a dependency, though doing so is a great first step.</p>
+<p>Rik asked if there was a minimal set of ARIA attributes that people could start using in their UI, as the set of available attributes is gigantic.
+The AccessKit framework is rich, and it's not obvious at first glance how much is needed versus nice-to-have.
+The current reference in the Rust ecosystem is <a href="https://github.com/emilk/egui/pull/2294">the AccessKit implementation in egui</a>.</p>
+<h3 id="requests-for-rust-features">Requests for Rust features</h3>
+<p>Jon Kelley, the creator of Dioxus, had <a href="https://dioxus.notion.site/Dioxus-Labs-High-level-Rust-5fe1f1c9c8334815ad488410d948f05e">a laundry list of features</a> he wanted from the Rust language.
+That list was later <a href="https://github.com/rust-lang/rust-project-goals/pull/10">filed in the Project Goals repository</a>.</p>
+<p>The requests were well-documented, with motivating examples in existing Dioxus code that would clearly be improved by the features.
+Most of them felt both self-contained and like they would tremendously both beginners and veteran Rust developers; though Jon made the point that the papercuts he wanted to remove were especially punishing for new developers trying to become familiar with Rust.</p>
+<p>Overall people were very enthusiastic about them, and the lang team members in the room seemed pretty optimistic that those features could be added.</p>
+<p>My favorite proposals were:</p>
+<ul>
+<li><code>Capture</code> trait for auto-cloning reference-counted types in closures.</li>
+<li>Automatic partial borrows.</li>
+<li>Optional struct attributes.</li>
+</ul>
+<p>Jon also wanted support for a remote cache of pre-built crates, so that users wouldn't suffer from having to rebuild dozens of crates every time you download your crate's dependencies.
+The consensus from Rust maintainers was that such a cache would be essentially impossible with Rust's current architecture.</p>
+<p>Niko Matsakis recently released <a href="https://smallcultfollowing.com/babysteps/blog/2024/06/02/the-borrow-checker-within/">The borrow checker within</a>, which feels like a follow-up to some of these discussions.</p>
+<h2 id="collaboration-in-the-rust-gui-ecosystem">Collaboration in the Rust GUI ecosystem</h2>
+<p>Over the last two years I've joked a few times that everybody in the Rust GUI ecosystem wants the ecosystem to standardize on common crates, as long as it's <em>their</em> crates.</p>
+<p>After RustNL, I'm pleased to report this joke isn't accurate anymore.</p>
+<p>A vibe that permeated all discussions was people wanting work to be pooled.
+It felt like people didn't strongly care whose crate we adopted, as long as we all agreed the crate made sense:
+we're slowly crawling out of the <a href="https://xkcd.com/927/">xkcd 927</a> dilemma.</p>
+<p>The main ecosystem crates that people are enthusiastic about sharing are:</p>
+<ul>
+<li><a href="https://github.com/rust-windowing/winit">winit</a> for creating windows.</li>
+<li><a href="https://github.com/AccessKit/accesskit/">AccessKit</a> for plugging into accessibility APIs.</li>
+<li><a href="https://github.com/gfx-rs/wgpu/">wgpu</a> for using modern GPU features.</li>
+</ul>
+<p>Jon Kelley also said he would be interested in using Masonry as the native backend for Dioxus, though we haven't hashed out details yet.</p>
+<h3 id="corporate-funding">Corporate funding</h3>
+<p>For open-source projects, "Who funds this" is a difficult question: in any healthy project, there is a large scale of contributions, with individual non-corporate contributors at one end, and companies paying cash to the project's treasury at the other.
+In-between are self-employed people like me contracted to work on an open-source project, and corporate employees who contribute to the project as part of their 9-to-5 job.</p>
+<p>Some monetary contributions can also come from individual non-corporate donors: Servo has about fifty of them, for instance.</p>
+<p>With that in mind, some notable sponsors for projects represented at the Unconference were:</p>
+<ul>
+<li><strong>Google Fonts:</strong> Linebender projects.</li>
+<li><strong>Futurewei:</strong> Dioxus, Makepad, Robius and Servo.</li>
+<li><strong>Embark:</strong> Bevy, winit and rust-gpu.</li>
+<li><strong>Foresight Spatial Labs:</strong> Bevy.</li>
+<li><strong>Rerun.io:</strong> egui.</li>
+</ul>
+<p>Not present at RustNL but relevant to the ecosystem are <strong>System76</strong> (funding COSMIC-Text and contributing to iced), <strong>Kraken</strong> (funding iced), and <strong>Slint</strong> who are self-funding as a startup targeting embedded UIs and couldn't attend due to time constraints.</p>
+<p>Overall the number of different backers feels like a symptom of a healthy ecosystem: while some large corporate sponsors bring much more resources than others (Google and Futurewei especially), the ecosystem isn't in a state where any specific backer pulling out would completely collapse progress.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Before anything else, I'd like to express a big thanks to the volunteers who helped organize RustNL.</p>
+<p>Most of the attendees were absolutely exhausted after two days of talks and two more days of Unconference, but these folks had to <em>run</em> the darn thing.
+I think everyone who attended was impressed with them.</p>
+<p>Overall RustNL and the Unconference felt like getting a year of coordination done in a week.
+It was a thoroughly productive time, and I couldn't be happier I attended.
+Everyone I asked about it shared the same opinion.</p>
+<p>And the discussions we had during the event showed there was a great appetite to push the ecosystem towards more cooperation, both between GUI projects and with Rust maintainers!</p>
+<p>I'm feeling more hopeful about the future of Rust GUI than ever.</p>
+<p>Now it's time to get back to work.</p>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>
