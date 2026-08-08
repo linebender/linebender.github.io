@@ -28,7 +28,7 @@ The Euler spiral has smooth curvature variation (it is a solution to the Minimum
 An exact circular arc is also within the parameter space, simply when $a == 0$ as well.
 Cubic Béziers, by comparison, only approximate circular arcs.
 
-There a few other log-aesthetic curves lurking in the parameter space, meaning curvature is simply the arclength raised to a particlar power.
+There a few other log-aesthetic curves lurking in the parameter space, meaning curvature is simply the arclength raised to a particular power.
 Reachable exponents include -3, -2, -1.5, and -0.5 (alternatively, using the convention from the log-aesthetic papers, α can be 1/3, 1/2, 3/2, and 2).
 The last of these is the [circule involute], which is interesting because it is its own parallel curve, among other things.
 
@@ -131,14 +131,14 @@ In general, arc length parametrized curves are in many ways more pleasant to wor
 ## Future work
 
 In this post, I present the curve family to the world.
-I welcome and encourage expirementation.
+I welcome and encourage experimentation.
 Of course, there is lots to be done to make the mathematical idea into a practical tool.
 For one, it should be wired up into a spline.
 I expect to follow the ideas in [The hyperbezier pen tool] by Colin Rofls, which was based on an earlier draft of the hyperbezier math.
 This earlier draft had some of the desired behavior of the current proposal, but also some flaws, including *not* being able to approximate sharp superellipses, and also not being closed under subdivision.
 On the other hand, it had a straightforward solution to the problem of mapping Bézier-like control points to the parameters.
 
-One idea from the above spline that I think is worth preserving is making splines G2 continuious by construction.
+One idea from the above spline that I think is worth preserving is making splines G2 continuous by construction.
 Such approaches don't work well with cubic Béziers because there are multiple local minima, creating saddle points in the optimization terrain.
 
 Another promising direction is working out curve fitting.
