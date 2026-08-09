@@ -167,10 +167,15 @@ function sampleCurve(a, b, c, d, N) {
 const lstar = th => 2/(3*Math.max(1e-3, 1 + Math.cos(th)));
 /*
  * Map constants. K: baseline slope of ln q in ln u -- the family's
- * measured small-angle response (~2.2). CK: corner steepening; larger
+ * measured small-angle response (~2). CK: corner steepening; larger
  * values reach corner-like shapes at shorter arms (aesthetic dial).
+ * 
+ * A value K = 2.2 was found to have slightly better fit to the cubic
+ * Bezier across the parameter range, but 2 is better at high tension,
+ * and also has a principled justification, as it matches the Bezier
+ * exactly in the small-angle limit.
  */
-let K = 2.2;
+let K = 2;
 let CK = 1;
 /*
  * Given the denominator quadratic (c,d), solve (a,b) so the curve interpolates the

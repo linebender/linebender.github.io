@@ -81,15 +81,32 @@ And the first of these is the evolute of the Euler spiral.
 
 <img src="log_aesthetic_evolutes.svg">
 
+The parameter mapping described above is designed so that when the control points lie on the "double parabola" in my [Euler spiral parallel curve] blog post, then the result is an exact Euler spiral.
+
 ## Superellipses and squircles
 
 A cubic Bézier can do superellipses up to a certain point, but does not approach a sharp corner; somewhere before then it starts developing additional inflection points, while a true superellipse or squircle is of course convex.
 
 The hyperbezier can go all the way to a sharp corner, and visually looks pretty close to the superellipse.
-It's not incredibly accurate (for moderate exponents like 3, the best cubic Bézier fit is slightly better, in fact), but visually does the right thing.
+It's not incredibly accurate (for moderate exponents like 5, the best cubic Bézier fit is slightly better, in fact), but visually does the right thing.
 It's probably best to say that the hyperbezier is a subtly *different* squircle than the superellipse, neither better nor worse.
 
 <img src="superellipse_fit.svg">
+
+## Hyperbola
+
+Another fundamental curve is the [hyperbola].
+It is round at the turn, but curvature tails off and the curve reaches a linear asymptote on both sides.
+Cubic Béziers do *not* fit this curve well, and do not exhibit that asymptotic behavior.
+But the hyperbezier fits it naturally and with very high accuracy.
+
+<img src="hyperbola_fit.svg">
+
+We can also appreciate the relationship mathematically.
+In both, the curvature tails off as $\kappa \approx s^{-3}$ asymptotically.
+In addition, using the small angle approximation $\sin \theta \approx \theta, \cos \theta \approx 1$, integrating the Whewell equation (see below) of the even-symmetric hyperbezier yields the hyperbola exactly.
+This close relationship is one of the inspirations of the name; it is something of a fusion between a hyperbola and a Bézier.
+Another inspiration, incidentally, is that the log-aesthetic solutions, including the Euler spiral, are represented by hypergeometric functions.
 
 ## Elastica
 
@@ -168,3 +185,6 @@ AI assistance was used to refine the current version of parameter mapping and to
 [Circle involute]: https://en.wikipedia.org/wiki/Involute#Involutes_of_a_circle
 [Elastica]: https://en.wikipedia.org/wiki/Elastica_theory
 [Padé approximation]: https://en.wikipedia.org/wiki/Pad%C3%A9_approximant
+[Hyperbola]: https://en.wikipedia.org/wiki/Hyperbola
+[Euler spiral parallel curve]: https://raphlinus.github.io/curves/2021/02/19/parallel-curves.html
+
