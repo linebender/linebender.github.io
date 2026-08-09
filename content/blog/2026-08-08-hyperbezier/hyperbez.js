@@ -295,6 +295,12 @@ function solveMap(th0, th1, l0, l1) {
            ms: performance.now() - t0 };
 }
 /* ---------- UI ---------- */
+const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+const THEME = {
+  light: { polygon: '#99b', ghost: '#888', curve: '#15c', curveStalled: '#61c', comb: '#2a7', endpoint: '#328', ctrlPoint: '#42c', text: '#000' },
+  dark:  { polygon: '#99b', ghost: '#888', curve: '#5af', curveStalled: '#86f', comb: '#2a9', endpoint: '#67f', ctrlPoint: '#78f', text: '#eee' },
+};
+const theme = () => darkQuery.matches ? THEME.dark : THEME.light;
 const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
 const CW = 730, CH = 500;
 (function hidpi() {
@@ -336,13 +342,13 @@ function toCanvas(zx, zy, g) {
   return [P[0][0] + wx, P[0][1] - wy];
 }
 function render() {
-  const g = polygonData();
+  const g = polygonData(), th = theme();
   ctx.clearRect(0, 0, CW, CH);
-  ctx.strokeStyle = '#99b'; ctx.setLineDash([4, 4]); ctx.lineWidth = 1;
+  ctx.strokeStyle = th.polygon; ctx.setLineDash([4, 4]); ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(...P[0]); for (let i = 1; i < 4; i++) ctx.lineTo(...P[i]); ctx.stroke();
   ctx.setLineDash([]);
   if (document.getElementById('showCubic').checked) {
-    ctx.strokeStyle = '#bbb'; ctx.lineWidth = 5; ctx.globalAlpha = 0.55;
+    ctx.strokeStyle = th.ghost; ctx.lineWidth = 5; ctx.globalAlpha = 0.55;
     ctx.beginPath(); ctx.moveTo(...P[0]);
     ctx.bezierCurveTo(P[1][0], P[1][1], P[2][0], P[2][1], P[3][0], P[3][1]);
     ctx.stroke(); ctx.globalAlpha = 1;
@@ -354,14 +360,14 @@ function render() {
     if (sol) lastSol = sol;
     const [a, b, c, d] = use.x;
     const S = sampleCurve(a, b, c, d, 300);
-    ctx.strokeStyle = stalled ? '#c88' : '#c22'; ctx.lineWidth = 2;
+    ctx.strokeStyle = stalled ? th.curveStalled : th.curve; ctx.lineWidth = 2;
     ctx.beginPath();
     S.pts.forEach((p, i) => { const q = toCanvas(p[1], p[2], g); i ? ctx.lineTo(...q) : ctx.moveTo(...q); });
     ctx.stroke();
     if (document.getElementById('showComb').checked) {
       const I1c = integrate(a, b, c, d, 1);
       const I1n = Math.hypot(...I1c), phiC = Math.atan2(I1c[1], I1c[0]);
-      ctx.strokeStyle = '#2a7'; ctx.lineWidth = 0.7;
+      ctx.strokeStyle = th.comb; ctx.lineWidth = 0.7;
       for (let i = 0; i < S.pts.length; i += 6) {
         const [t, zx, zy] = S.pts[i], q = (c*t + d)*t + 1;
         const kap = (a*t + b)/(q*Math.sqrt(q))*I1n;
@@ -375,9 +381,9 @@ function render() {
   }
   const names = ['P0', 'C1', 'C2', 'P3'];
   P.forEach((p, i) => {
-    ctx.fillStyle = i === 0 || i === 3 ? '#036' : '#07c';
-    ctx.beginPath(); ctx.arc(p[0], p[1], 6, 0, 7); ctx.fill();
-    ctx.fillStyle = '#000'; ctx.fillText(names[i], p[0] + 9, p[1] - 6);
+    ctx.fillStyle = i === 0 || i === 3 ? th.endpoint : th.ctrlPoint;
+    ctx.beginPath(); ctx.arc(p[0], p[1], 5, 0, 7); ctx.fill();
+    ctx.fillStyle = th.text; ctx.fillText(names[i], p[0] + 9, p[1] - 6);
   });
   const dd = 180/Math.PI;
   let txt = `th0 ${(g.th0*dd).toFixed(1)}°  th1 ${(g.th1*dd).toFixed(1)}°\n`
@@ -420,6 +426,7 @@ cv.addEventListener('pointermove', e => {
 });
 cv.addEventListener('pointerup', () => { dragging = -1; render(); });
 document.querySelectorAll('input').forEach(el => el.addEventListener('change', render));
+darkQuery.addEventListener('change', render);
 /*
 document.getElementById('ckslider').addEventListener('input', e => {
   CK = parseFloat(e.target.value);

@@ -44,6 +44,10 @@ The Bézier is shown in gray for comparison.
   label { display: inline; margin: 3px 0; }
   button { margin: 2px; }
   h3 { margin: 8px 0 4px 0; }
+  @media (prefers-color-scheme: dark) {
+    canvas { background: #333; border-color: #666; }
+    #status { background: #222; }
+  }
 </style>
 <div id="wrap">
   <canvas id="cv"></canvas>
