@@ -21,17 +21,6 @@ Overall it has smoother curvature variation and is more likely to have monotonic
 It contains within it a few valuable analytic curves, and is also good at approximating a wide range of others.
 The remainder of this blog post is devoted to showing its behavior in a wide range of contexts.
 
-## Exact analytical curves
-
-The most obvious analytical curve contained in the family is the Euler spiral, which is clearly attained when $c == d == 0$.
-The Euler spiral has smooth curvature variation (it is a solution to the Minimum Variation Curve problem) and monotonic curvature.
-An exact circular arc is also within the parameter space, simply when $a == 0$ as well.
-Cubic Béziers, by comparison, only approximate circular arcs.
-
-There a few other log-aesthetic curves lurking in the parameter space, meaning curvature is simply the arclength raised to a particular power.
-Reachable exponents include -3, -2, -1.5, and -0.5 (alternatively, using the convention from the log-aesthetic papers, α can be 1/3, 1/2, 3/2, and 2).
-The last of these is the [circule involute], which is interesting because it is its own parallel curve, among other things.
-
 ## Approximation of cubic Béziers
 
 The hyperbezier closely approximates cubic Béziers at low deflection angles at the endpoints.
@@ -78,15 +67,29 @@ That said, in an interactive editing context, a perfect mapping is not required,
 
 The details of the mapping can be found in the JavaScript source for this page, but the basic principle is that the arm lengths set the denominator, then the numerator is solved to make the endpoint tangents match.
 
+## Exact analytical curves
+
+The most obvious analytical curve contained in the family is the Euler spiral, which is clearly attained when $c == d == 0$.
+The Euler spiral has smooth curvature variation (it is a solution to the Minimum Variation Curve problem) and monotonic curvature.
+An exact circular arc is also within the parameter space, simply when $a == 0$ as well.
+Cubic Béziers, by comparison, only approximate circular arcs.
+
+There a few other log-aesthetic curves lurking in the parameter space, meaning curvature is simply the arclength raised to a particular power.
+Reachable exponents include -3, -2, -1.5, and -0.5 (alternatively, using the convention from the log-aesthetic papers, α can be 1/3, 1/2, 2/3, and 2).
+The last of these is the [circle involute], which is interesting because it is its own parallel curve, among other things.
+And the first of these is the evolute of the Euler spiral.
+
+<img src="log_aesthetic_evolutes.svg">
+
 ## Superellipses and squircles
 
 A cubic Bézier can do superellipses up to a certain point, but does not approach a sharp corner; somewhere before then it starts developing additional inflection points, while a true superellipse or squircle is of course convex.
 
 The hyperbezier can go all the way to a sharp corner, and visually looks pretty close to the superellipse.
-It's not incredibly accurate (for moderate exponents like 3, the best cubic Bézier fit is slightly), but visually does the right thing.
+It's not incredibly accurate (for moderate exponents like 3, the best cubic Bézier fit is slightly better, in fact), but visually does the right thing.
 It's probably best to say that the hyperbezier is a subtly *different* squircle than the superellipse, neither better nor worse.
 
-**TODO: insert visual**
+<img src="superellipse_fit.svg">
 
 ## Elastica
 
@@ -96,6 +99,9 @@ To my eyes, it's a more pleasing and natural curve, as it's based in physical re
 Ideally we'd be able to approximate it well, and the fact that Spiro curves can't is a strong case against them.
 Fortunately, our hyperbezier does reasonably well.
 As in the case of the superellipse, it's a fairly decent visual match, though again not a precise approximation.
+
+<img src="elastica_gallery.svg">
+
 
 ## Some mathematical properties
 
