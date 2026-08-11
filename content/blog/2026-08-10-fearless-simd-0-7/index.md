@@ -25,16 +25,16 @@ All the other integer vector types (`i8`,`u8`,`i16`,`u16`,`i32`,`u32`) and `f32`
 
 ## More operations
 
- - `swizzle_dyn` is now implemented for all widths to allow arbitrary byte shuffles. I've also [contributed performance improvements](https://shnatsel.github.io/improving-std-simd-swizzle-dyn/) for this operation to `std::simd`. Unlike `std::simd`, Fearless SIMD supports both zeroing out-of-bounds indices and returning implementation-defined (but memory-safe) results for when you're sure all indices are in bounds, which is cheaper than zeroing on some platforms.
- - All types can now be widened/narrowed; e.g. you can convert vectors of `u8` to `u16`, or `u16` to `u8` in SIMD code. Narrowing conversions can wrap, like `as` operator, or saturate, at your option.
- - Added convenience functions `shift_elements_left`, `shift_elements_right`, `rotate_elements_left`, and `rotate_elements_right` for better compatibility with `std::simd` API. They could already be implemented in terms of `slide`, but this makes the intent more clear.
+ - `swizzle_dyn` is now implemented for all widths to allow arbitrary byte shuffles. I've also [contributed performance improvements](https://shnatsel.github.io/improving-std-simd-swizzle-dyn/) for this operation to `std::simd`. Unlike `std::simd`, Fearless SIMD supports both [zeroing out-of-bounds indices](https://docs.rs/fearless_simd/0.7.0/fearless_simd/trait.SimdBase.html#tymethod.swizzle_dyn_precise) and [returning implementation-defined (but memory-safe) results](https://docs.rs/fearless_simd/0.7.0/fearless_simd/trait.SimdBase.html#tymethod.swizzle_dyn) for when you're sure all indices are in bounds, which is cheaper than zeroing on some platforms.
+ - All types can now be widened/narrowed; e.g. you can convert vectors of `u8` to `u16`, or `u16` to `u8` in SIMD code. You get to choose whether narrowing conversions wrap, like the `as` operator, or saturate, or do the cheapest thing the platform has to offer (useful if you're sure the values fit into the narrower type).
+ - Added convenience functions `shift_elements_left`, `shift_elements_right`, `rotate_elements_left`, and `rotate_elements_right` for better compatibility with the `std::simd` API. They could already be implemented in terms of `slide`, but this makes the intent more clear.
 
 ## Improved generic programming
 
 Support for generic programming - writing functions that are generic over the vector type - has been substantially improved. Here are just a few highlights:
 
- - The `SimdBase` trait now abstracts over both integer and float vectors, and implements all methods available on both integers and floats.
- - Improvements to the `Bytes` trait allow generic bitcasts (safe transmutes) between SIMD vectors.
+ - The [`SimdBase` trait](https://docs.rs/fearless_simd/0.7.0/fearless_simd/trait.SimdBase.html) now abstracts over both integer and float vectors, and implements all methods available on both integers and floats.
+ - Improvements to the [`Bytes` trait](https://docs.rs/fearless_simd/0.7.0/fearless_simd/trait.Bytes.html) allow generic bitcasts (safe transmutes) between SIMD vectors.
  - Every single operation on SIMD types is now available through a trait. There are no remaining operations implemented only for concrete types.
  - Associated types such as `SimdBase::Element` and `SimdBase::Array` now encode a lot of generic bounds to allow generic operations on them.
 
@@ -52,11 +52,11 @@ SSE2 remains a runtime-detected level on the [tier-2 i586 targets](https://doc.r
 
 ## Build time improvements
 
-Despite the addition of 64-bit integer vectors, more supported operations, and an entirely new SSE2 SIMD level, the compilation time of `fearless_simd` when used as a dependency stayed the same as v0.6: 2 seconds from scratch for x86 and 1 second from scratch for Aarch64. This is measured via `cargo clean && cargo build --release --timings`.
+Despite the addition of 64-bit integer vectors, more supported operations, and an entirely new SSE2 SIMD level, the compilation time of `fearless_simd` when used as a dependency stayed the same as v0.6: 2 seconds from scratch for x86 and 1 second from scratch for Aarch64. This is measured via `cargo clean && cargo build --release --timings` in an empty crate depending on `fearless_simd`.
 
 Keeping compilation time unchanged despite the additions required a build profiling and optimization effort, without which the x86 build time would have increased to 3.4 seconds on my machine. It's still not that much for a from-scratch release build, and would have been entirely invisible for crates that have other dependency chains that take longer than 3.4 seconds to compile. But I believe that keeping build times low is important for Fearless SIMD to become a foundational SIMD abstraction. This is also a big part of why `fearless_simd` doesn't have any dependencies itself.
 
-The vast majority of `fearless_simd` API is made up of generic functions. They emit no machine code unless instantiated, so you don't pay for them in build time or binary size if you don't use them. The compiler only needs to type-check and borrow-check them, so the build time is almost entirely frontend-bottlenecked. On nightly Rust, using `RUSTFLAGS=-Zthreads=8` to enable the parallel frontend halves the compilation time, so we have further improvements to look forward to once the parallel frontend is enabled in the stable toolchain.
+The vast majority of the `fearless_simd` API is made up of generic functions. They emit no machine code unless instantiated, so you don't pay for them in build time or binary size if you don't use them. The compiler only needs to type-check and borrow-check them, so the build time is almost entirely frontend-bottlenecked. On nightly Rust, using `RUSTFLAGS=-Zthreads=8` to enable the parallel frontend halves the compilation time, so we have further improvements to look forward to once the parallel frontend is enabled in the stable toolchain.
 
 ## API cleanups prior to 1.0
 
@@ -68,7 +68,7 @@ We are confident in the design of the crate, and it's time to make it official. 
 
 There are no further changes planned for v1.0, and we are postponing this release purely to allow some time for feedback from the community before finalizing the API.
 
-## A call for feedback
+## We want to hear from you!
 
 We believe `fearless_simd` can become _the_ foundational SIMD crate for the Rust ecosystem, whether you want [automatic vectorization](https://github.com/linebender/fearless_simd/tree/main/fearless_simd#automatic-vectorization), [portable SIMD](https://github.com/linebender/fearless_simd/tree/main/fearless_simd#portable-simd), [safe access to intrinsics](https://github.com/linebender/fearless_simd/tree/main/fearless_simd#explicit-intrinsics), or all of the above. This goal is now within sight.
 
