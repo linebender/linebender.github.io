@@ -7,7 +7,7 @@ authors = ["Shnatsel"]
 
 No matter what level of abstraction you're after, be it autovectorization and multiversioning, portable SIMD, or safe access to raw intrinsics and nothing more, `fearless_simd` has you covered!
 
-It features zero dependencies, short build times, safe public APIs, and [very little](https://gist.github.com/Shnatsel/61fc294987a1e051ce3835c97dc0fc19) `unsafe` under the hood - orders of magnitude less than the alternatives!
+It features zero dependencies, short build times, safe public APIs, and [very little](https://shnatsel.github.io/safe-simd-in-rust-even-on-the-inside/) `unsafe` under the hood - orders of magnitude less than the alternatives!
 
 The major additions in v0.7 are support for 64-bit integers, an explicit SSE2 level replacing scalar fallback on x86, improved support for generic programming, and more implemented SIMD operations.
 
@@ -46,13 +46,13 @@ These improvements also benefit users who abstract over SIMD vector types using 
 
 These days x86 systems without SSE4.2 are [very rare](https://firefoxgraphics.github.io/telemetry/#view=system). However, since SSE2 is part of the baseline instruction set in both x86_64 and i686 Rust targets, the presence of SSE2 can be assumed, without any runtime dispatch or multiversioning. Certain crates only need a very limited set of vector instructions and don't benefit from later extensions, so forgoing runtime dispatch can simplify the code and reduce binary size.
 
-To better serve this use case, Fearless SIMD now has an explicit `Sse2` level with operations expressed in terms of SIMD intrinsics, rather than relying on autovectorization of the `Fallback` level when SSE4.2 is not available.
+To better serve this use case, Fearless SIMD now has an explicit `Sse2` level with operations expressed in terms of SIMD intrinsics, rather than relying on autovectorization of the `Fallback` level when SSE4.2 is not available. This improves performance on x86 when the user opts out of selecting the best SIMD implementation at runtime.
 
 SSE2 remains a runtime-detected level on the [tier-2 i586 targets](https://doc.rust-lang.org/nightly/rustc/platform-support.html#tier-2-without-host-tools), and can be disabled there using [the usual multiversioning controls](https://github.com/linebender/fearless_simd/tree/main/fearless_simd#multiversioning-on-x86).
 
 ## Build time improvements
 
-Despite the addition of 64-bit integer vectors, more supported operations, and an entirely new SSE2 SIMD level, the compilation time of `fearless_simd` when used as a dependency stayed the same as v0.6: 2 seconds from scratch for x86 and 1 second from scratch for Aarch64. This is measured via `cargo clean && cargo build --release --timings` in an empty crate depending on `fearless_simd`.
+Despite the addition of 64-bit integer vectors, more supported operations, and an entirely new SSE2 SIMD level, the compilation time of `fearless_simd` when used as a dependency stayed the same as v0.6: 2 seconds from scratch for x86 and 1 second from scratch for Aarch64. This was measured on my Zen 4 desktop CPU via `cargo clean && cargo build --release --timings` in an empty crate depending on `fearless_simd`.
 
 Keeping compilation time unchanged despite the additions required a build profiling and optimization effort, without which the x86 build time would have increased to 3.4 seconds on my machine. It's still not that much for a from-scratch release build, and would have been entirely invisible for crates that have other dependency chains that take longer than 3.4 seconds to compile. But I believe that keeping build times low is important for Fearless SIMD to become a foundational SIMD abstraction. This is also a big part of why `fearless_simd` doesn't have any dependencies itself.
 
