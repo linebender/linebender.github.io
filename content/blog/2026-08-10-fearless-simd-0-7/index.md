@@ -17,7 +17,7 @@ This is also the last major release prior to Fearless SIMD v1.0, if no concerns 
 
 The entire API surface of `fearless_simd` is now also exposed for `u64` and `i64` vector types.
 
-Earlier releases didn't support 64-bit integer vectors due to hardware support being spotty. For example, AVX2 lacks hardware support for many operations on 64-bit integers, so it would require emulation using the available SIMD instructions for those operations to get decent performance.
+Earlier releases didn't support 64-bit integer vectors due to hardware support being spotty. For example, AVX2 lacks hardware support for many operations on 64-bit integers, so it would require emulating those operations using the available SIMD instructions to get decent performance.
 
 Keeping track of which intrinsics are part of which instruction set was also challenging, and getting it wrong would be a memory safety violation. However, in v0.5 we [made the compiler keep track of it for us](https://shnatsel.github.io/safe-simd-in-rust-even-on-the-inside/), which removed the vast majority of `unsafe` blocks from `fearless_simd` and made implementing operations with uneven hardware support much easier.
 
@@ -66,7 +66,7 @@ These are fairly minor API cleanups, and the API has been stable for nearly a ye
 
 We are confident in the design of the crate, and it's time to make it official. If no concerns about the API are raised, we are going to **ship v1.0 of Fearless SIMD in early September.**
 
-There are no further changes planned for v1.0, and we are postponing this release purely to allow some time for feedback from the community before finalizing the API.
+There are no breaking changes planned for v1.0. We could publish it today, but we chose to postpone it to allow some time for feedback from the community before finalizing the API.
 
 ## We want to hear from you!
 
