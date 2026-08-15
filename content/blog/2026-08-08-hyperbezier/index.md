@@ -35,7 +35,10 @@ The Bézier is shown in gray for comparison.
   canvas {
     background: #fff;
     border: 1px solid #ccc;
+    box-sizing: border-box;
     cursor: crosshair;
+    height: auto;
+    max-width: 100%;
     touch-action: none;
   }
   #panel { width: 310px; font-size: 13px; }

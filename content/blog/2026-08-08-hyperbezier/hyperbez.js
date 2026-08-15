@@ -305,7 +305,7 @@ const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
 const CW = 730, CH = 500;
 (function hidpi() {
   const dpr = window.devicePixelRatio || 1;
-  cv.style.width = CW + 'px'; cv.style.height = CH + 'px';
+  cv.style.width = CW + 'px';
   cv.width = Math.round(CW*dpr); cv.height = Math.round(CH*dpr);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 })();
@@ -406,8 +406,12 @@ function render() {
     status.textContent = txt;
   }
 }
-cv.addEventListener('pointerdown', e => {
+function eventPoint(e) {
   const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+  return [x*CW/r.width, y*CH/r.height];
+}
+cv.addEventListener('pointerdown', e => {
+  const [x, y] = eventPoint(e);
   let best = -1, bd = 200;
   P.forEach((p, i) => { const d = (p[0]-x)**2 + (p[1]-y)**2; if (d < bd) { bd = d; best = i; } });
   dragging = best;
@@ -415,8 +419,7 @@ cv.addEventListener('pointerdown', e => {
 });
 cv.addEventListener('pointermove', e => {
   if (dragging < 0) return;
-  const r = cv.getBoundingClientRect();
-  const nx = e.clientX - r.left, ny = e.clientY - r.top;
+  const [nx, ny] = eventPoint(e);
   if (dragging === 0 || dragging === 3) {
     const h = dragging === 0 ? 1 : 2;
     P[h][0] += nx - P[dragging][0]; P[h][1] += ny - P[dragging][1];
