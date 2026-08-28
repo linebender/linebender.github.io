@@ -174,6 +174,13 @@ See https://linebender.org/blog/doc-include/ for related discussion. -->
 
 Intra-doc links to this or other crates must be to `latest` (or `stable` for crates in the Rust distribution).
 
+We also choose to document the command at the top of `lib.rs` (after the copyright header but before the doc):
+
+```rust
+// After you edit the crate's doc comment, run this command, then check README.md for any missing links
+// cargo rdme --workspace-project=gazeto
+```
+
 ### Readme Setup
 
 The readme order for individual packages is as follows. We don't yet have the format fully worked out for workspace (i.e. repository) level readmes.
