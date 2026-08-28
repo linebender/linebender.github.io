@@ -118,7 +118,7 @@ See [#blogging > no_std survey @ 💬](https://xi.zulipchat.com/#narrow/channel/
 
 ## Documentation
 
-All top-level headings in Rust documentation should use `#`, only after a `#` can we use `##`.
+All top-level headings in Rust documentation should use single `#` header, only after a `#` can we use a `##` subheading.
 Our crate level readme has a `Features` section, which should look something like the following:
 
 ```rust
@@ -172,6 +172,7 @@ See https://linebender.org/blog/doc-include/ for related discussion. -->
 <!-- cargo-rdme start -->
 ```
 
+Note that we previously used `--heading-base-level 0`, because we didn't follow the single `#` 'rule'.
 Intra-doc links to this or other crates must be to `latest` (or `stable` for crates in the Rust distribution).
 
 We also choose to document the command at the top of `lib.rs` (after the copyright header but before the doc):
