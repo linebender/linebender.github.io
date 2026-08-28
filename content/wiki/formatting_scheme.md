@@ -128,7 +128,7 @@ Our crate level readme has a `Features` section, which should look something lik
 //!
 //! - `std` (enabled by default): This is currently unused and is provided for forward compatibility.
 //! 
-//! Note that [Crate Name] does require that an allocator is available (i.e. it uses [alloc][]).
+//! Note that [Crate Name] does require that an allocator is available (i.e. it uses [`alloc`][]).
 ```
 
 For the crates which do the `libm`/`std` dance, those features should be documented as:
@@ -141,7 +141,7 @@ For the crates which do the `libm`/`std` dance, those features should be documen
 //!   However, note that the `libm` crate is not as efficient as the standard library.
 //!
 //! At least one of `std` and `libm` is required; `std` overrides `libm`.
-//! Note that [Crate Name] does require that an allocator is available (i.e. it uses [alloc][]).
+//! Note that [Crate Name] does require that an allocator is available (i.e. it uses [`alloc`][]).
 #![cfg_attr(feature = "libm", doc = "[libm]: libm")]
 #![cfg_attr(not(feature = "libm"), doc = "[libm]: https://crates.io/crates/libm")]
 
