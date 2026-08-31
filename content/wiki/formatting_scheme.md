@@ -76,7 +76,8 @@ The baseline `.gitignore` should contain only `/target`. We choose not to ignore
 
 ### Taplo
 
-We currently use Taplo for TOML formatting - config file looks something like:
+We currently use Taplo for TOML formatting.
+This should be checked in CI - the config file we use is:
 
 ```toml
 # See https://taplo.tamasfe.dev/configuration/file.html
