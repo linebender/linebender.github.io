@@ -1,0 +1,8 @@
+<svg width='450' height='200' xmlns='http://www.w3.org/2000/svg'>
+  <line x1='110' y1='60' x2='410' y2='40' stroke="#44f" fill='none'/>
+  <line x1='310' y1='60' x2='10' y2='40' stroke="#44f" fill='none'/>
+  <path d='M110,60 C410,40 10,40 310,60' stroke='#000' fill='none'/>
+  <line x1='110' y1='160' x2='410' y2='140' stroke="#44f" fill='none'/>
+  <line x1='310' y1='160' x2='10' y2='180' stroke="#44f" fill='none'/>
+  <path d='M110,160 C410,140 10,180 310,160' stroke='#000' fill='none'/>
+</svg>

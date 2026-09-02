@@ -1,0 +1,5 @@
+<svg width='480' height='240' xmlns='http://www.w3.org/2000/svg'>
+  <line x1='210' y1='20' x2='410' y2='220' stroke="#44f" fill='none'/>
+  <path d='M10,220 C10,220 210,20 410,220' stroke='#000' fill='none'/>
+  <circle cx='10' cy='220' r='3' fill='#44f'/>
+</svg>

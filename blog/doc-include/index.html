@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>#![doc = include_str!()] with intra-doc links - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="#![doc = include_str!()] with intra-doc links">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="#![doc = include_str!()] with intra-doc links">
+        <meta property="og:description"
+            content="#![doc = include_str!()] with intra-doc links">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="#![doc = include_str!()] with intra-doc links">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>#![doc = include_str!()] with intra-doc links</h1>
+<h3>Daniel McNab, June 28, 2024</h3>
+<p>Creating crate level documentation by <a href="https://doc.rust-lang.org/rustdoc/write-documentation/the-doc-attribute.html#the-doc-attribute">including</a> your README can lower maintenance burden, as you do not need to manually keep the crate level docs synchronised.
+However, when writing this documentation, you will also want to link directly to some mentioned <a href="https://doc.rust-lang.org/reference/items.html">items</a>.
+These links need to work in all the places that the README is rendered, such as on your package's <a href="https://crates.io">https://crates.io</a> homepage, in addition to in rustdoc output.
+To achieve this, you can link to the online documentation for the items:</p>
+<pre data-lang="md" style="background-color:#2b303b;color:#c0c5ce;" class="language-md "><code class="language-md" data-lang="md"><span>To get started with foobar, use the </span><span style="color:#d08770;">[</span><span style="color:#a3be8c;">`frobnicate`</span><span style="color:#d08770;">][]</span><span> function.
+</span><span>
+</span><span style="color:#d08770;">[`frobnicate`]: https://docs.rs/foobar/latest/foobar/fn.frobnicate.html
+</span></code></pre>
+<p>This would however mean that users of <code>cargo doc</code> will be redirected to your crate's online docs (as opposed to their local docs) when clicking on that link.
+It is however possible to make links in included markdown files behave as intra-doc links, by adding a second link reference definition in the documentation comment.
+This must be placed <em>before</em> the <code>doc = include_str!()</code> line, for example:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//! [`frobnicate`]: frobnicate
+</span><span>#![</span><span style="color:#bf616a;">doc </span><span>= </span><span style="color:#bf616a;">include_str</span><span>(&quot;</span><span style="color:#a3be8c;">../README.md</span><span>&quot;)]
+</span></code></pre>
+<p>This means that the link has the expected link target on <a href="https://crates.io">https://crates.io</a> <em>and</em> in rustdoc (including on <a href="https://docs.rs">https://docs.rs</a>).
+This trick works because when there are duplicate markdown link reference definitions, <a href="https://spec.commonmark.org/0.31.2/#example-204">"the first one takes precedence"</a>.
+rustdoc sees the intra-doc link before the link to the online docs, and so uses the intra-doc link.
+However, when the README is rendered standalone, only the link reference definition for the online docs is present, and so that target is used.</p>
+<h3 id="example">Example</h3>
+<p>For an example of both of these techniques in action, see the Android Trace crate (<code>android_trace</code>).
+In particular, the text of interest is: "the main entry point to the library is <strong>AndroidTrace</strong>".
+You can observe that this link goes to version 0.1.1 on the docs page, but version 0.1.0 elsewhere.</p>
+<ul>
+<li><a href="https://github.com/linebender/android_trace/blob/v0.1.1/android_trace/README.md">GitHub rendered readme</a></li>
+<li><a href="https://crates.io/crates/android_trace/0.1.1">crates.io page</a></li>
+<li><a href="https://docs.rs/android_trace/0.1.1/android_trace/">docs.rs page</a></li>
+</ul>
+<p>And the corresponding source code:</p>
+<ul>
+<li><a href="https://github.com/linebender/android_trace/blob/v0.1.1/android_trace/README.md?plain=1">README.md</a></li>
+<li><a href="https://github.com/linebender/android_trace/blob/v0.1.1/android_trace/src/lib.rs">lib.rs</a></li>
+</ul>
+<p>The links have since been updated to use <code>latest</code>, but the direct link being to version 0.1.0 shows how this pattern works.</p>
+<h3 id="getting-external-documentation-links">Getting external documentation links</h3>
+<p>rust-analyzer has an "Open External Docs" command when you have an item selected.
+This will open the online documentation for the selected item, generally on <a href="https://docs.rs">https://docs.rs</a>.
+This works even if the item is yet to be published, in which case it will open the URL where the item would be.
+You may wish to replace the resolved version number in the URL with <code>latest</code>, e.g. <code>https://docs.rs/foobar/latest/foobar/</code></p>
+<h3 id="limitations">Limitations</h3>
+<p><code>#![doc = include_str!("../README.md")]</code> has two main relevant limitations which you may need to work around.</p>
+<p>The first of these is in code blocks.
+Normal rustdoc examples can include hidden setup lines, starting with a <code>#</code> character.
+These will not be rendered by rustdoc.</p>
+<pre data-lang="md" style="background-color:#2b303b;color:#c0c5ce;" class="language-md "><code class="language-md" data-lang="md"><span>```</span><span style="color:#d08770;">rust
+</span><span># </span><span style="color:#b48ead;">use </span><span>foobar::frobnicate;
+</span><span style="color:#96b5b4;">frobnicate</span><span>();
+</span><span>```
+</span></code></pre>
+<p>However, other markdown renderers do not support this extension, so the example above will be rendered as something like:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span># </span><span style="color:#b48ead;">use </span><span>foobar::frobnicate;
+</span><span style="color:#96b5b4;">frobnicate</span><span>();
+</span></code></pre>
+<p>Unfortunately, I am not aware of a workaround for this; my current best suggestion is to avoid using these hidden lines in your README.
+Doctests in included markdown files do also have some diagnostics issues, as reported in <a href="https://github.com/rust-lang/rust/issues/81070">rust-lang/rust#81070</a>.</p>
+<p>The second limitation is with file links, such as a link to your license file of the form <code>[LICENSE-MIT](LICENSE-MIT)</code> (as recommended in <a href="https://rust-lang.github.io/api-guidelines/necessities.html#crate-and-its-dependencies-have-a-permissive-license-c-permissive">C-PERMISSIVE</a>).
+This is because rustdoc does not support relative file links in Markdown.
+This can be solved by using the "opposite" of this trick - you can use a web link in your <code>lib.rs</code>, and a file link in the README.</p>
+<h2 id="a-second-trick">A second trick</h2>
+<p>READMEs contain some content which are not expected to be present in a crate's documentation.
+For example, a top-level title, which would duplicate the <code>crate foobar</code> header added by rustdoc.
+This can be resolved by using css in your documentation to hide these items; rustdoc allows embedding CSS in your documentation.
+However, this should only be included in your <code>lib.rs</code>, so that the header is shown in other contexts.</p>
+<pre data-lang="rs" style="background-color:#2b303b;color:#c0c5ce;" class="language-rs "><code class="language-rs" data-lang="rs"><span style="color:#65737e;">//! &lt;style&gt;
+</span><span style="color:#65737e;">//! .rustdoc-hidden { display: none; }
+</span><span style="color:#65737e;">//! &lt;/style&gt;
+</span></code></pre>
+<p>Any text in the README which should be excluded from your docs page can then be surrounded by a <code>div</code> with the <code>rustdoc-hidden</code> class, for example:</p>
+<pre data-lang="md" style="background-color:#2b303b;color:#c0c5ce;" class="language-md "><code class="language-md" data-lang="md"><span>&lt;</span><span style="color:#bf616a;">div </span><span style="color:#d08770;">class </span><span>= &quot;</span><span style="color:#a3be8c;">rustdoc-hidden</span><span>&quot;&gt;
+</span><span>
+</span><span style="color:#8fa1b3;"># Foobar
+</span><span>
+</span><span>&lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span></code></pre>
+<p>As far as I'm aware, this does not have any accessibility considerations, as browsers will not make <code>display: none</code> items available in their accessibility tree.</p>
+<p>Tracing Android Trace (see <a href="https://linebender.org/blog/doc-include/#example">above</a>) also uses this trick to hide the license section from the crate docs.
+The license information is already present in the crate's info box.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Using <code>#![doc = include_str!("../README.md")]</code> can integrate nicely with intra-doc links, if you use some tricks.
+I believe that this pattern reduces the quality gap between bespoke documentation in <code>lib.rs</code> enough that using README includes becomes the right pattern for most crates.
+This avoids the maintenance burden of needing to ensure that text in the crate level docs and the README do not become out-of-sync.
+I intend to evaluate this technique by applying it across Linebender crates.
+It may still be better to have bespoke documentation for each location, for projects which can afford the maintenance costs of that solution.
+But for other projects, this can provide an easy way to improve their crate level documentation.</p>
+<p>These patterns can also be applied when including non-<code>README</code> markdown documents.
+I suggest linking to this post when using these patterns, to allow future readers of your code to understand the technique being used.</p>
+<p>Discuss on <a href="https://xi.zulipchat.com/#narrow/stream/181284-blogging/topic/.23!.5Bdoc.20.3D.20include_str!.28.29.5D.20with.20intra-doc.20links">the Linebender Zulip</a>.</p>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>
