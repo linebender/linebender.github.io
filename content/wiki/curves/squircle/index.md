@@ -120,7 +120,24 @@ It is exact for placing the midpoint (this is part of the formula), so is well c
 ### Apple-like behavior with the corner-shape spec
 
 Early analysis of the Apple squircle shape suggested a superellipse with exponent 5.
-This analysis
+This analysis was based on coarse shape only and didn't allow for an additional flat side, which it does contain.
+
+A very close match to the Apple shape is attainable using a superellipse with exponent 3 and a corresponding flat side length to match the gauge.
+This has G2 continuity and a similar curvature profile.
+This illustration was made using the Chromium approximation, so it should match the browser.
+
+![The Apple squircle beside a superellipse of exponent 3 with flat sides](apple_vs_superellipse.svg)
+
+Here's the CSS to accomplish the "close to Apple" squircle shape.
+Note that the parameter to the `superellipse()` function is the base-2 log of the exponent, so the value for an exponent of 3 is 1.585.
+
+```css
+.icon {
+  aspect-ratio: 1;
+  border-radius: 46.2%;
+  corner-shape: superellipse(1.585);
+}
+```
 
 ## Continuity
 
