@@ -70,16 +70,10 @@ fn curvature_labels(transform: Affine, k_max: f64) -> impl DomView<AppState> + u
 
 /// A tick up from the arc length axis at `s_end`, where the curve stops.
 ///
-/// Axis furniture, and drawn in the axis' own style: it reports where the
-/// quadrant ends, which is not something the curvature profile says about
-/// itself. The curve's trailing flat runs along the axis, so without this the
-/// end of one line over another is hard to place.
-///
-/// Built in `viewBox` units rather than plot units, so it keeps one size as the
-/// curvature axis rescales. It rises from the axis and does not cross below it.
-/// Every construction here is convex, so curvature is never negative and the
-/// plot has no use for the space under the axis; keeping the one mark that
-/// could stray down out of it is a quiet reminder of that.
+/// In the axis' style, since it reports where the quadrant ends rather than
+/// anything about the profile, and the curve's trailing flat runs along the
+/// axis. In `viewBox` units so it keeps one size as the curvature axis
+/// rescales; up only, since curvature is never negative here.
 fn end_tick(transform: Affine, s_end: f64) -> BezPath {
     let foot = transform * Point::new(s_end, 0.0);
     let mut path = BezPath::new();
@@ -90,14 +84,10 @@ fn end_tick(transform: Affine, s_end: f64) -> BezPath {
 
 /// Maximum of the curvature plot's arc length axis.
 ///
-/// A quadrant runs from (1, 0) to (0, 1) moving monotonically in both
-/// coordinates inside the unit square, so it is at most 2 long, and only the
-/// degenerate square corner reaches that. The axis is pinned to that bound
-/// rather than fitted to the profile, because the actual length varies with
-/// both sliders: an axis that tracked it would rescale under the cursor during
-/// a drag, and two settings could not be compared by eye. Holding it absolute
-/// is also what lets the flats be read off the plot at their true length,
-/// rather than as a share of a total that is itself moving.
+/// A quadrant is at most 2 long, reached only by the degenerate square corner.
+/// Absolute rather than fitted to the profile, whose length varies with both
+/// sliders: the axis would otherwise rescale mid-drag, and the flats would read
+/// as a share of a moving total rather than at their true length.
 const PLOT_S_MAX: f64 = 2.0;
 
 /// Length of the tick marking where the curve ends, in `viewBox` units.
@@ -246,9 +236,6 @@ fn slider<F: Fn(&mut AppState, f64) + 'static>(
 }
 
 /// One label-and-value row, for a number the tester reports but cannot set.
-///
-/// A greyed row rather than a hidden one, so that switching construction does
-/// not reflow the controls under the cursor.
 fn readout_row(
     caption: &'static str,
     value: String,
@@ -262,21 +249,21 @@ fn readout_row(
     .class("squircle-slider")
 }
 
-/// The radio group, zoom toggle, the two shape sliders and the exponent.
+/// The control row above the panels.
 fn controls(state: &AppState, corner: Corner) -> impl DomView<AppState> + use<> {
-    // Apple's corner is fixed, so its flat follows the gauge rather than
-    // setting it, and that slider becomes a readout.
+    // Apple's corner is fixed, so its flat follows from the gauge.
     let flat_fixed = state.choice.fixed_corner().is_some();
 
     let choices = div((
-        span("Construction").class("squircle-control-label"),
         choice_radio(state, Squircles::Superellipse),
         choice_radio(state, Squircles::ChromiumApprox),
         choice_radio(state, Squircles::Clothoid),
         choice_radio(state, Squircles::Figma),
         choice_radio(state, Squircles::Apple),
     ))
-    .class("squircle-choices");
+    .class("squircle-choices")
+    .attr("role", "radiogroup")
+    .attr("aria-label", "Variant");
 
     let zoom = label((
         input(())
@@ -322,8 +309,6 @@ fn controls(state: &AppState, corner: Corner) -> impl DomView<AppState> + use<> 
         |state, t| state.flat = t,
     );
 
-    // Only a superellipse, or something approximating one, has an exponent;
-    // for the rest there is no number to show rather than a number to grey.
     let has_exponent = state.choice.has_exponent();
     let exponent = readout_row(
         "Exponent",
@@ -372,8 +357,7 @@ fn shape_panel(state: &AppState, corner: Corner) -> impl DomView<AppState> + use
 fn curvature_panel(state: &AppState, corner: Corner) -> impl DomView<AppState> + use<> {
     let profile = render_profile(&quadrant_profile(state.choice, corner));
 
-    // Only the curvature axis is fitted to the data; arc length keeps the
-    // absolute [`PLOT_S_MAX`] whatever the sliders do.
+    // Only the curvature axis is fitted; arc length stays absolute.
     let bounds = profile.bounding_box();
     let k_max = curvature_axis_max(bounds.y1);
     // Clamped so that a degenerate profile cannot put the tick outside the plot.

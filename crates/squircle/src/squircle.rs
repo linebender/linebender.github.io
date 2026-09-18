@@ -56,14 +56,11 @@ pub const GAUGE_MIN: f64 = 0.707;
 /// Largest overall gauge the tester offers.
 pub const GAUGE_MAX: f64 = 0.999;
 
-/// The roundest corner the parametric constructions reach, where each becomes
-/// a circular arc.
+/// A circular corner, the roundest any of these reach.
 const CORNER_MIN: f64 = FRAC_1_SQRT_2;
 
-/// The two numbers that actually determine a shape.
-///
-/// A shape is a straight run along each half edge plus a corner profile scaled
-/// into the square that is left over, which gives `gauge = c + h * (1 - c)`.
+/// A straight run along each half edge plus a corner profile scaled into the
+/// square left over, so `gauge = c + h * (1 - c)`.
 #[derive(Clone, Copy, Debug)]
 pub struct Corner {
     /// Where the corner profile crosses its own diagonal.
@@ -78,17 +75,10 @@ pub struct Corner {
 impl Corner {
     /// Turns the two slider positions into a corner.
     ///
-    /// The gauge always holds, so switching construction never moves it. The
-    /// flat picks the corner within what the gauge allows, since
-    /// `gauge = c + h * (1 - c)` and `c` cannot go below a circular corner. A
-    /// flat of 1 is always exactly a circular corner.
-    ///
-    /// Where the construction's family has no corner that round or that square,
-    /// it makes the nearest one it can and the flat takes up the difference, so
-    /// the gauge still holds. Apple is that case at its extreme: one corner, so
-    /// the flat is entirely determined.
-    ///
-    /// This is the only place the parameterization is decided.
+    /// The gauge always holds. The flat picks the corner within what the gauge
+    /// allows, a flat of 1 being exactly a circular corner; where the construction's
+    /// family has no such corner it makes the nearest one it can and the flat
+    /// takes up the difference.
     pub fn resolve(choice: Squircles, gauge: f64, flat: f64) -> Self {
         let h_max = ((gauge - CORNER_MIN) / (1.0 - CORNER_MIN)).max(0.0);
         let wanted = flat.clamp(0.0, 1.0) * h_max;
@@ -104,9 +94,7 @@ impl Corner {
 /// The exponent `n` of the superellipse `|x|^n + |y|^n = 1` whose quadrant
 /// crosses its diagonal at `c`.
 ///
-/// This inverts the `exp_adjust` that [`Superellipse`] derives from its gauge:
-/// a circular corner is 2, and the familiar Lame curve behind most squircles
-/// is 4, at a gauge of about 0.841.
+/// A circular corner is 2; the usual squircle is 4, at a gauge near 0.841.
 pub fn superellipse_exponent(c: f64) -> f64 {
     -LN_2 / c.ln()
 }
@@ -143,9 +131,8 @@ pub fn quadrant(choice: Squircles, corner: Corner) -> BezPath {
 
 /// The curvature profile of the assembled quadrant.
 ///
-/// Scaling a curve by `s` multiplies arc length by `s` and divides curvature by
-/// `s`, so the corner's own profile transforms directly and does not have to be
-/// resampled off the assembled path.
+/// Scaling by `s` multiplies arc length by `s` and divides curvature by `s`, so
+/// the corner's profile transforms directly rather than being resampled.
 pub fn quadrant_profile(choice: Squircles, corner: Corner) -> Vec<ProfileSample> {
     let Corner { h, param, .. } = corner;
     let inner = choice.curvature_profile(&[param]);
@@ -153,9 +140,8 @@ pub fn quadrant_profile(choice: Squircles, corner: Corner) -> Vec<ProfileSample>
         return inner;
     }
     let scale = 1.0 - h;
-    // `render_profile` drops any non-finite sample, but the trailing flat still
-    // has to be placed, so the corner's length comes from the last sample that
-    // carries one rather than from whatever the profile happens to end on.
+    // `render_profile` drops non-finite samples, so the corner's length comes
+    // from the last one with a finite `s`; the flats still have to be placed.
     let corner_len = inner
         .iter()
         .rev()
@@ -198,19 +184,16 @@ impl Squircles {
         }
     }
 
-    /// Whether this construction is a superellipse, or an approximation close
-    /// enough to one that the superellipse exponent describes its corner.
+    /// Whether the superellipse exponent describes this construction's corner.
     pub fn has_exponent(self) -> bool {
         matches!(self, Self::Superellipse | Self::ChromiumApprox)
     }
 
-    /// The corner nearest `c` this construction can make, and the parameter
-    /// that makes it.
+    /// The corner nearest `c` this construction can make, and the parameter for it.
     ///
-    /// The superellipse and the Chromium approximation take the gauge as is.
-    /// Apple has one corner. The clothoid and Figma take a smoothness, so those
-    /// are solved for; the clothoid's family stops around 0.79, well short of
-    /// the slider, and returns its nearest corner instead.
+    /// The superellipse and Chromium take the gauge as is, and Apple has one
+    /// corner. The clothoid and Figma take a smoothness, so those are solved
+    /// for; the clothoid's family stops near 0.79, well short of the slider.
     fn solve_corner(self, c: f64) -> (f64, f64) {
         match self {
             Self::Superellipse | Self::ChromiumApprox => (c, c),
@@ -241,8 +224,7 @@ impl Squircles {
         }
     }
 
-    /// The corner gauge this construction is pinned to, for constructions that
-    /// have no shape parameter of their own.
+    /// The corner this construction is pinned to, if it has no shape parameter.
     pub fn fixed_corner(self) -> Option<f64> {
         match self {
             Self::Apple => Some(crate::apple_squircle::CORNER_GAUGE),
@@ -314,12 +296,9 @@ impl Squircle for Superellipse {
         // constructions that use the default `curvature_profile`.
         for i in 0..=N {
             let th = i as f64 * (FRAC_PI_2 / N as f64);
-            // Pinned at the end exactly as `render` pins it. The last `th`
-            // lands a ulp past `FRAC_PI_2`, so `cos` returns about -1.2e-16,
-            // and `powf` of a negative base to a fractional power is NaN. That
-            // NaN reaches `s` through the chord below and stays there, so the
-            // sample carrying the end of the quadrant is dropped rather than
-            // plotted.
+            // Pinned as `render` pins it: the last `th` lands a ulp past
+            // `FRAC_PI_2`, so `cos` goes negative, `powf` returns NaN, and that
+            // NaN reaches `s` through the chord below and stays there.
             let (v, u) = if i == N { (1.0, 0.0) } else { th.sin_cos() };
             let x = u.powf(exp_adjust);
             let y = v.powf(exp_adjust);
