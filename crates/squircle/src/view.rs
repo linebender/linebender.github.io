@@ -20,14 +20,17 @@ use xilem_web::{
     },
     interfaces::{Element, HtmlInputElement, SvgGeometryElement, SvgPathElement},
     svg::{
-        kurbo::{Affine, BezPath, Shape, Stroke},
+        kurbo::{Affine, BezPath, Point, Shape, Stroke},
         peniko::color::palette::css,
     },
 };
 
 use crate::{
     AppState,
-    squircle::{Squircle, Squircles, Superellipse, render_profile},
+    squircle::{
+        Corner, GAUGE_MAX, GAUGE_MIN, Squircle, Squircles, Superellipse, quadrant,
+        quadrant_profile, render_profile, superellipse_exponent,
+    },
 };
 
 /// Side of the square `viewBox` the shape is drawn into.
@@ -41,6 +44,41 @@ const PLOT_W: f64 = 560.0;
 const PLOT_H: f64 = 300.0;
 /// Number of gridline divisions along each axis of the curvature plot.
 const PLOT_DIVISIONS: usize = 4;
+
+/// A tick up from the arc length axis at `s_end`, where the curve stops.
+///
+/// Axis furniture, and drawn in the axis' own style: it reports where the
+/// quadrant ends, which is not something the curvature profile says about
+/// itself. The curve's trailing flat runs along the axis, so without this the
+/// end of one line over another is hard to place.
+///
+/// Built in `viewBox` units rather than plot units, so it keeps one size as the
+/// curvature axis rescales. It rises from the axis and does not cross below it.
+/// Every construction here is convex, so curvature is never negative and the
+/// plot has no use for the space under the axis; keeping the one mark that
+/// could stray down out of it is a quiet reminder of that.
+fn end_tick(transform: Affine, s_end: f64) -> BezPath {
+    let foot = transform * Point::new(s_end, 0.0);
+    let mut path = BezPath::new();
+    path.move_to((foot.x, foot.y));
+    path.line_to((foot.x, foot.y - END_TICK));
+    path
+}
+
+/// Maximum of the curvature plot's arc length axis.
+///
+/// A quadrant runs from (1, 0) to (0, 1) moving monotonically in both
+/// coordinates inside the unit square, so it is at most 2 long, and only the
+/// degenerate square corner reaches that. The axis is pinned to that bound
+/// rather than fitted to the profile, because the actual length varies with
+/// both sliders: an axis that tracked it would rescale under the cursor during
+/// a drag, and two settings could not be compared by eye. Holding it absolute
+/// is also what lets the flats be read off the plot at their true length,
+/// rather than as a share of a total that is itself moving.
+const PLOT_S_MAX: f64 = 2.0;
+
+/// Length of the tick marking where the curve ends, in `viewBox` units.
+const END_TICK: f64 = 6.0;
 
 /// Steps the curvature axis can take.
 ///
@@ -64,28 +102,6 @@ fn curvature_axis_max(peak: f64) -> f64 {
         }
     }
     CURVATURE_STEPS[CURVATURE_STEPS.len() - 1]
-}
-
-/// Rounds `value` up to the next 1, 2 or 5 times a power of ten.
-///
-/// Used for the arc length axis, which varies only between about 1.6 and 2 and
-/// so settles on one value in practice.
-fn nice_ceil(value: f64) -> f64 {
-    if !(value > 0.0) || !value.is_finite() {
-        return 1.0;
-    }
-    let magnitude = 10f64.powf(value.log10().floor());
-    let normalized = value / magnitude;
-    let step = if normalized <= 1.0 {
-        1.0
-    } else if normalized <= 2.0 {
-        2.0
-    } else if normalized <= 5.0 {
-        5.0
-    } else {
-        10.0
-    };
-    step * magnitude
 }
 
 /// Maps the unit square the shapes are defined in onto the shape `viewBox`.
@@ -165,7 +181,7 @@ fn choice_radio(state: &AppState, choice: Squircles) -> impl DomView<AppState> +
     label((
         input(())
             .type_("radio")
-            .attr("name", "squircle-choice")
+            .name("squircle-choice")
             .checked(state.choice == choice)
             .on_input(move |state: &mut AppState, _| state.choice = choice),
         choice.name(),
@@ -173,9 +189,61 @@ fn choice_radio(state: &AppState, choice: Squircles) -> impl DomView<AppState> +
     .class("squircle-choice")
 }
 
-/// The radio group, zoom toggle and gauge slider.
-fn controls(state: &AppState) -> impl DomView<AppState> + use<> {
-    let gauge = state.gauge;
+/// One labelled range slider.
+fn slider<F: Fn(&mut AppState, f64) + 'static>(
+    id: &'static str,
+    caption: &'static str,
+    value: f64,
+    readout: String,
+    disabled: bool,
+    on_change: F,
+) -> impl DomView<AppState> + use<F> {
+    div((
+        label(caption)
+            .attr("for", id)
+            .class("squircle-control-label"),
+        input(())
+            .attr("id", id)
+            .type_("range")
+            .attr("min", "0")
+            .attr("max", "1000")
+            .attr("step", "1")
+            .attr("value", (value * 1000.0).round() as i32)
+            .disabled(disabled)
+            .on_input(move |state: &mut AppState, event| {
+                if let Some(raw) = input_event_target_value(&event) {
+                    if let Ok(parsed) = raw.parse::<f64>() {
+                        on_change(state, parsed * 1e-3);
+                    }
+                }
+            }),
+        span(readout).class("squircle-readout"),
+    ))
+    .class("squircle-slider")
+}
+
+/// One label-and-value row, for a number the tester reports but cannot set.
+///
+/// A greyed row rather than a hidden one, so that switching construction does
+/// not reflow the controls under the cursor.
+fn readout_row(
+    caption: &'static str,
+    value: String,
+    muted: bool,
+) -> impl DomView<AppState> + use<> {
+    let tone = if muted { "squircle-muted" } else { "squircle-live" };
+    div((
+        span(caption).class(["squircle-control-label", tone]),
+        span(value).class(["squircle-readout", tone]),
+    ))
+    .class("squircle-slider")
+}
+
+/// The radio group, zoom toggle, the two shape sliders and the exponent.
+fn controls(state: &AppState, corner: Corner) -> impl DomView<AppState> + use<> {
+    // Apple's corner is fixed, so its flat follows the gauge rather than
+    // setting it, and that slider becomes a readout.
+    let flat_fixed = state.choice.fixed_corner().is_some();
 
     let choices = div((
         span("Construction").class("squircle-control-label"),
@@ -196,36 +264,54 @@ fn controls(state: &AppState) -> impl DomView<AppState> + use<> {
     ))
     .class("squircle-choice");
 
-    let slider = div((
-        label("Gauge")
-            .attr("for", "squircle-gauge")
-            .class("squircle-control-label"),
-        input(())
-            .attr("id", "squircle-gauge")
-            .type_("range")
-            .attr("min", "707")
-            .attr("max", "999")
-            .attr("step", "1")
-            .attr("value", (gauge * 1000.0).round() as i32)
-            .on_input(|state: &mut AppState, event| {
-                if let Some(value) = input_event_target_value(&event) {
-                    if let Ok(parsed) = value.parse::<f64>() {
-                        state.gauge = parsed * 1e-3;
-                    }
-                }
-            }),
-        span(format!("{gauge:.3}")).class("squircle-readout"),
-    ))
-    .class("squircle-slider");
+    // The gauge slider spans [GAUGE_MIN, GAUGE_MAX]; the helper takes 0..1.
+    let gauge_span = GAUGE_MAX - GAUGE_MIN;
+    let gauge_slider = slider(
+        "squircle-gauge",
+        "Gauge",
+        (state.gauge - GAUGE_MIN) / gauge_span,
+        format!("{:.3}", state.gauge),
+        false,
+        move |state, t| state.gauge = GAUGE_MIN + t * gauge_span,
+    );
 
-    div((choices, zoom, slider)).class("squircle-controls")
+    // h runs 0..h_max as the gauge runs c..GAUGE_MAX, when the corner is fixed.
+    let flat_position = if flat_fixed {
+        ((state.gauge - corner.c) / (GAUGE_MAX - corner.c)).clamp(0.0, 1.0)
+    } else {
+        state.flat
+    };
+    let flat_slider = slider(
+        "squircle-flat",
+        "Flat",
+        flat_position,
+        format!("{:.3}", corner.h),
+        flat_fixed,
+        |state, t| state.flat = t,
+    );
+
+    // Only a superellipse, or something approximating one, has an exponent;
+    // for the rest there is no number to show rather than a number to grey.
+    let has_exponent = state.choice.has_exponent();
+    let exponent = readout_row(
+        "Exponent",
+        if has_exponent {
+            format!("{:.3}", superellipse_exponent(corner.c))
+        } else {
+            "\u{2014}".to_string()
+        },
+        !has_exponent,
+    );
+
+    div((choices, zoom, gauge_slider, flat_slider, exponent)).class("squircle-controls")
 }
 
 /// The shape panel: the selected construction over a superellipse reference.
-fn shape_panel(state: &AppState) -> impl DomView<AppState> + use<> {
-    let params = [state.gauge];
-    let mut shape = state.choice.render(&params);
-    let mut reference = Superellipse.render(&params);
+fn shape_panel(state: &AppState, corner: Corner) -> impl DomView<AppState> + use<> {
+    let mut shape = quadrant(state.choice, corner);
+    // The reference stays a plain superellipse at the gauge the shape actually
+    // has, so it is a like-for-like comparison of the diagonal crossing.
+    let mut reference = Superellipse.render(&[corner.gauge()]);
     if !state.zoom {
         shape = quadruple_up(&shape);
         reference = quadruple_up(&reference);
@@ -262,24 +348,24 @@ fn shape_panel(state: &AppState) -> impl DomView<AppState> + use<> {
 }
 
 /// The curvature panel: curvature against arc length along one quadrant.
-fn curvature_panel(state: &AppState) -> impl DomView<AppState> + use<> {
-    let params = [state.gauge];
-    let profile = render_profile(&state.choice.curvature_profile(&params));
+fn curvature_panel(state: &AppState, corner: Corner) -> impl DomView<AppState> + use<> {
+    let profile = render_profile(&quadrant_profile(state.choice, corner));
 
-    // The profile is a polyline in (arc length, curvature) space, so its
-    // bounding box is exactly the data range the axes have to cover.
+    // Only the curvature axis is fitted to the data; arc length keeps the
+    // absolute [`PLOT_S_MAX`] whatever the sliders do.
     let bounds = profile.bounding_box();
-    let s_max = nice_ceil(bounds.x1);
     let k_max = curvature_axis_max(bounds.y1);
     let overflows = bounds.y1 > k_max;
-    let transform = plot_transform(s_max, k_max);
+    // Clamped so that a degenerate profile cannot put the tick outside the plot.
+    let s_end = bounds.x1.clamp(0.0, PLOT_S_MAX);
+    let transform = plot_transform(PLOT_S_MAX, k_max);
 
     let drawing = svg(g((
-        (transform * grid_path(s_max, k_max))
+        (transform * grid_path(PLOT_S_MAX, k_max))
             .stroke(css::GAINSBORO, Stroke::new(1.0))
             .fill(css::TRANSPARENT)
             .class("squircle-grid"),
-        (transform * axes_path(s_max, k_max))
+        (transform * axes_path(PLOT_S_MAX, k_max))
             .stroke(css::GRAY, Stroke::new(1.5))
             .fill(css::TRANSPARENT)
             .class("squircle-axes"),
@@ -287,6 +373,11 @@ fn curvature_panel(state: &AppState) -> impl DomView<AppState> + use<> {
             .stroke(css::STEEL_BLUE, Stroke::new(2.0))
             .fill(css::TRANSPARENT)
             .class(["squircle-path", "squircle-path--curvature"]),
+        // Last, so it reads over the curve where the two meet.
+        end_tick(transform, s_end)
+            .stroke(css::GRAY, Stroke::new(1.5))
+            .fill(css::TRANSPARENT)
+            .class(["squircle-axes", "squircle-tick"]),
     )))
     .attr("viewBox", format!("0 0 {PLOT_W} {PLOT_H}"))
     .class("squircle-figure")
@@ -302,8 +393,9 @@ fn curvature_panel(state: &AppState) -> impl DomView<AppState> + use<> {
         String::new()
     };
     let caption = div(format!(
-        "Curvature, 0 to {k_max}, against arc length along one quadrant, 0 to {s_max}. \
-         Gridlines divide each axis into {PLOT_DIVISIONS} equal parts.{overflow_note}"
+        "Curvature, 0 to {k_max}, against arc length along one quadrant, 0 to {PLOT_S_MAX}. \
+         Gridlines divide each axis into {PLOT_DIVISIONS} equal parts. A tick on \
+         the arc length axis marks the end of the curve, at {s_end:.2}.{overflow_note}"
     ))
     .class("squircle-caption");
 
@@ -312,9 +404,11 @@ fn curvature_panel(state: &AppState) -> impl DomView<AppState> + use<> {
 
 /// Top-level view.
 pub(crate) fn app_logic(state: &mut AppState) -> impl DomView<AppState> + use<> {
+    // Resolved once: inverting the clothoid and Figma parameters costs renders.
+    let corner = Corner::resolve(state.choice, state.gauge, state.flat);
     div((
-        controls(state),
-        div((shape_panel(state), curvature_panel(state)))
+        controls(state, corner),
+        div((shape_panel(state, corner), curvature_panel(state, corner)))
             .class("squircle-panels"),
     ))
     .class("squircle-demo")

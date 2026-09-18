@@ -34,6 +34,13 @@ use crate::squircle::Squircle;
 
 pub struct AppleSquircle;
 
+/// Where this corner crosses its own diagonal.
+///
+/// Measured from the control points below by bisecting the middle cubic for
+/// x == y. The shape has no free parameter, so this is a fixed property of the
+/// data; it is what makes the gauge a readout rather than a control here.
+pub const CORNER_GAUGE: f64 = 0.80931;
+
 /// Half the side length, as a multiple of the corner radius.
 ///
 /// The published code uses this constant to clamp the radius, and also as the

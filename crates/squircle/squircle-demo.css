@@ -178,3 +178,14 @@
   color: var(--fg2-color, #767676);
   font-size: 0.85rem;
 }
+
+/* A construction whose corner is fixed has no gauge to set; the control stays
+   in place as a readout rather than vanishing and reflowing the row. */
+#squircle-demo-root .squircle-slider input[type="range"]:disabled {
+  opacity: 0.4;
+}
+
+/* A readout that does not apply to the current construction. */
+#squircle-demo-root .squircle-muted {
+  opacity: 0.4;
+}
