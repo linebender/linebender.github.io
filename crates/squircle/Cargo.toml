@@ -1,0 +1,29 @@
+[package]
+name = "squircle"
+version = "0.1.0"
+description = "Interactive squircle tester for the Linebender wiki"
+keywords = ["graphics", "curve", "geometry", "squircle"]
+categories = ["graphics"]
+edition = "2024"
+license = "MIT OR Apache-2.0"
+publish = false
+
+[lib]
+# cdylib is what ships: wasm-bindgen turns it into the /rust/squircle.js the
+# wiki page imports. rlib is what lets the dev bin below link against the same
+# code, so `trunk serve` exercises the exact path the site does.
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+# Local iteration only, via `trunk serve`; the site build never compiles it.
+# The name must differ from the lib's, or the two targets collide on
+# squircle.wasm. The `-dev` suffix is also what the packaging step skips.
+name = "squircle-dev"
+path = "src/main.rs"
+
+[dependencies]
+console_error_panic_hook = "0.1.7"
+# The wasm-bindgen CLI version pinned in .github/workflows/main.yml must match
+# the version resolved here; bump both together.
+wasm-bindgen = "0.2"
+xilem_web = "0.4"
