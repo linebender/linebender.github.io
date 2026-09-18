@@ -148,8 +148,6 @@
   font-size: 0.85rem;
 }
 
-/* A derived control stays in place as a readout rather than vanishing and
-   reflowing the row. */
 #squircle-demo-root .squircle-slider input[type="range"]:disabled {
   opacity: 0.4;
 }

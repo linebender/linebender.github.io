@@ -27,24 +27,14 @@ use crate::squircle::Squircles;
 /// The state driving the tester.
 #[derive(Debug)]
 pub(crate) struct AppState {
-    /// Which construction is drawn against the superellipse reference.
+    /// Which construction is drawn.
     choice: Squircles,
-    /// Overall gauge, between `squircle::GAUGE_MIN` and `squircle::GAUGE_MAX`.
-    ///
-    /// This is the "superellipse gauge": the distance from the centre to the
-    /// shape along the 45 degree diagonal, as a fraction of the half-width. A
-    /// circle is `FRAC_1_SQRT_2`, a square is 1.
-    ///
-    /// Ignored for constructions whose corner is fixed, which derive their
-    /// gauge from [`AppState::flat`] instead; see
-    /// [`Corner::resolve`](crate::squircle::Corner::resolve).
+    /// Overall gauge: how far the shape reaches along the 45 degree diagonal,
+    /// as a fraction of the half-width. A circle is `FRAC_1_SQRT_2`, a square
+    /// is 1. Between `squircle::GAUGE_MIN` and `squircle::GAUGE_MAX`.
     gauge: f64,
-    /// How much straight run to put along each edge, as a fraction of the most
-    /// the current gauge allows, in the range [0, 1].
-    ///
-    /// It is a fraction rather than a length because the two are not
-    /// independent; [`Corner::resolve`](crate::squircle::Corner::resolve)
-    /// explains why.
+    /// Straight run along each half edge, as a fraction of what the gauge
+    /// allows, in the range [0, 1].
     flat: f64,
     /// Draw a single corner rather than the whole four-fold shape.
     zoom: bool,
