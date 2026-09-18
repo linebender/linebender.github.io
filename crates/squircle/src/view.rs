@@ -183,6 +183,7 @@ fn controls(state: &AppState) -> impl DomView<AppState> + use<> {
         choice_radio(state, Squircles::ChromiumApprox),
         choice_radio(state, Squircles::Clothoid),
         choice_radio(state, Squircles::Figma),
+        choice_radio(state, Squircles::Apple),
     ))
     .class("squircle-choices");
 
