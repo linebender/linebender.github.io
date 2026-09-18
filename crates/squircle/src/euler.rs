@@ -153,7 +153,7 @@ pub fn integ_euler_12n(mut k0: f64, mut k1: f64, n: usize) -> (f64, f64) {
     (x * ds, y * ds)
 }
 
-/// Evaulate the Euler spiral integral.
+/// Evaluate the Euler spiral integral.
 ///
 /// Compute the following integral to the desired accuracy.
 ///
@@ -243,12 +243,12 @@ impl EulerParams {
     ///
     /// The parameter is in the range 0..1, and the result goes from (0, 0) to (1, 0).
     pub fn eval(&self, t: f64, accuracy: f64) -> Point {
-        let thm = self.th(t * 0.5);
+        let th_m = self.th(t * 0.5);
         let k0 = self.k0;
         let k1 = self.k1;
         let (u, v) = integ_euler((k0 + k1 * 0.5 * (t - 1.0)) * t, k1 * t * t, accuracy);
-        let s = t / self.chord * thm.sin();
-        let c = t / self.chord * thm.cos();
+        let s = t / self.chord * th_m.sin();
+        let c = t / self.chord * th_m.cos();
         let x = u * c - v * s;
         let y = -v * c - u * s;
         Point::new(x, y)
