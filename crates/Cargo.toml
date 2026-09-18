@@ -1,0 +1,3 @@
+[workspace]
+members = [ 'squircle' ]
+resolver = '2'
