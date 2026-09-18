@@ -48,6 +48,8 @@ pub(crate) struct AppState {
     flat: f64,
     /// Draw a single corner rather than the whole four-fold shape.
     zoom: bool,
+    /// Fill the shape rather than stroking its outline.
+    fill: bool,
 }
 
 impl Default for AppState {
@@ -57,6 +59,7 @@ impl Default for AppState {
             gauge: 0.841,
             flat: 0.0,
             zoom: false,
+            fill: false,
         }
     }
 }
