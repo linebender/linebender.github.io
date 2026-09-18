@@ -4,7 +4,7 @@ title = "Squircles"
 
 A squircle is a shape intermediate between a square and a circle.
 There is no single mathematical definition, rather there are a number of curves that fit this shape.
-All are parametrized, and can vary between circle and square.
+All general squircles are parametrized, and can vary between circle and square.
 
 
 <div id="squircle-demo-root">
@@ -59,7 +59,7 @@ A significant advantage of the latter approach is that it can adapt to rectangle
 ## The Apple squircle shape
 
 Squircles received renewed attention when Apple changed the icon shape from rounded rectangle to their own squircle in iOS 7 in 2013.
-There were several blog posts to analyze and recreate the shape, including [Desperately Seeking Squircles](https://www.figma.com/blog/desperately-seeking-squircles/) from Figma.
+There were several blog posts to analyze and recreate the shape.
 An early analysis suggested that it was a superellipse of exponent 5, but when people extracted the Béziers and looked more closely, that was found to be inaccurate.
 Rather, it’s a flat-sided squircle.
 
@@ -100,7 +100,7 @@ Gauges up to 1 are of course attainable by adding the flat side.
 
 The Figma blog suggests “smoothed curvature profiles” which have a piecewise linear relationship between arc length and curvature.
 It then goes on to approximate them with cubic Bézier segments, but their approximation has fairly significant curvature discontinuities when joining to the circular arc.
-The clothoid squircle is worth describing explicitly, as it has G2 continuity (as opposed to G1 for the Figma approximation)
+The clothoid squircle is worth describing explicitly, as it has G2 continuity (as opposed to G1 for the Figma approximation).
 
 The behavior is generally similar to the Figma variant.
 Without a flat side, it is only capable of a gauge between $\sqrt{0.5}$ (0.707) and 0.790.
@@ -119,10 +119,8 @@ It is exact for placing the midpoint (this is part of the formula), so is well c
 
 ### Apple-like behavior with the corner-shape spec
 
-Early analysis of the Apple squircle shape suggested a superellipse with exponent 5.
-This analysis was based on coarse shape only and didn't allow for an additional flat side, which it does contain.
-
-A very close match to the Apple shape is attainable using a superellipse with exponent 3 and a corresponding flat side length to match the gauge.
+The early analysis of the Apple squircle shape as being approximately an exponent 5 superellipse was based on coarse shape only and didn't take into account its flat side.
+A much better match to the Apple shape is attainable using a superellipse with exponent 3 and a corresponding flat side length to match the gauge.
 This has G2 continuity and a similar curvature profile.
 This illustration was made using the Chromium approximation, so it should match the browser.
 
@@ -143,10 +141,10 @@ Note that the parameter to the `superellipse()` function is the base-2 log of th
 
 A superellipse of exponent $n$ has continuity $G(\lceil n \rceil - 1)$.
 This includes the flat-sided variants, as, for exponent > 2, the endpoint of the quadrant has zero curvature.
-A perfect circle is of course the exception, as it has an infinitely high order of continuity.
+A perfect circle (and indeed, any even integer exponent) without flat sides is of course the exception, as it has an infinitely high order of continuity.
 
 As a general observation, for visual smoothness, the shape should have G2 continuity.
-Of the variants discussed, only the clothoid and superellipse have this property.
+Of the variants discussed, only the clothoid and superellipse (for n > 2) have this property.
 The Chromium approximation comes close; it doesn't have zero curvature by construction when joining the flat part, but does at the corner join by symmetry (unlike the Figma approximation, which has an additional arc there).
 
 ## Other squircles
@@ -162,14 +160,7 @@ These approximate a sharp corner but are only G1 continuous (if flat sided).
 * Fernández-Guasti squircle, defined by $x^2 + y^2 - s^2x^2y^2 = 1$.
 This is used in engineering but likely not in graphic design.
 
-* Wikipedia has a “periodic squircle” which has very similar behavior to the Fernández-Guasti one (they are visually near indistinguishable).
-
-## References
-
-* There’s a very detailed exploration of superellipses and Bézier approximations at [Goodbye Circles, Hello Squircles: Perfect Corners in CSS & Canvas](https://orgpad.info/blog/squircles).
-(not sure I’ll include this; there’s lots of detail but some things are iffy.)
-
-* The Wikipedia page on [squircles](https://en.wikipedia.org/wiki/Squircle).
+* The [Wikipedia page on squircles](https://en.wikipedia.org/wiki/Squircle) has a “periodic squircle” which has very similar behavior to the Fernández-Guasti one (they are visually near indistinguishable).
 
 ## Discussion questions:
 
