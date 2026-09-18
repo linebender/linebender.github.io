@@ -3,7 +3,7 @@
 
 use std::f64::consts::{FRAC_1_SQRT_2, FRAC_PI_2, FRAC_PI_4};
 
-use xilem_web::svg::kurbo::{Affine, BezPath, Point, Vec2};
+use xilem_web::svg::kurbo::{BezPath, Point, Vec2};
 
 use crate::{euler::{EulerParams, EulerSeg}, squircle::{ProfileSample, Squircle}};
 

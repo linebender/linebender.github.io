@@ -29,12 +29,23 @@ use crate::squircle::Squircles;
 pub(crate) struct AppState {
     /// Which construction is drawn against the superellipse reference.
     choice: Squircles,
-    /// Shape parameter, in the range [0.707, 0.999].
+    /// Overall gauge, between `squircle::GAUGE_MIN` and `squircle::GAUGE_MAX`.
     ///
     /// This is the "superellipse gauge": the distance from the centre to the
     /// shape along the 45 degree diagonal, as a fraction of the half-width. A
     /// circle is `FRAC_1_SQRT_2`, a square is 1.
+    ///
+    /// Ignored for constructions whose corner is fixed, which derive their
+    /// gauge from [`AppState::flat`] instead; see
+    /// [`Corner::resolve`](crate::squircle::Corner::resolve).
     gauge: f64,
+    /// How much straight run to put along each edge, as a fraction of the most
+    /// the current gauge allows, in the range [0, 1].
+    ///
+    /// It is a fraction rather than a length because the two are not
+    /// independent; [`Corner::resolve`](crate::squircle::Corner::resolve)
+    /// explains why.
+    flat: f64,
     /// Draw a single corner rather than the whole four-fold shape.
     zoom: bool,
 }
@@ -44,6 +55,7 @@ impl Default for AppState {
         Self {
             choice: Squircles::default(),
             gauge: 0.841,
+            flat: 0.0,
             zoom: false,
         }
     }

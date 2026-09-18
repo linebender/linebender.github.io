@@ -3,10 +3,11 @@
 
 //! Generic trait for squircles
 
-use std::f64::consts::{FRAC_PI_2, SQRT_2};
+use std::f64::consts::{FRAC_1_SQRT_2, FRAC_PI_2, LN_2, SQRT_2};
 
 use xilem_web::svg::kurbo::{
-    BezPath, ParamCurve, ParamCurveArclen, ParamCurveCurvature, PathSeg, Point,
+    Affine, BezPath, Line, ParamCurve, ParamCurveArclen, ParamCurveCurvature, PathSeg, Point,
+    common::solve_itp,
 };
 
 use crate::{
@@ -50,6 +51,136 @@ pub trait Squircle {
     }
 }
 
+/// Smallest overall gauge the tester offers.
+pub const GAUGE_MIN: f64 = 0.707;
+/// Largest overall gauge the tester offers.
+pub const GAUGE_MAX: f64 = 0.999;
+
+/// The roundest corner the parametric constructions reach, where each becomes
+/// a circular arc.
+const CORNER_MIN: f64 = FRAC_1_SQRT_2;
+
+/// The two numbers that actually determine a shape.
+///
+/// A shape is a straight run along each half edge plus a corner profile scaled
+/// into the square that is left over, which gives `gauge = c + h * (1 - c)`.
+#[derive(Clone, Copy, Debug)]
+pub struct Corner {
+    /// Where the corner profile crosses its own diagonal.
+    pub c: f64,
+    /// Length of the straight run along each half edge, as a fraction of the
+    /// half width.
+    pub h: f64,
+    /// What to hand the construction to land on `c`.
+    param: f64,
+}
+
+impl Corner {
+    /// Turns the two slider positions into a corner.
+    ///
+    /// The gauge always holds, so switching construction never moves it. The
+    /// flat picks the corner within what the gauge allows, since
+    /// `gauge = c + h * (1 - c)` and `c` cannot go below a circular corner. A
+    /// flat of 1 is always exactly a circular corner.
+    ///
+    /// Where the construction's family has no corner that round or that square,
+    /// it makes the nearest one it can and the flat takes up the difference, so
+    /// the gauge still holds. Apple is that case at its extreme: one corner, so
+    /// the flat is entirely determined.
+    ///
+    /// This is the only place the parameterization is decided.
+    pub fn resolve(choice: Squircles, gauge: f64, flat: f64) -> Self {
+        let h_max = ((gauge - CORNER_MIN) / (1.0 - CORNER_MIN)).max(0.0);
+        let wanted = flat.clamp(0.0, 1.0) * h_max;
+        let (c, param) = choice.solve_corner((gauge - wanted) / (1.0 - wanted));
+        Self {
+            c,
+            h: ((gauge - c) / (1.0 - c)).max(0.0),
+            param,
+        }
+    }
+
+    /// Where the assembled shape crosses its diagonal.
+    pub fn gauge(self) -> f64 {
+        self.c + self.h * (1.0 - self.c)
+    }
+}
+
+/// The exponent `n` of the superellipse `|x|^n + |y|^n = 1` whose quadrant
+/// crosses its diagonal at `c`.
+///
+/// This inverts the `exp_adjust` that [`Superellipse`] derives from its gauge:
+/// a circular corner is 2, and the familiar Lame curve behind most squircles
+/// is 4, at a gauge of about 0.841.
+pub fn superellipse_exponent(c: f64) -> f64 {
+    -LN_2 / c.ln()
+}
+
+/// Where a quadrant crosses its own diagonal, which is the gauge.
+pub fn diagonal_crossing(path: &BezPath) -> f64 {
+    let diag = Line::new(Point::ZERO, Point::new(1.0, 1.0));
+    path.segments()
+        .flat_map(|seg| {
+            seg.intersect_line(diag)
+                .into_iter()
+                .map(move |hit| seg.eval(hit.segment_t).x)
+        })
+        .fold(f64::NAN, f64::max)
+}
+
+/// Assembles a full quadrant: a straight run, the corner profile scaled into
+/// the corner square, and another straight run.
+pub fn quadrant(choice: Squircles, corner: Corner) -> BezPath {
+    let Corner { h, param, .. } = corner;
+    let profile = choice.render(&[param]);
+    if h <= 0.0 {
+        return profile;
+    }
+    let scaled = Affine::translate((h, h)) * Affine::scale(1.0 - h) * profile;
+    let mut result = BezPath::new();
+    result.move_to((1.0, 0.0));
+    result.line_to((1.0, h));
+    // The scaled profile starts on the point just added, so drop its move_to.
+    result.extend(scaled.elements().iter().skip(1).copied());
+    result.line_to((0.0, 1.0));
+    result
+}
+
+/// The curvature profile of the assembled quadrant.
+///
+/// Scaling a curve by `s` multiplies arc length by `s` and divides curvature by
+/// `s`, so the corner's own profile transforms directly and does not have to be
+/// resampled off the assembled path.
+pub fn quadrant_profile(choice: Squircles, corner: Corner) -> Vec<ProfileSample> {
+    let Corner { h, param, .. } = corner;
+    let inner = choice.curvature_profile(&[param]);
+    if h <= 0.0 {
+        return inner;
+    }
+    let scale = 1.0 - h;
+    // `render_profile` drops any non-finite sample, but the trailing flat still
+    // has to be placed, so the corner's length comes from the last sample that
+    // carries one rather than from whatever the profile happens to end on.
+    let corner_len = inner
+        .iter()
+        .rev()
+        .find(|sample| sample.s.is_finite())
+        .map_or(0.0, |sample| sample.s);
+    let end = h + corner_len * scale;
+    let mut result = Vec::with_capacity(inner.len() + 4);
+    result.push(ProfileSample::new(0.0, 0.0));
+    result.push(ProfileSample::new(h, 0.0));
+    for sample in inner {
+        result.push(ProfileSample {
+            s: h + sample.s * scale,
+            k: sample.k / scale,
+        });
+    }
+    result.push(ProfileSample::new(end, 0.0));
+    result.push(ProfileSample::new(end + h, 0.0));
+    result
+}
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Default)]
 pub enum Squircles {
     #[default]
@@ -69,6 +200,58 @@ impl Squircles {
             Self::Clothoid => "Clothoid",
             Self::Figma => "Figma",
             Self::Apple => "Apple",
+        }
+    }
+
+    /// Whether this construction is a superellipse, or an approximation close
+    /// enough to one that the superellipse exponent describes its corner.
+    pub fn has_exponent(self) -> bool {
+        matches!(self, Self::Superellipse | Self::ChromiumApprox)
+    }
+
+    /// The corner nearest `c` this construction can make, and the parameter
+    /// that makes it.
+    ///
+    /// The superellipse and the Chromium approximation take the gauge as is.
+    /// Apple has one corner. The clothoid and Figma take a smoothness, so those
+    /// are solved for; the clothoid's family stops around 0.79, well short of
+    /// the slider, and returns its nearest corner instead.
+    fn solve_corner(self, c: f64) -> (f64, f64) {
+        match self {
+            Self::Superellipse | Self::ChromiumApprox => (c, c),
+            Self::Apple => (crate::apple_squircle::CORNER_GAUGE, 0.0),
+            Self::Clothoid | Self::Figma => {
+                let crossing = |p: f64| diagonal_crossing(&self.render(&[p]));
+                let (a, b) = (GAUGE_MIN, GAUGE_MAX);
+                let (ya, yb) = (crossing(a) - c, crossing(b) - c);
+                // Negated so a NaN measurement takes this branch too.
+                if !(ya * yb <= 0.0) {
+                    let p = if ya.abs() < yb.abs() { a } else { b };
+                    return (crossing(p), p);
+                }
+                // solve_itp wants f(a) < 0 < f(b); flip if the mapping descends.
+                let flip = if ya > 0.0 { -1.0 } else { 1.0 };
+                let p = solve_itp(
+                    |p| flip * (crossing(p) - c),
+                    a,
+                    b,
+                    1e-9,
+                    1,
+                    0.2 / (b - a),
+                    flip * ya,
+                    flip * yb,
+                );
+                (c, p)
+            }
+        }
+    }
+
+    /// The corner gauge this construction is pinned to, for constructions that
+    /// have no shape parameter of their own.
+    pub fn fixed_corner(self) -> Option<f64> {
+        match self {
+            Self::Apple => Some(crate::apple_squircle::CORNER_GAUGE),
+            _ => None,
         }
     }
 }
@@ -136,7 +319,13 @@ impl Squircle for Superellipse {
         // constructions that use the default `curvature_profile`.
         for i in 0..=N {
             let th = i as f64 * (FRAC_PI_2 / N as f64);
-            let (v, u) = th.sin_cos();
+            // Pinned at the end exactly as `render` pins it. The last `th`
+            // lands a ulp past `FRAC_PI_2`, so `cos` returns about -1.2e-16,
+            // and `powf` of a negative base to a fractional power is NaN. That
+            // NaN reaches `s` through the chord below and stays there, so the
+            // sample carrying the end of the quadrant is dropped rather than
+            // plotted.
+            let (v, u) = if i == N { (1.0, 0.0) } else { th.sin_cos() };
             let x = u.powf(exp_adjust);
             let y = v.powf(exp_adjust);
             let p = Point::new(x, y);
