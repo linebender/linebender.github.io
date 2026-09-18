@@ -12,6 +12,7 @@
 //! the demo picks up the site's light and dark themes instead of hardcoding a
 //! palette that only works on one of them.
 
+mod apple_squircle;
 mod clothoid_squircle;
 mod euler;
 mod figma_squircle;

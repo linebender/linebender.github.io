@@ -9,7 +9,10 @@ use xilem_web::svg::kurbo::{
     BezPath, ParamCurve, ParamCurveArclen, ParamCurveCurvature, PathSeg, Point,
 };
 
-use crate::{clothoid_squircle::ClothoidSquircle, figma_squircle::FigmaSquircle};
+use crate::{
+    apple_squircle::AppleSquircle, clothoid_squircle::ClothoidSquircle,
+    figma_squircle::FigmaSquircle,
+};
 
 pub struct ProfileSample {
     s: f64,
@@ -54,6 +57,7 @@ pub enum Squircles {
     ChromiumApprox,
     Clothoid,
     Figma,
+    Apple,
 }
 
 impl Squircles {
@@ -64,6 +68,7 @@ impl Squircles {
             Self::ChromiumApprox => "Chromium approximation",
             Self::Clothoid => "Clothoid",
             Self::Figma => "Figma",
+            Self::Apple => "Apple",
         }
     }
 }
@@ -75,6 +80,7 @@ impl Squircle for Squircles {
             Self::ChromiumApprox => ChromiumApprox.render(params),
             Self::Clothoid => ClothoidSquircle.render(params),
             Self::Figma => FigmaSquircle.render(params),
+            Self::Apple => AppleSquircle.render(params),
         }
     }
 
@@ -84,6 +90,7 @@ impl Squircle for Squircles {
             Self::ChromiumApprox => ChromiumApprox.curvature_profile(params),
             Self::Clothoid => ClothoidSquircle.curvature_profile(params),
             Self::Figma => FigmaSquircle.curvature_profile(params),
+            Self::Apple => AppleSquircle.curvature_profile(params),
         }
     }
 }
