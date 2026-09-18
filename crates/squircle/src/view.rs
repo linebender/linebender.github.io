@@ -16,7 +16,7 @@ use xilem_web::{
     DomView, input_event_target_value,
     elements::{
         html::{div, input, label, span},
-        svg::{g, svg},
+        svg::{g, svg, text},
     },
     interfaces::{Element, HtmlInputElement, SvgGeometryElement, SvgPathElement},
     svg::{
@@ -28,8 +28,8 @@ use xilem_web::{
 use crate::{
     AppState,
     squircle::{
-        Corner, GAUGE_MAX, GAUGE_MIN, Squircle, Squircles, Superellipse, quadrant,
-        quadrant_profile, render_profile, superellipse_exponent,
+        Corner, GAUGE_MAX, GAUGE_MIN, Squircles, quadrant, quadrant_profile, render_profile,
+        superellipse_exponent,
     },
 };
 
@@ -44,6 +44,29 @@ const PLOT_W: f64 = 560.0;
 const PLOT_H: f64 = 300.0;
 /// Number of gridline divisions along each axis of the curvature plot.
 const PLOT_DIVISIONS: usize = 4;
+
+/// Gap between a curvature label and the axis, in `viewBox` units.
+const LABEL_GAP: f64 = 8.0;
+
+/// Labels for the curvature axis, one per gridline.
+fn curvature_labels(transform: Affine, k_max: f64) -> impl DomView<AppState> + use<> {
+    let labels: Vec<_> = (1..=PLOT_DIVISIONS)
+        .map(|i| {
+            let k = k_max * i as f64 / PLOT_DIVISIONS as f64;
+            let at = transform * Point::new(0.0, k);
+            let shown = if k.fract() == 0.0 {
+                format!("{k:.0}")
+            } else {
+                format!("{k:.1}")
+            };
+            text(shown)
+                .attr("x", format!("{:.1}", at.x - LABEL_GAP))
+                .attr("y", format!("{:.1}", at.y + 4.0))
+                .class("squircle-axis-label")
+        })
+        .collect();
+    g(labels)
+}
 
 /// A tick up from the arc length axis at `s_end`, where the curve stops.
 ///
@@ -264,6 +287,15 @@ fn controls(state: &AppState, corner: Corner) -> impl DomView<AppState> + use<> 
     ))
     .class("squircle-choice");
 
+    let fill = label((
+        input(())
+            .type_("checkbox")
+            .checked(state.fill)
+            .on_input(|state: &mut AppState, _| state.fill = !state.fill),
+        "Fill",
+    ))
+    .class("squircle-choice");
+
     // The gauge slider spans [GAUGE_MIN, GAUGE_MAX]; the helper takes 0..1.
     let gauge_span = GAUGE_MAX - GAUGE_MIN;
     let gauge_slider = slider(
@@ -303,48 +335,37 @@ fn controls(state: &AppState, corner: Corner) -> impl DomView<AppState> + use<> 
         !has_exponent,
     );
 
-    div((choices, zoom, gauge_slider, flat_slider, exponent)).class("squircle-controls")
+    div((choices, zoom, fill, gauge_slider, flat_slider, exponent)).class("squircle-controls")
 }
 
-/// The shape panel: the selected construction over a superellipse reference.
+/// The shape panel.
 fn shape_panel(state: &AppState, corner: Corner) -> impl DomView<AppState> + use<> {
     let mut shape = quadrant(state.choice, corner);
-    // The reference stays a plain superellipse at the gauge the shape actually
-    // has, so it is a like-for-like comparison of the diagonal crossing.
-    let mut reference = Superellipse.render(&[corner.gauge()]);
-    if !state.zoom {
+    if state.zoom {
+        // A lone quadrant is open, so filling it needs the two radii.
+        if state.fill {
+            shape.line_to((0.0, 0.0));
+            shape.close_path();
+        }
+    } else {
         shape = quadruple_up(&shape);
-        reference = quadruple_up(&reference);
     }
 
-    let transform = shape_transform();
-    let drawing = svg(g((
-        (transform * reference)
-            .stroke(css::DARK_ORANGE, Stroke::new(1.5))
-            .fill(css::TRANSPARENT)
-            .class(["squircle-path", "squircle-path--reference"]),
-        (transform * shape)
-            .stroke(css::STEEL_BLUE, Stroke::new(2.0))
-            .fill(css::TRANSPARENT)
-            .class(["squircle-path", "squircle-path--shape"]),
-    )))
+    let (mode, stroke, fill) = if state.fill {
+        ("squircle-path--fill", css::TRANSPARENT, css::STEEL_BLUE)
+    } else {
+        ("squircle-path--shape", css::STEEL_BLUE, css::TRANSPARENT)
+    };
+    let drawing = svg(g((shape_transform() * shape)
+        .stroke(stroke, Stroke::new(2.0))
+        .fill(fill)
+        .class(["squircle-path", mode])))
     .attr("viewBox", format!("0 0 {SHAPE_VIEW} {SHAPE_VIEW}"))
     .class("squircle-figure")
     .attr("role", "img")
-    .attr(
-        "aria-label",
-        "The selected squircle construction drawn over a superellipse of the same gauge",
-    );
+    .attr("aria-label", "The selected squircle construction");
 
-    let key = div((
-        span("Selected construction")
-            .class(["squircle-key", "squircle-key--shape"]),
-        span("Superellipse reference")
-            .class(["squircle-key", "squircle-key--reference"]),
-    ))
-    .class("squircle-legend");
-
-    div((drawing, key)).class("squircle-panel")
+    div(drawing).class("squircle-panel")
 }
 
 /// The curvature panel: curvature against arc length along one quadrant.
@@ -355,7 +376,6 @@ fn curvature_panel(state: &AppState, corner: Corner) -> impl DomView<AppState> +
     // absolute [`PLOT_S_MAX`] whatever the sliders do.
     let bounds = profile.bounding_box();
     let k_max = curvature_axis_max(bounds.y1);
-    let overflows = bounds.y1 > k_max;
     // Clamped so that a degenerate profile cannot put the tick outside the plot.
     let s_end = bounds.x1.clamp(0.0, PLOT_S_MAX);
     let transform = plot_transform(PLOT_S_MAX, k_max);
@@ -378,6 +398,7 @@ fn curvature_panel(state: &AppState, corner: Corner) -> impl DomView<AppState> +
             .stroke(css::GRAY, Stroke::new(1.5))
             .fill(css::TRANSPARENT)
             .class(["squircle-axes", "squircle-tick"]),
+        curvature_labels(transform, k_max),
     )))
     .attr("viewBox", format!("0 0 {PLOT_W} {PLOT_H}"))
     .class("squircle-figure")
@@ -387,19 +408,7 @@ fn curvature_panel(state: &AppState, corner: Corner) -> impl DomView<AppState> +
         "Curvature plotted against arc length along one quadrant",
     );
 
-    let overflow_note = if overflows {
-        format!(" The peak of {:.0} runs off the top.", bounds.y1)
-    } else {
-        String::new()
-    };
-    let caption = div(format!(
-        "Curvature, 0 to {k_max}, against arc length along one quadrant, 0 to {PLOT_S_MAX}. \
-         Gridlines divide each axis into {PLOT_DIVISIONS} equal parts. A tick on \
-         the arc length axis marks the end of the curve, at {s_end:.2}.{overflow_note}"
-    ))
-    .class("squircle-caption");
-
-    div((drawing, caption)).class("squircle-panel")
+    div(drawing).class("squircle-panel")
 }
 
 /// Top-level view.

@@ -99,11 +99,6 @@ impl Corner {
             param,
         }
     }
-
-    /// Where the assembled shape crosses its diagonal.
-    pub fn gauge(self) -> f64 {
-        self.c + self.h * (1.0 - self.c)
-    }
 }
 
 /// The exponent `n` of the superellipse `|x|^n + |y|^n = 1` whose quadrant

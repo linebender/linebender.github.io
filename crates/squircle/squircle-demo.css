@@ -10,10 +10,8 @@
  */
 
 #squircle-demo-root {
-  /* One place to set the palette; the SVG paths and the legend swatches both
-     read these, so they can never drift apart. */
+  /* One place to set the palette, so the SVG paths can never drift apart. */
   --squircle-shape: #0b5fbd;
-  --squircle-reference: #b5530c;
   --squircle-grid: #e0e0e0;
   --squircle-axis: #8a8a8a;
 
@@ -23,7 +21,6 @@
 @media (prefers-color-scheme: dark) {
   #squircle-demo-root {
     --squircle-shape: #79b0f2;
-    --squircle-reference: #f0a35e;
     --squircle-grid: #4a4a4a;
     --squircle-axis: #909090;
   }
@@ -114,21 +111,19 @@
 }
 
 #squircle-demo-root .squircle-path {
-  fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 #squircle-demo-root .squircle-path--shape,
 #squircle-demo-root .squircle-path--curvature {
+  fill: none;
   stroke: var(--squircle-shape);
 }
 
-/* Dashed as well as differently colored, so the two curves stay distinguishable
-   in print and for readers with a color vision deficiency. */
-#squircle-demo-root .squircle-path--reference {
-  stroke: var(--squircle-reference);
-  stroke-dasharray: 7 5;
+#squircle-demo-root .squircle-path--fill {
+  fill: var(--squircle-shape);
+  stroke: none;
 }
 
 #squircle-demo-root .squircle-grid {
@@ -136,51 +131,25 @@
   stroke: var(--squircle-grid);
 }
 
+#squircle-demo-root .squircle-axis-label {
+  fill: var(--fg2-color, #767676);
+  font-size: 14px;
+  text-anchor: end;
+}
+
 #squircle-demo-root .squircle-axes {
   fill: none;
   stroke: var(--squircle-axis);
 }
 
-#squircle-demo-root .squircle-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 1rem;
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-}
-
-#squircle-demo-root .squircle-key {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-#squircle-demo-root .squircle-key::before {
-  content: "";
-  width: 1.4rem;
-  height: 0;
-  border-top-width: 3px;
-  border-top-style: solid;
-}
-
-#squircle-demo-root .squircle-key--shape::before {
-  border-top-color: var(--squircle-shape);
-}
-
-#squircle-demo-root .squircle-key--reference::before {
-  border-top-color: var(--squircle-reference);
-  border-top-style: dashed;
-}
-
-#squircle-demo-root .squircle-caption,
 #squircle-demo-root .squircle-fallback {
   margin-top: 0.5rem;
   color: var(--fg2-color, #767676);
   font-size: 0.85rem;
 }
 
-/* A construction whose corner is fixed has no gauge to set; the control stays
-   in place as a readout rather than vanishing and reflowing the row. */
+/* A derived control stays in place as a readout rather than vanishing and
+   reflowing the row. */
 #squircle-demo-root .squircle-slider input[type="range"]:disabled {
   opacity: 0.4;
 }
