@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>LLM contribution policy for Linebender projects - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="LLM contribution policy for Linebender projects">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="LLM contribution policy for Linebender projects">
+        <meta property="og:description"
+            content="LLM contribution policy for Linebender projects">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="LLM contribution policy for Linebender projects">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>LLM contribution policy for Linebender projects</h1>
+<p>Open-source projects are facing an increasing amount of submissions generated in whole or in part by LLMs.</p>
+<p>Maintainers tend to strongly dislike them: they require very little effort to create (since a machine is doing all the work) but a lot of effort to review (since LLMs make mistakes that are hard to track down).
+Because LLMs are good at mimicking high-effort contributors, maintainers often feel pressured to give the benefit of the doubt to the submitter and give a level of feedback that isn't warranted by the effort the submitter made.</p>
+<p>Still, LLM agents can produce high-quality code, so we don't want to ban them altogether.</p>
+<p>This document outlines Linebender's official policy for LLM contributions, inspired by <a href="https://xi.zulipchat.com/#narrow/channel/419691-linebender/topic/AI.20slop.20policy/near/575407715">this zulip discussion</a>.</p>
+<h2 id="disclosure">Disclosure</h2>
+<p>Contributors should disclose their LLM usage ahead of time.
+Reviewers will <em>not</em> be happy if a contributor only admits to using LLMs after being prodded, and will tend to assume the contributor is downplaying their level of AI use.</p>
+<p>This above applies even if the reviewer double-checked everything the LLM wrote.
+In our experience, people overestimate their level of understanding of agent-produced code when the agent had a high level of initiative.
+"Code you wrote yourself" and "Code you read after the LLM wrote it" do not warrant the same level of scrutiny.</p>
+<p>Contributors should also disclose content that wasn't written by an agent, but was a direct result of LLM outputs, notably:</p>
+<ul>
+<li>Code or documentation that was created following an outline, plan or architecture proposed by an LLM.</li>
+<li>Code that was copy-pasted by an AI chat tool (e.g. ChatGPT), even if the code was double-checked or adjusted.</li>
+</ul>
+<p>This disclosure should be included in the PR description, so that it appears in the final commit message.</p>
+<h3 id="copilot-like-tools">Copilot-like tools</h3>
+<p>Tools like Github Copilot or Cursor Tab that do small tab-completion of code you're writing fall in a grey area.</p>
+<p>Completing single lines of code or small blocks of boilerplate is fine and doesn't require disclosure.</p>
+<p>Completing large blocks of code or entire functions, however, is similar to asking an agent to generate it for you.
+Writing a comment that says "The following does X" and then hitting tab a few times is almost identical to using an agent.</p>
+<p>As a rule of thumb, in Rust, by the time Copilot produces completions with multiple <code>;</code> characters, you should treat it as LLM code that requires disclosure.</p>
+<h3 id="non-generation-use-of-llm">Non-generation use of LLM</h3>
+<p>Using LLMs for debugging, exploration, testing (<em>not</em> generating test files), spell-checking and grammar-checking is accepted without disclosure.</p>
+<h3 id="anti-disclosure">Anti-disclosure</h3>
+<p>Given the above, declaring that a PR <em>doesn't</em> include AI-generated content is redundant and unverifiable.
+Please don't include such messages unless asked.</p>
+<h2 id="level-of-effort">Level of effort</h2>
+<p>The rule of thumb for all LLM content is "You should not ask someone to read text if reading it would take longer than it took you to create it".</p>
+<p>As such, we do not allow LLM bots, PRs that were generated end-to-end by LLMs, or AI-generated PR descriptions (translations are fine with disclosure).</p>
+<p>If a PR includes AI-generated content, we fully expect the submitter to review their own PR before asking anyone else to look at it.
+They should spend as much effort on this self-review as they would on a human-authored PR.</p>
+<p>In discussion spaces like Github comments and the Zulip server, please avoid posting AI-generated analyses, even if you vetted them.</p>
+<h2 id="llms-and-non-english-speakers">LLMs and non-English speakers</h2>
+<p>Most Linebender contributors don't speak English as their first language, and we understand that contributors might struggle with English and feel anxious about it.</p>
+<p>As mentioned above, using AI to check your grammar or find ways to reword a sentence is fine and doesn't require disclosure.</p>
+<p>Using AI to translate something you wrote in your native language usually doesn't require disclosure.</p>
+<p>We consider these cases meaningfully different from asking AI to generate text for you from a prompt or having AI auto-generate doc for a code item, both of which require disclosure.</p>
+<h2 id="agent-files">Agent files</h2>
+<p>We will not merge agentic markdown files.</p>
+<p>Some projects may include common agent files in their <code>.gitignore</code>.</p>
+<h2 id="repository-level-guidance">Repository-level guidance</h2>
+<p>Linebender repositories should include some guidance on our LLM policy, including links to this article where appropriate.</p>
+<p>Repositories usually have a <strong>Contributing</strong> section in the README, which should include a short snippet along those lines:</p>
+<pre data-lang="md" style="background-color:#2b303b;color:#c0c5ce;" class="language-md "><code class="language-md" data-lang="md"><span>Contributors should disclose LLM-generated content ahead of time.
+</span><span>See </span><span style="color:#d08770;">[LLM contribution policy for Linebender projects](https://linebender.org/wiki/llm-policy/)</span><span> for details.
+</span></code></pre>
+<p>Linebender repositories should have PR and Issue templates with a section along those lines:</p>
+<pre data-lang="md" style="background-color:#2b303b;color:#c0c5ce;" class="language-md "><code class="language-md" data-lang="md"><span style="color:#8fa1b3;"># LLM content
+</span><span>
+</span><span>Does this PR/Issue include LLM-generated content?
+</span><span>
+</span><span style="color:#bf616a;">- If not, remove this section.
+</span><span style="color:#bf616a;">- If so, see Linebender&#39;s LLM policy: https://linebender.org/wiki/llm-policy/.
+</span></code></pre>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>A plan for SIMD - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="A plan for SIMD">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="A plan for SIMD">
+        <meta property="og:description"
+            content="A plan for SIMD">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="A plan for SIMD">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>A plan for SIMD</h1>
+<h3>Raph Levien, June 6, 2025</h3>
+<h1 id="a-plan-for-simd">A plan for SIMD</h1>
+<p>This document is a followup to the blog post, “<a href="https://linebender.org/blog/towards-fearless-simd/">Towards fearless SIMD, 7 years later</a>”.
+My goal in publishing that was to start a conversation about the best way for Rust to support SIMD programming.
+I’ve also done a bit more exploration and had some discussions at RustWeek, and am now prepared to offer a plan.
+Ideally, I’d like some level of buy-in from the Rust ecosystem, but in any case it feels Good Enough to proceed with writing a large quantity of SIMD code, which is required for Linebender projects to meet their performance goals.
+There's also a companion PR, <a href="https://github.com/raphlinus/fearless_simd/pull/3">fearless_simd#3</a>, which moves this proposal forward.</p>
+<h2 id="goals">Goals</h2>
+<p>The main goals are spelled out in the above-linked blog.
+SIMD results in massive speedups for workloads operating on bulk data, especially image processing, media codec, audio.
+It is also possible to exploit SIMD for speedups in other applications such as string processing.
+The primary goal of this library is to make SIMD programming ergonomic and safe for Rust programmers, making it as easy as possible to achieve near-peak performance across a wide variety of CPUs.
+These goals are very similar to those of <a href="https://github.com/google/highway">Highway</a>, a mature and capable SIMD library for C++.</p>
+<p>After some more experimentation and reflection, I’d like to explicitly add the following goals:</p>
+<ul>
+<li>
+<p>Lightweight dependency.
+The library itself should be quick to build.
+It should have no expensive transitive dependencies.
+In particular, it should not require proc macro infrastructure.</p>
+</li>
+<li>
+<p>Fine-grained levels.
+I’ve spent more time looking at CPU stats, and it’s clear there is value in supporting at least SSE 4.2 – in the <a href="https://firefoxgraphics.github.io/telemetry/#view=system">Firefox hardware survey</a>, AVX-2 support is only 74.2% (previously I was relying on Steam, which has it as 94.66%).</p>
+</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>We build in the direction of <a href="https://github.com/raphlinus/fearless_simd/pull/2">fearless_simd#2</a>, but with a few course corrections.
+In particular, instead of manually curating the library and using (declarative) macros to try to reduce repetition and boilerplate, we rely heavily on code generation.
+For example, here is the current way to express dispatch:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">inline</span><span>(always)]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">to_srgb_impl</span><span>&lt;S: Simd&gt;(</span><span style="color:#bf616a;">simd</span><span>: S, </span><span style="color:#bf616a;">rgba</span><span>: [</span><span style="color:#b48ead;">f32</span><span>; 4]) -&gt; [</span><span style="color:#b48ead;">f32</span><span>; </span><span style="color:#d08770;">4</span><span>] {
+</span><span>    ...
+</span><span>}
+</span><span>
+</span><span>simd_dispatch!(</span><span style="color:#96b5b4;">to_srgb</span><span>(level, rgba: [</span><span style="color:#b48ead;">f32</span><span>; </span><span style="color:#d08770;">4</span><span>]) -&gt; [</span><span style="color:#b48ead;">f32</span><span>; </span><span style="color:#d08770;">4</span><span>] = to_srgb_impl);
+</span></code></pre>
+<p>But with an attribute, it could be simplified to something like this (exact syntax may vary):</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">simd_dispatch</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">to_srgb</span><span>&lt;S: Simd&gt;(</span><span style="color:#bf616a;">level</span><span>: Level, </span><span style="color:#bf616a;">rgba</span><span>: [</span><span style="color:#b48ead;">f32</span><span>; 4]) -&gt; [</span><span style="color:#b48ead;">f32</span><span>; </span><span style="color:#d08770;">4</span><span>] {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> simd: S = level.</span><span style="color:#96b5b4;">get_simd</span><span>();
+</span><span>    ...
+</span><span>}
+</span></code></pre>
+<p>While the current fearless_simd#2 prototype implements a handful of types, the goal is to support a full cartesian product of SIMD width 64 to 512, signed and unsigned integer types from 8 to 32 (possibly 64), f32 (possibly f64), and f16 where available (primarily newer ARM chips, though Sapphire Rapids does support it).
+For widths greater than native, the library will polyfill with arrays of the native SIMD width.</p>
+<p>Note: since that blog post, f16 and Neon f16 instructions are supported in Rust nightly.
+It would be possible to polyfill in a hacky way (as is done in fearless_simd#2), but my inclination is to have these depend on Rust support, and similarly for AVX-512.
+With luck, these will stabilize soon (and obviously that’s one of our big asks of the Rust project).
+[Update: AVX-512 will land in <a href="https://github.com/rust-lang/rust/pull/138940">1.89</a> if things go well; still gathering more info about fp16 but that might also be very soon]</p>
+<h2 id="explicit-vs-variable-width">Explicit vs variable width</h2>
+<p>One of the big decisions in writing SIMD code is whether to write code with types of explicit width, or to use associated types in a trait which have chip-dependent widths.
+The design of <a href="https://docs.rs/pulp/latest/pulp/">pulp</a> strongly favors the latter; the <a href="https://docs.rs/pulp/latest/pulp/trait.Simd.html">Simd</a> trait has only “natural width” types, and, in particular, there is no implementation of, for example, 256 bit wide operations on Neon.
+A key departure from pulp, then, is support for portable explicit width programming.</p>
+<p>For Linebender work, I expect 256 bits to be a sweet spot.
+Obviously, it’s the natural width of AVX-2, which is a pretty big majority of x86_64 chips.
+On Neon, code written for 256 bits will be unrolled somewhat, but there are 32 registers (as opposed to 16 for AVX-2), so register pressure should not be a problem, and high end chips (such as Apple Silicon) have very wide issue, meaning that the number of elements that can be processed in a single clock cycle is similar to other chips with 256 bit vectors but narrower issue.
+The main reason to go smaller is when the loop has a high probability of consuming less than 256 bits of input.</p>
+<p>In the other direction, the majority of shipping AVX-512 chips are double-pumped, meaning that a 512 bit vector is processed in two clock cycles (see <a href="https://web.archive.org/web/20250526102842/https://www.mersenneforum.org/node/21615#post614191">mersenneforum post</a> for more details), each handling 256 bits, so code written to use 512 bits is not significantly faster (I assert this based on some serious experimentation on a Zen 5 laptop).
+I also expect this state of affairs to continue for a while; AMD won this design war and Intel is struggling to catch up after flailing for many years.
+If and when a significant number of true 512 bit chips ship, that would justify more work to write variants optimized for 512 bits.</p>
+<p>For simpler (map-like) workloads performing the same scalar computation for each element separately, I propose adding pulp-like associated natural-width types and operations to the <code>Simd</code> trait.
+Following Highway, I think it also makes sense to have some more operations that work in 128 bit blocks.
+A motivating use case is f32 color space conversion, where the alpha channel is passed through unmodified; a very reasonable implementation strategy is to do the nonlinear conversion for all channels, then do a blend operation on lane 3 of 128 bit blocks.
+(Additional note: in experiments, trying to do this absolutely broke autovectorization).</p>
+<h2 id="light-use-of-macros">Light use of macros</h2>
+<p>I am quite concerned about the compile time.
+A cold build of fearless_simd#2 on an M1 Max is 3.25s.
+Considering that building out the full cartesian product of sizes and types will cause about an order of magnitude increase in size, it’s clear that the library has the potential for major impact on compile times.</p>
+<p>Using <code>-Z self-profile</code> to investigate, 87.6% of the time is in expand_crate, which I believe is primarily macro expansion [an expert in rustc can confirm or clarify].
+This is not hugely surprising, as (following the example of pulp), declarative macros are used very heavily.
+A large fraction of that is the safe wrappers for intrinsics (corresponding to <a href="https://docs.rs/pulp/latest/pulp/core_arch/x86/index.html">core_arch</a> in pulp).</p>
+<p>I believe that using codegen to expand out the macros before crate publish time will help greatly with compile times, but this needs to be experimentally validated.
+A possible downside is the size of the crate (especially uncompressed), but I expect zlib compression to be very effective given the repetitive, boilerplate nature of the contents.</p>
+<p>One use of macros will remain: <code>simd_dispatch</code> as a declarative macro to generate the dispatch wrappers.
+Likely the proposed <a href="https://rust-lang.github.io/rust-project-goals/2025h1/macro-improvements.html">declarative macro improvements</a> could help a lot here.
+I’m especially positive about the ability to write attributes as a declarative macro, as that would reduce the stuttering in the existing syntax.</p>
+<h2 id="topics-discussed-in-the-blog">Topics discussed in the blog</h2>
+<p>These topics are discussed in the <a href="https://linebender.org/blog/towards-fearless-simd/">towards fearless SIMD, 7 years later</a> blog, but I'll touch on them here as they are quite important.</p>
+<p>Dispatch is done by doing runtime detection once at the beginning of the application, resulting in a <code>Level</code> enum, each variant of which is a zero-sized token type representing CPU capability.
+This choice (same as pulp) minimizes cost of runtime detection.</p>
+<p>It is possible to write code in a generic SIMD style, and this will work well in some use cases, but we also support downcasting the generic <code>Simd</code> bound to a specific level, at which point that level's chip-specific capabilities are available.</p>
+<p>Here's an example of downcasting:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">inline</span><span>(always)]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">copy_alpha</span><span>&lt;S: Simd&gt;(</span><span style="color:#bf616a;">a</span><span>: f32x4&lt;S&gt;, </span><span style="color:#bf616a;">b</span><span>: f32x4&lt;S&gt;) -&gt; f32x4&lt;S&gt; {
+</span><span>    #[</span><span style="color:#bf616a;">cfg</span><span>(target_arch = &quot;</span><span style="color:#a3be8c;">x86_64</span><span>&quot;)]
+</span><span>    </span><span style="color:#b48ead;">if let </span><span>Some(avx2) = a.simd.</span><span style="color:#96b5b4;">level</span><span>().</span><span style="color:#96b5b4;">as_avx2</span><span>() {
+</span><span>        </span><span style="color:#b48ead;">return</span><span> avx2
+</span><span>            .sse4_1
+</span><span>            ._mm_blend_ps::&lt;8&gt;(a.</span><span style="color:#96b5b4;">into</span><span>(), b.</span><span style="color:#96b5b4;">into</span><span>())
+</span><span>            .</span><span style="color:#96b5b4;">simd_into</span><span>(a.simd);
+</span><span>    }
+</span><span>    #[</span><span style="color:#bf616a;">cfg</span><span>(target_arch = &quot;</span><span style="color:#a3be8c;">aarch64</span><span>&quot;)]
+</span><span>    </span><span style="color:#b48ead;">if let </span><span>Some(neon) = a.simd.</span><span style="color:#96b5b4;">level</span><span>().</span><span style="color:#96b5b4;">as_neon</span><span>() {
+</span><span>        </span><span style="color:#b48ead;">return</span><span> neon
+</span><span>            .neon
+</span><span>            .vcopyq_laneq_f32::&lt;3, 3&gt;(a.</span><span style="color:#96b5b4;">into</span><span>(), b.</span><span style="color:#96b5b4;">into</span><span>())
+</span><span>            .</span><span style="color:#96b5b4;">simd_into</span><span>(a.simd);
+</span><span>    }
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> result = a;
+</span><span>    result[</span><span style="color:#d08770;">3</span><span>] = b[</span><span style="color:#d08770;">3</span><span>];
+</span><span>    result
+</span><span>}
+</span></code></pre>
+<p>In addition, the SIMD types all support <code>core::ops</code>, including implicit splat so it is easy to, say, multiply a vector by a scalar.
+This ergonomic feature is present in <a href="https://docs.rs/simdeez/latest/simdeez/">simdeez</a> and <a href="https://doc.rust-lang.org/std/simd/index.html">std::simd</a>, but not <a href="https://docs.rs/pulp/latest/pulp/">pulp</a>.</p>
+<h2 id="alternatives-considered">Alternatives considered</h2>
+<p>I started prototyping a DSL that compiles into Rust, using proc macro infrastructure.
+This would operate in one of two modes, either as a proc macro run at build time, or as codegen to generate .rs files which would typically be checked into a repo, to minimize build time impact.
+(I’ll note that this is a particular instance of a much more general need for better staged compilation, which we’re feeling particularly acutely for shader compilation).
+At some point I'll post the prototype, as I think it's worthy of being considered if we're going to be doing a full exploration.</p>
+<p>While I think this approach has some advantages, it approaches the cost of building a real programming language, with associated needs for tooling etc.
+In addition, the proc macro approach really shows seams when it comes to cross-module interactions.</p>
+<p>Another possibility is to evolve <a href="https://docs.rs/pulp/latest/pulp/">pulp</a> in the direction we need.
+That’s still not out of the question, but the changes proposed are quite extensive, and this could be disruptive to the existing user base, particularly <a href="https://docs.rs/faer/latest/faer/">faer</a>.
+One goal in publishing this plan is to gather feedback from the pulp community about what they’d like to see happen.</p>
+<h2 id="on-rvv-and-sve">On RVV and SVE</h2>
+<p>One topic I didn’t cover in my blog post is RVV and SVE, which are pretty marginal these days but will become more important.
+There are some pretty big challenges, and for the most part we’re blocked on Rust support for the intrinsics.
+There is work in this direction, including a <a href="https://rust-lang.github.io/rust-project-goals/2025h1/arm-sve-sme.html">project goal</a> and an <a href="https://github.com/rust-lang/rfcs/pull/3729">RFC for sized traits</a>.</p>
+<p>Taking a longer view, I think there are two modes for “scalable vector” SIMD.
+One is to generate asm which operates correctly no matter the SIMD width.
+It’s fairly easy to see how to do this for map-like workloads, and I think it’s reasonable to consider this mostly a codegen problem for autovectorization, as opposed to a good use case for explicit SIMD.</p>
+<p>The other is to treat scalable vectors as an annoying instruction encoding for SIMD width not known at compile time, and with partial support for operating on fixed-width (128 bit) blocks.
+This is essentially the same concept as “<a href="https://gist.github.com/zingaburga/805669eb891c820bd220418ee3f0d6bd#fixed-width-vector-workloads-on-variable-width-vectors">Fixed Width Vector Workloads on Variable Width Vectors</a>”.
+The entire concept is a bit frustrating because nearly all ARM chips are 128 bits anyway.</p>
+<p>See also the paper <a href="https://arxiv.org/pdf/2309.16509">SIMD Everywhere Optimization from ARM NEON to RISC-V Vector Extensions</a> for an approach to making explicit SIMD code portable to RVV.</p>
+<h2 id="considerations-for-wasm-simd">Considerations for WASM SIMD</h2>
+<p>There’s a <a href="https://xi.zulipchat.com/#narrow/channel/197075-vello/topic/WASM.20SIMD">Zulip thread</a> on this.
+One tricky bit is that WASM doesn’t have runtime feature detection, rather they expect feature detection to be done as part of the negotiation for deciding which WASM blob to serve.
+In some ways, this makes sense, as it avoids pretty much all of the difficulties of multiversioning (including potential binary size impact), but it does require attention to build and deployment, especially as the number of cases will grow as <a href="https://github.com/WebAssembly/relaxed-simd">relaxed-simd</a> and other extensions ship.
+In WASM, since SIMD capabilities are determined at compile time, the <code>Level</code> enum will compile to nothing.
+When writing code portable to other targets that require runtime detection, it still makes sense to write code using the <code>Level</code> enum, but on WASM it has zero runtime cost.</p>
+<h2 id="very-small-simd">Very small SIMD</h2>
+<p>In the embedded world, there are a variety of SIMD extensions for small widths.
+I believe the standard RVV extension (intended for application class chips) requires a width of at least 128 bits, but there is a Zve64 profile intended for embedded.
+Additionally, embedded ARM processors have a SIMD extension called “<a href="https://en.wikichip.org/wiki/arm/helium">Helium</a>”, which is still 128 bit but with a smaller register count and more limited instructions.
+Given that Linebender is pushing more into <code>no_std</code>, it’s possible we’ll want to support these.
+However, I’m not able to find much evidence of Rust support for these.
+At this point, probably best to consider it an open question and potential future work.</p>
+<h2 id="discussion">Discussion</h2>
+<p>There’s a <a href="https://xi.zulipchat.com/#narrow/channel/255911-rust/topic/A.20plan.20for.20SIMD/with/520769933">discussion thread</a> on Linebender Zulip.
+I’ve also opened a <a href="https://rust-lang.zulipchat.com/#narrow/channel/219381-t-libs/topic/is.20.60arch.3A.3Aaarch64.3A.3Afloat16x8_t.60.20supposed.20to.20be.20stable.3F/with/520762685">thread</a> on Rust Zulip with some gnarly details about stabilizing fp16 on Neon.
+There's also a post on <a href="https://www.reddit.com/r/rust/comments/1l5yf3b/a_plan_for_simd/">/r/rust</a> open for discussion.</p>
+<p>I'm posting this now to the Linebender blog to encourage more discussion in the Rust community.
+The best place for serious technical discussion is the Zulip thread.
+We expect development to continue in the <a href="https://github.com/raphlinus/fearless_simd">fearless_simd repo</a>.
+The library is not yet usable for broad applications, but it might be possible to start implementing SIMD speedups.
+We will be implementing speedups in Vello's CPU and hybrid renderers in the coming weeks, and that will guide our priorities.
+We are very interested in feedback about which features are missing, or any other friction; these can be filed as issues against the repo, or raised on the Zulip thread.</p>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

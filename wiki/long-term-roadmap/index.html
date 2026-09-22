@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Post-July-2024 Linebender roadmap - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Post-July-2024 Linebender roadmap">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Post-July-2024 Linebender roadmap">
+        <meta property="og:description"
+            content="Post-July-2024 Linebender roadmap">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Post-July-2024 Linebender roadmap">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Post-July-2024 Linebender roadmap</h1>
+<p>These are unstructured notes from the brainstorming session we had during RustNL 2024, which were left out of the <a href="https://linebender.org/blog/roadmap-may-2024/">May-July-2024 roadmap blog post</a>.</p>
+<p>They're likely to become increasingly stale over time, but we keep them for archiving purposes.</p>
+<h2 id="vello">Vello</h2>
+<ul>
+<li>Emoji</li>
+<li>Image filters / blur / shadows
+<ul>
+<li>Render graph (Raph to drive, see <a href="https://xi.zulipchat.com/#narrow/stream/197075-gpu/topic/Render.20Graph">thread</a>)</li>
+</ul>
+</li>
+<li>Gpu embedding / wgpu engine abstraction (see <a href="https://xi.zulipchat.com/#narrow/stream/147922-new-members/topic/Greg.20from.20Servo">Servo thread</a>)</li>
+<li>Glyph caching
+<ul>
+<li>Render graph? </li>
+<li>or CPU side? </li>
+<li>(sparse strips probably)</li>
+</ul>
+</li>
+<li>Frame pacing</li>
+<li>Damage regions
+<ul>
+<li>MVP: just render sub-rects</li>
+</ul>
+</li>
+<li>CPU impl
+<ul>
+<li>Testing</li>
+<li>Downlevel</li>
+</ul>
+</li>
+<li>Fuzzing?</li>
+</ul>
+<h2 id="masonry">Masonry</h2>
+<ul>
+<li>‘Compositing’</li>
+<li>Frame pacing (relevant to Vello and AccessKit)</li>
+<li>Damage regions</li>
+<li>Styling options</li>
+<li>Copy features from <a href="https://www.youtube.com/watch?v=72y2EC5fkcE">Tomorrow Corporation Tech Demo</a></li>
+</ul>
+<h2 id="parley">Parley</h2>
+<ul>
+<li>IME support
+<ul>
+<li>Suggestion regions?</li>
+</ul>
+</li>
+<li>Split out blob &amp; other vocabulary types
+<ul>
+<li>Blob may be prioritized by other project needs</li>
+</ul>
+</li>
+</ul>
+<h2 id="xilem">Xilem</h2>
+<ul>
+<li>Android
+<ul>
+<li>Material UI style widgets/views? Requires styling</li>
+</ul>
+</li>
+<li>Styling</li>
+<li>Hot reloading</li>
+<li>Async behavior in Masonry widgets (image loading etc)</li>
+<li>Cleanup run for issues and PRs</li>
+</ul>
+<h2 id="accesskit">AccessKit</h2>
+<ul>
+<li>
+<p>Haven’t talked about it a lot</p>
+<ul>
+<li>Improve documentation (see <a href="https://github.com/AccessKit/accesskit/issues/402">#402</a>)</li>
+<li>Point to / create a repository of accessibility best practices.</li>
+<li>Not just code, also social: Have people with disabilities test your stuff!</li>
+<li>Point to resources, forums, etc? Need to talk to Matt about this. (What were the best practices at Microsoft?)</li>
+<li>Accessibility isn’t just screen readers. Also color contrast, customizing size, IME support, motor disabilities (avoid stuff that requires simultaneous input).</li>
+</ul>
+</li>
+<li>
+<p>“Accessibility is more than adding a dependency to AccessKit”</p>
+<ul>
+<li>(Olivier: Note to self: include GMTK video about Celeste Assist Mode)</li>
+</ul>
+</li>
+</ul>
+<h2 id="android-specific-work">Android specific work</h2>
+<ul>
+<li>Need to prioritize Android
+<ul>
+<li>Masonry:
+<ul>
+<li>Hot state for pointer pressed?</li>
+<li>Gesture recognition (scrolling) P3
+<ul>
+<li>There is a dumb solution for scrolling without momentum</li>
+<li>Potentially adapt code from egui (used in vello demo)</li>
+</ul>
+</li>
+<li>Pencil gestures</li>
+<li>Multitouch</li>
+<li>IME
+<ul>
+<li>Landing the Lucas Meurer winit PR P1</li>
+<li>Extend winit IME PR for richer functionality</li>
+<li>Review glazier IME API &amp; come up with design proposal P3 (aaron)</li>
+<li>Plumbing suggestion spans etc (winit)</li>
+</ul>
+</li>
+<li>Accessibility (matt, jul 1+) P-1</li>
+<li>Study Tao</li>
+<li>To what extent do we tap into Android View etc</li>
+</ul>
+</li>
+<li>winit future
+<ul>
+<li>short term plan: PR functionality into winit</li>
+<li>look for natural extension points
+<ul>
+<li>these will be platform-specific</li>
+<li>Mac: subclassing the NSView/NSApplication subclasses</li>
+<li>wayland: messy / smithay has message dispatcher</li>
+<li>Android: do we subclass View/Application/Activity? raph will investigate P1
+<ul>
+<li>Accessibility (matt, jul 1+)</li>
+<li>Can we access accessibility from native-activity / game-activity?</li>
+<li>Note: React Native requires writing Java-land activity</li>
+<li>What minimum platform version?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Look at Makepad’s implementation (momentum scrolling etc)</li>
+</ul>
+</li>
+</ul>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

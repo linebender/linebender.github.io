@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>fearless_simd v0.7: 64-bit integers, improved generics, SSE2, and upcoming v1.0 - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="fearless_simd v0.7: 64-bit integers, improved generics, SSE2, and upcoming v1.0">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="fearless_simd v0.7: 64-bit integers, improved generics, SSE2, and upcoming v1.0">
+        <meta property="og:description"
+            content="fearless_simd v0.7: 64-bit integers, improved generics, SSE2, and upcoming v1.0">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="fearless_simd v0.7: 64-bit integers, improved generics, SSE2, and upcoming v1.0">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>fearless_simd v0.7: 64-bit integers, improved generics, SSE2, and upcoming v1.0</h1>
+<h3>Shnatsel, August 12, 2026</h3>
+<p><a href="https://crates.io/crates/fearless_simd"><code>fearless_simd</code></a> takes <code>unsafe</code> out of SIMD.</p>
+<p>No matter what level of abstraction you're after, be it autovectorization and multiversioning, portable SIMD, or safe access to raw intrinsics and nothing more, <code>fearless_simd</code> has you covered!</p>
+<p>It features zero dependencies, short build times, safe public APIs, and <a href="https://shnatsel.github.io/safe-simd-in-rust-even-on-the-inside/">very little</a> <code>unsafe</code> under the hood - orders of magnitude less than the alternatives!</p>
+<p>The major additions in v0.7 are support for 64-bit integers, an explicit SSE2 level replacing scalar fallback on x86, improved support for generic programming, and more implemented SIMD operations.</p>
+<p>This is also the last major release prior to Fearless SIMD v1.0, if no concerns about the API are raised.</p>
+<h2 id="64-bit-integers">64-bit integers</h2>
+<p>The entire API surface of <code>fearless_simd</code> is now also exposed for <code>u64</code> and <code>i64</code> vector types.</p>
+<p>Earlier releases didn't support 64-bit integer vectors due to hardware support being spotty. For example, AVX2 lacks hardware support for many operations on 64-bit integers, so it would require emulating those operations using the available SIMD instructions to get decent performance.</p>
+<p>Keeping track of which intrinsics are part of which instruction set was also challenging, and getting it wrong would be a memory safety violation. However, in v0.5 we <a href="https://shnatsel.github.io/safe-simd-in-rust-even-on-the-inside/">made the compiler keep track of it for us</a>, which removed the vast majority of <code>unsafe</code> blocks from <code>fearless_simd</code> and made implementing operations with uneven hardware support much easier.</p>
+<p>All the other integer vector types (<code>i8</code>,<code>u8</code>,<code>i16</code>,<code>u16</code>,<code>i32</code>,<code>u32</code>) and <code>f32</code>/<code>f64</code> were already supported by previous releases, so 64-bit integers were the last missing piece for full type coverage. We will investigate supporting <code>f16</code> once the type is stabilized in the standard library.</p>
+<h2 id="more-operations">More operations</h2>
+<ul>
+<li><code>swizzle_dyn</code> is now implemented for all widths to allow arbitrary byte shuffles. I've also <a href="https://shnatsel.github.io/improving-std-simd-swizzle-dyn/">contributed performance improvements</a> for this operation to <code>std::simd</code>. Unlike <code>std::simd</code>, Fearless SIMD supports both <a href="https://docs.rs/fearless_simd/0.7.0/fearless_simd/trait.SimdBase.html#tymethod.swizzle_dyn_precise">zeroing out-of-bounds indices</a> and <a href="https://docs.rs/fearless_simd/0.7.0/fearless_simd/trait.SimdBase.html#tymethod.swizzle_dyn">returning implementation-defined (but memory-safe) results</a> for when you're sure all indices are in bounds, which is cheaper than zeroing on some platforms.</li>
+<li>All types can now be widened/narrowed; e.g. you can convert vectors of <code>u8</code> to <code>u16</code>, or <code>u16</code> to <code>u8</code> in SIMD code. You get to choose whether narrowing conversions wrap, like the <code>as</code> operator, or saturate, or do the cheapest thing the platform has to offer (useful if you're sure the values fit into the narrower type).</li>
+<li>Added convenience functions <code>shift_elements_left</code>, <code>shift_elements_right</code>, <code>rotate_elements_left</code>, and <code>rotate_elements_right</code> for better compatibility with the <code>std::simd</code> API. They could already be implemented in terms of <code>slide</code>, but this makes the intent more clear.</li>
+</ul>
+<h2 id="improved-generic-programming">Improved generic programming</h2>
+<p>Support for generic programming - writing functions that are generic over the vector type - has been substantially improved. Here are just a few highlights:</p>
+<ul>
+<li>The <a href="https://docs.rs/fearless_simd/0.7.0/fearless_simd/trait.SimdBase.html"><code>SimdBase</code> trait</a> now abstracts over both integer and float vectors, and implements all methods available on both integers and floats.</li>
+<li>Improvements to the <a href="https://docs.rs/fearless_simd/0.7.0/fearless_simd/trait.Bytes.html"><code>Bytes</code> trait</a> allow generic bitcasts (safe transmutes) between SIMD vectors.</li>
+<li>Every single operation on SIMD types is now available through a trait. There are no remaining operations implemented only for concrete types.</li>
+<li>Associated types such as <code>SimdBase::Element</code> and <code>SimdBase::Array</code> now encode a lot of generic bounds to allow generic operations on them.</li>
+</ul>
+<p>See the full changelog for details. All in all, generic SIMD programming is now much more pleasant, and allows expressing more algorithms generically.</p>
+<p>These improvements also benefit users who abstract over SIMD vector types using macros, writing e.g. <code>$type::from_slice</code> instead of <code>T::from_slice</code>. They no longer need additional crates such as <a href="https://crates.io/crates/paste"><code>paste</code></a> to inject types into function names, since all operations are now available on the types themselves.</p>
+<h2 id="explicit-sse2-support">Explicit SSE2 support</h2>
+<p>These days x86 systems without SSE4.2 are <a href="https://firefoxgraphics.github.io/telemetry/#view=system">very rare</a>. However, since SSE2 is part of the baseline instruction set in both x86_64 and i686 Rust targets, the presence of SSE2 can be assumed, without any runtime dispatch or multiversioning. Certain crates only need a very limited set of vector instructions and don't benefit from later extensions, so forgoing runtime dispatch can simplify the code and reduce binary size.</p>
+<p>To better serve this use case, Fearless SIMD now has an explicit <code>Sse2</code> level with operations expressed in terms of SIMD intrinsics, rather than relying on autovectorization of the <code>Fallback</code> level when SSE4.2 is not available. This improves performance on x86 when the user opts out of selecting the best SIMD implementation at runtime.</p>
+<p>SSE2 remains a runtime-detected level on the <a href="https://doc.rust-lang.org/nightly/rustc/platform-support.html#tier-2-without-host-tools">tier-2 i586 targets</a>, and can be disabled there using <a href="https://github.com/linebender/fearless_simd/tree/main/fearless_simd#multiversioning-on-x86">the usual multiversioning controls</a>.</p>
+<h2 id="build-time-improvements">Build time improvements</h2>
+<p>Despite the addition of 64-bit integer vectors, more supported operations, and an entirely new SSE2 SIMD level, the compilation time of <code>fearless_simd</code> when used as a dependency stayed the same as v0.6: 2 seconds from scratch for x86 and 1 second from scratch for Aarch64. This was measured on my Zen 4 desktop CPU via <code>cargo clean &amp;&amp; cargo build --release --timings</code> in an empty crate depending on <code>fearless_simd</code>.</p>
+<p>Keeping compilation time unchanged despite the additions required a build profiling and optimization effort, without which the x86 build time would have increased to 3.4 seconds on my machine. It's still not that much for a from-scratch release build, and would have been entirely invisible for crates that have other dependency chains that take longer than 3.4 seconds to compile. But I believe that keeping build times low is important for Fearless SIMD to become a foundational SIMD abstraction. This is also a big part of why <code>fearless_simd</code> doesn't have any dependencies itself.</p>
+<p>The vast majority of the <code>fearless_simd</code> API is made up of generic functions. They emit no machine code unless instantiated, so you don't pay for them in build time or binary size if you don't use them. The compiler only needs to type-check and borrow-check them, so the build time is almost entirely frontend-bottlenecked. On nightly Rust, using <code>RUSTFLAGS=-Zthreads=8</code> to enable the parallel frontend halves the compilation time, so we have further improvements to look forward to once the parallel frontend is enabled in the stable toolchain.</p>
+<h2 id="api-cleanups-prior-to-1-0">API cleanups prior to 1.0</h2>
+<p>This release saw the type-specific <code>reinterpret_*</code> methods removed. These methods only existed for a handful of types, and each pair of types would need a separate method, which is impractical. So these were simply dropped in favor of the generic <code>bitcast</code> method. The <code>load_interleaved_128</code> operation was renamed to <code>load_four_interleaved</code>, to make the intent more clear.</p>
+<p>These are fairly minor API cleanups, and the API has been stable for nearly a year. Barring the recent changes to generics, the API has been proven in real-world projects, with over a dozen direct dependents on crates.io, and over a thousand github repositories using it directly or indirectly.</p>
+<p>We are confident in the design of the crate, and it's time to make it official. If no concerns about the API are raised, we are going to <strong>ship v1.0 of Fearless SIMD in early September.</strong></p>
+<p>There are no breaking changes planned for v1.0. We could publish it today, but we chose to postpone it to allow some time for feedback from the community before finalizing the API.</p>
+<h2 id="we-want-to-hear-from-you">We want to hear from you!</h2>
+<p>We believe <code>fearless_simd</code> can become <em>the</em> foundational SIMD crate for the Rust ecosystem, whether you want <a href="https://github.com/linebender/fearless_simd/tree/main/fearless_simd#automatic-vectorization">automatic vectorization</a>, <a href="https://github.com/linebender/fearless_simd/tree/main/fearless_simd#portable-simd">portable SIMD</a>, <a href="https://github.com/linebender/fearless_simd/tree/main/fearless_simd#explicit-intrinsics">safe access to intrinsics</a>, or all of the above. This goal is now within sight.</p>
+<p>Now more than ever, we'd like to hear from you! Are any APIs awkward or missing? Or is everything working smoothly? Please let us know either way!</p>
+<p>You can either open an issue on the <a href="https://github.com/linebender/fearless_simd/issues">Github repository</a>, or talk to us <a href="https://xi.zulipchat.com/#narrow/channel/514230-simd">on Zulip</a>.</p>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

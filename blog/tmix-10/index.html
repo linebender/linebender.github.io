@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Linebender in October 2024: resvg stewardship - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Linebender in October 2024: resvg stewardship">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Linebender in October 2024: resvg stewardship">
+        <meta property="og:description"
+            content="Linebender in October 2024: resvg stewardship">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Linebender in October 2024: resvg stewardship">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Linebender in October 2024: resvg stewardship</h1>
+<h3>Bruce Mitchener, Daniel McNab, November 4, 2024</h3>
+<p>Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for <a href="https://rust-lang.org">the Rust programming language</a>.</p>
+<p>This month's update is very significant, featuring several crate releases and the adoption of resvg.</p>
+<h2 id="resvg-tiny-skia-and-related-projects">Resvg, Tiny-Skia, and Related Projects</h2>
+<p>We would like to thank <a href="https://github.com/RazrFalcon">Yevhenii Reizner (RazrFalcon)</a> for all his work on resvg, tiny-skia, and related projects.
+Due to some changes in his personal circumstances, he has to give up working on his collection of excellent crates and he has been seeking new homes for them to help keep the lights on.
+The following projects are now part of Linebender:</p>
+<ul>
+<li><a href="https://github.com/linebender/resvg">resvg</a> - an SVG rendering library, including <a href="https://crates.io/crates/usvg">usvg</a>;</li>
+<li><a href="https://github.com/linebender/tiny-skia">tiny-skia</a> - a skia subset ported to Rust.</li>
+</ul>
+<p>These crates are widely used within the ecosystem and play an important role in many software projects, and not just in Rust!
+Given that Linebender has a mission to provide high quality libraries for GUI and we have established processes for managing those libraries, we feel well positioned to step in and help out.
+Several associated repositories and projects are also now part of Linebender.
+These are <a href="https://github.com/linebender/simplecss">simplecss</a>, <a href="https://github.com/linebender/svgtypes">svgtypes</a>, and <a href="https://github.com/linebender/resvg-test-suite">resvg-test-suite</a>.</p>
+<p>We do not expect this change to significantly impact current users of <code>resvg</code>, <code>usvg</code>, or <code>tiny-skia</code>.
+Our role is a stewardship role, to allow updates to continue as needed by the community.
+If things work for you now, they will continue to work for you going forward.</p>
+<p>Our plans for the near future are:</p>
+<ul>
+<li>Integrate with existing Linebender <a href="https://github.com/linebender/rfcs/pull/5">practices for CI</a>, testing, and releases.</li>
+<li>Review and respond to incoming pull requests and issues.</li>
+<li>Re-license the <code>resvg</code> repository (including both <code>resvg</code> and <code>usvg</code>) from the MPL-2.0 license to a dual Apache 2.0 / MIT license as is common within the Rust world and the standard for Linebender projects.</li>
+<li>Provide new releases as needed, working with the community to bring additional maintainers.</li>
+</ul>
+<p>In the longer term, we will look at how the ecosystem is evolving and what’s needed or useful.
+The Linebender team has deep expertise in 2D rendering, including vector graphics, color and text layout, shaping, and rendering.
+We look forward to seeing how we can apply this to these projects.</p>
+<h3 id="relicensing">Relicensing</h3>
+<p>We’ve already begun the process of re-licensing the <code>resvg</code> repository and are nearly done.
+The change of license will be present in the next release, which will also be our first release under the Linebender umbrella.
+This will allow us to share code between the Linebender crates more easily.</p>
+<p>This process can be followed at <a href="https://github.com/linebender/resvg/pull/838">resvg#838</a>.</p>
+<h3 id="help-wanted">Help Wanted</h3>
+<p>We welcome pull requests and issues.</p>
+<p>Also, with RazrFalcon becoming less involved, we’re losing a key source of knowledge about the code itself as well as the philosophy behind it.
+We look forward to hearing from people who use the various crates to understand how you use it, what you use it for, and what you’d like to see.</p>
+<p>For further discussion, please use the <a href="https://xi.zulipchat.com/#narrow/channel/465085-resvg">resvg channel on the Zulip</a>.</p>
+<hr />
+<p></p>
+<p>Alongside the work on resvg, we have been continuing work on our existing projects.</p>
+<h2 id="xilem">Xilem</h2>
+<p>Xilem is our flagship GUI project, inspired by SwiftUI.
+It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.</p>
+<ul>
+<li><a href="https://github.com/linebender/xilem/pull/681">xilem#681</a>: <code>View::rebuild</code> was updated to reflect the ability to use reborrowing.</li>
+<li><a href="https://github.com/linebender/xilem/pull/669">xilem#669</a>: The font weight for <code>label</code>s was exposed, by Marco Melorio.</li>
+</ul>
+<p>Work on Xilem Web continues.</p>
+<h2 id="masonry">Masonry</h2>
+<p>Masonry is the widget system used by Xilem.
+It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.</p>
+<ul>
+<li><a href="https://github.com/linebender/xilem/pull/632">xilem#632</a>: Starts a Masonry book, including a guide on creating a To-Do List app.</li>
+<li><a href="https://github.com/linebender/rfcs/pull/7">rfcs#7</a>: The pass specification RFC has been fully implemented, and the RFC has been merged.</li>
+<li><a href="https://github.com/linebender/xilem/pull/705">xilem#705</a>: Moved methods for mutating widgets to free functions.
+<ul>
+<li>This decreases ergonomics in favour of increasing uniformity between Masonry and crates which create their own widgets.</li>
+<li>This change is intended to improve rustdoc output, and the ergonomics should be restored once Rust has Arbitrary Self Types V2.</li>
+</ul>
+</li>
+<li><a href="https://github.com/linebender/xilem/pull/615">xilem#615</a>: Our accessibility for text has been greatly improved, allowing by-character and by-word movement through accessibility tools.</li>
+<li><a href="https://github.com/linebender/xilem/pull/660">xilem#660</a>: <code>request_paint</code> has been removed in favour of a new <code>request_render</code>, so that accessibility updates are less likely to be missed.</li>
+<li><a href="https://github.com/linebender/xilem/pull/718">xilem#718</a>, <a href="https://github.com/linebender/xilem/pull/720">xilem#720</a>: restored the ability to embed Masonry in external projects by re-exporting required items.</li>
+<li><a href="https://github.com/linebender/xilem/pull/612">xilem#612</a>: A built-in feature-gated integration with <a href="https://github.com/wolfpld/tracy">Tracy</a>.</li>
+</ul>
+<p>Daniel also provided a talk to <a href="https://china2024.gosim.org/">GOSIM China 2024</a> about Masonry.
+The recording of this presentation is not yet available.</p>
+<figure>
+<img style="height: auto" src="masonry-tracy.png" alt="A tracing view of a single frame in Masonry. There are high-level spans with details underneath, and GPU operations are shown." height="613" width="1275">
+<figcaption>
+<p>Masonry now has built-in support for tracing using Tracy, using the <a href="https://crates.io/crates/tracing-tracy">tracing-tracy</a> crate.</p>
+</figcaption>
+</figure>
+<h2 id="vello">Vello</h2>
+<p>Vello is our GPU vector renderer.
+It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.</p>
+<p>The main update is the release of version <a href="https://github.com/linebender/vello/releases/tag/v0.3.0">0.3.0</a>.
+This release includes previously discussed support for emoji and blurred rounded rectangles.
+We also now no longer consider Vello to be experimental, and so would encourage you to try Vello for your projects.
+Raph has been working on Sparse Strip Path rendering; progress can be followed <a href="https://xi.zulipchat.com/#narrow/channel/197075-gpu/topic/Sparse.20strip.20path.20rendering">in the Zulip thread</a>.</p>
+<p>We do still have several known issues, but are not aware of any issues which would block wider adoption.</p>
+<figure>
+<img style="height: auto" src="floem-todo-list.png" alt="A to-do list desktop app, in a vertical layout: Use Floem, unchecked; Create more TODOs, checked; Join the Linebender Zulip, unchecked. There is a button labelled 'New To-Do'." height="367" width="784">
+<figcaption>
+<p>Vello is now supported as a renderer for the external <a href="https://lap.dev/floem/">Floem</a> project, developed for the Lapce editor.
+Note that Lapce does not currently itself use Vello.</p>
+</figcaption>
+</figure>
+<h2 id="parley">Parley</h2>
+<p>Parley is a text layout library.
+It handles text layout, mostly at the level of line breaking and resolving glyph positions.</p>
+<p>We released <a href="https://github.com/linebender/parley/releases/tag/v0.2.0">Parley 0.2.0</a>.
+This includes:</p>
+<ul>
+<li><a href="https://github.com/linebender/parley/pull/126">parley#126</a>: A new abstraction for text editing operations.</li>
+<li><a href="https://github.com/linebender/parley/pull/129">parley#129</a>: Ergonomics improvements for style properties.</li>
+<li><a href="https://github.com/linebender/parley/pull/76">parley#76</a>: A tree-style layout builder, useful for building up a text section (e.g. between elements).</li>
+</ul>
+<p>We have also done some follow up work, including:</p>
+<ul>
+<li><a href="https://github.com/linebender/parley/pull/143">parley#143</a>: Support for shortcutting drawing work if rendering has not changed.</li>
+<li><a href="https://github.com/linebender/parley/pull/152">parley#152</a> (in progress): An example showing cursor blinking, by tannal.</li>
+</ul>
+<h2 id="piet">Piet</h2>
+<p>Piet is a 2d graphics library which abstracts over platform-native graphics APIs.
+Linebender is focused on <a href="https://linebender.org/blog/tmix-10/#vello">Vello</a> rather than Piet for performance reasons, but some users may find Piet useful, as it relies on more mature renderers and is more compatible with older platforms.
+During October, we released <a href="https://github.com/linebender/piet/releases/tag/v0.7.0">Piet 0.7.0</a>.</p>
+<p>Some key updates from October included in this release are:</p>
+<ul>
+<li><a href="https://github.com/linebender/piet/pull/572">piet#572</a>: Use of <code>Arc</code> over <code>Rc</code> for stroke dashing, by anesthetice.</li>
+<li><a href="https://github.com/linebender/piet/pull/585">piet#585</a>: An update to the Rust 2018 edition, from Bruce Mitchener.</li>
+<li><a href="https://github.com/linebender/piet/pull/578">piet#578</a>: Improved robustness of <code>copy_raw_pixels</code> on Direct2D by Kaur Kuut.</li>
+<li>Many dependency updates.</li>
+</ul>
+<h2 id="druid">Druid</h2>
+<p>Druid is a GUI library which was a predecessor to Xilem, and an ancestor of Masonry.</p>
+<p>We are in the process of relicensing Druid from its current license of Apache 2.0 only to the Rust ecosystem standard Apache 2.0 OR MIT dual license.
+If you have previously contributed to Druid, please read and respond to <a href="https://github.com/linebender/druid/pull/2414">druid#2414</a>.
+This will greatly improve cross-compatibility with the rest of the Rust ecosystem, particularly for adapting code from Druid into newer toolkits.
+We plan to archive the Druid repo after one more release, as we are not actively developing it; we are working to bring Xilem to parity in capability.
+We will also apply this license change to Xilem and Masonry, as well as Glazier, which is currently archived.</p>
+<h2 id="others">Others</h2>
+<ul>
+<li>Daniel and Olivier's "office hours" appointments can still be booked by anyone for open-ended discussion of the ecosystem.
+<ul>
+<li><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2">See Daniel's schedule here</a>.</li>
+<li><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM">See Olivier's schedule here</a>.</li>
+</ul>
+</li>
+</ul>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

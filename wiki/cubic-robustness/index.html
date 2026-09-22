@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Cubic Bézier robustness - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Cubic Bézier robustness">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Cubic Bézier robustness">
+        <meta property="og:description"
+            content="Cubic Bézier robustness">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Cubic Bézier robustness">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Cubic Bézier robustness</h1>
+<p>Cubic Béziers have a clean and simple definition as a parametric curve (the coordinates are a cubic polynomial in the parameter), but they can also exhibit cusps and other degenerate behavior, which makes numerically robust algorithms challenging in some cases, especially stroking. Cusps and near-cusps also reduce the accuracy of numerical integration techniques for computing arc lengths.</p>
+<p>At heart, the robustness problems are caused by the derivative of the curve becoming or nearing zero. In the latter case, the curve is not <a href="https://en.wikipedia.org/wiki/Differentiable_curve">regular</a>, which among other things means it may not be G1 continuous, even though the curve segment itself is C∞. Freya Holmér's <a href="https://youtu.be/jvPPXbo87ds">Continuity of Splines</a> video does an excellent job explaining that distinction.</p>
+<p>This page will discuss techniques for detecting and mitigating these robustness issues.</p>
+<h2 id="three-cases">Three cases</h2>
+<p>It's useful to consider three different cases, as they have different consequences for mitigation. Roughly in order from easiest to hardest, they are coincident control points, simple cusp, and collinear.</p>
+<h3 id="coincident-control-points">Coincident control points</h3>
+<p>This case has a control point coincident (or nearly so) with an endpoint. It is extremely easy to detect.</p>
+<p>The tangent vector is well defined at the endpoint, thanks to L'Hopital's rule; it is equal to the vector from the control point to the other control point.</p>
+<p>A good mitigation is to displace the control point slightly in the direction of the other control point. This has a minimal impact on the shape,</p>
+<p><img src="/cubic_robust_coincident.svg" alt="Illustration of cubic Bézier with coincident endpoint" /></p>
+<h3 id="simple-cusp">Simple cusp</h3>
+<p>The simple cusp is in some ways a generalization of the coincident control point case, but with the cusp in the interior of the curve rather than at the endpoint.</p>
+<p>The classic simple cusp is a <a href="https://en.wikipedia.org/wiki/Semicubical_parabola">semicubical parabola</a>, which can be represented as y = x^1.5, as well as a parametric cubic curve. All cusp cases in a cubic Bézier can be represented as as affine transformations of this curve. There is always a single cusp.</p>
+<p>Detection is in two parts. First, this case can only occur when the control polygon is self-intersecting, which can be readily computed as alternating signs of cross-products. This is rare in non-adversarial inputs. Then, either a curve classification or hodograph technique can be used to detect the near-cusp, see below.</p>
+<p>A reasonable mitigation is to displace the control points along the tangent lines, either making the loop bigger or the inflection points farther apart, in either cases reducing the curvature.</p>
+<p><img src="/cubic_robust_simple.svg" alt="Illustration of cubic Bézier with simple cusp" /></p>
+<h3 id="collinear">Collinear</h3>
+<p>Like the previous two cases, the collinear case is characterized by a (nearly) vanishing derivative, but is different in a number of important respects. Detection is reasonably straightforward, as the control points are close to collinear (which can be evaluated numerically as very small cross products relative to the magnitude of dot products).</p>
+<p>From a classification perspective, the collinear case can either an S-shaped or loop curve, subject to an extreme nonuniform scale, squashing the gentle curve into a nearly flattened form, with high curvature. Unlike the simple cusp case, there are generally two cusps.</p>
+<p>A few more observations. The line is not necessarily (nearly) parallel with the chord, as the chord may be very short.</p>
+<p>Mitigating this case may require a different approach than for the other cusp cases. Moving the control points along the tangent (preserving G1 continuity) may not resolve the cusp. For stroking, it is possibly best to divide the cubic at the (near) cusps and stroke each as a line, using round end caps.</p>
+<p><img src="/cubic_robust_collinear.svg" alt="Vector image" /></p>
+<h2 id="bezier-classification">Bézier classification</h2>
+<p>One approach to detecting the simple cusp is Bézier classification. There's a classic paper on this, Wang 1981, which is cited by a number of later references (see relevant <a href="https://stackoverflow.com/questions/72107111/classifying-cubic-bezier-curves-according-to-loop-blinn-2005">Stack Overflow thread</a>).</p>
+<p>The core element of the classification is x''×x', which is a quadratic polynomial. This is the numerator of the equation for curvature. A "loop" shape has no inflection points, and no real solutions of this polynomial. Thus, the discriminant (b² - 4ac) is a valid classifier. That said, choosing an epsilon value for near-cusp instances is tricky. This discriminant scales as the square of area under affine transformation, which is not particularly helpful in choosing an epsilon. For one, as the line case shows, extreme affine transformation can strongly affect the sharpness of the cusp.</p>
+<p>Even so, the sign is useful for determining the mitigation; if it's a loop, then the control points should be moved farther from the endpoints to make the loop bigger (and lower in curvature), and conversely closer if it's two closely spaced inflection points.</p>
+<h2 id="hodograph">Hodograph</h2>
+<p>Another approach is the hodograph, or analysis of the derivative of the cubic curve, which is a quadratic Bézier.</p>
+<p>Determining the minimum absolute value of the derivative is equivalent to the "nearest" method, finding the point on the hodograph nearest the origin. This is a cubic solve, and exists in kurbo. That may not be the exact curvature maximum (given that the numerator also varies), but is close enough for robustness work, and calibrated in more useful units.</p>
+<p>The loop/double inflection classification as stated above can also be geometrically interpreted in terms of the hodograph: whether the origin is inside or outside the concave part of the parabola, respectively. The math turns out equivalent.</p>
+<p><img src="/cubic_robust_hodograph.svg" alt="Illustration of three near-cusp cubics with hodograph" /></p>
+<h2 id="arc-lengths">Arc lengths</h2>
+<p><em>Note: this section could move to another page on arc length, with more detail. Here are just observations on cusp behavior.</em></p>
+<p>It's been noted that Gauss-Legendre quadrature has excellent accuracy for smooth curves, scaling impressively with the degree of quadrature, but that accuracy suffers in (near) cusp conditions, or that it provokes numerical stability issues in analytical techniques. <a href="http://hhenkel.de/metapost/arclength.pdf">Henkel 2014</a> contains some experimental results, and it was also noted in the <a href="https://raphlinus.github.io/curves/2018/12/28/bezier-arclength.html">How long is that Bézier?</a> blog post and <a href="https://raphlinus.github.io/curves/graphics/2019/01/04/followups.html#arclength">followup</a>. The current implementation in kurbo employs an error metric and subdivides; note from the illustrations that the near-cusp conditions (near the bottom edge of the graph) require many more subdivisions. It might be worth investigating whether explicit cusp detection, splitting at the point of maximum curvature, might require fewer subdivisions for the same accuracy, and thus be faster.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://dl.acm.org/doi/10.1145/3386569.3392392">Converting stroked primitives to filled primitives</a>, Diego Nehab, 2020</li>
+<li>Shape classification of the parametric cubic curve and parametric B-spline cubic curve, C. Y. Wang, 1981</li>
+<li><a href="http://hhenkel.de/metapost/arclength.pdf">Calculating the Cubic Bézier Arc Length by Elliptic Integrals</a>, Hartmut Henkel, 2014</li>
+</ul>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

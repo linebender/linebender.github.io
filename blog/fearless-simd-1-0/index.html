@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Fearless SIMD v1.0 is here - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Fearless SIMD v1.0 is here">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Fearless SIMD v1.0 is here">
+        <meta property="og:description"
+            content="Fearless SIMD v1.0 is here">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Fearless SIMD v1.0 is here">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Fearless SIMD v1.0 is here</h1>
+<h3>Shnatsel, September 22, 2026</h3>
+<p><a href="https://crates.io/crates/fearless_simd"><code>fearless_simd</code></a> takes <code>unsafe</code> out of SIMD.</p>
+<p>It has come a long way since the <a href="https://raphlinus.github.io/rust/simd/2018/10/19/fearless-simd.html">original prototype 8 years ago</a>. We are now confident that whatever it is you need, be it just autovectorization and multiversioning, or full-blown portable SIMD abstractions, or safe access to intrinsics and nothing more, Fearless SIMD will serve you well.</p>
+<p>Instead of paraphrasing the <a href="https://github.com/linebender/fearless_simd/blob/main/CHANGELOG.md">changelog</a>, I'd like to take this opportunity to reflect on the goals of Fearless SIMD, how it achieves them, and what sets it apart from other SIMD abstractions.</p>
+<h1 id="performance">Performance</h1>
+<p>A common criticism leveled at portable SIMD abstractions is that they aren't performant enough, so we've put a lot of effort into making sure that Fearless SIMD never holds you back.</p>
+<p>For example, when implementing portable abstractions for operations with different behavior in edge cases on different platforms, such as <a href="https://docs.rs/fearless_simd/latest/fearless_simd/trait.SimdBase.html#tymethod.swizzle_dyn">swizzles</a> or <a href="https://docs.rs/fearless_simd/latest/fearless_simd/trait.SimdBase.html#tymethod.max">floating-point maximum</a>, we provide both a precise variant that's the same on all platforms, and a fast variant that returns a platform-dependent result for use when you expect the edge cases to never happen.</p>
+<p>We also made it easy to <a href="https://github.com/linebender/fearless_simd/blob/main/fearless_simd/examples/sigmoid.rs">express SIMD algorithms in terms of the hardware's native vector size</a>, so that your code always takes full advantage of the hardware, no matter where it runs. Fixed vector sizes are also supported for algorithms that need them.</p>
+<p>We also put a lot of effort into making sure the implementations of our portable SIMD operations are state-of-the-art, and even contributed improvements upstream - both to <a href="https://shnatsel.github.io/improving-std-simd-swizzle-dyn/">Rust</a> and <a href="https://gist.github.com/valadaptive/e37cc66c721b987935ef4d74cab6f3d6">LLVM</a>.</p>
+<p>But if you need an instruction that isn't covered by portable abstractions, or want even more control, you can <a href="https://github.com/linebender/fearless_simd/blob/main/fearless_simd/examples/srgb.rs">safely drop down to platform intrinsics</a> with no overhead for the parts of your code that need it, and keep the rest simple and portable.</p>
+<p>Thanks to safe access to intrinsics, there <em>is</em> no performance ceiling.</p>
+<h1 id="safety">Safety</h1>
+<p>If you look up the source code of any other SIMD abstraction, you will find that it is full of <code>unsafe</code> code. Something like <code>rg unsafe</code> will turn up several <em>thousand</em> <code>unsafe</code> blocks.</p>
+<p>But not in Fearless SIMD! The crate is carefully engineered not to require ad-hoc <code>unsafe</code> code.</p>
+<p>One piece of the puzzle is the <a href="https://docs.rs/fearless_simd/latest/fearless_simd/macro.kernel.html">kernel! macro</a>, which leans on <a href="https://rust-lang.github.io/rfcs/2396-target-feature-1.1.html">target feature v1.1</a> in the compiler to invoke most SIMD intrinsics without <code>unsafe</code>. I have described the design in detail <a href="https://shnatsel.github.io/safe-simd-in-rust-even-on-the-inside/">in an earlier blog post</a>, so check this out if you'd like to learn more.</p>
+<p>That removes most of the ad-hoc <code>unsafe</code>, but doesn't cover SIMD load/store operations which operate on raw pointers. That's where our <a href="https://github.com/linebender/fearless_simd/blob/850adcae4996e6584fa77443a652c666f2aab126/fearless_simd/src/transmute.rs">safe transmute module</a>, inspired by crates such as <code>bytemuck</code> and <code>zerocopy</code>, comes into play.</p>
+<p>SIMD intrinsics like <code>_mm_loadu_epi32</code> may seem special, but actually turn into plain loads and stores behind the scenes. So you can fully replicate their functionality with a <a href="https://github.com/linebender/fearless_simd/blob/850adcae4996e6584fa77443a652c666f2aab126/fearless_simd/src/transmute.rs#L252-L354">single, reusable wrapper</a>.</p>
+<p>Thanks to the power of Rust's type system, we only need to audit these two small, self-contained building blocks. As long as they are memory-safe, the rest of the codebase is guaranteed to be memory-safe as well.</p>
+<p>At last, SIMD in Rust can be truly fearless.</p>
+<h1 id="ergonomics">Ergonomics</h1>
+<p>Function multiversioning is tricky.</p>
+<p>Previous solutions either <a href="https://shnatsel.github.io/safe-simd-in-rust-even-on-the-inside/">require adding <code>#[inline(always)]</code> annotations</a> and understanding their implications, or <a href="https://docs.rs/multiversion/0.9.0/multiversion/">impose a small overhead on every function call</a>. The latter is fine most of the time, but degrades performance on very small functions, and still requires you to surgically add <code>#[inline(always)]</code> to get around that.</p>
+<p>Both are leaky abstractions - you still need to think about what is happening under the hood!</p>
+<p>Alongside <code>fearless_simd</code> v1.0, we are launching <code>fearless_simd_macros</code> v0.1, which provides a non-leaky abstraction: the <code>#[simd]</code> macro. With it, you don't have to think about what's happening under the hood at all! Put it on any SIMD function and it Just Works.</p>
+<p>That said, while this is a big step forward for the ecosystem, there is still <a href="https://github.com/linebender/fearless_simd/tree/main/fearless_simd#portable-simd">some boilerplate</a> involved. We are keen to reduce it further, either with compiler support via the <a href="https://github.com/rust-lang/rfcs/pull/3525">Struct Target Features RFC</a> to get rid of the <code>#[simd]</code> annotation entirely, or perhaps through <a href="https://github.com/linebender/fearless_simd/pull/375">other tricks</a> we will explore in the future.</p>
+<p>And if you don't like procedural macros, the old way of doing things is still available, if less convenient.</p>
+<p>Ergonomics is the one area we expect may still evolve. But this does not compromise the stability guarantees of the core <code>fearless_simd</code> crate, and the code written today with or without the <code>#[simd]</code> macro will continue working indefinitely.</p>
+<h1 id="stability">Stability</h1>
+<p>Fearless SIMD is here to stay. We will be providing <a href="https://github.com/linebender/fearless_simd/blob/main/fearless_simd/SECURITY.md">3 years of security updates</a> for v1.0 and all later versions.</p>
+<p>While we cannot see the future, there are viable paths to supporting both near-term Rust features, such as the <code>f16</code> type, and longer-term features such as <a href="https://en.wikipedia.org/wiki/AArch64#Scalable_Vector_Extension_(SVE)">SVE</a> and <a href="https://rvv-isadoc.readthedocs.io/en/latest/index.html">RISC-V Vector Extension</a> if/when these hardware extensions become relevant, without API-breaking changes.</p>
+<h2 id="relation-to-std-simd">Relation to std::simd</h2>
+<p>We would love to see <code>std::simd</code> stabilized, but it would not make Fearless SIMD obsolete.</p>
+<p>The Rust standard library implements only the parts that absolutely have to be in it, and the rest (e.g. multiversioning, hardware-width vectors) is left up to the ecosystem crates.</p>
+<p><code>fearless_simd</code> includes an equivalent of <code>std::simd</code> that works on stable Rust, but that is just one part of a bigger whole.</p>
+<p>Once <code>std::simd</code> is stabilized, we will port Fearless SIMD to it to delete a lot of custom code and gain support for all sorts of obscure platforms. But the need for ecosystem crates such as <code>fearless_simd</code> will remain.</p>
+<h1 id="adoption">Adoption</h1>
+<p>It doesn't matter how brilliant your crate is if nobody is using it.</p>
+<p>Fearless SIMD is already used by <a href="https://crates.io/crates/fearless_simd/reverse_dependencies">30 other crates</a> as a direct dependency, and is indirectly relied on by <a href="https://lib.rs/crates/fearless_simd/rev">over a thousand crates</a>!</p>
+<p>It already underpins a nontrivial fraction of the Rust ecosystem, and we hope that v1.0 will take this even further.</p>
+<p>If you'd like to use Fearless SIMD in your project, check out the <a href="https://docs.rs/fearless_simd/latest/fearless_simd/">documentation</a> and <a href="https://github.com/linebender/fearless_simd/tree/main/fearless_simd/examples">examples</a>, and feel free to ask questions <a href="https://xi.zulipchat.com/#narrow/channel/514230-simd">on Zulip</a>!</p>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

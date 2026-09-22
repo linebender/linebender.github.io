@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Linebender in August 2025 - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Linebender in August 2025">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Linebender in August 2025">
+        <meta property="og:description"
+            content="Linebender in August 2025">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Linebender in August 2025">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Linebender in August 2025</h1>
+<h3>Daniel McNab, September 12, 2025</h3>
+<p>Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for <a href="https://rust-lang.org">the Rust programming language</a>.</p>
+<h2 id="parley">Parley</h2>
+<p>Parley is a text layout library.
+It handles text layout, mostly at the level of line breaking and resolving glyph positions.</p>
+<ul>
+<li><a href="https://github.com/linebender/parley/pull/400">parley#400</a>: Migrates Parley to <a href="https://github.com/harfbuzz/harfrust">HarfRust</a> for shaping, which is a Rust port of HarfBuzz.</li>
+<li><a href="https://github.com/linebender/parley/pull/405">parley#405</a>: Adds a selection of benchmarks.</li>
+<li><a href="https://github.com/linebender/parley/pull/406">parley#406</a>, <a href="https://github.com/linebender/parley/pull/413">parley#413</a>: Adds internal caching, improving performance significantly.</li>
+</ul>
+<h2 id="vello">Vello</h2>
+<p>Vello is our GPU vector renderer.
+It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.</p>
+<ul>
+<li><a href="https://github.com/linebender/vello/pull/1096">vello#1096</a>: Updated to Wgpu version 26.</li>
+<li><a href="https://github.com/linebender/vello/pull/1161">vello#1161</a>: Simplifies the API for rendering a wgpu <code>Texture</code> into a Vello <code>Scene</code>.</li>
+<li><a href="https://github.com/linebender/vello/pull/1169">vello#1169</a>: Increased the Skrifa version to v0.35.0. This was backported as <a href="https://github.com/linebender/vello/releases/tag/v0.5.1">Vello v0.5.1</a>.</li>
+<li><a href="https://github.com/linebender/vello/pull/1182">vello#1182</a>: Fixed a longstanding issue with our examples, where they would crash if the window was minimised on windows.</li>
+</ul>
+<p>The biggest updates to the sparse strip renderers this month are the support for blending and caching in Vello Hybrid.
+We have also had continued SIMD improvements, including x86 support.</p>
+<ul>
+<li><a href="https://github.com/linebender/vello/pull/1136">vello#1136</a>: Allows disabling anti-aliasing.</li>
+<li><a href="https://github.com/linebender/vello/pull/1137">vello#1137</a>, <a href="https://github.com/linebender/vello/pull/1153">vello#1153</a>: Add support for caching sparse strips.</li>
+<li><a href="https://github.com/linebender/vello/pull/1149">vello#1149</a>: Support for SSE4.2 and AVX2 SIMD (i.e. on x86 and x86_64).
+The <a href="https://laurenzv.github.io/vello_chart/">benchmark results viewer</a> has been updated to include some x86_64 results.</li>
+<li><a href="https://github.com/linebender/vello/pull/1177">vello#1177</a>: Move to the new v0.2.0 release of Fearless SIMD.</li>
+<li><a href="https://github.com/linebender/vello/pull/1155">vello#1155</a>, <a href="https://github.com/linebender/vello/pull/1178">vello#1178</a>: Add full support for blending to Vello Hybrid.</li>
+</ul>
+<!-- TODO: This roadmap is a bit out of date.
+Our [working roadmap](https://docs.google.com/document/d/1ZquH-53j2OedTbgEKCJBKTh4WLE11UveM10mNdnVARY/edit?tab=t.0#heading=h.j3duh9pgdm94) outlines the planned timeline for work on the renderers into next year. -->
+<figure>
+<img style="height: auto; width: 50%; margin-left: 25%;" width="666" height="673" src="hybrid-blending.png" alt="A series of overlapping shapes of various colours, variously composited.">
+<figcaption>
+<p>Blending is now supported by Vello Hybrid.</p>
+</figcaption>
+</figure>
+<p>We have additionally been doing further work on Vello's imaging model.
+This is partly in service of the integrations of Vello in <a href="https://graphite.rs/">Graphite</a> and <a href="https://servo.org/">Servo</a>.</p>
+<ul>
+<li><a href="https://github.com/linebender/color/pull/191">color#191</a>, <a href="https://github.com/linebender/peniko/pull/115">peniko#115</a> (in progress): Add support for interpolating gradients in unpremultiplied space.
+This is provided for web compatibility, and shouldn't be used by most users.</li>
+<li><a href="https://github.com/linebender/peniko/pull/117">peniko#117</a>: Split Image into the sampler and data.</li>
+<li><a href="https://github.com/linebender/peniko/pull/120">peniko#120</a>, <a href="https://github.com/linebender/peniko/pull/121">peniko#121</a>: Add <code>Brga</code> and premultiplied image formats.</li>
+<li><a href="https://github.com/linebender/vello/pull/1183">vello#1183</a> (in progress): Support luminance masks.</li>
+</ul>
+<p>As of <a href="https://github.com/servo/servo/pull/38962">servo#38962</a>, Vello and Vello CPU are the only canvas backends used in Servo.</p>
+<h3 id="fearless-simd">Fearless SIMD</h3>
+<p>Fearless SIMD is our SIMD infrastructure library.
+We are developing it in concert with the Vello sparse strips renderers, particularly <code>vello_cpu</code>.
+We released <a href="https://github.com/linebender/fearless_simd/releases/tag/v0.2.0">Fearless SIMD v0.2.0</a>, the first Fearless SIMD release since 2018.
+This included the following changes from August:</p>
+<ul>
+<li><a href="https://github.com/linebender/fearless_simd/pull/50">fearless_simd#50</a>, <a href="https://github.com/linebender/fearless_simd/pull/52">fearless_simd#52</a>: Add SSE4.2 support.</li>
+<li><a href="https://github.com/linebender/fearless_simd/pull/58">fearless_simd#58</a>: Add some initial docs.</li>
+<li><a href="https://github.com/linebender/fearless_simd/pull/59">fearless_simd#59</a>: Add basic AVX2 support.</li>
+<li><a href="https://github.com/linebender/fearless_simd/pull/61">fearless_simd#61</a>: Removes <code>f16</code> support to prepare for release.</li>
+<li><a href="https://github.com/linebender/fearless_simd/pull/69">fearless_simd#69</a>: Fixes a soundness issue with unsafe SIMD functions.</li>
+</ul>
+<p>With this release, Fearless SIMD is now ready for experimental use outside of Linebender.
+It now provides a solid way for writing portable SIMD operations across WASM, Aarch64, x86, and x86_64.
+Note however that the library is still in a quite early state - in particular, our documentation is currently only cursory.
+Contributions to improve this would be welcome!</p>
+<h2 id="masonry">Masonry</h2>
+<p>Masonry is the widget system developed by Linebender.
+It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.</p>
+<ul>
+<li><a href="https://github.com/linebender/xilem/pull/1207">xilem#1207</a>: Make <code>ObjectFit</code>, <code>Linebreaking</code> and <code>SpinnerColor</code> properties.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1212">xilem#1212</a>: Add <code>Widget::Action</code>, which indicates the action type widgets return.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1226">xilem#1226</a>: Refactor tab focus.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1228">xilem#1228</a>: Add placeholder text to text input.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1250">xilem#1250</a>: Move widgets to use a <code>Length</code> type, which represents a number of logical pixels.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1269">xilem#1269</a>: Introduce "focus fallback" mechanism.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1273">xilem#1273</a>: Update to Anymore v1.0.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1282">xilem#1282</a>, many others: Add unit tests for passes.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1295">xilem#1295</a>: Merge <code>TextColor</code> and <code>SpinnerColor</code> into <code>ContentColor</code>.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1310">xilem#1310</a>: Cleans up how the event loop handles being suspended, by Nixon.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1312">xilem#1312</a>: Remove the generic on VirtualScroll.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1314">xilem#1314</a>: Makes the focused indicator for checkboxes larger, by tannal.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1320">xilem#1320</a>: Add <code>NewWindow</code> struct to encapsulate attributes needed to create a window.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1321">xilem#1321</a>: When a new font is loaded, relayout everything.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1332">xilem#1332</a>: Restore base colour customisation.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1349">xilem#1349</a>: Move Masonry's examples from "Masonry Winit" to "Masonry".</li>
+<li><a href="https://github.com/linebender/xilem/pull/1353">xilem#1353</a>: Limit the size of screenshot tests to 8KiB by default.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1366">xilem#1366</a>: Make the <code>Checkbox</code>'s checked state be controlled only by the driver.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1371">xilem#1371</a>: Fix and optimise window resizing and minimising.</li>
+</ul>
+<h2 id="xilem">Xilem</h2>
+<p>Xilem is our flagship GUI project, inspired by SwiftUI, which uses Masonry for its widgets.
+It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.</p>
+<ul>
+<li><a href="https://github.com/linebender/xilem/pull/1260">xilem#1260</a>: Make the virtual scroll implementation much saner.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1273">xilem#1273</a>: Update to Anymore v1.0.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1363">xilem#1363</a>: Fix the <code>declare_property_tuple</code> macro, by Alex Moon.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1278">xilem#1278</a>: Add <code>Prop</code>, which changes how Masonry <code>Properties</code> are applied to more closely match Xilem Web.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1318">xilem#1318</a>: Fix initial font loading in easy cases.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1333">xilem#1333</a>: Add docs about precise capturing, by Nils Martel.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1348">xilem#1348</a>: Add <code>flex_row</code> and <code>flex_col</code> as convenience functions, by Paul Xu.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1352">xilem#1352</a>: Add error handling to virtual cats example, by Nils Martel.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1357">xilem#1357</a>: Fix how the <code>disabled</code> property is handled for text input.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1364">xilem#1364</a>: Remove the <code>app_state</code> parameter from teardown, by Alex Moon.</li>
+</ul>
+<p>Placehero:</p>
+<ul>
+<li><a href="https://github.com/linebender/xilem/pull/1323">xilem#1323</a>: Use an Action for navigation (rather than directly setting fields on the app state).</li>
+<li><a href="https://github.com/linebender/xilem/pull/1337">xilem#1337</a>: Use virtual scrolling for timelines.</li>
+<li><a href="https://github.com/linebender/xilem/pull/1370">xilem#1370</a>: Show the blurhash based preview of media attachments.</li>
+</ul>
+<figure>
+<img style="height: auto" width="1991" height="891" src="placehero-progress.png" alt="Two screenshots of a Mastodon app. Left shows the post announcing Matt Campbell's RustWeek 2025 talk, including a very low detail image with alt text shown below. The right screen shows posts from googlefonts@typo.social, which was entered in a box in the left sidebar of the app.">
+<figcaption>
+<p>Placehero can now load content from anywhere in a user's timeline, and preview images (left).
+It can also jump directly to a specific user's timeline by username (right).
+Note that full image loading is not yet supported, only the preview based on the blurhash.</p>
+</figcaption>
+</figure>
+<h2 id="anymore">Anymore</h2>
+<p>On 4 August, we released <a href="https://github.com/linebender/anymore/releases/tag/v1.0.0">Anymore v1.0.0</a>.
+This is our crate for the fundamental <code>AnyDebug</code> trait, which greatly aids debugging when using dynamically typed values.
+Anymore is designed to be used in public APIs; it has a minimal API surface so that it can be extremely stable.
+We recommend considering it for use cases where you would otherwise be returning (potentially wrapped) <code>Box&lt;dyn Any&gt;</code> values from your libraries.</p>
+<h2 id="kurbo">Kurbo</h2>
+<p>Kurbo provides data structures and algorithms for curves and vector paths.
+We've been preparing for the 0.12 release:</p>
+<ul>
+<li><a href="https://github.com/linebender/kurbo/pull/476">kurbo#476</a>: Adds an <code>Axis</code> type taken from Masonry.</li>
+<li><a href="https://github.com/linebender/kurbo/pull/483">kurbo#483</a>: Document Kurbo's feature flags.</li>
+<li><a href="https://github.com/linebender/kurbo/pull/485">kurbo#485</a>: Better handle edge cases in cubic_to_quadratic, by Cosimo Lupo.</li>
+<li><a href="https://github.com/linebender/kurbo/pull/486">kurbo#486</a>: Deprecate and replace existing <code>aspect_ratio</code> methods, which used a non-standard definition of aspect ratio.</li>
+<li><a href="https://github.com/linebender/kurbo/pull/487">kurbo#487</a>, <a href="https://github.com/linebender/kurbo/pull/488">kurbo#488</a>, <a href="https://github.com/linebender/kurbo/pull/489">kurbo#489</a>: Remove many long-deprecated items.</li>
+<li><a href="https://github.com/linebender/kurbo/pull/490">kurbo#490</a>: Fix miter join in dashed strokes.</li>
+<li><a href="https://github.com/linebender/kurbo/pull/493">kurbo#493</a> (in progress): Convert <code>CubicBez::nearest</code> to the <code>poly-cool</code> quintic solver.</li>
+</ul>
+<h2 id="get-involved">Get Involved</h2>
+<p>We welcome collaboration on any of our crates.
+This can include improving the documentation, implementing new features, improving our test coverage, or using them within your own code.</p>
+<p>We host an hour long office hours meeting each week where we discuss what's going on in our projects.
+See <a href="https://xi.zulipchat.com/#narrow/channel/359642-office-hours">#office hours in Zulip</a> for details.
+We're also running a separate office hours time dedicated to the renderer collaboration, details also available at that link.</p>
+<p>If you wish to discuss the Linebender project individually, Daniel is offering <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2">"office hours" appointments</a>, which are free to book.
+It really helps us to learn what aspects our users care about the most.</p>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>
