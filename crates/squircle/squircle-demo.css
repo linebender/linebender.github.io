@@ -1,0 +1,158 @@
+/* Styling for the squircle tester.
+ *
+ * Shared by two pages: content/wiki/curves/squircle.md, which links the copy
+ * that the build places in static/rust/, and crates/squircle/index.html, which
+ * links this file directly under `trunk serve`. Editing it here updates both.
+ *
+ * Colors come from custom properties rather than literals so the demo follows
+ * the site's light and dark themes; --fg2-color is the site's secondary text
+ * color, with a fallback for the standalone page.
+ */
+
+#squircle-demo-root {
+  /* One place to set the palette, so the SVG paths can never drift apart. */
+  --squircle-shape: #0b5fbd;
+  --squircle-grid: #e0e0e0;
+  --squircle-axis: #8a8a8a;
+
+  margin: 1.5rem 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  #squircle-demo-root {
+    --squircle-shape: #79b0f2;
+    --squircle-grid: #4a4a4a;
+    --squircle-axis: #909090;
+  }
+}
+
+#squircle-demo-root .squircle-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+#squircle-demo-root .squircle-choices {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.9rem;
+}
+
+#squircle-demo-root .squircle-control-label {
+  /* Full width inside its flex row, so the label sits on its own line and the
+     radios wrap underneath it as a block rather than trailing after it. */
+  flex: 1 0 100%;
+  color: var(--fg2-color, #767676);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+#squircle-demo-root .squircle-slider .squircle-control-label {
+  flex: 0 0 auto;
+}
+
+#squircle-demo-root .squircle-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+
+#squircle-demo-root .squircle-slider {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#squircle-demo-root .squircle-slider input[type="range"] {
+  flex: 1 1 180px;
+  max-width: 260px;
+  accent-color: var(--squircle-shape);
+}
+
+#squircle-demo-root .squircle-readout {
+  font-family: ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  min-width: 5ch;
+}
+
+#squircle-demo-root .squircle-panels {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+/* The shape is square, so it is held to a sensible width and the wider
+   curvature plot takes the remaining space. Below roughly 700px the two
+   panels stack instead. */
+#squircle-demo-root .squircle-panel {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+/* The shape is square and carries far less detail than the plot, so it is held
+   to a modest width; otherwise it towers over the plot beside it and dwarfs the
+   text when the two panels stack. */
+#squircle-demo-root .squircle-panel:first-child {
+  flex: 0 1 300px;
+  max-width: 300px;
+}
+
+/* A viewBox with no width or height attribute gives the SVG its aspect ratio
+   from the viewBox, so this scales to the column without overflowing it. */
+#squircle-demo-root .squircle-figure {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#squircle-demo-root .squircle-path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#squircle-demo-root .squircle-path--shape,
+#squircle-demo-root .squircle-path--curvature {
+  fill: none;
+  stroke: var(--squircle-shape);
+}
+
+#squircle-demo-root .squircle-path--fill {
+  fill: var(--squircle-shape);
+  stroke: none;
+}
+
+#squircle-demo-root .squircle-grid {
+  fill: none;
+  stroke: var(--squircle-grid);
+}
+
+#squircle-demo-root .squircle-axis-label {
+  fill: var(--fg2-color, #767676);
+  font-size: 14px;
+  text-anchor: end;
+}
+
+#squircle-demo-root .squircle-axes {
+  fill: none;
+  stroke: var(--squircle-axis);
+}
+
+#squircle-demo-root .squircle-fallback {
+  margin-top: 0.5rem;
+  color: var(--fg2-color, #767676);
+  font-size: 0.85rem;
+}
+
+#squircle-demo-root .squircle-slider input[type="range"]:disabled {
+  opacity: 0.4;
+}
+
+/* A readout that does not apply to the current construction. */
+#squircle-demo-root .squircle-muted {
+  opacity: 0.4;
+}
