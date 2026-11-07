@@ -240,6 +240,11 @@ The kern tables require only two bytes per glyph, and kerning is super fast to e
 Even so, kerning evaluation is done at display list build time, not racing the beam.
 When the kern is nonzero, a special negative space character is inserted into the string in the text display object.
 
+For this font, I built the [kerning table](https://github.com/raphlinus/vic-2350/blob/62f2fae7e672b9a01011cdc320b031cda29fb5c8/fonts/vic-sans-14.kern) manually.
+Each bit is a specific feature, for example bit 0 represents the top right of the first glyph projecting out, and a corresponding lack of ink in the top left of the next glyph.
+So it is set on the right of `T` and `Y`, and also at the left of most lowercase letters and also `A`.
+It's not hard to imagine a tool that might help automate this, perhaps distilling kerning information prepared in other ways.
+
 I haven't done a real implementation yet, but I suspect this idea might scale to real fonts: instead of bits and an integer kerning amount, the vectors would store continuous values (reasonably quantized).
 An additional nonlinear step after the multiplication but before the sum may also help.
 Dot products are of course ridiculously efficient to compute on GPU, while doing index chasing through OpenType tables is not.
