@@ -167,7 +167,7 @@ For each glyph, several values are packed into the `g` variable, then unpacked b
     }
 ```
 
-Here's the corresponding machine code, ARM assembly code, and cycle count analysis from the symbolasm analysis tool:
+Here's the compiled ARM assembly code from the above symbolasm code, along with cycle count analysis from the symbolasm analysis tool:
 
 ```
   134: f859 c028           1 ldr r12, [r9, r8, lsl #2]
@@ -201,6 +201,10 @@ Here, `0/2` indicates 0 cycles if the branch is not taken, and 2 if it is.
 Neither of these can be optimized.
 The `H` flag indicates the instruction is 32 bits rather than 16 because of the use of "hi" registers (r8-r15).
 These are available in the LSP as well.
+
+Without a JIT, it would be possible to write text rendering as a loop, but in the proportionally spaced case, there'd be a huge amount of setup to work out the shift amounts, plus branching to handle cases like straddling a 32 bit boundary.
+Earlier implementations of the idea in [pico-dvi-rs] struggled to display a full screen of text.
+Of course, for fixed width text all that is known statically, so a tight loop without JIT is fine.
 
 ## Performance
 
@@ -242,7 +246,7 @@ When the kern is nonzero, a special negative space character is inserted into th
 
 For this font, I built the [kerning table](https://github.com/raphlinus/vic-2350/blob/62f2fae7e672b9a01011cdc320b031cda29fb5c8/fonts/vic-sans-14.kern) manually.
 Each bit is a specific feature, for example bit 0 represents the top right of the first glyph projecting out, and a corresponding lack of ink in the top left of the next glyph.
-So it is set on the right of `T` and `Y`, and also at the left of most lowercase letters and also `A`.
+So it is set for the right of `T` and `Y`, and also at the left of most lowercase letters and also `A`.
 It's not hard to imagine a tool that might help automate this, perhaps distilling kerning information prepared in other ways.
 
 I haven't done a real implementation yet, but I suspect this idea might scale to real fonts: instead of bits and an integer kerning amount, the vectors would store continuous values (reasonably quantized).
@@ -276,6 +280,11 @@ On-the-fly code generation for bitblt was done for the [Blit] around 1982.
 See [Bitmap Graphics SIGGRAPH 84] for more.
 An interesting detail is that they claim about 2500 characters per second; the raw performance of this on RP2350 hardware is almost 3 orders of magnitude greater, just counting the output to 1bpp (which is how the Blit's framebuffer was configured).
 
+Edit added later: David Fuchs pointed out [US Patent 6377261], filed in 1996, which compiled glyphs to machine code.
+It's highly optimized for speed, and has a lot in common with the idea here, but depends on a cache to be reasonably RAM efficient.
+Even so, it absolutely counts as prior art.
+
+Discuss on [Hacker News](https://news.ycombinator.com/item?id=50412072).
 
 [Bitmap Graphics SIGGRAPH 84]: https://pdos.csail.mit.edu/%7Ersc/pike84bitblt.pdf
 [Blit]: https://en.wikipedia.org/wiki/Blit_(computer_terminal)
@@ -285,3 +294,4 @@ An interesting detail is that they claim about 2500 characters per second; the r
 [pico-dvi-rs]: https://github.com/DusterTheFirst/pico-dvi-rs
 [Microtypography]: https://en.wikipedia.org/wiki/Microtypography
 [dvhstx]: https://github.com/adafruit/Adafruit-DVI-HSTX
+[US Patent 377261]: https://patents.google.com/patent/US6377261B1/en
