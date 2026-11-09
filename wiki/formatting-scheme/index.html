@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Formatting scheme for Linebender projects - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Formatting scheme for Linebender projects">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Formatting scheme for Linebender projects">
+        <meta property="og:description"
+            content="Formatting scheme for Linebender projects">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Formatting scheme for Linebender projects">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Formatting scheme for Linebender projects</h1>
+<h2 id="copyright">Copyright</h2>
+<p>Code files should start with a copypright notice composed of two comments following this format:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">// Copyright 2024 the XXXX Authors
+</span><span style="color:#65737e;">// SPDX-License-Identifier: Apache-2.0 OR MIT
+</span></code></pre>
+<p>The year should be the file's creation year.
+"XXXX" should be the project's name.
+The license depends on the project and the file type, but is usually "either Apache 2.0 or MIT License, whichever is least restrictive".
+Shaders are usually licensed under the former two licenses OR the Unlicense.</p>
+<h2 id="rust">Rust</h2>
+<p>Most Linebender projects files are written in Rust.
+For those files, the formatting produced by <code>rustfmt</code> is required.</p>
+<p>The following rustfmt config is recommended:</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#65737e;"># LINEBENDER RUSTFMT CONFIG - v1
+</span><span style="color:#65737e;"># Ensure lines end with \n even if the git configuration core.autocrlf is not set to true
+</span><span style="color:#bf616a;">newline_style </span><span>= &quot;</span><span style="color:#a3be8c;">Unix</span><span>&quot;
+</span><span>
+</span><span style="color:#65737e;"># `Foobar { foo, bar }` is more readable than `Foo { foo: foo, bar: bar }`
+</span><span style="color:#bf616a;">use_field_init_shorthand </span><span>= </span><span style="color:#d08770;">true
+</span><span>
+</span><span style="color:#65737e;"># Commented out because it is still unstable, but works fine in practice.
+</span><span style="color:#65737e;"># imports_granularity = &quot;Module&quot;
+</span><span>
+</span><span style="color:#65737e;"># END LINEBENDER RUSTFMT CONFIG
+</span></code></pre>
+<p>You may also want to occasionally use this unstable config:</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#65737e;"># Groups imports in a predictable way: first core/alloc/std, then other crates, then the current crate.
+</span><span style="color:#bf616a;">group_imports </span><span>= &quot;</span><span style="color:#a3be8c;">StdExternalCrate</span><span>&quot;
+</span></code></pre>
+<p>We don't recommend it as a permanent config value even for nightly projects, because the way it reorders items <a href="https://github.com/linebender/linebender.github.io/issues/87">isn't always ideal</a>.</p>
+<h2 id="markdown">Markdown</h2>
+<p>In Markdown files, every paragraph should have one line per sentence.
+This makes git diff easier to read.
+<a href="https://nick.groenen.me/notes/one-sentence-per-line/">[1]</a> <a href="https://sive.rs/1s">[2]</a></p>
+<h2 id="cargo-metadata">Cargo Metadata</h2>
+<p>We order metadata in our <code>Cargo.toml</code> for packages consistently, in the order:</p>
+<ul>
+<li>Ordering of sections: <code>package</code>, <code>features</code>, <code>dependencies</code>, <code>lints</code>, <code>profile</code>, <code>example</code>.</li>
+<li>Ordering of <code>package</code> fields: <code>name</code>, <code>version</code>, <code>description</code>, <code>keywords</code>, <code>categories</code>, <code>edition</code>, <code>rust-version</code>, <code>license</code>, <code>repository</code>, <code>homepage</code>, <code>exclude</code>.</li>
+</ul>
+<p>This reduces the number of choices we need to make over time.
+This isn't worth failing a review over, but can be cleaned up in a later audit.
+Source: <a href="https://github.com/linebender/xilem/pull/972">xilem#972</a>.
+<code>package</code> includes the docs.rs metadata:</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[package.metadata.docs.rs]
+</span><span style="color:#bf616a;">all-features </span><span>= </span><span style="color:#d08770;">true
+</span></code></pre>
+<p>We used to implement <a href="https://blog.rust-lang.org/2026/04/04/docsrs-only-default-targets/">https://blog.rust-lang.org/2026/04/04/docsrs-only-default-targets/</a> manually, but no longer need to, so you can remove that.
+We must also follow the <a href="https://linebender.org/wiki/canonical-lints/">linting setup</a>.</p>
+<p>The baseline <code>.gitignore</code> should contain only <code>/target</code>. We choose not to ignore IDE specific files, but should ignore <code>.DS_Store</code>.</p>
+<h3 id="taplo">Taplo</h3>
+<p>We currently use Taplo for TOML formatting.
+This should be checked in CI - the config file we use is:</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#65737e;"># See https://taplo.tamasfe.dev/configuration/file.html
+</span><span style="color:#65737e;"># and https://taplo.tamasfe.dev/configuration/formatter-options.html
+</span><span>
+</span><span>[formatting]
+</span><span style="color:#65737e;"># Aligning comments with the largest line creates
+</span><span style="color:#65737e;"># diff noise when neighboring lines are changed.
+</span><span style="color:#bf616a;">align_comments </span><span>= </span><span style="color:#d08770;">false
+</span><span>
+</span><span style="color:#65737e;"># Matches how rustfmt formats Rust code
+</span><span style="color:#bf616a;">column_width </span><span>= </span><span style="color:#d08770;">100
+</span><span style="color:#bf616a;">indent_string </span><span>= &quot;    &quot;
+</span></code></pre>
+<h2 id="setting-up-no-std-properly">Setting up no_std properly</h2>
+<p>As many of our crates as possible are made <code>no_std</code>.
+Crates which are <code>no_std</code> should have the <code>"no-std"</code> crates.io category.
+Even for crates which don't use <code>std</code>, they still get a default <code>std</code> feature, which gates a line such as:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">// Ensure that we don&#39;t compile if you&#39;re using the std feature on a platform without `std`
+</span><span>#[</span><span style="color:#bf616a;">cfg</span><span>(feature = &quot;</span><span style="color:#a3be8c;">std</span><span>&quot;)]
+</span><span style="color:#b48ead;">extern crate</span><span> std as _;
+</span></code></pre>
+<p>By default, we do not promise to make our crates no-alloc. Crates which would otherwise be <code>no-alloc</code> should have a line such as:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">// Avoid adding alloc in the future being a breaking change.
+</span><span style="color:#b48ead;">extern crate</span><span> alloc as _;
+</span></code></pre>
+<p>This means that if we get a user who wishes to use the crate in a <code>no-alloc</code> environment then we won't accidentally break them later.
+If we do get a request, we should set up dedicated CI for this use case, but we're not aware of this having happened yet, so haven't done so.
+There will be a note about this in the <code># Features</code> section of the crate level docs.
+See <a href="https://xi.zulipchat.com/#narrow/channel/181284-blogging/topic/no_std.20survey/near/618972372">#blogging &gt; no_std survey @ 💬</a>.</p>
+<h2 id="documentation">Documentation</h2>
+<p>All top-level headings in Rust documentation should use single <code>#</code> header, only after a <code>#</code> can we use a <code>##</code> subheading.
+Our crate level readme has a <code>Features</code> section, which should look something like the following:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//! # Features
+</span><span style="color:#65737e;">//!
+</span><span style="color:#65737e;">//! The following crate [feature flags](https://doc.rust-lang.org/cargo/reference/features.html#dependency-features) are available:
+</span><span style="color:#65737e;">//!
+</span><span style="color:#65737e;">//! - `std` (enabled by default): This is currently unused and is provided for forward compatibility.
+</span><span style="color:#65737e;">//! 
+</span><span style="color:#65737e;">//! Note that [Crate Name] does require that an allocator is available (i.e. it uses [`alloc`][]).
+</span></code></pre>
+<p>For the crates which do the <code>libm</code>/<code>std</code> dance, those features should be documented as:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">//! - `std` (enabled by default): Get floating point functions from the standard library
+</span><span style="color:#65737e;">//!   (likely using your target&#39;s libc).
+</span><span style="color:#65737e;">//! - `libm`: Use floating point implementations from [libm][].
+</span><span style="color:#65737e;">//!   This is useful for `no_std` environments.
+</span><span style="color:#65737e;">//!   However, note that the `libm` crate is not as efficient as the standard library.
+</span><span style="color:#65737e;">//!
+</span><span style="color:#65737e;">//! At least one of `std` and `libm` is required; `std` overrides `libm`.
+</span><span style="color:#65737e;">//! Note that [Crate Name] does require that an allocator is available (i.e. it uses [`alloc`][]).
+</span><span>#![</span><span style="color:#bf616a;">cfg_attr</span><span>(feature = &quot;</span><span style="color:#a3be8c;">libm</span><span>&quot;, doc = &quot;</span><span style="color:#a3be8c;">[libm]: libm</span><span>&quot;)]
+</span><span>#![</span><span style="color:#bf616a;">cfg_attr</span><span>(</span><span style="color:#bf616a;">not</span><span>(feature = &quot;</span><span style="color:#a3be8c;">libm</span><span>&quot;), doc = &quot;</span><span style="color:#a3be8c;">[libm]: https://crates.io/crates/libm</span><span>&quot;)]
+</span><span>
+</span><span>#[</span><span style="color:#bf616a;">cfg</span><span>(</span><span style="color:#bf616a;">not</span><span>(</span><span style="color:#bf616a;">any</span><span>(feature = &quot;</span><span style="color:#a3be8c;">std</span><span>&quot;, feature = &quot;</span><span style="color:#a3be8c;">libm</span><span>&quot;)))]
+</span><span>compile_error!(&quot;</span><span style="color:#a3be8c;">[Crate Name] requires either the `std` or `libm` feature to be enabled</span><span>&quot;);
+</span></code></pre>
+<p>The docs for each feature should also be copied to their <code>Cargo.toml</code> feature description.
+"Bare" intra doc links (such as <code>[Item]</code>) should be avoided in the top level docs - you must use something like <code>[Item][]</code>.
+This allows adding an equivalent link to docs.rs in the README to be linted for.</p>
+<h3 id="cargo-rdme">Cargo rdme</h3>
+<p>We use <a href="https://crates.io/crates/cargo-rdme/1.5.1">cargo-rdme</a> v1.5.1 for our readmes.
+(The 2.0 series is much harder to use due to its handling of intra-doc links)
+Each crate README should have the following block:</p>
+<pre data-lang="md" style="background-color:#2b303b;color:#c0c5ce;" class="language-md "><code class="language-md" data-lang="md"><span style="color:#65737e;">&lt;!-- We use cargo-rdme to update the README with the contents of lib.rs.
+</span><span style="color:#65737e;">To edit the following section, update it in lib.rs, then run:
+</span><span style="color:#65737e;">cargo rdme --workspace-project=[crate_id]
+</span><span style="color:#65737e;">Full documentation at https://github.com/orium/cargo-rdme --&gt;
+</span><span>
+</span><span style="color:#65737e;">&lt;!-- Intra-doc links used in lib.rs should be evaluated here.
+</span><span style="color:#65737e;">See https://linebender.org/blog/doc-include/ for related discussion. --&gt;
+</span><span style="color:#d08770;">[`Affine`]: https://docs.rs/kurbo/latest/kurbo/struct.Affine.html
+</span><span style="color:#d08770;">[`alloc`]: https://doc.rust-lang.org/stable/alloc/
+</span><span style="color:#65737e;">&lt;!-- cargo-rdme start --&gt;
+</span></code></pre>
+<p>Note that we previously used <code>--heading-base-level 0</code>, because we didn't follow the single <code>#</code> 'rule'.
+Intra-doc links to this or other crates must be to <code>latest</code> (or <code>stable</code> for crates in the Rust distribution).</p>
+<p>We also choose to document the command at the top of <code>lib.rs</code> (after the copyright header but before the doc):</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#65737e;">// After you edit the crate&#39;s doc comment, run this command, then check README.md for any missing links
+</span><span style="color:#65737e;">// cargo rdme --workspace-project=gazeto
+</span></code></pre>
+<h3 id="readme-setup">Readme Setup</h3>
+<p>The readme order for individual packages is as follows. We don't yet have the format fully worked out for workspace (i.e. repository) level readmes.</p>
+<pre data-lang="md" style="background-color:#2b303b;color:#c0c5ce;" class="language-md "><code class="language-md" data-lang="md"><span>&lt;</span><span style="color:#bf616a;">div </span><span style="color:#d08770;">align</span><span>=&quot;</span><span style="color:#a3be8c;">center</span><span>&quot;&gt;
+</span><span>
+</span><span style="color:#8fa1b3;"># Name (Title Case)
+</span><span>
+</span><span style="font-weight:bold;color:#ebcb8b;">**Tagline**
+</span><span>
+</span><span style="color:#d08770;">[![Latest published version.](https://img.shields.io/crates/v/vello.svg)](https://crates.io/crates/vello)
+</span><span style="color:#d08770;">[![Documentation build status.](https://img.shields.io/docsrs/vello.svg)](https://docs.rs/vello)
+</span><span style="color:#d08770;">[![Apache 2.0 or MIT license.](https://img.shields.io/badge/license-Apache--2.0_OR_MIT-blue.svg)](#license)
+</span><span style="color:#96b5b4;">\
+</span><span style="color:#d08770;">[![Linebender Zulip chat.](https://img.shields.io/badge/Linebender-%23gpu-blue?logo=Zulip)](https://xi.zulipchat.com/#narrow/stream/197075-gpu)
+</span><span style="color:#d08770;">[![GitHub Actions CI status.](https://img.shields.io/github/actions/workflow/status/linebender/vello/ci.yml?logo=github&amp;label=CI)](https://github.com/linebender/vello/actions)
+</span><span style="color:#d08770;">[![Dependency staleness status.](https://deps.rs/crate/vello/latest/status.svg)](https://deps.rs/crate/vello)
+</span><span>
+</span><span>&lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>
+</span><span style="color:#65737e;">&lt;!-- We use cargo-rdme ... --&gt;
+</span><span style="color:#65737e;">&lt;!-- cargo-rdme start --&gt;
+</span><span>...
+</span><span style="color:#65737e;">&lt;!-- cargo-rdme end --&gt;
+</span><span>
+</span><span>
+</span><span style="color:#8fa1b3;">## Minimum supported Rust Version (MSRV)
+</span><span>
+</span><span>This version of [Crate Name] has been verified to compile with </span><span style="font-weight:bold;color:#ebcb8b;">**Rust 1.96**</span><span> and later.
+</span><span>
+</span><span>Future versions of [Crate Name] might increase the Rust version requirement.
+</span><span>It will not be treated as a breaking change and as such can even happen with small patch releases.
+</span><span>
+</span><span style="color:#8fa1b3;">## Community
+</span><span>
+</span><span style="color:#65737e;">&lt;!-- Replace channel as appropriate --&gt;
+</span><span>Discussion of [Crate Name] development happens in the </span><span style="color:#d08770;">[Linebender Zulip](https://xi.zulipchat.com/)</span><span>, specifically the </span><span style="color:#d08770;">[#general channel](https://xi.zulipchat.com/#narrow/channel/147921-general)</span><span>.
+</span><span>All public content can be read without logging in.
+</span><span>
+</span><span style="color:#8fa1b3;">## License
+</span><span>
+</span><span>Licensed under either of
+</span><span>
+</span><span style="color:#bf616a;">- Apache License, Version 2.0 (</span><span style="color:#d08770;">[LICENSE-APACHE](../LICENSE-APACHE)</span><span style="color:#bf616a;"> or </span><span style="color:#d08770;">&lt;http://www.apache.org/licenses/LICENSE-2.0&gt;</span><span style="color:#bf616a;">)
+</span><span style="color:#bf616a;">- MIT license (</span><span style="color:#d08770;">[LICENSE-MIT](../LICENSE-MIT)</span><span style="color:#bf616a;"> or </span><span style="color:#d08770;">&lt;http://opensource.org/licenses/MIT&gt;</span><span style="color:#bf616a;">)
+</span><span style="color:#bf616a;">
+</span><span>at your option.
+</span><span>
+</span><span style="color:#8fa1b3;">## Contribution
+</span><span>
+</span><span>Contributions are welcome by pull request. The [Rust code of conduct] applies.
+</span><span>Please feel free to add your name to the [AUTHORS] file in any substantive pull request.
+</span><span>
+</span><span>Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, as defined in the Apache-2.0 license, shall be licensed as above, without any additional terms or conditions.
+</span><span>
+</span><span style="color:#d08770;">[Rust Code of Conduct]: https://www.rust-lang.org/policies/code-of-conduct
+</span><span style="color:#d08770;">[AUTHORS]: ../AUTHORS
+</span></code></pre>
+<p>We haven't yet decided on the badges for top-level readmes.
+See <a href="https://xi.zulipchat.com/#narrow/channel/419691-linebender/topic/Bikeshedding.20badges/near/600855247">#linebender &gt; Bikeshedding badges @ 💬</a>.</p>
+<p>Each crate must have their license files copied into the crate, as well as at the top level.</p>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>
