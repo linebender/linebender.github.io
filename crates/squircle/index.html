@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Squircle tester</title>
+    <link data-trunk rel="rust" data-bin="squircle-dev" />
+    <link data-trunk rel="css" href="squircle-demo.css" />
+    <style>
+      /* Stand-ins for what sass/light.scss and sass/dark.scss give the real
+         page, plus the body font from sass/main.scss, so this is a fair
+         preview rather than a differently styled one. */
+      :root {
+        --fg-color: #111;
+        --fg2-color: #828282;
+        --bg-color: #fdfdfd;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --fg-color: #eee;
+          --fg2-color: #bcbcbc;
+          --bg-color: #333;
+        }
+      }
+
+      body {
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 1rem;
+        color: var(--fg-color);
+        background: var(--bg-color);
+        font: 400 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="squircle-demo-root"></div>
+  </body>
+</html>

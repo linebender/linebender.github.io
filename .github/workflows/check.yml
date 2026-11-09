@@ -18,6 +18,28 @@ jobs:
         env:
           BUILD_ONLY: true
 
+  # Demos embedded in pages are Rust compiled to Wasm; see ./main.yml for the
+  # packaging step that runs on deploy.
+  check-wasm:
+    name: check (wasm)
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: install stable toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - name: restore cache
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: ./crates
+      - name: cargo check
+        working-directory: ./crates
+        # --list names the crates that declare a cdylib; --all-targets also
+        # covers each one's trunk-only dev bin.
+        run: cargo check $(./build.sh --list) --all-targets --target wasm32-unknown-unknown --locked
+
   # If this fails, consider changing your text or adding something to .typos.toml.
   typos:
     runs-on: ubuntu-latest
