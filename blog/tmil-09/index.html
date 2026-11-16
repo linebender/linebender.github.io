@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>This Month in Linebender, September 2024 - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="This Month in Linebender, September 2024">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="This Month in Linebender, September 2024">
+        <meta property="og:description"
+            content="This Month in Linebender, September 2024">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="This Month in Linebender, September 2024">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>This Month in Linebender, September 2024</h1>
+<h3>Daniel McNab, Olivier Faure, October 15, 2024</h3>
+<p>Linebender is an informal open-source organization working on various projects to advance the state of the art in GUI for <a href="https://rust-lang.org">the Rust programming language</a>.</p>
+<img style="height: auto; margin: 0 auto" src="../../linebender.svg" alt="Linebender logo; smoothly stroked overlapping lowercase letters, an l and a b." height="200" width = "200">
+<h2 id="xilem">Xilem</h2>
+<p>Xilem is our flagship GUI project, inspired by SwiftUI.
+It lets you build user interfaces declaratively by composing lightweight views together, and will diff them to provide minimal updates to a retained layer.</p>
+<ul>
+<li>HTTP cats example (<a href="https://github.com/linebender/xilem/pull/571">xilem#571</a>).</li>
+<li><code>lens</code>, a shorthand for a common component pattern (<a href="https://github.com/linebender/xilem/pull/587">xilem#587</a>).</li>
+<li>We added Views for some existing and new widgets:
+<ul>
+<li>Grid layout (<a href="https://github.com/linebender/xilem/pull/570">xilem#570</a>).</li>
+<li>Images (<a href="https://github.com/linebender/xilem/pull/571">xilem#571</a>).</li>
+</ul>
+</li>
+</ul>
+<!-- TODO: Xilem Web seems to not have any especially relevant updates? -->
+<figure>
+<img style="height: auto" src="http_cats.png" alt="A list of HTTP status codes, with 'Select' buttons. HTTP code 418 'I'm a teapot' is selected, with a picture of a kitten hiding in a teapot." height="962" width="600">
+<figcaption>
+<p>The HTTP cats example.</p>
+</figcaption>
+</figure>
+<h2 id="masonry">Masonry</h2>
+<p>Masonry is the widget system used by Xilem.
+It provides a non-opinionated retained widget tree, designed as a base layer for high-level GUI frameworks.</p>
+<p>Our ongoing pass specification project has been largely implemented.
+That work is now in a wrapping-up stage, which has allowed Olivier to work on improving the codebase's quality in general.
+Some highlights of work from September:</p>
+<ul>
+<li><a href="https://github.com/linebender/xilem/pull/515">xilem#515</a>: Removes unimplemented functionality from our text handling code.</li>
+<li><a href="https://github.com/linebender/xilem/pull/570">xilem#570</a>: An implementation of a grid layout, by Jared O'Connell.</li>
+<li><a href="https://github.com/linebender/xilem/pull/550">xilem#550</a>: Restores scroll requests, as used by text inputs.</li>
+<li><a href="https://github.com/linebender/xilem/pull/565">xilem#565</a>: Allows widgets to implement more efficient pointer position dispatching, by new Linebender member Tom Churchman.</li>
+<li><a href="https://github.com/linebender/xilem/pull/580">xilem#580</a>: Adds screen reader support for the textbox widget.</li>
+</ul>
+<!-- No grid example, it's not really visual. -->
+<p>Some ongoing work includes:</p>
+<ul>
+<li><a href="https://github.com/linebender/xilem/pull/615">xilem#615</a>: Detailed accessibility information for text input and prose widgets.</li>
+<li><a href="https://github.com/linebender/xilem/pull/606">xilem#606</a>: Custom client side decorations for Wayland, by Marco Melorio.</li>
+<li><a href="https://github.com/linebender/xilem/pull/605">xilem#605</a>: Greater flexibility in the layout of the <code>Image</code> widget, by failingprovince.</li>
+<li><a href="https://github.com/linebender/xilem/pull/591">xilem#591</a>: An SVG-like widget for absolute positioning, by Muhammad Ragib Hasin.</li>
+</ul>
+<h2 id="vello">Vello</h2>
+<p>Vello is our GPU vector renderer.
+It can draw large 2D scenes with high performance, using GPU compute shaders for most of the work.</p>
+<p>The month of september included a lot of progress towards the 0.3.0 release.</p>
+<ul>
+<li>We no longer consider Vello to be experimental (<a href="https://github.com/linebender/vello/pull/691">vello#691</a>). Please note that Vello is still an alpha, and has several known issues.</li>
+<li>An implementation of the single pass scan described last month is being created by Thomas Smith in <a href="https://github.com/linebender/vello/pull/685">vello#685</a>.</li>
+</ul>
+<h2 id="parley">Parley</h2>
+<p>Parley is a text layout library.
+It handles text layout, mostly at the level of line breaking and resolving glyph positions.</p>
+<ul>
+<li>Nico Burns contributed a new way to assign layout properties in <a href="https://github.com/linebender/parley/pull/76">parley#76</a>.</li>
+</ul>
+<h2 id="others">Others</h2>
+<ul>
+<li>Daniel and Olivier's "office hours" appointments can still be booked by anyone for open-ended discussion of the ecosystem.
+<ul>
+<li><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ32eQYJ9DtZ_wJaYNtT36YioETiloZDIdImFpBFRo5-XsqGzpikgkg47LPsiHhpiwiQ1orOwwW2">See Daniel's schedule here</a>.</li>
+<li><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2t767ZRETD_TkRI_VxK2ZTG0VrO9OZ4l7HvTxefhtJcg85iK0ZN7zWNnAEZtH0Dn7C1GKxrmYM">See Olivier's schedule here</a>.</li>
+</ul>
+</li>
+</ul>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>

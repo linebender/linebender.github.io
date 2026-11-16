@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Squircles - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Squircles">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Squircles">
+        <meta property="og:description"
+            content="Squircles">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Squircles">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Squircles</h1>
+<p>A squircle is a shape intermediate between a square and a circle.
+There is no single mathematical definition, rather there are a number of curves that fit this shape.
+All general squircles are parametrized, and can vary between circle and square.</p>
+<div id="squircle-demo-root">
+  <p class="squircle-fallback">Loading the interactive tester…</p>
+</div>
+<link rel="stylesheet" href="/rust/squircle-demo.css">
+<script type="module">
+  const root = document.getElementById("squircle-demo-root");
+  try {
+    const { default: init, start } = await import("/rust/squircle.js");
+    await init();
+    root.replaceChildren();
+    start("squircle-demo-root");
+  } catch (err) {
+    console.error(err);
+    root.replaceChildren(
+      Object.assign(document.createElement("p"), {
+        className: "squircle-fallback",
+        textContent:
+          "The interactive tester could not be loaded. It needs JavaScript and WebAssembly.",
+      }),
+    );
+  }
+</script>
+<h2 id="superellipse">Superellipse</h2>
+<p>The best known squircle is the superellipse, popularized by Piet Hein.
+Martin Gardner wrote a detailed narrative of its origin in a <a href="https://archive.org/details/mathematicalcarn00gard/page/240/mode/2up">Scientific American column</a> in 1977.
+The text is replicated in <a href="https://piethein.com/superellipse/">https://piethein.com/superellipse/</a> but that’s missing equations and figures.</p>
+<p>The superellipse has the formula $|x|^n + |y|^n = 1$ (we’ll use a unit radius for convenience).
+When $n=2$ it is a circle, and it approaches a square asymptotically as $n \rightarrow \infty$.</p>
+<h2 id="measurement">Measurement</h2>
+<p>There is no standard measurement for squircles.
+For superellipses, the exponent is the most common parameter.
+A good choice is the coordinates of the midpoint of the quadrant, assuming a unit radius; here $x$ and $y$ are equal.
+The conversion formula is simple and intuitive: $x = 0.5^{1/n}$.
+This measurement is called "gauge" in the interactive demo above, and is the primary parameter; with the exception of some unreachable regions of parameter space, it should be possible to compare different squircle variants with similar gauge.</p>
+<h2 id="flat-sided-squircles">Flat-sided squircles</h2>
+<p>There are two basic approaches to squircle creation.
+One is a single analytic curve, where curvature reaches zero at the poles, but is otherwise nonzero.
+The other is mixing straight line segments with corners.
+A significant advantage of the latter approach is that it can adapt to rectangles of arbitrary aspect ratio without distorting the corner shape.</p>
+<h2 id="the-apple-squircle-shape">The Apple squircle shape</h2>
+<p>Squircles received renewed attention when Apple changed the icon shape from rounded rectangle to their own squircle in iOS 7 in 2013.
+There were several blog posts to analyze and recreate the shape.
+An early analysis suggested that it was a superellipse of exponent 5, but when people extracted the Béziers and looked more closely, that was found to be inaccurate.
+Rather, it’s a flat-sided squircle.</p>
+<p>For the raw Bézier path data of the Apple shape, the best source is the <a href="https://www.paintcodeapp.com/blogpost/code-for-ios-7-rounded-rectangles">PaintCode blog</a>.
+This blog correctly points out some bugs in that logic, and also has some details on behavior for oval rather than square aspect ratios.</p>
+<p>The Apple shape has a number of flaws, including one extraneous straight line segment, and a lack of symmetry.
+However, those flaws are minor, and really only reveal themselves under close analysis.</p>
+<p>The Apple shape has no additional parameter, so its variation is controlled entirely by the length of the flat side.
+With no flat side, it has a gauge fixed at 0.809.</p>
+<p>An extremely detailed analysis of the Apple shape is in <a href="https://tsuijunxi.github.io/en/2026/06/23/the-art-of-continuous-corners/">The Art of Continuous Corners</a>.</p>
+<h2 id="the-figma-squircle">The Figma squircle</h2>
+<p>Figma published a blog post, <a href="https://www.figma.com/blog/desperately-seeking-squircles/">Desperately Seeking Squircles</a>, with an analysis of the Apple squircle and their own approximation.
+It is influential because Figma is an important design tool, because their writeup was compelling, and because there are any number of open source implementations of it, mostly TypeScript/JavaScript.</p>
+<ul>
+<li><a href="https://msurguy.github.io/squircle-path-kit/">squircle-path-kit</a> from msurguy</li>
+<li><a href="https://github.com/phamfoo/figma-squircle">figma-squircle</a> from phamfoo
+<ul>
+<li><a href="https://github.com/sanalabs/corner-smoothing">corner-smoothing</a> from sanalabs (uses figma-squircle)</li>
+<li><a href="https://github.com/bring-shrubbery/squircle-js">squircle-js</a> from bring-shrubbery (uses figma-squircle)</li>
+</ul>
+</li>
+<li><a href="https://github.com/aloisdeniel/figma_squircle">figma_squircle</a> from aloisdeniel (Dart/Flutter)</li>
+<li><a href="https://github.com/JaceThings/Lisse">Lisse</a> from JaceThings</li>
+</ul>
+<p>The Figma blog contains a plot of the Béziers comprising a cleaned up version of iOS 7 rounded rectangle, revealing three Bézier segments per quadrant.
+It fixes the straight-line segment and the asymmetry, so is not an exact match.
+The middle segment is very close to an arc.
+The other segments are more problematic.
+They have zero curvature at the endpoints, so are G2 continuous with flat sides, but there is a curvature discontinuity with the middle (arc) section, and their curvature profile is not especially smooth.
+A reasonable guess is that it was drawn by hand to be approximately smooth.</p>
+<p>Without a flat side, the Figma squircle is only capable of a gauge between $\sqrt{0.5}$ (0.707) and 0.854.
+Gauges up to 1 are of course attainable by adding the flat side.</p>
+<h2 id="clothoid-squircles">Clothoid squircles</h2>
+<p>The Figma blog suggests “smoothed curvature profiles” which have a piecewise linear relationship between arc length and curvature.
+It then goes on to approximate them with cubic Bézier segments, but their approximation has fairly significant curvature discontinuities when joining to the circular arc.
+The clothoid squircle is worth describing explicitly, as it has G2 continuity (as opposed to G1 for the Figma approximation).</p>
+<p>The behavior is generally similar to the Figma variant.
+Without a flat side, it is only capable of a gauge between $\sqrt{0.5}$ (0.707) and 0.790.</p>
+<h2 id="the-box-decorations-corner-shape-spec">The box decorations corner-shape spec</h2>
+<p>Squircles got a big boost as they’re now standardized in CSS, as the <a href="https://www.w3.org/TR/css-borders-4/#propdef-corner-shape">corner-shape</a> property of the <a href="https://www.w3.org/TR/css-borders-4/">box decorations spec</a>.
+These specify real superellipse corners, with additional tweaks and support for animation.</p>
+<h3 id="the-chromium-superellipse-approximation">The Chromium superellipse approximation</h3>
+<p>While the CSS spec mandates the actual superellipse shape, practical implementations will generally use a Bézier approximation.
+A blog post, <a href="https://developer.chrome.com/blog/implementing-corner-shape">The corner cases of implementing CSS corner-shape in Blink</a>, gives an efficient closed-form approximation, with two Bézier segments per quadrant.
+This formula, determined using symbolic regression, is parametrized, and handles exponents 2 and above well.
+It is exact for placing the midpoint (this is part of the formula), so is well calibrated in that regard.</p>
+<h3 id="apple-like-behavior-with-the-corner-shape-spec">Apple-like behavior with the corner-shape spec</h3>
+<p>The early analysis of the Apple squircle shape as being approximately an exponent 5 superellipse was based on coarse shape only and didn't take into account its flat side.
+A much better match to the Apple shape is attainable using a superellipse with exponent 3 and a corresponding flat side length to match the gauge.
+This has G2 continuity and a similar curvature profile.
+This illustration was made using the Chromium approximation, so it should match the browser.</p>
+<p><img src="https://linebender.org/wiki/curves/squircle/apple_vs_superellipse.svg" alt="The Apple squircle beside a superellipse of exponent 3 with flat sides" /></p>
+<p>Here's the CSS to accomplish the "close to Apple" squircle shape.
+Note that the parameter to the <code>superellipse()</code> function is the base-2 log of the exponent, so the value for an exponent of 3 is 1.585.</p>
+<pre data-lang="css" style="background-color:#2b303b;color:#c0c5ce;" class="language-css "><code class="language-css" data-lang="css"><span style="color:#8fa1b3;">.</span><span style="color:#d08770;">icon </span><span>{
+</span><span>  aspect-ratio: </span><span style="color:#d08770;">1</span><span>;
+</span><span>  border-radius: </span><span style="color:#d08770;">46.2%</span><span>;
+</span><span>  corner-shape: superellipse(</span><span style="color:#d08770;">1.585</span><span>);
+</span><span>}
+</span></code></pre>
+<h2 id="continuity">Continuity</h2>
+<p>A superellipse of exponent $n$ has continuity $G(\lceil n \rceil - 1)$.
+This includes the flat-sided variants, as, for exponent &gt; 2, the endpoint of the quadrant has zero curvature.
+A perfect circle (and indeed, any even integer exponent) without flat sides is of course the exception, as it has an infinitely high order of continuity.</p>
+<p>As a general observation, for visual smoothness, the shape should have G2 continuity.
+Of the variants discussed, only the clothoid and superellipse (for n &gt; 2) have this property.
+The Chromium approximation comes close; it doesn't have zero curvature by construction when joining the flat part, but does at the corner join by symmetry (unlike the Figma approximation, which has an additional arc there).</p>
+<h2 id="other-squircles">Other squircles</h2>
+<p>Quite a number of other curves can be pressed into service as squircles if need be.</p>
+<ul>
+<li>
+<p>The polynomial spiral (“spiro”) curve can do a reasonable flat-sided squircle with G2 continuity.
+See the “suitcase corners” section of <a href="https://levien.com/phd/phd.html">Raph's thesis</a>, figure 7.2.</p>
+</li>
+<li>
+<p>Conic sections (hyperbolas).
+These approximate a sharp corner but are only G1 continuous (if flat sided).</p>
+</li>
+<li>
+<p>Fernández-Guasti squircle, defined by $x^2 + y^2 - s^2x^2y^2 = 1$.
+This is used in engineering but likely not in graphic design.</p>
+</li>
+<li>
+<p>The <a href="https://en.wikipedia.org/wiki/Squircle">Wikipedia page on squircles</a> has a “periodic squircle” which has very similar behavior to the Fernández-Guasti one (they are visually near indistinguishable).</p>
+</li>
+</ul>
+<h2 id="related-topics">Related topics</h2>
+<p>The offset curve of a squircle is not a squircle, but (a) it’s close, and (b) concentric squircles might be visually just as appealing or more so; for example a slightly rounded inner corner might look better than a sharp one if the curvature exceeds the stroke half-width.</p>
+<p>The <a href="https://raphlinus.github.io/graphics/2020/04/21/blurred-rounded-rects.html">blurred rounded rectangle approximation</a> is based on applying shading to a superellipse; each iso-line is in fact a superellipse.</p>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>
