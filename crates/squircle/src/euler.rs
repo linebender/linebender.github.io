@@ -68,18 +68,6 @@ pub enum EulerPathEl {
     ClosePath,
 }
 
-/// An iterator producing euler segments from a cubic bezier.
-///
-/// Discussion: should this be an anonymous (`from_fn`) type?
-pub struct CubicToEulerIter {
-    c: CubicBez,
-    tolerance: f64,
-    // [t0 * dt .. (t0 + 1) * dt] is the range we're
-    // currently considering.
-    t0: u64,
-    dt: f64,
-}
-
 fn integ_euler_12(k0: f64, k1: f64) -> (f64, f64) {
     let t1_1 = k0;
     let t1_2 = 0.5 * k1;
@@ -262,24 +250,6 @@ impl EulerSeg {
     pub fn new(p0: Point, p1: Point, th0: f64, th1: f64) -> EulerSeg {
         let params = EulerParams::fit_euler(th0, th1);
         EulerSeg { p0, p1, params }
-    }
-
-    /// Create an Euler segment from a cubic Bézier.
-    ///
-    /// The curve is fit according to G1 geometric Hermite interpolation, in
-    /// other words the endpoints and tangents match the given curve.
-    pub fn from_cubic(c: CubicBez) -> EulerSeg {
-        let d01 = c.p1 - c.p0;
-        let d23 = c.p3 - c.p2;
-        let d03 = c.p3 - c.p0;
-        let th0 = d03.cross(d01).atan2(d03.dot(d01));
-        let th1 = d23.cross(d03).atan2(d23.dot(d03));
-        let params = EulerParams::fit_euler(th0, th1);
-        EulerSeg {
-            p0: c.p0,
-            p1: c.p3,
-            params,
-        }
     }
 
     /// Create a segment from params and endpoints.

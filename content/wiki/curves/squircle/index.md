@@ -162,10 +162,9 @@ This is used in engineering but likely not in graphic design.
 
 * The [Wikipedia page on squircles](https://en.wikipedia.org/wiki/Squircle) has a “periodic squircle” which has very similar behavior to the Fernández-Guasti one (they are visually near indistinguishable).
 
-## Discussion questions:
+## Related topics
 
 The offset curve of a squircle is not a squircle, but (a) it’s close, and (b) concentric squircles might be visually just as appealing or more so; for example a slightly rounded inner corner might look better than a sharp one if the curvature exceeds the stroke half-width.
-This may be a deeper discussion.
 
 The [blurred rounded rectangle approximation](https://raphlinus.github.io/graphics/2020/04/21/blurred-rounded-rects.html) is based on applying shading to a superellipse; each iso-line is in fact a superellipse.
 
