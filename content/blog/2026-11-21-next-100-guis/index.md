@@ -10,7 +10,7 @@ There have been roughly 20 Rust GUI toolkits announced since that blog post (see
 ## Rust GUI is still compelling
 
 The motivation to build GUI apps in Rust remains strong.
-Many shipping GUI apps suffer from poor performance, more so when built with cross-platform technology.
+Many shipping GUI apps suffer from poor performance, especially when built with cross-platform technology.
 GUI toolkits shipped by platforms have largely stagnated, and system vendors remain uninterested in solving the cross-platform problem, so Electron has grown in popularity.
 RAM remains expensive and the focus is shifting to mobile, so bloat has real consequences.
 Building high-performance UI in Rust is a practical alternative.
@@ -20,6 +20,7 @@ Few flagship apps use Rust for their UI.
 One of the most notable is the Zed editor, built on their own GPUI framework.
 It proves that shipping Rust UI is practical, and indeed, GPUI is emerging as a major choice for AI-driven rewrites, most notably Discord.
 My personal sense is that GPUI is well suited to the Zed use case, and shipping in a real project boosts its visibility and credibility quite a bit, but it’s not necessarily the ideal choice for more general purpose applications.
+Among other things, its 2D rendering engine is well suited to a text editor, but lacks full gradient support, blending, filters, and other features expected of a renderer in the same class as Vello or Skia.
 
 The reasons for slow adoption may be melting away.
 Writing Rust code is harder than languages more traditionally used for UI (TypeScript, Kotlin, Swift), and finding engineers skilled in both Rust and UI is challenging.
@@ -51,7 +52,7 @@ This is also the "Phoenix" plan for Discord on mobile, while using GPUI on deskt
 
 That said, there's been considerable progress in trying to build mobile UI entirely in Rust.
 Below is a short screencast of the editor demo in [android-view].
-You can see that a lot of IME functionality works, including swiping, moving the cursor by rolling the space bar.
+You can see that a lot of IME functionality works, including swiping, moving the cursor by rolling the space bar, and deleting in semantic chunks.
 Not shown in the video below, but composition regions (needed for CJK) also work, and there's basic accessibility through AccessKit.
 
 {{ video(src="android-view-demo.mp4") }}
@@ -68,6 +69,8 @@ In addition, to help mitigate the risk of monoculture, Cosmic Text is a viable a
 AccessKit was just getting started in 2022, but is now solid infrastructure as well, and used by most UI toolkits.
 I should note, though, there is a difference between a *good* integration and a box ticking exercise.
 And there is more work to be done, for example to make rich text editing fully accessible.
+One other problem I'd like to see addressed is performance degradation when accessibility is enabled.
+This is a problem for egui in particular, as it has to build and diff a tree each animation frame, undercutting the benefits of its underlying immediate mode design.
 
 ## System compositor is still unsolved
 
@@ -78,12 +81,10 @@ You *really* want a video playing in a hardware accelerated layer when possible,
 There has been some progress, notably the [subduction] library, but it certainly isn’t commonly integrated into UI toolkits yet.
 To do it well is a challenging problem, as the capabilities provided by the platform vary widely.
 Ideally there’s a rich and high level interface, something like CALayer on Apple platforms, and polyfills to implement that interface as well as possible on other platforms.
-On Android, when the task is something simple, like overlaying some GUI controls on a video, it uses SurfaceFlinger layers, but when it involves more sophisticated compositing, it would run shaders on the GPU.
+On Android, when the task is something simple, like overlaying some GUI controls on a video, it would use SurfaceFlinger layers, but when it involves more sophisticated compositing, it would run shaders on the GPU.
 
 This is absolutely something we should build, ideally as a high quality community project rather than something with dozens of vibe-coded forks.
 But even in the latter case it’s better for it to exist than not.
-
-Discussion question: talk about winit stalling out?
 
 ## Immediate vs retained mode
 
@@ -95,11 +96,13 @@ Immediate mode is very appealing because it’s less total code and seems quite 
 And for some applications (most especially development support for games) it works well.
 However, I am concerned it won’t scale especially well.
 In short, it’s good at the first 90%, but it makes the second 90% harder.
-To be considered really production-ready, it has to establish stable widget identities to build and update the accessibility tree, it has to reliably cache expensive intermediate artifacts such as text layouts (simple immediate mode often gets around this by cutting corners, which is fine for gamedev).
+To be considered really production-ready, it has to establish stable widget identities to build and update the accessibility tree, and it has to reliably cache expensive intermediate artifacts such as text layouts (simple immediate mode often gets around this by cutting corners in text layout, which may be fine for gamedev).
 And of course, it pulls strongly towards a model of re-rendering everything every frame rather than exploiting layers in the compositor.
 
+
 For this reason among others, I am not impressed by the choice of the [ArtCraft] projects to use egui.
-I do think egui is a really good implementation of the immediate mode paradigm in Rust, and it does solve a number of problems (including accessibility, something Iced has yet to tackle), but it wouldn’t be my first choice for productivity and design applications.
+I do think egui is a really good implementation of the immediate mode paradigm in Rust, and it does solve a number of problems (including accessibility, something mainline Iced does not yet support), but it wouldn’t be my first choice for productivity and design applications.
+The [egui README](https://github.com/emilk/egui?tab=readme-ov-file#advantages-of-immediate-mode) is quite honest on the advantages and disadvantages, and is worth consulting.
 
 ## Clearly defined modules
 
@@ -120,7 +123,7 @@ Having a good spec at the interface between design and execution is critically i
 As a general strategy, I suggest adapting web standards, but not following them slavishly.
 Web standards are an impressive and important artifact.
 A huge amount of time and energy has gone into producing them, and there’s also a lot of care to making things work cross-platform.
-There are also extensive test suites and multiple high quality open source implementations.
+The extensive [WPT tests] are the true magic of the spec, aiding correctness in the multiple high quality open source implementations.
 All this goes a long way to explaining why Electron is popular.
 
 That said, strictly adhering to web standards has serious downsides.
@@ -132,14 +135,14 @@ I’ve done [experiments](https://github.com/linebender/xilem/pull/75) in implem
 The Web is also lacking a solid way to represent virtualized lists, a core feature of every efficient UI toolkit.
 A spec here requires nailing down the interface with the data model, preserving incrementality.
 
-Blitz, as a modular browser engine, is well placed to serve as the cornerstone of hybrid approaches borrowing heavily from Web specs, but also adapting them to be higher performance and more tightly integrated with platform capabilities.
+[Blitz], as a modular browser engine, is well placed to serve as the cornerstone of hybrid approaches borrowing heavily from Web specs, but also adapting them to be higher performance and more tightly integrated with platform capabilities.
 As just one example, it’s possible to start with Stylo as the CSS selector engine, and then replace it with a leaner, more efficient CSS engine if that proves to be practical.
 
 One good example of separation of concerns into smaller modules is the Xilem/Masonry split.
 The Xilem reactive layer was designed to be independent of the actual elements it controls, and indeed it has instantiations both for DOM (which, among other things, is the infrastructure for the [squircle] interactive demo) and Masonry widgets.
-Masonry, on the other hand, was designed to be independent of the reactive layer and indeed the language for the layer above it.
+[Masonry], on the other hand, was designed to be independent of the reactive layer and indeed the language for the layer above it.
 
-By contrast, SwiftUI mashes together the low level widget implementation, the reactivity framework, and the language as well; LLVM reflection from the Swift language is part of the execution engine.
+By contrast, SwiftUI mashes together the low level widget implementation, the reactivity framework, and the language as well; Swift runtime reflection is part of the execution engine.
 Obviously SwiftUI has had a lot farther reach than Xilem, but my argument today is that we should reconsider assumptions as things are rapidly changing.
 
 ### Optimization opportunities
@@ -176,7 +179,6 @@ We expect implementations of system languages to be quite comparable in performa
 ## Acknowledgements
 
 Thanks to Nico Burns for reviewing an earlier draft of this post.
-The current draft hasn't been carefully reviewed and checked, so may very well contain some mistakes.
 
 [Advice for the next dozen Rust GUIs]: https://raphlinus.github.io/rust/gui/2022/07/15/next-dozen-guis.html
 [2026 survey]: https://blog.wybxc.cc/blog/rust-gui-survey-2026/
@@ -189,3 +191,6 @@ The current draft hasn't been carefully reviewed and checked, so may very well c
 [squircle]: https://linebender.org/wiki/curves/squircle/
 [android-view]: https://github.com/rust-mobile/android-view
 [Parley]: https://github.com/linebender/parley
+[Masonry]: https://github.com/linebender/xilem/tree/main/masonry
+[WPT tests]: https://web-platform-tests.org/
+[Blitz]: https://blitz.is/about
