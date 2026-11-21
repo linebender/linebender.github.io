@@ -1,0 +1,29 @@
+{#- Embed a self-hosted video, typically colocated with the post.
+
+Arguments:
+  src      (required) H.264 MP4, plays everywhere.
+  webm     (optional) AV1/VP9 WebM; listed first so browsers that can play it prefer it.
+  poster   (optional) Image shown before playback starts.
+  alt      (optional) Accessible description of what the video shows.
+  caption  (optional) Text shown under the video.
+  autoplay (optional, default false) Muted looping playback, like an animated GIF.
+           Controls stay visible so readers can pause it.
+
+Example:
+  {{ video(src="ime-demo.mp4", webm="ime-demo.webm", poster="ime-demo.webp",
+           alt="Typing with an IME in android-view") }}
+-#}
+<figure class="video">
+  <video controls playsinline preload="metadata"
+    {%- if autoplay is defined and autoplay %} autoplay loop muted{% endif %}
+    {%- if poster is defined %} poster="{{ poster }}"{% endif %}
+    {%- if alt is defined %} aria-label="{{ alt }}"{% endif %}>
+    {%- if webm is defined %}
+    <source src="{{ webm }}" type="video/webm">
+    {%- endif %}
+    <source src="{{ src }}" type="video/mp4">
+  </video>
+  {%- if caption is defined %}
+  <figcaption>{{ caption }}</figcaption>
+  {%- endif %}
+</figure>

@@ -85,6 +85,15 @@ figure>img {
   display: block;
 }
 
+// Phone screencasts are portrait; cap height so they don't fill the whole screen.
+figure.video>video {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 100%;
+  max-height: 80vh;
+}
+
 figcaption {
   text-align: center;
   font-size: 14px;
