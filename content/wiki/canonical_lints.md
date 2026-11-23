@@ -11,7 +11,7 @@ All Linebender projects should include the following set of lints:
 # This one may vary depending on the project.
 rust.unsafe_code = "forbid"
 
-# LINEBENDER LINT SET - Cargo.toml - v8
+# LINEBENDER LINT SET - Cargo.toml - v9
 # See https://linebender.org/wiki/canonical-lints/
 rust.keyword_idents_2024 = "forbid"
 rust.non_ascii_idents = "forbid"
@@ -29,10 +29,14 @@ rust.unused_lifetimes = "warn"
 rust.unused_macro_rules = "warn"
 rust.unused_qualifications = "warn"
 
+cargo.non_snake_case_features = "warn"
+cargo.non_snake_case_packages = "warn"
+cargo.manual_readme = "warn"
+
 clippy.too_many_arguments = "allow"
+clippy.cast_possible_truncation = "allow"
 
 clippy.allow_attributes_without_reason = "warn"
-clippy.cast_possible_truncation = "warn"
 clippy.cast_possible_wrap = "warn"
 clippy.collection_is_never_read = "warn"
 clippy.default_trait_access = "warn"
@@ -62,10 +66,8 @@ clippy.wildcard_dependencies = "warn"
 ## `lib.rs`
 
 ```rust
-// LINEBENDER LINT SET - lib.rs - v4
+// LINEBENDER LINT SET - lib.rs - v5
 // See https://linebender.org/wiki/canonical-lints/
-// These lints shouldn't apply to examples or tests.
-#![cfg_attr(not(test), warn(unused_crate_dependencies))]
 // These lints shouldn't apply to examples.
 #![warn(clippy::print_stdout, clippy::print_stderr)]
 // Targeting e.g. 32-bit means structs containing usize can give false positives for 64-bit.
