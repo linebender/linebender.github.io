@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+        <title>Evolute of the Euler spiral - Linebender</title>
+        <meta name="generator" content="Zola v0.17.2">
+        <meta property="og:title" content="Evolute of the Euler spiral">
+        <meta property="og:locale" content="en_US">
+        <meta name="description" content="Evolute of the Euler spiral">
+        <meta property="og:description"
+            content="Evolute of the Euler spiral">
+        <meta property="og:site_name" content="Linebender">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta property="twitter:title" content="Evolute of the Euler spiral">
+        <!-- End Jekyll SEO tag -->
+        <link rel="stylesheet" href="/main.css">
+        
+        
+        <link type="application/atom+xml" rel="alternate" href="/atom.xml" title="Linebender">
+        
+        
+        <!-- mathjax support -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body cz-shortcut-listen="true">
+        <header class="site-header" role="banner">
+            <div class="wrapper">
+                
+                <a class="site-title" rel="author" href="/">Linebender</a>
+                <nav class="site-nav">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                    <label for="nav-trigger" role="none">
+                        <span class="menu-icon">
+                            <svg viewBox="0 0 18 15" width="18px" height="15px">
+                                <path
+                                    d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                    <div class="trigger">
+                        
+                        <a class="page-link" href="/about">About</a>
+                        <a class="page-link" href="/blog">Blog</a>
+                        <a class="page-link" href="/wiki">Wiki</a>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+        </header>
+        <main class="page-content" aria-label="Content">
+            <div class="wrapper">
+                
+<h1>Evolute of the Euler spiral</h1>
+<p>The <a href="https://en.wikipedia.org/wiki/Evolute">evolute</a> of the Euler spiral has a simple representation as a <a href="https://en.wikipedia.org/wiki/Ces%C3%A0ro_equation">Cesàro equation</a>.
+Evolutes of curves are interesting because the <a href="https://dl.acm.org/doi/10.1145/3386569.3392392">Nehab 2020</a> paper shows us that for strongly correct stroke expansion, the evolute of a curve is needed in addition to the parallel curve (see Figure 11 and related discussion).
+This page contains that derivation, as well as related results on near-optimal flattening of the evolute to line segments.</p>
+<p>In this image, the Euler spiral segment is in gray, and its evolute is in blue:</p>
+<!-- TODO: it would be nice to have a high quality vector image of this -->
+<p><img src="/euler_evolute.png" alt="Image of Euler spiral and its evolute" /></p>
+<p>We'll start with an Euler spiral defined (in Cesàro form) as follows:</p>
+<p>$$\kappa(s) = as$$</p>
+<p>Integrating this equation results in the Whewell form:</p>
+<p>$$\theta(s) = \frac{as^2}{2}$$</p>
+<p>And we have an equation for the derivative of the curve.
+In this derivation, we'll fluidly mix complex numbers and 2D vectors, writing unit vector in the direction of $\theta$ as $e^{i\theta}$.
+This choice, while a bit of an abuse of notation, will be very convenient when calculating derivatives.</p>
+<p>$$x'(s) = e^{i\theta(s)} = e^{i\frac{as^2}{2}}$$</p>
+<p>$$x''(s) = iase^{i\frac{as^2}{2}} = iasx'(s)$$</p>
+<p>The evolute is defined as points offset from the source curve in the normal direction, by the radius of curvature.
+Generally:</p>
+<p>$$\bar{x}(s) = x(s) + \frac{ie^{i\theta(s)}}{\kappa(s)}$$</p>
+<p>Plugging in the Euler spiral, we can thus easily obtain the derivative of the evolute with respect to the s parameter.</p>
+<p>$$
+\begin{align}
+\bar{x}'(s) &amp;= x'(s) + \frac{i^2asx'(s)}{as} - i\frac{x'(s)}{as^2} \\
+&amp;= -i\frac{x'(s)}{as^2}
+\end{align}
+$$</p>
+<p>Proceeding, we'll get the arc length (using s, arc length along original Euler spiral, as a parameter), and also obtain a second derivative for use in calculating the curvature.</p>
+<p>$$\bar{s}'(s) = |x'(s)| = \frac{1}{as^2}$$</p>
+<p>$$\bar{s}(s) = -\frac{1}{as}$$</p>
+<p>A note: the formula for arc length follows readily from a well-known result in differential geometry, as cited in the <a href="https://nvlpubs.nist.gov/nistpubs/jres/087/jresv87n4p317_A1b.pdf">Stoer</a> paper (the bottom of page 322).
+However, given that we already have the derivatives for the purpose of computing curvature, it's maybe easier to just derive than rely on a cited method.</p>
+<p>$$\bar{x}''(s) = \frac{x'(s)}{s} + 2i\frac{x'(s)}{as^3}$$</p>
+<p>When computing the cross-product for the standard curvature formula, the second term above drops out because it's in the same direction as the first derivative, while the first is orthogonal.</p>
+<p>$$
+\begin{align}
+\bar{\kappa}(s) &amp;= \frac{\bar{x}'' \times \bar{x}'}{|\bar{x}'|^3} \\
+&amp;= \frac{1}{as^3} / \frac{1}{a^3 s^6} \\
+&amp;= a^2 s^3
+\end{align}
+$$</p>
+<p>And then this gives the Cesàro equation for the evolute in terms of its own arc length:</p>
+<p>$$\bar{\kappa}(\bar{s}) = -\frac{1}{a\bar{s}^3}$$</p>
+<h2 id="general-evolute-of-log-aesthetic-curves">General evolute of log-aesthetic curves</h2>
+<p>The family of curves in which curvature is a power of the arc length is called "log-aesthetic curves," and there is a small industry of papers on this curve family.
+This family is closed under evolute, see <a href="https://www.cad-journal.net/files/vol_9/CAD_9(5)_2012_721-731.pdf">Yoshida &amp; Saito 2012</a> for the result.</p>
+<p>Thus, the formula derived in this page is an instance of the general result, and is also shown in Figure 3(c) of the above cite.
+In general, the evolute of the curve defined by $\kappa(s) = s^\gamma$ is another curve with $\kappa(s) = s^{-\frac{1 + 2\gamma}{\gamma}}$.
+(There may be a uniform scaling factor; someone should go over the math in detail)</p>
+<h2 id="subdivision-density">Subdivision density</h2>
+<p>Following the derivation for the parallel curve of the Euler spiral, the subdivision density for flattening to lines of a curve with respect to the source curve parameter s is given by this formula:</p>
+<p>$$\rho(s) = \sqrt{0.125|\bar{\kappa}(s)|}\frac{d\bar{s}}{ds}$$</p>
+<p>Plugging in the formulae above and simplifying, we get:</p>
+<p>$$\rho(s) = \sqrt{\frac{1}{8s}}$$</p>
+<p>And to do subdivision, we need the integral of this (and its inverse):</p>
+<p>$$\int_0^t\rho(s)dt= \sqrt{\frac{t}{2}}$$</p>
+<p>Thus, finding the subdivision points for near-optimal flattening of an Euler spiral evolute is even simpler than the flattening of the Euler spiral itself, much less the parallel curve of an Euler spiral.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://nvlpubs.nist.gov/nistpubs/jres/087/jresv87n4p317_A1b.pdf">Curve Fitting with Clothoidal Splines</a>, Josef Stoer, 1982</li>
+<li><a href="https://dl.acm.org/doi/10.1145/3386569.3392392">Converting stroked primitives to filled primitives</a>, Diego Nehab, 2020</li>
+<li><a href="https://www.cad-journal.net/files/vol_9/CAD_9(5)_2012_721-731.pdf">The Evolutes of Log-Aesthetic Planar Curves and the Drawable Boundaries of the Curve Segments</a>, N. Yoshida &amp; T. Saito, 2012</li>
+</ul>
+
+
+            </div>
+        </main>
+        <footer class="site-footer h-card">
+            <div class="wrapper">
+                
+                <h2 class="footer-heading">Linebender</h2>
+                <div class="footer-col-wrapper">
+                    <div class="footer-col footer-col-1">
+                        <ul class="contact-list">
+                            <li class="p-name">Linebender</li>
+                            <li><a class="u-email" href="mailto:raph@levien.com">raph@levien.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-2">
+                        <ul class="social-media-list">
+                            <li><a href="https://github.com/linebender">
+                                <svg class="svg-icon" role="none">
+                                    <use xlink:href="/minima-social-icons.svg#github"></use>
+                                </svg>
+                                <span class="username">linebender</span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col footer-col-3">
+                        <p>&copy; 2023 The Linebender Authors.</p>
+                        <p>
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                <img alt="Creative Commons License" style="border-width:0"
+                                    src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                            </a>
+                            <br />
+                            This website's content is licensed under a
+                            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                                Creative Commons Attribution 4.0 International License
+                            </a>.
+                        </p>
+                        <p>All code used in this website is available under the Apache-2.0 license.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </footer>
+    </body>
+
+</html>
